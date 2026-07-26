@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kickflip Supply — Skate Shop &amp; Drops</title>
+<meta name="description" content="Kickflip Supply. Decks, wheels, shoes and limited drops from a real shop with a real curb out front.">
+<style>
+:root{
+  --blk:#141311;
+  --yel:#ffd21f;
+  --blu:#2438ff;
+  --red:#e6392b;
+  --off:#f4f0e4;
+  --disp:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--off);color:var(--blk);font-family:var(--disp);font-size:16px;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blu);outline-offset:3px}
+img{max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95}
+.mono{font-family:var(--mono)}
+
+/* ticker */
+.ticker{background:var(--blk);color:var(--yel);font-family:var(--mono);font-size:12px;letter-spacing:.08em;overflow:hidden;white-space:nowrap;padding:8px 0;border-bottom:4px solid var(--blk)}
+.ticker span{display:inline-block;padding-left:100%;animation:tick 22s linear infinite}
+@keyframes tick{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){
+  .ticker span{animation:none;padding-left:22px}
+}
+
+/* nav */
+header.bar{background:var(--yel);border-bottom:4px solid var(--blk)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1160px;margin:0 auto;padding:14px 22px;flex-wrap:wrap}
+.mark{font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:-.02em}
+.mark i{font-style:normal;background:var(--blk);color:var(--yel);padding:2px 7px;display:inline-block;transform:rotate(-3deg)}
+.navl{display:flex;gap:4px;flex-wrap:wrap}
+.navl a{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;padding:8px 12px;border:2px solid transparent}
+.navl a:hover{border-color:var(--blk);background:var(--off)}
+.cart{font-family:var(--mono);font-size:12px;font-weight:700;background:var(--blk);color:var(--yel);padding:9px 14px;border:2px solid var(--blk)}
+.cart:hover{background:var(--blu);border-color:var(--blu);color:var(--off)}
+
+/* hero */
+.hero{background:var(--yel);position:relative;overflow:hidden;border-bottom:4px solid var(--blk)}
+.hero-inner{max-width:1160px;margin:0 auto;padding:64px 22px 84px;position:relative}
+.hero h1{font-size:clamp(56px,11vw,150px)}
+.hero h1 .a{display:block}
+.hero h1 .b{display:block;color:var(--off);-webkit-text-stroke:3px var(--blk);paint-order:stroke;margin-left:.6em}
+.hero h1 .c{display:inline-block;background:var(--blu);color:var(--off);padding:.04em .18em;transform:rotate(-2.5deg);margin-top:.08em}
+.hero-sub{max-width:46ch;font-weight:600;font-size:17px;margin-top:26px}
+.hero-cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:var(--mono);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:14px 22px;background:var(--blk);color:var(--yel);border:3px solid var(--blk);cursor:pointer;box-shadow:5px 5px 0 rgba(20,19,17,.25)}
+.btn:hover{background:var(--red);color:var(--off);border-color:var(--blk)}
+.btn.alt{background:var(--off);color:var(--blk)}
+.btn.alt:hover{background:var(--blu);color:var(--off)}
+/* stickers */
+.stk{position:absolute;font-family:var(--mono);font-weight:700;text-transform:uppercase;text-align:center;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.stk-round{width:118px;height:118px;border-radius:50%;background:var(--red);color:var(--off);border:4px solid var(--blk);font-size:12px;line-height:1.25;transform:rotate(12deg);right:6%;top:16%;box-shadow:6px 6px 0 rgba(20,19,17,.3)}
+.stk-stamp{border:3px dashed var(--blk);color:var(--blk);font-size:11px;padding:8px 12px;transform:rotate(-8deg);right:14%;bottom:14%;background:rgba(244,240,228,.6)}
+.stk-star{width:96px;height:96px;background:var(--blu);color:var(--off);font-size:10px;line-height:1.2;clip-path:polygon(50% 0,61% 14%,78% 6%,80% 25%,98% 28%,88% 44%,100% 57%,83% 64%,86% 83%,68% 78%,60% 95%,50% 82%,40% 95%,32% 78%,14% 83%,17% 64%,0 57%,12% 44%,2% 28%,20% 25%,22% 6%,39% 14%)}
+.hero .stk-star{left:4%;bottom:10%;transform:rotate(-10deg)}
+@media (max-width:760px){.stk-round{width:92px;height:92px;font-size:10px;right:3%;top:8%}.stk-stamp{display:none}.hero .stk-star{display:none}}
+
+/* drop */
+.drop{background:var(--blk);color:var(--off);border-bottom:4px solid var(--blk)}
+.drop-inner{max-width:1160px;margin:0 auto;padding:66px 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;background:var(--red);color:var(--off);padding:5px 10px;transform:rotate(-2deg)}
+.drop h2{font-size:clamp(34px,5.5vw,62px);margin:16px 0 10px;color:var(--yel)}
+.drop p.lead{color:#cfc9b8;max-width:44ch}
+.count{display:flex;gap:10px;margin:26px 0;flex-wrap:wrap}
+.cell{background:#211f1b;border:2px solid #3a372f;padding:12px 0;text-align:center;min-width:76px;flex:0 1 auto}
+.cell b{display:block;font-family:var(--mono);font-size:30px;color:var(--yel);font-variant-numeric:tabular-nums}
+.cell span{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#8f8a7b}
+.drop-date{font-family:var(--mono);font-size:12px;color:#8f8a7b}
+.shoe-stage{position:relative;background:repeating-linear-gradient(-45deg,#211f1b 0 14px,#1b1916 14px 28px);border:3px solid var(--yel);padding:34px 20px;text-align:center}
+.shoe-stage svg{width:min(340px,88%);height:auto;transform:rotate(-6deg)}
+.shoe-price{position:absolute;top:-16px;right:-10px;background:var(--yel);color:var(--blk);font-family:var(--mono);font-weight:700;font-size:15px;padding:8px 12px;transform:rotate(6deg);border:3px solid var(--blk)}
+.shoe-name{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--off);margin-top:12px}
+
+/* shop grid */
+.shop{padding:70px 0}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.sec-h h2{font-size:clamp(30px,4.5vw,52px)}
+.sec-h .mono{font-size:12px;font-weight:700;color:#6d675a}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.prod{background:#fff;border:3px solid var(--blk);box-shadow:6px 6px 0 var(--blk);display:flex;flex-direction:column;transition:transform .15s ease,box-shadow .15s ease}
+.prod:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--blu)}
+@media (prefers-reduced-motion:reduce){.prod{transition:none}.prod:hover{transform:none;box-shadow:6px 6px 0 var(--blk)}}
+.prod figure{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-bottom:3px solid var(--blk);position:relative;overflow:hidden}
+.prod figure svg{width:70%;height:auto}
+.p1 figure{background:var(--yel)}.p2 figure{background:#e8e3d2}.p3 figure{background:var(--blu)}
+.p4 figure{background:#f3b8b0}.p5 figure{background:#bfd2c4}.p6 figure{background:#e8e3d2}
+.pbadge{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;background:var(--blk);color:var(--off);padding:4px 8px;transform:rotate(-3deg)}
+.pmeta{padding:14px 16px 18px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.pmeta h3{font-size:16px;letter-spacing:0}
+.pmeta small{display:block;font-family:var(--mono);font-size:11px;text-transform:none;font-weight:400;color:#6d675a;margin-top:3px;letter-spacing:0}
+.pmeta .pr{font-family:var(--mono);font-weight:700;font-size:15px;white-space:nowrap}
+
+/* crew */
+.crew{background:var(--blu);color:var(--off);border-top:4px solid var(--blk);border-bottom:4px solid var(--blk);padding:70px 0}
+.crew .sec-h .mono{color:#c7cdff}
+.crew h2{color:var(--off)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cc{background:var(--off);color:var(--blk);border:3px solid var(--blk);padding:14px 14px 18px;transform:rotate(-1.2deg)}
+.cc:nth-child(2){transform:rotate(1.4deg)}
+.cc:nth-child(3){transform:rotate(-.6deg)}
+.cface{aspect-ratio:4/3;border:3px solid var(--blk);margin-bottom:12px;position:relative;overflow:hidden}
+.f1{background:linear-gradient(140deg,var(--yel) 55%,var(--red) 55%)}
+.f2{background:linear-gradient(40deg,#141311 52%,var(--yel) 52%)}
+.f3{background:linear-gradient(160deg,var(--red) 45%,#141311 45% 72%,var(--off) 72%)}
+.cface::after{content:"";position:absolute;left:12%;bottom:-6%;width:34%;aspect-ratio:1/2.1;background:var(--blk);border-radius:46% 46% 8% 8%/30% 30% 4% 4%;transform:rotate(6deg);opacity:.85}
+.cc h3{font-size:18px}
+.cc .mono{font-size:11px;color:#6d675a;display:block;margin-top:4px;font-weight:400}
+.cc p.quote{font-size:14px;margin-top:10px;font-weight:600}
+.crew-note{margin-top:26px;font-family:var(--mono);font-size:12px;color:#c7cdff;max-width:60ch}
+
+/* footer */
+footer{background:var(--blk);color:var(--off);padding:56px 0 36px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.fgrid h4{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#8f8a7b;margin-bottom:12px}
+.fgrid li{list-style:none;margin-bottom:8px;font-size:14px;font-weight:600}
+.fgrid a:hover{color:var(--yel)}
+.fmark{font-weight:900;font-size:26px;text-transform:uppercase}
+.fmark i{font-style:normal;background:var(--yel);color:var(--blk);padding:1px 6px;display:inline-block;transform:rotate(-3deg)}
+.faddr{font-family:var(--mono);font-size:12px;color:#8f8a7b;margin-top:12px;line-height:1.8}
+.fbot{margin-top:40px;padding-top:18px;border-top:2px solid #2c2a24;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:#8f8a7b;text-transform:uppercase;letter-spacing:.1em}
+
+@media (max-width:920px){
+  .drop-inner{grid-template-columns:1fr;gap:34px}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .cgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  nav{justify-content:center;text-align:center}
+  .hero-inner{padding:46px 20px 60px}
+  .hero h1{font-size:clamp(40px,11.5vw,56px)}
+  .hero h1 .b{margin-left:.2em;-webkit-text-stroke:2px var(--blk)}
+  .pgrid{grid-template-columns:1fr}
+  .cgrid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .cell{min-width:64px;flex:1}
+}
+</style>
+</head>
+<body>
+<div class="ticker" aria-hidden="true"><span>FREE STICKER PACK WITH EVERY ORDER ★ VANTA SB “BLACKOUT” DROPS AUG 01 ★ CURB JAM EVERY LAST SUNDAY ★ WE GRIP EVERY DECK FOR FREE ★ NO POSERS ★ FREE STICKER PACK WITH EVERY ORDER ★ VANTA SB “BLACKOUT” DROPS AUG 01 ★</span></div>
+
+<header class="bar">
+  <nav aria-label="Main">
+    <a class="mark" href="#top">Kick<i>flip</i> Supply</a>
+    <div class="navl">
+      <a href="#drop">The Drop</a>
+      <a href="#shop">Shop</a>
+      <a href="#crew">Crew</a>
+      <a href="#visit">Visit</a>
+    </div>
+    <a class="cart" href="#shop">Cart [0]</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="stk stk-round" aria-hidden="true">EST. 2014<br>PORTLAND<br>OREGON</div>
+    <div class="stk stk-stamp" aria-hidden="true">Shop rat approved</div>
+    <div class="stk stk-star" aria-hidden="true">GRIP<br>FREE</div>
+    <h1><span class="a">Skate</span><span class="b">Everything</span><span class="c">Else is waiting.</span></h1>
+    <p class="hero-sub">Decks, wheels, shoes and hardware picked by people who actually skate them. Real shop, real curb out front, real opinions at the counter since 2014.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#drop">Next drop — Aug 01</a>
+      <a class="btn alt" href="#shop">Shop the wall</a>
+    </div>
+  </div>
+</section>
+
+<section class="drop" id="drop">
+  <div class="drop-inner">
+    <div>
+      <span class="tag">Limited — 120 pairs</span>
+      <h2>Vanta SB “Blackout”</h2>
+      <p class="lead">Suede toe, gum sole, zero reflective anything. Our fourth collab with Vanta Footwear — the first three sold out before lunch. In-store raffle plus online drop, one pair per person.</p>
+      <div class="count" id="count" role="timer" aria-label="Time until the drop">
+        <div class="cell"><b id="cd">—</b><span>days</span></div>
+        <div class="cell"><b id="ch">—</b><span>hours</span></div>
+        <div class="cell"><b id="cm">—</b><span>mins</span></div>
+        <div class="cell"><b id="cs">—</b><span>secs</span></div>
+      </div>
+      <p class="drop-date mono">Saturday August 1, 2026 — 10:00 AM PT, in-store &amp; online</p>
+    </div>
+    <div class="shoe-stage">
+      <span class="shoe-price">$145</span>
+      <svg viewBox="0 0 320 150" aria-hidden="true">
+        <path d="M18 108 C20 84 44 66 78 60 L128 38 C150 28 162 34 176 46 L216 74 C252 84 296 88 306 104 L306 118 C306 126 298 130 286 130 L34 130 C22 130 16 122 18 108 Z" fill="#141311" stroke="#ffd21f" stroke-width="4"/>
+        <path d="M18 112 L306 112 L306 118 C306 126 298 130 286 130 L34 130 C22 130 16 122 18 112 Z" fill="#c9a36a"/>
+        <path d="M128 38 L176 46 L160 96 L108 88 Z" fill="#2b2925"/>
+        <path d="M132 50 L150 54 M128 62 L146 66 M124 74 L142 78" stroke="#ffd21f" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <circle cx="252" cy="96" r="7" fill="#e6392b"/>
+      </svg>
+      <p class="shoe-name">Vanta SB “Blackout” — suede / gum</p>
+    </div>
+  </div>
+</section>
+
+<section class="shop wrap" id="shop">
+  <div class="sec-h">
+    <h2>Off the wall</h2>
+    <span class="mono">// six of about two hundred things in the shop</span>
+  </div>
+  <div class="pgrid">
+    <article class="prod p1"><figure><span class="pbadge">Shop deck</span>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><rect x="55" y="18" width="90" height="164" rx="45" fill="#141311" transform="rotate(14 100 100)"/><rect x="70" y="40" width="60" height="120" rx="30" fill="none" stroke="#ffd21f" stroke-width="4" transform="rotate(14 100 100)"/><circle cx="100" cy="100" r="12" fill="#e6392b" transform="rotate(14 100 100)"/></svg>
+      </figure>
+      <div class="pmeta"><h3>Ghost Ride Deck<small>8.25" — free grip</small></h3><span class="pr">$64</span></div>
+    </article>
+    <article class="prod p2"><figure><span class="pbadge">54mm / 99a</span>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="78" cy="86" r="46" fill="#fff" stroke="#141311" stroke-width="6"/><circle cx="78" cy="86" r="16" fill="#2438ff"/><circle cx="128" cy="126" r="46" fill="#ffd21f" stroke="#141311" stroke-width="6"/><circle cx="128" cy="126" r="16" fill="#141311"/></svg>
+      </figure>
+      <div class="pmeta"><h3>Loud Pack Wheels<small>Set of four</small></h3><span class="pr">$38</span></div>
+    </article>
+    <article class="prod p3"><figure><span class="pbadge">Heavy fleece</span>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><path d="M100 34 L64 48 L44 96 L64 106 L70 88 L70 168 L130 168 L130 88 L136 106 L156 96 L136 48 Z" fill="#f4f0e4" stroke="#141311" stroke-width="6"/><path d="M84 48 C84 62 116 62 116 48" fill="none" stroke="#141311" stroke-width="6"/><path d="M88 112 h24 M88 126 h24" stroke="#e6392b" stroke-width="5" stroke-linecap="round"/></svg>
+      </figure>
+      <div class="pmeta"><h3>Work Hoodie<small>Back print, oat</small></h3><span class="pr">$72</span></div>
+    </article>
+    <article class="prod p4"><figure><span class="pbadge">Smells like nothing</span>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><rect x="46" y="76" width="108" height="56" rx="8" fill="#ffd21f" stroke="#141311" stroke-width="6" transform="rotate(-6 100 104)"/><text x="100" y="112" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#141311" transform="rotate(-6 100 104)">BUTTER</text></svg>
+      </figure>
+      <div class="pmeta"><h3>Curb Wax “Butter Brick”<small>Poured in the back room</small></h3><span class="pr">$8</span></div>
+    </article>
+    <article class="prod p5"><figure><span class="pbadge">One size</span>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><path d="M50 108 C50 74 74 54 100 54 C126 54 150 74 150 108 Z" fill="#141311" stroke="#141311" stroke-width="6"/><path d="M100 108 L178 108 C178 118 170 122 160 122 L100 122 Z" fill="#141311"/><path d="M50 108 L150 108" stroke="#e6392b" stroke-width="6"/><circle cx="100" cy="80" r="10" fill="#ffd21f"/></svg>
+      </figure>
+      <div class="pmeta"><h3>“Supply” Snapback<small>Embroidered front</small></h3><span class="pr">$34</span></div>
+    </article>
+    <article class="prod p6"><figure><span class="pbadge">ABEC-7</span>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="52" fill="#141311"/><circle cx="100" cy="100" r="34" fill="#e8e3d2"/><circle cx="100" cy="100" r="14" fill="#2438ff"/><g fill="#ffd21f"><circle cx="100" cy="58" r="6"/><circle cx="142" cy="100" r="6"/><circle cx="100" cy="142" r="6"/><circle cx="58" cy="100" r="6"/></g></svg>
+      </figure>
+      <div class="pmeta"><h3>Spin Co. Bearings<small>Set of eight, oiled</small></h3><span class="pr">$22</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="crew" id="crew">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>The counter crew</h2>
+      <span class="mono">// they will talk your ear off, fair warning</span>
+    </div>
+    <div class="cgrid">
+      <article class="cc">
+        <div class="cface f1" aria-hidden="true"></div>
+        <h3>Ray Okafor</h3>
+        <span class="mono">Owner · goofy · 20 yrs in</span>
+        <p class="quote">“If a deck chips in a week, bring it back. I mean it.”</p>
+      </article>
+      <article class="cc">
+        <div class="cface f2" aria-hidden="true"></div>
+        <h3>Dani Cruz</h3>
+        <span class="mono">Shoe wall · regular · nollie everything</span>
+        <p class="quote">“Gum soles or nothing. This is not a debate.”</p>
+      </article>
+      <article class="cc">
+        <div class="cface f3" aria-hidden="true"></div>
+        <h3>Moss</h3>
+        <span class="mono">Repairs · switch · shop dog handler</span>
+        <p class="quote">“Free bearing swap on Sundays if you bring coffee.”</p>
+      </article>
+    </div>
+    <p class="crew-note">CURB JAM: last Sunday of every month, parking lot out back, 2 PM. Loaner boards, free wax, best trick gets shop credit. All ages, all skill levels, zero attitude.</p>
+  </div>
+</section>
+</main>
+
+<footer id="visit">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <p class="fmark">Kick<i>flip</i> Supply</p>
+        <p class="faddr">4211 SE Division St<br>Portland, OR 97206<br>Mon–Sat 11–8 · Sun 12–6<br>(503) 555-0187</p>
+      </div>
+      <div><h4>Shop</h4><ul>
+        <li><a href="#shop">Decks &amp; completes</a></li>
+        <li><a href="#shop">Shoes</a></li>
+        <li><a href="#drop">Drops &amp; raffles</a></li>
+        <li><a href="#shop">Hardware</a></li>
+      </ul></div>
+      <div><h4>Shop stuff</h4><ul>
+        <li><a href="#crew">Curb Jam Sundays</a></li>
+        <li><a href="#crew">Free grip &amp; setup</a></li>
+        <li><a href="#visit">hey@kickflipsupply.example</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Kickflip Supply LLC</span>
+      <span>Skate at your own risk. Please skate.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var target=new Date(2026,7,1,10,0,0).getTime();
+  var d=document.getElementById('cd'),h=document.getElementById('ch'),
+      m=document.getElementById('cm'),s=document.getElementById('cs');
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';s.textContent='00';return}
+    d.textContent=pad(Math.floor(diff/86400000));
+    h.textContent=pad(Math.floor(diff/3600000)%24);
+    m.textContent=pad(Math.floor(diff/60000)%60);
+    s.textContent=pad(Math.floor(diff/1000)%60);
+    setTimeout(tick,1000);
+  }
+  if(d&&h&&m&&s){tick();}
+})();
+</script>
+</body>
+</html>

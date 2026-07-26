@@ -1,0 +1,29 @@
+[
+  {
+    "id": "atelier-noir",
+    "name": "Atelier Noir",
+    "category": "Commerce",
+    "tagline": "Fewer, better, longer.",
+    "description": "A hushed, editorial template for fashion labels that sell restraint at full price — hairline grids, Didone type, and product cards that breathe.",
+    "accent": "#8e1c2e",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos/atelier-noir.html"
+  },
+  {
+    "id": "kickflip-supply",
+    "name": "Kickflip Supply",
+    "category": "Commerce",
+    "tagline": "Skate everything. Else is waiting.",
+    "description": "A loud, sticker-slapped template for shops that live on drops — poster type collisions, a live countdown, and product cards with real shove.",
+    "accent": "#ffd21f",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos/kickflip-supply.html"
+  },
+  {
+    "id": "hearth-home",
+    "name": "Hearth & Haven",
+    "category": "Commerce",
+    "tagline": "Pots for the meals you actually cook.",
+    "description": "A warm, maker-first template for craft sellers — bestseller shelves, an honest process story, and a markets calendar that does the selling for you.",
+    "accent": "#b0674a",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos/hearth-home.html"
+  }
+]

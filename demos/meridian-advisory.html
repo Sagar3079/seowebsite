@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Advisory — Fee-only financial planning, Charleston SC</title>
+<style>
+  :root{
+    --forest:#1C3A31;
+    --forest-deep:#122820;
+    --paper:#F5EFE3;
+    --paper-dim:#EAE2D0;
+    --ink:#22271F;
+    --brass:#A9822F;
+    --brass-soft:#C8A55B;
+    --serif:'Iowan Old Style','Palatino Linotype','URW Palladio L',P052,serif;
+    --sans:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  }
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:16.5px;line-height:1.62;
+    overflow-x:hidden;
+  }
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  .shell{max-width:1140px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
+  h1,h2,h3,.serif{font-family:var(--serif);font-weight:600}
+
+  /* ---------- top bar ---------- */
+  header{background:var(--forest);color:var(--paper);position:relative;z-index:20}
+  .bar{display:flex;align-items:center;gap:24px;height:66px}
+  .wordmark{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .wordmark svg{display:block;flex:none}
+  .wordmark b{font-family:var(--serif);font-size:19px;letter-spacing:.06em;font-weight:600}
+  .wordmark small{display:block;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass-soft);font-family:var(--sans)}
+  .topnav{margin-left:auto;display:flex;gap:30px;align-items:center;list-style:none}
+  .topnav a{text-decoration:none;font-size:14px;letter-spacing:.04em;color:#D8D9C8}
+  .topnav a:hover{color:var(--brass-soft)}
+  .topnav .cta{border:1px solid var(--brass-soft);color:var(--brass-soft);padding:9px 18px;letter-spacing:.08em;font-size:13px;text-transform:uppercase;transition:background .2s,color .2s}
+  .topnav .cta:hover{background:var(--brass-soft);color:var(--forest-deep)}
+  .menu-btn{display:none;margin-left:auto;background:none;border:1px solid #4A6157;color:var(--paper);font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;cursor:pointer}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--forest);color:var(--paper);position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);padding:clamp(56px,8vw,104px) 0 clamp(56px,8vw,96px);position:relative}
+  .meridian{position:absolute;top:0;bottom:0;left:57%;width:1px;background:rgba(200,165,91,.4)}
+  .meridian i{position:absolute;left:-14px;width:29px;text-align:center;font-style:normal;font-family:var(--sans);font-size:9.5px;letter-spacing:.08em;color:var(--brass-soft);background:var(--forest);padding:3px 0}
+  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass-soft);margin-bottom:22px}
+  .hero h1{font-size:clamp(34px,4.8vw,58px);line-height:1.14;letter-spacing:.005em;max-width:15ch}
+  .hero h1 em{font-style:italic;color:var(--brass-soft)}
+  .hero-lede{margin-top:24px;font-size:18px;color:#CBD2C2;max-width:46ch}
+  .hero-actions{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-family:var(--sans);font-size:13.5px;letter-spacing:.1em;text-transform:uppercase;padding:14px 26px;border:1px solid var(--brass-soft);transition:background .2s,color .2s}
+  .btn.solid{background:var(--brass-soft);color:var(--forest-deep);font-weight:600}
+  .btn.solid:hover{background:var(--paper);border-color:var(--paper)}
+  .btn.line{color:var(--paper)}
+  .btn.line:hover{color:var(--brass-soft)}
+  .hero-aside{align-self:center;border:1px solid rgba(200,165,91,.35);padding:30px 28px;background:rgba(18,40,32,.55)}
+  .hero-aside h2{font-size:14px;font-family:var(--sans);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-soft);margin-bottom:18px}
+  .hero-aside dl{display:grid;gap:14px}
+  .hero-aside div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(216,217,200,.15);padding-bottom:12px}
+  .hero-aside div:last-child{border-bottom:none;padding-bottom:0}
+  .hero-aside dt{font-size:14px;color:#CBD2C2}
+  .hero-aside dd{font-family:var(--serif);font-size:16px;color:var(--paper);text-align:right}
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(60px,8vw,96px) 0}
+  .sec-eyebrow{font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+  .sec-title{font-size:clamp(27px,3.4vw,40px);line-height:1.18;max-width:20ch}
+  .sec-intro{margin-top:16px;max-width:60ch;color:#4C5244}
+
+  /* services */
+  .services{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px);margin-top:44px}
+  .service{padding:26px 0;border-top:1px solid #D5CBB4}
+  .service h3{font-size:21px;margin-bottom:8px}
+  .service h3 span{color:var(--brass);margin-right:12px;font-size:17px}
+  .service p{font-size:15.5px;color:#4C5244}
+
+  /* advisors */
+  .advisor-band{background:var(--paper-dim);border-top:1px solid #D5CBB4;border-bottom:1px solid #D5CBB4}
+  .advisors{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px);margin-top:44px}
+  .advisor{background:var(--paper);border:1px solid #D5CBB4;padding:34px 30px}
+  .monogram{
+    width:76px;height:76px;border-radius:50%;
+    display:grid;place-items:center;margin-bottom:22px;
+    font-family:var(--serif);font-size:24px;letter-spacing:.05em;color:var(--paper);
+    background:radial-gradient(circle at 32% 28%,var(--brass-soft),var(--brass) 58%,#7A5C1E);
+    border:1px solid #7A5C1E;
+  }
+  .advisor h3{font-size:21px}
+  .advisor .role{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:6px 0 14px}
+  .advisor p{font-size:15px;color:#4C5244}
+  .advisor .creds{margin-top:16px;font-size:12.5px;letter-spacing:.06em;color:#6B7161;border-top:1px solid #D5CBB4;padding-top:12px}
+
+  /* fees */
+  .fees{background:var(--forest);color:var(--paper)}
+  .fees .sec-eyebrow{color:var(--brass-soft)}
+  .fees .sec-intro{color:#CBD2C2}
+  .fee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,32px);margin-top:46px}
+  .fee-card{border:1px solid rgba(200,165,91,.35);padding:30px 28px}
+  .fee-card h3{font-size:17px;font-family:var(--sans);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-soft)}
+  .fee-amount{font-family:var(--serif);font-size:clamp(28px,3vw,36px);margin:16px 0 6px}
+  .fee-card .per{font-size:13px;color:#9FAF9F;margin-bottom:16px}
+  .fee-card p{font-size:14.5px;color:#CBD2C2}
+  .fee-note{margin-top:38px;border-top:1px solid rgba(200,165,91,.35);padding-top:26px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;max-width:760px}
+  .fee-note svg{flex:none;margin-top:4px}
+  .fee-note p{font-size:15.5px;color:#CBD2C2;font-style:italic;font-family:var(--serif)}
+
+  /* contact strip */
+  .visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+  .visit .card{border:1px solid #D5CBB4;padding:34px 32px;background:#FBF7EC}
+  .visit .card h3{font-size:22px;margin-bottom:14px}
+  .visit .card p{font-size:15.5px;color:#4C5244;margin-bottom:8px}
+  .visit .card .btn{margin-top:18px;border-color:var(--forest);color:var(--forest)}
+  .visit .card .btn:hover{background:var(--forest);color:var(--paper)}
+  .hours td{padding:6px 18px 6px 0;font-size:15px;color:#4C5244}
+  .hours td:first-child{font-family:var(--serif);color:var(--ink)}
+
+  /* footer */
+  footer{background:var(--forest-deep);color:#9FAF9F;font-size:13px;line-height:1.7}
+  .foot-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:36px;padding:52px 0 34px}
+  footer h4{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass-soft);margin-bottom:12px;font-weight:600}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--paper)}
+  footer ul{list-style:none;display:grid;gap:8px}
+  .disclosure{border-top:1px solid #27453A;padding:26px 0 42px;font-size:12px;color:#7E8F80}
+  .disclosure p+p{margin-top:10px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:940px){
+    .hero-grid{grid-template-columns:1fr}
+    .meridian{display:none}
+    .advisors,.fee-grid{grid-template-columns:1fr;max-width:520px}
+    .services{grid-template-columns:1fr}
+    .visit{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:700px){
+    .menu-btn{display:block}
+    .topnav{
+      display:none;position:absolute;top:66px;left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--forest-deep);padding:10px 24px 22px;
+      border-bottom:1px solid #27453A;
+    }
+    .topnav.open{display:flex}
+    .topnav a{display:block;padding:13px 0;font-size:16px}
+    .topnav .cta{text-align:center;margin-top:10px}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="shell bar">
+    <a class="wordmark" href="#top">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="15.5" fill="none" stroke="#C8A55B" stroke-width="1.4"/>
+        <ellipse cx="17" cy="17" rx="7" ry="15.5" fill="none" stroke="#C8A55B" stroke-width="1"/>
+        <line x1="17" y1="1.5" x2="17" y2="32.5" stroke="#C8A55B" stroke-width="1.4"/>
+      </svg>
+      <span><b>Meridian</b><small>Advisory</small></span>
+    </a>
+    <button class="menu-btn" id="mBtn" aria-expanded="false" aria-controls="mNav">Menu</button>
+    <ul class="topnav" id="mNav">
+      <li><a href="#services">What we do</a></li>
+      <li><a href="#advisors">Advisors</a></li>
+      <li><a href="#fees">Our fees</a></li>
+      <li><a href="#visit" class="cta">Book a first meeting</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="shell hero-grid">
+      <div class="meridian" aria-hidden="true"><i style="top:14%">32°N</i><i style="top:52%">79°W</i><i style="top:86%">EST</i></div>
+      <div>
+        <p class="eyebrow">Fee-only · Fiduciary · Est. 2009</p>
+        <h1>Wealth planning with a <em>fixed point</em> of reference.</h1>
+        <p class="hero-lede">Meridian Advisory is a five-person, fee-only planning firm in Charleston. We hold no products, earn no commissions, and answer to exactly one party in every decision: you.</p>
+        <div class="hero-actions">
+          <a class="btn solid" href="#visit">Book a first meeting</a>
+          <a class="btn line" href="#fees">Read our fee schedule</a>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-label="Firm at a glance">
+        <h2>The firm, plainly</h2>
+        <dl>
+          <div><dt>Structure</dt><dd>Fee-only RIA</dd></div>
+          <div><dt>Assets advised</dt><dd>$410 million</dd></div>
+          <div><dt>Client families</dt><dd>142</dd></div>
+          <div><dt>Client-to-advisor ratio</dt><dd>48 : 1, capped</dd></div>
+          <div><dt>Commissions taken, ever</dt><dd>None</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="shell">
+      <p class="sec-eyebrow">What we do</p>
+      <h2 class="sec-title">One plan, kept current for decades.</h2>
+      <p class="sec-intro">Everything below is included in one relationship and one transparent fee — there is no menu of add-ons, and no meter running when you call.</p>
+      <div class="services">
+        <div class="service">
+          <h3><span>I.</span>Retirement architecture</h3>
+          <p>Withdrawal sequencing, Roth conversion windows, and Social Security timing modeled against your actual spending — revisited every year, not filed away.</p>
+        </div>
+        <div class="service">
+          <h3><span>II.</span>Investment stewardship</h3>
+          <p>Low-cost, globally diversified portfolios rebalanced by policy, not by headlines. Average fund expense across client accounts: 0.07%.</p>
+        </div>
+        <div class="service">
+          <h3><span>III.</span>Tax coordination</h3>
+          <p>Asset location, gain harvesting, and charitable bunching, coordinated directly with your CPA each October — before year-end, when it still matters.</p>
+        </div>
+        <div class="service">
+          <h3><span>IV.</span>Estate &amp; family continuity</h3>
+          <p>Titling, beneficiary hygiene, and family meetings that make your intentions legible to the people who will carry them out.</p>
+        </div>
+        <div class="service">
+          <h3><span>V.</span>Equity compensation</h3>
+          <p>RSU and option exercise plans for executives at the port, the hospital systems, and the tech firms along the Ashley — built around 10b5-1 windows.</p>
+        </div>
+        <div class="service">
+          <h3><span>VI.</span>Insurance review</h3>
+          <p>We audit coverage we will never sell you. When something is missing, you buy it directly, at market rates, from whomever you choose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advisors" class="advisor-band">
+    <div class="shell">
+      <p class="sec-eyebrow">Your advisors</p>
+      <h2 class="sec-title">Small on purpose. Senior by design.</h2>
+      <p class="sec-intro">Every client family works directly with a principal. We cap the practice at 48 families per advisor so it stays that way.</p>
+      <div class="advisors">
+        <article class="advisor">
+          <div class="monogram" aria-hidden="true">EW</div>
+          <h3>Eleanor Whitfield</h3>
+          <p class="role">Founding Principal</p>
+          <p>Twenty-six years in planning, the last seventeen fee-only. Eleanor founded Meridian after a decade at a brokerage convinced her that advice and sales belong in different buildings.</p>
+          <p class="creds">CFP® · CFA · Wm. &amp; Mary, Economics</p>
+        </article>
+        <article class="advisor">
+          <div class="monogram" aria-hidden="true">DO</div>
+          <h3>Daniel Okafor</h3>
+          <p class="role">Principal, Tax Strategy</p>
+          <p>A former Big Four tax manager who would rather prevent a tax bill than report one. Daniel leads our October coordination sessions with clients' CPAs.</p>
+          <p class="creds">CFP® · CPA · Emory, Accounting</p>
+        </article>
+        <article class="advisor">
+          <div class="monogram" aria-hidden="true">MR</div>
+          <h3>Marisol Reyes</h3>
+          <p class="role">Principal, Retirement Income</p>
+          <p>Marisol builds the withdrawal maps our retirees live on — which account, which year, which bracket. Clients describe her spreadsheets as "weirdly calming."</p>
+          <p class="creds">CFP® · RICP® · Clemson, Mathematics</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="fees" class="fees">
+    <div class="shell">
+      <p class="sec-eyebrow">Fee philosophy</p>
+      <h2 class="sec-title">If you can't explain the fee, it's too clever.</h2>
+      <p class="sec-intro">We publish our full schedule because we think you should be able to price us before you ever shake our hands. Fees are billed quarterly, in arrears, and appear as a line item — never netted quietly out of returns.</p>
+      <div class="fee-grid">
+        <div class="fee-card">
+          <h3>Foundations</h3>
+          <p class="fee-amount">$4,800</p>
+          <p class="per">one-time engagement · 4 months</p>
+          <p>A complete written plan for households still building: cash flow, equity comp, first-home math, and an investment policy you can run yourself.</p>
+        </div>
+        <div class="fee-card">
+          <h3>Ongoing advisory</h3>
+          <p class="fee-amount">0.60%</p>
+          <p class="per">per year on first $2M · 0.35% above</p>
+          <p>Full planning and investment management. The rate steps down as assets grow — our incentive is your outcome, not your activity.</p>
+        </div>
+        <div class="fee-card">
+          <h3>Second opinion</h3>
+          <p class="fee-amount">$950</p>
+          <p class="per">flat · two meetings</p>
+          <p>A documented review of your current plan and costs. Roughly a third of the time our advice is "stay where you are" — and we put that in writing.</p>
+        </div>
+      </div>
+      <div class="fee-note">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="none" stroke="#C8A55B" stroke-width="1.3"/><line x1="13" y1="1" x2="13" y2="25" stroke="#C8A55B" stroke-width="1.3"/></svg>
+        <p>What we will never charge: commissions, 12b-1 fees, referral fees, surrender charges, or anything else we would have to explain twice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="shell visit">
+      <div>
+        <p class="sec-eyebrow">First meeting</p>
+        <h2 class="sec-title">An hour of questions. No charge, no pitch.</h2>
+        <p class="sec-intro">Bring your statements or bring nothing at all. We'll map where you stand, tell you honestly whether we're the right fit, and follow up in writing either way — usually within two business days.</p>
+        <table class="hours" aria-label="Office hours">
+          <tr><td>Monday–Thursday</td><td>8:30am – 5:30pm</td></tr>
+          <tr><td>Friday</td><td>8:30am – 1:00pm</td></tr>
+          <tr><td>Evenings</td><td>By appointment</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Meridian Advisory</h3>
+        <p>18 Broad Street, Suite 400<br>Charleston, South Carolina 29401</p>
+        <p>(843) 555-0164<br>hello@meridianadvisory.com</p>
+        <a class="btn" href="#top">Request an appointment</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot-grid">
+      <div>
+        <h4>Meridian Advisory, LLC</h4>
+        <p>A fee-only registered investment adviser serving client families in Charleston and, by video, in twelve states. Founded 2009. Independent since the first day.</p>
+      </div>
+      <div>
+        <h4>Firm</h4>
+        <ul>
+          <li><a href="#services">What we do</a></li>
+          <li><a href="#advisors">Advisors</a></li>
+          <li><a href="#fees">Fee schedule</a></li>
+          <li><a href="#visit">First meeting</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Documents</h4>
+        <ul>
+          <li><a href="#top">Form ADV Part 2A</a></li>
+          <li><a href="#top">Form CRS</a></li>
+          <li><a href="#top">Privacy notice</a></li>
+          <li><a href="#top">Business continuity plan</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure">
+      <p>Meridian Advisory, LLC is registered as an investment adviser with the U.S. Securities and Exchange Commission. Registration does not imply a certain level of skill or training. Advisory services are offered only to clients or prospective clients where Meridian Advisory and its representatives are properly licensed or exempt from licensure.</p>
+      <p>All investing involves risk, including the possible loss of principal. Past performance is not a guarantee of future results. Figures cited (assets advised, client counts, average fund expenses) are as of March 31, 2026 and are updated annually. CFP® and CERTIFIED FINANCIAL PLANNER® are certification marks owned by the CFP Board.</p>
+      <p>© 2026 Meridian Advisory, LLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var b=document.getElementById('mBtn'),n=document.getElementById('mNav');
+    if(b&&n){
+      b.addEventListener('click',function(){
+        var o=n.classList.toggle('open');
+        b.setAttribute('aria-expanded',o?'true':'false');
+      });
+      n.addEventListener('click',function(e){
+        if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false');}
+      });
+    }
+  })();
+</script>
+</body>
+</html>

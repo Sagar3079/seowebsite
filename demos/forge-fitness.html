@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge Fitness — Strength Studio, Manchester</title>
+<meta name="description" content="Forge Fitness is a coached strength and conditioning studio in Manchester. Class schedule, coaches, results, and membership. First week free.">
+<style>
+:root{
+  --carbon:#17161A;
+  --smoke:#232228;
+  --chalk:#F0EDE5;
+  --molten:#E8541D;
+  --steel:#9AA0A8;
+  --slab:Rockwell,'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif;
+  --sans:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--carbon);color:var(--chalk);
+  font-family:var(--sans);font-size:15.5px;line-height:1.6;
+  overflow-x:clip;
+}
+::selection{background:var(--molten);color:var(--carbon)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--molten);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.display{
+  font-family:var(--slab);font-weight:700;text-transform:uppercase;
+  letter-spacing:.01em;line-height:.95;
+}
+.tag{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--molten);
+}
+
+/* nav */
+header{
+  position:sticky;top:0;z-index:40;background:var(--carbon);
+  border-bottom:1px solid #2E2D33;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.logo{
+  font-family:var(--slab);font-weight:700;font-size:1.2rem;text-transform:uppercase;
+  text-decoration:none;letter-spacing:.04em;
+}
+.logo b{color:var(--molten)}
+.nav-toggle{
+  display:none;background:none;border:1px solid #3A3940;color:var(--chalk);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:8px 14px;cursor:pointer;
+}
+.nav ul{display:flex;gap:clamp(14px,2.5vw,30px);list-style:none;align-items:center;flex-wrap:wrap}
+.nav ul a{
+  text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--steel);
+}
+.nav ul a:hover{color:var(--chalk)}
+.nav .trial-link{
+  color:var(--carbon);background:var(--molten);padding:9px 16px;font-weight:600;
+}
+.nav .trial-link:hover{background:var(--chalk);color:var(--carbon)}
+body.has-js .nav-toggle{display:none}
+@media(max-width:767px){
+  .nav{flex-wrap:wrap}
+  body.has-js .nav-toggle{display:block}
+  body.has-js .nav ul{
+    display:none;width:100%;flex-direction:column;align-items:flex-start;
+    gap:14px;padding:14px 0 18px;border-top:1px solid #2E2D33;margin-top:12px;
+  }
+  body.has-js .nav.open ul{display:flex}
+  body:not(.has-js) .nav ul{width:100%;padding-top:10px}
+}
+
+/* hero */
+.hero{
+  position:relative;overflow:hidden;
+  padding:clamp(56px,9vw,120px) 0 clamp(48px,7vw,96px);
+  background:
+    radial-gradient(90% 70% at 108% 112%, rgba(232,84,29,.45), rgba(232,84,29,0) 60%),
+    linear-gradient(160deg,#1B1A1F 0%,#17161A 60%,#141317 100%);
+}
+.hero::after{
+  content:"";position:absolute;right:-8%;top:-20%;bottom:-20%;width:38%;
+  background:repeating-linear-gradient(115deg, rgba(154,160,168,.07) 0 2px, rgba(154,160,168,0) 2px 18px);
+  pointer-events:none;
+}
+.hero h1{
+  font-size:clamp(2.9rem,10vw,7rem);
+  max-width:12ch;
+}
+.hero h1 span{color:var(--molten)}
+.hero-sub{
+  margin-top:22px;max-width:52ch;color:var(--steel);font-size:1.02rem;
+}
+.hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-weight:600;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:15px 28px;border:1px solid var(--molten);
+}
+.btn-fill{background:var(--molten);color:var(--carbon)}
+.btn-fill:hover{background:var(--chalk);border-color:var(--chalk)}
+.btn-ghost{color:var(--chalk)}
+.btn-ghost:hover{background:#232228}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,auto);gap:clamp(20px,5vw,64px);
+  margin-top:clamp(40px,6vw,72px);padding-top:26px;border-top:1px solid #2E2D33;
+  width:fit-content;
+}
+.hero-stats b{
+  display:block;font-family:var(--mono);font-size:clamp(1.4rem,3.4vw,2.1rem);
+  color:var(--chalk);font-weight:600;
+}
+.hero-stats span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+
+/* section scaffolding */
+section{padding:clamp(52px,8vw,110px) 0}
+.sec-head{margin-bottom:clamp(30px,5vw,56px)}
+.sec-head h2{font-size:clamp(2rem,5.4vw,3.4rem);margin-top:10px}
+.light{background:var(--chalk);color:var(--carbon)}
+.light ::selection{background:var(--carbon);color:var(--chalk)}
+.light .tag{color:#C13F0F}
+
+/* schedule */
+.table-scroll{overflow-x:auto;border:1px solid #D6D2C6;background:#FAF8F2}
+table{border-collapse:collapse;width:100%;min-width:660px}
+caption{
+  text-align:left;padding:14px 16px;font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:#6B675C;
+  border-bottom:1px solid #D6D2C6;
+}
+th,td{
+  padding:12px 16px;text-align:left;font-size:.86rem;
+  border-bottom:1px solid #E4E0D4;
+}
+thead th{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#6B675C;border-bottom:1px solid #D6D2C6;
+}
+tbody th{
+  font-family:var(--mono);font-weight:600;font-size:.8rem;white-space:nowrap;
+  color:var(--carbon);
+}
+td b{font-weight:600}
+td small{display:block;color:#6B675C;font-size:.74rem}
+tbody tr:hover{background:#F1EDE1}
+.sched-note{margin-top:16px;font-size:.84rem;color:#6B675C}
+.sched-note b{color:#C13F0F}
+
+/* coaches */
+.coach-grid{display:grid;gap:22px}
+@media(min-width:768px){.coach-grid{grid-template-columns:repeat(3,1fr)}}
+.coach{
+  background:var(--smoke);border:1px solid #2E2D33;padding:26px 24px;
+  position:relative;overflow:hidden;
+}
+.coach::before{
+  content:"";position:absolute;top:0;left:0;width:44px;height:5px;background:var(--molten);
+}
+.coach h3{font-family:var(--slab);font-size:1.35rem;text-transform:uppercase;letter-spacing:.02em}
+.coach .role{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--molten);margin:6px 0 14px}
+.coach p{font-size:.9rem;color:#C9CCD1}
+.coach ul{list-style:none;margin-top:16px;padding-top:14px;border-top:1px solid #34333A}
+.coach li{font-family:var(--mono);font-size:.72rem;color:var(--steel);padding:3px 0}
+
+/* results */
+.results .sec-head{max-width:60ch}
+.res-grid{display:grid;gap:1px;background:#2E2D33;border:1px solid #2E2D33}
+@media(min-width:640px){.res-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.res-grid{grid-template-columns:repeat(4,1fr)}}
+.res{background:var(--carbon);padding:28px 24px}
+.res b{
+  display:block;font-family:var(--mono);font-weight:600;
+  font-size:clamp(1.8rem,4vw,2.6rem);color:var(--molten);
+}
+.res span{font-size:.8rem;color:var(--steel)}
+.quote{
+  margin-top:clamp(30px,5vw,52px);border-left:4px solid var(--molten);
+  padding:6px 0 6px clamp(18px,3vw,30px);max-width:62ch;
+}
+.quote p{font-size:clamp(1.05rem,2.4vw,1.3rem);line-height:1.5}
+.quote footer{margin-top:12px;font-family:var(--mono);font-size:.74rem;color:var(--steel)}
+
+/* pricing */
+.price-grid{display:grid;gap:22px}
+@media(min-width:900px){.price-grid{grid-template-columns:repeat(3,1fr)}}
+.plan{
+  border:1px solid #CFCBBC;background:#FAF8F2;
+  padding:30px 26px;display:flex;flex-direction:column;
+}
+.plan-hot{background:var(--carbon);color:var(--chalk);border-color:var(--carbon)}
+.plan h3{font-family:var(--slab);font-size:1.3rem;text-transform:uppercase}
+.plan .for{font-size:.82rem;color:#6B675C;margin-top:4px}
+.plan-hot .for{color:var(--steel)}
+.price{font-family:var(--mono);font-weight:600;font-size:2.1rem;margin:20px 0 4px}
+.price small{font-size:.8rem;font-weight:400;color:#6B675C}
+.plan-hot .price small{color:var(--steel)}
+.plan ul{list-style:none;margin:18px 0 26px;flex:1}
+.plan li{
+  font-size:.86rem;padding:7px 0 7px 20px;position:relative;
+  border-bottom:1px solid #E4E0D4;
+}
+.plan-hot li{border-bottom-color:#34333A}
+.plan li::before{content:"";position:absolute;left:2px;top:14px;width:9px;height:9px;background:var(--molten)}
+.plan .btn{text-align:center}
+.plan-flag{
+  align-self:flex-start;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;background:var(--molten);color:var(--carbon);
+  padding:4px 10px;margin-bottom:16px;font-weight:600;
+}
+
+/* trial band */
+.trial{
+  background:linear-gradient(115deg,var(--molten) 0%,#C13F0F 100%);color:var(--carbon);
+}
+.trial-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:26px;flex-wrap:wrap;
+}
+.trial h2{font-size:clamp(1.9rem,5vw,3rem);max-width:16ch}
+.trial p{margin-top:10px;font-weight:500;max-width:44ch}
+.trial .btn{background:var(--carbon);color:var(--chalk);border-color:var(--carbon)}
+.trial .btn:hover{background:#000}
+
+/* footer */
+footer.site{border-top:1px solid #2E2D33;padding:clamp(40px,6vw,70px) 0 30px}
+.foot-grid{display:grid;gap:30px}
+@media(min-width:768px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+footer.site h3{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel);margin-bottom:12px;font-weight:600;
+}
+footer.site p,footer.site li{font-size:.86rem;color:#C9CCD1}
+footer.site ul{list-style:none}
+footer.site li{padding:3px 0}
+footer.site a{text-decoration:none;color:#C9CCD1}
+footer.site a:hover{color:var(--molten)}
+.foot-logo{font-family:var(--slab);font-weight:700;font-size:1.5rem;text-transform:uppercase}
+.foot-logo b{color:var(--molten)}
+.small-print{
+  margin-top:34px;padding-top:18px;border-top:1px solid #2E2D33;
+  font-family:var(--mono);font-size:.68rem;color:#6E7178;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav" id="nav">
+    <a class="logo" href="#top">Forge<b>.</b></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navlinks" id="navBtn">Menu</button>
+    <ul id="navlinks">
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#coaches">Coaches</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a class="trial-link" href="#trial">Free week</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap">
+      <p class="tag">Strength &amp; conditioning · Ancoats, Manchester</p>
+      <h1 class="display">Strength is built, <span>not found.</span></h1>
+      <p class="hero-sub">Forge is a coached studio, not a room full of machines. Every session is programmed, every lift is watched, and every member — first-timer to competitor — trains with a barbell and a plan.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-fill" href="#trial">Start your free week</a>
+        <a class="btn btn-ghost" href="#schedule">See the schedule</a>
+      </div>
+      <div class="hero-stats" role="list" aria-label="Studio numbers">
+        <div role="listitem"><b>340+</b><span>Members coached</span></div>
+        <div role="listitem"><b>38</b><span>Classes / week</span></div>
+        <div role="listitem"><b>12</b><span>Max per class</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="light" aria-label="Class schedule">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">Book up to 7 days ahead</p>
+        <h2 class="display">This week on the floor</h2>
+      </div>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Weekly class schedule, scrolls sideways on small screens">
+        <table>
+          <caption>Autumn block · 12 spots per class · book in the app</caption>
+          <thead>
+            <tr><th scope="col">Time</th><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">06:15</th>
+              <td><b>Iron Hour</b><small>strength</small></td>
+              <td><b>Engine</b><small>conditioning</small></td>
+              <td><b>Iron Hour</b><small>strength</small></td>
+              <td><b>Engine</b><small>conditioning</small></td>
+              <td><b>Iron Hour</b><small>strength</small></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <th scope="row">12:15</th>
+              <td><b>Lunch Lift</b><small>45 min</small></td>
+              <td>—</td>
+              <td><b>Lunch Lift</b><small>45 min</small></td>
+              <td>—</td>
+              <td><b>Lunch Lift</b><small>45 min</small></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <th scope="row">17:30</th>
+              <td><b>Foundations</b><small>beginners</small></td>
+              <td><b>Foundations</b><small>beginners</small></td>
+              <td><b>Mobility</b><small>recovery</small></td>
+              <td><b>Foundations</b><small>beginners</small></td>
+              <td><b>Engine</b><small>conditioning</small></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <th scope="row">18:30</th>
+              <td><b>Barbell Club</b><small>squat focus</small></td>
+              <td><b>Barbell Club</b><small>press focus</small></td>
+              <td><b>Barbell Club</b><small>deadlift focus</small></td>
+              <td><b>Barbell Club</b><small>oly lifts</small></td>
+              <td><b>Forge Circuit</b><small>teams of 3</small></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <th scope="row">09:00 Sat</th>
+              <td colspan="5">—</td>
+              <td><b>The Grind</b><small>90-min team session</small></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sched-note"><b>New here?</b> Start with Foundations — four weeks of coached technique before you join Barbell Club. Sundays the floor rests, and so should you.</p>
+    </div>
+  </section>
+
+  <section id="coaches" aria-label="Coaches">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">Four eyes on every lift</p>
+        <h2 class="display">The coaching floor</h2>
+      </div>
+      <div class="coach-grid">
+        <article class="coach">
+          <h3>Dana Reyes</h3>
+          <p class="role">Head coach · Strength</p>
+          <p>Former 63&nbsp;kg national weightlifter with eleven years on the platform. Dana writes every Forge program and still coaches the 06:15 — earplugs recommended.</p>
+          <ul>
+            <li>UKSCA accredited · CSCS</li>
+            <li>British Weightlifting L2</li>
+            <li>PB: clean &amp; jerk 102 kg</li>
+          </ul>
+        </article>
+        <article class="coach">
+          <h3>Marcus Ilves</h3>
+          <p class="role">Powerlifting · Barbell Club</p>
+          <p>Marcus competed for Estonia at three European championships and treats a first-timer's 40&nbsp;kg squat with the same seriousness as a 240&nbsp;kg one.</p>
+          <ul>
+            <li>IPF national referee</li>
+            <li>12 lifters taken to competition</li>
+            <li>PB: deadlift 305 kg</li>
+          </ul>
+        </article>
+        <article class="coach">
+          <h3>Priya Nair</h3>
+          <p class="role">Conditioning · Mobility</p>
+          <p>Ex-400m hurdler and the reason Engine sells out. Priya rebuilds engines and shoulders in equal measure — her Wednesday mobility hour is non-negotiable for Barbell Club.</p>
+          <ul>
+            <li>BSc Sport &amp; Exercise Science</li>
+            <li>FRC mobility specialist</li>
+            <li>PB: 400m hurdles 58.9s</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="results" aria-label="Member results">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">Measured every 20-week block</p>
+        <h2 class="display">What actually changes</h2>
+      </div>
+      <div class="res-grid">
+        <div class="res"><b>+32 kg</b><span>Average squat gain, first 20-week block</span></div>
+        <div class="res"><b>91%</b><span>Members still training after one year</span></div>
+        <div class="res"><b>2,400</b><span>Coached sessions logged last quarter</span></div>
+        <div class="res"><b>64</b><span>First-ever bodyweight deadlifts in 2025</span></div>
+      </div>
+      <blockquote class="quote">
+        <p>“I joined Foundations convinced barbells weren't for people like me. Sixteen months later I deadlifted 120&nbsp;kg at my first meet, and Marcus shouted louder than my mum.”</p>
+        <footer>— Sam Okonkwo, member since 2024 · squat 62.5 → 110 kg</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="pricing" class="light" aria-label="Membership pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">No joining fee · Cancel monthly</p>
+        <h2 class="display">Membership</h2>
+      </div>
+      <div class="price-grid">
+        <div class="plan">
+          <h3>Open Floor</h3>
+          <p class="for">For experienced lifters who bring their own program</p>
+          <p class="price">£59<small> / month</small></p>
+          <ul>
+            <li>Unlimited open-gym hours</li>
+            <li>Platform &amp; calibrated plate access</li>
+            <li>Monthly form-check with a coach</li>
+            <li>App booking &amp; lift logging</li>
+          </ul>
+          <a class="btn btn-fill" href="#trial">Start free week</a>
+        </div>
+        <div class="plan plan-hot">
+          <span class="plan-flag">Most of Forge trains here</span>
+          <h3>Coached Unlimited</h3>
+          <p class="for">Every class, every week, programmed for you</p>
+          <p class="price">£129<small> / month</small></p>
+          <ul>
+            <li>Unlimited classes, 12-person cap</li>
+            <li>Personal 20-week program &amp; testing</li>
+            <li>Open floor included</li>
+            <li>Quarterly 1:1 review with Dana</li>
+            <li>Competition-day coaching corner</li>
+          </ul>
+          <a class="btn btn-fill" href="#trial">Start free week</a>
+        </div>
+        <div class="plan">
+          <h3>One-to-One</h3>
+          <p class="for">Private coaching, on your schedule</p>
+          <p class="price">£65<small> / session</small></p>
+          <ul>
+            <li>60 minutes, one coach, one platform</li>
+            <li>Blocks of 10 — £580</li>
+            <li>Return-from-injury specialists</li>
+            <li>Includes Open Floor membership</li>
+          </ul>
+          <a class="btn btn-fill" href="#trial">Book a consult</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trial" class="trial" aria-label="Free trial">
+    <div class="wrap trial-inner">
+      <div>
+        <h2 class="display">First week free. All of it.</h2>
+        <p>Every class, open floor, and a 30-minute movement screen with a coach. No card, no contract, no "tour with a sales manager".</p>
+      </div>
+      <a class="btn" href="mailto:hello@forgefitness.uk?subject=Free%20week">Claim your week</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-logo">Forge<b>.</b></p>
+        <p>Unit 4, Ironworks Yard<br>Poland Street, Ancoats<br>Manchester M4 6BX</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <ul>
+          <li>Mon–Fri · 06:00–21:30</li>
+          <li>Saturday · 08:00–14:00</li>
+          <li>Sunday · closed</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:hello@forgefitness.uk">hello@forgefitness.uk</a></li>
+          <li><a href="tel:+441612287104">0161 228 7104</a></li>
+          <li>@forge.mcr</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Studio</h3>
+        <ul>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#coaches">Coaches</a></li>
+          <li><a href="#pricing">Membership</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="small-print">
+      <span>© 2026 Forge Fitness Ltd. Registered in England 11482210.</span>
+      <span>Chalk is provided. Excuses are not.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.body.classList.add('has-js');
+  var btn=document.getElementById('navBtn');
+  var nav=document.getElementById('nav');
+  if(!btn||!nav)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.textContent=open?'Close':'Menu';
+  });
+  nav.querySelectorAll('#navlinks a').forEach(function(a){
+    a.addEventListener('click',function(){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.textContent='Menu';
+    });
+  });
+})();
+</script>
+</body>
+</html>

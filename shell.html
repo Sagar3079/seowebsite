@@ -1,0 +1,628 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forma — Website Builder Template Showcase</title>
+<style>
+/* ============ Tokens ============ */
+:root{
+  --bg:#f4f4ef;
+  --surface:#fdfdfb;
+  --surface-2:#ecece5;
+  --ink:#191b26;
+  --ink-2:#4b4e5e;
+  --muted:#7c7f8e;
+  --line:#dcdcd2;
+  --line-strong:#c2c2b6;
+  --accent:#2b3fd4;
+  --accent-soft:#e4e7fb;
+  --on-accent:#f7f8ff;
+  --shadow:0 1px 2px rgba(25,27,38,.06),0 10px 30px -12px rgba(25,27,38,.18);
+  --shadow-lift:0 2px 4px rgba(25,27,38,.08),0 22px 48px -16px rgba(25,27,38,.28);
+  --scrim:rgba(20,21,30,.55);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#14161f;
+    --surface:#1b1e2a;
+    --surface-2:#232635;
+    --ink:#eceef6;
+    --ink-2:#b6bac9;
+    --muted:#858a9d;
+    --line:#2b2f40;
+    --line-strong:#3a3f55;
+    --accent:#8b9aff;
+    --accent-soft:#252b48;
+    --on-accent:#10122b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -12px rgba(0,0,0,.5);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.35),0 22px 48px -16px rgba(0,0,0,.6);
+    --scrim:rgba(5,6,12,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161f;
+  --surface:#1b1e2a;
+  --surface-2:#232635;
+  --ink:#eceef6;
+  --ink-2:#b6bac9;
+  --muted:#858a9d;
+  --line:#2b2f40;
+  --line-strong:#3a3f55;
+  --accent:#8b9aff;
+  --accent-soft:#252b48;
+  --on-accent:#10122b;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -12px rgba(0,0,0,.5);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.35),0 22px 48px -16px rgba(0,0,0,.6);
+  --scrim:rgba(5,6,12,.7);
+}
+:root[data-theme="light"]{
+  --bg:#f4f4ef;
+  --surface:#fdfdfb;
+  --surface-2:#ecece5;
+  --ink:#191b26;
+  --ink-2:#4b4e5e;
+  --muted:#7c7f8e;
+  --line:#dcdcd2;
+  --line-strong:#c2c2b6;
+  --accent:#2b3fd4;
+  --accent-soft:#e4e7fb;
+  --on-accent:#f7f8ff;
+  --shadow:0 1px 2px rgba(25,27,38,.06),0 10px 30px -12px rgba(25,27,38,.18);
+  --shadow-lift:0 2px 4px rgba(25,27,38,.08),0 22px 48px -16px rgba(25,27,38,.28);
+  --scrim:rgba(20,21,30,.55);
+}
+
+/* ============ Base ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font:16px/1.6 Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.display{font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif}
+.mono{font-family:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.skip{position:absolute;left:-999px;top:8px;z-index:60;background:var(--accent);color:var(--on-accent);padding:8px 14px;border-radius:6px}
+.skip:focus{left:8px}
+
+/* ============ Nav ============ */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:26px;height:58px}
+.wordmark{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-weight:800;font-size:1.3rem;letter-spacing:-.03em;text-decoration:none;
+}
+.wordmark i{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
+.nav-links a{font-size:.92rem;text-decoration:none;color:var(--ink-2)}
+.nav-links a:hover{color:var(--ink)}
+.btn{
+  display:inline-block;background:var(--accent);color:var(--on-accent);
+  padding:8px 18px;border-radius:999px;font-weight:600;font-size:.92rem;
+  text-decoration:none;transition:transform .18s ease,box-shadow .18s ease;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+@media (max-width:600px){.nav-links a:not(.btn){display:none}}
+
+/* ============ Hero ============ */
+.hero{padding:clamp(44px,8vw,86px) 0 clamp(30px,5vw,52px);border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.hero h1{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-weight:800;
+  font-size:clamp(2.5rem,7.4vw,5.4rem);
+  line-height:.98;letter-spacing:-.045em;
+  max-width:14ch;
+}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+.hero h1 em::after{
+  content:"";position:absolute;left:.02em;right:.02em;bottom:.02em;height:.07em;
+  background:var(--accent);opacity:.85;border-radius:2px;
+}
+.hero p{margin-top:22px;max-width:56ch;font-size:1.08rem;color:var(--ink-2)}
+.stats{display:flex;flex-wrap:wrap;gap:0 34px;margin-top:30px;row-gap:14px}
+.stat{display:flex;align-items:baseline;gap:9px}
+.stat b{
+  font-family:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  font-size:1.35rem;font-weight:700;color:var(--accent);
+}
+.stat span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat + .stat{border-left:1px solid var(--line-strong);padding-left:34px}
+@media (max-width:520px){.stat + .stat{border-left:0;padding-left:0}}
+
+/* ============ Gallery ============ */
+.gallery{padding:clamp(30px,5vw,54px) 0 clamp(48px,7vw,80px)}
+.gallery-head{display:flex;flex-wrap:wrap;align-items:end;gap:16px;margin-bottom:22px}
+.gallery-head h2{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-weight:800;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.03em;
+}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.filter{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--line-strong);border-radius:999px;
+  padding:7px 14px;font-size:.88rem;color:var(--ink-2);background:var(--surface);
+  transition:border-color .15s ease,background .15s ease,color .15s ease;
+}
+.filter:hover{border-color:var(--accent);color:var(--ink)}
+.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.filter .n{
+  font-family:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  font-size:.72rem;opacity:.75;
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:26px}
+
+/* Card */
+.card{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;box-shadow:var(--shadow);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.card:hover,.card:has(:focus-visible){
+  transform:translateY(-4px) rotate(-.4deg);
+  box-shadow:var(--shadow-lift);
+  border-color:color-mix(in srgb,var(--a,var(--accent)) 55%,var(--line));
+}
+.card:has(:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.card[hidden]{display:none}
+.thumb{
+  position:relative;aspect-ratio:16/10;overflow:hidden;
+  background:var(--surface-2);border-bottom:1px solid var(--line);
+}
+.thumb iframe{
+  width:1280px;height:800px;border:0;
+  transform-origin:0 0;transform:scale(var(--s,.25));
+  pointer-events:none;display:block;background:#fff;
+}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card h3{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-size:1.08rem;font-weight:700;letter-spacing:-.015em;
+}
+.chip{
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--a,var(--accent)) 14%,var(--surface));
+  color:color-mix(in srgb,var(--a,var(--accent)) 62%,var(--ink));
+  border:1px solid color-mix(in srgb,var(--a,var(--accent)) 32%,var(--line));
+}
+.card .tag{font-size:.92rem;color:var(--ink-2)}
+.preview-btn{
+  align-self:flex-start;margin-top:auto;
+  font-weight:600;font-size:.88rem;color:var(--accent);
+  display:inline-flex;align-items:center;gap:6px;padding:2px 0;
+}
+.preview-btn::before{content:"";position:absolute;inset:0}
+.preview-btn::after{content:"→";transition:transform .18s ease}
+.card:hover .preview-btn::after{transform:translateX(3px)}
+.preview-btn:focus-visible{outline:none}
+
+/* Empty state */
+.empty{
+  grid-column:1/-1;border:1px dashed var(--line-strong);border-radius:14px;
+  padding:56px 28px;text-align:center;background:var(--surface);
+}
+.empty h3{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-size:1.2rem;letter-spacing:-.02em;margin-bottom:8px;
+}
+.empty p{color:var(--muted);max-width:44ch;margin:0 auto;font-size:.95rem}
+
+/* ============ Why Forma ============ */
+.why{border-top:1px solid var(--line);background:var(--surface);padding:clamp(44px,7vw,76px) 0}
+.why h2{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-weight:800;font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.03em;margin-bottom:30px;
+}
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.prop{background:var(--surface);padding:26px 24px}
+.prop .k{
+  font-family:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+  display:block;margin-bottom:12px;
+}
+.prop h3{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-size:1.12rem;font-weight:700;letter-spacing:-.015em;margin-bottom:8px;
+}
+.prop p{font-size:.95rem;color:var(--ink-2)}
+
+/* ============ Footer ============ */
+.footer{border-top:1px solid var(--line);padding:34px 0 44px}
+.footer-in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.footer small{color:var(--muted);font-size:.85rem}
+.footer .wink{
+  margin-left:auto;font-family:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  font-size:.78rem;color:var(--muted);
+}
+.footer .wink b{color:var(--accent);font-weight:600}
+
+/* ============ Modal ============ */
+.modal{
+  position:fixed;inset:0;z-index:50;display:none;flex-direction:column;
+  background:var(--scrim);
+}
+.modal.open{display:flex}
+.modal-panel{
+  display:flex;flex-direction:column;flex:1;min-height:0;
+  background:var(--bg);margin:clamp(0px,1.5vw,18px);border-radius:14px;
+  overflow:hidden;box-shadow:var(--shadow-lift);border:1px solid var(--line);
+}
+.modal-bar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:12px clamp(14px,2.5vw,22px);
+  border-bottom:1px solid var(--line);background:var(--surface);
+}
+.modal-title{display:flex;align-items:center;gap:10px;min-width:0}
+.modal-title h2{
+  font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  font-size:1.02rem;font-weight:700;letter-spacing:-.015em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.devices{display:flex;gap:4px;margin-left:auto;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.device-btn{
+  padding:5px 13px;border-radius:999px;font-size:.82rem;color:var(--ink-2);
+  transition:background .15s ease,color .15s ease;
+}
+.device-btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.device-btn:hover:not([aria-pressed="true"]){color:var(--ink)}
+.close-btn{
+  width:34px;height:34px;border-radius:999px;border:1px solid var(--line-strong);
+  display:grid;place-items:center;font-size:1rem;line-height:1;color:var(--ink-2);
+  transition:border-color .15s ease,color .15s ease;
+}
+.close-btn:hover{border-color:var(--accent);color:var(--ink)}
+.modal-stage{
+  flex:1;min-height:0;overflow:auto;display:flex;
+  justify-content:center;align-items:stretch;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 23px,color-mix(in srgb,var(--ink) 4%,transparent) 23px 24px),
+    repeating-linear-gradient(90deg,transparent 0 23px,color-mix(in srgb,var(--ink) 4%,transparent) 23px 24px),
+    var(--surface-2);
+  padding:clamp(0px,2vw,22px);
+}
+.stage-frame{
+  width:100%;max-width:100%;display:flex;flex-direction:column;
+  border-radius:4px;overflow:hidden;background:#fff;
+  transition:width .38s cubic-bezier(.3,.8,.3,1),border-radius .38s ease;
+  border:1px solid var(--line-strong);
+}
+.stage-frame.framed{
+  border-radius:22px;border-width:6px;
+  border-color:color-mix(in srgb,var(--ink) 78%,var(--bg));
+  box-shadow:var(--shadow-lift);
+  margin-top:clamp(0px,1.5vw,14px);margin-bottom:clamp(0px,1.5vw,14px);
+}
+.stage-frame iframe{width:100%;height:100%;flex:1;border:0;display:block;background:#fff}
+
+@media (max-width:640px){
+  .devices{margin-left:0;order:3;width:100%;justify-content:center}
+  .modal-bar .close-btn{margin-left:auto}
+  .modal-panel{margin:0;border-radius:0}
+}
+
+/* ============ Motion ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+  .card:hover,.card:has(:focus-visible){transform:none}
+}
+body.locked{overflow:hidden}
+</style>
+
+<a class="skip" href="#gallery">Skip to templates</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top">Forma<i>.</i></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#gallery">Templates</a>
+      <a href="#why">Why Forma</a>
+      <a class="btn" href="#gallery">Start building</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow mono">Template showcase — twelve live sites</p>
+      <h1>Websites that feel <em>designed</em>.</h1>
+      <p>Every template below is a complete, working site — real copy, real layouts, hand-tuned code.
+         Open one, resize it, read it. Then make it yours.</p>
+      <div class="stats" role="list" aria-label="Showcase facts">
+        <div class="stat" role="listitem"><b>12</b><span>templates</span></div>
+        <div class="stat" role="listitem"><b>4</b><span>categories</span></div>
+        <div class="stat" role="listitem"><b>100%</b><span>yours</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery" aria-labelledby="gallery-h">
+    <div class="wrap">
+      <div class="gallery-head">
+        <h2 id="gallery-h">Browse the templates</h2>
+        <div class="filters" role="group" aria-label="Filter templates by category" id="filters"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="why" id="why" aria-labelledby="why-h">
+    <div class="wrap">
+      <h2 id="why-h">Why Forma</h2>
+      <div class="props">
+        <div class="prop">
+          <span class="k">Ownership</span>
+          <h3>Own your code</h3>
+          <p>Every site exports as one clean HTML file you can host anywhere. No runtime,
+             no lock-in, no subscription standing between you and your own pages.</p>
+        </div>
+        <div class="prop">
+          <span class="k">Craft</span>
+          <h3>Real typography</h3>
+          <p>Deliberate type pairings, honest scales, spacing that was decided — not defaulted.
+             Each template reads like a studio set it, because one did.</p>
+        </div>
+        <div class="prop">
+          <span class="k">Speed</span>
+          <h3>Ships fast</h3>
+          <p>Lean, framework-free CSS means a whole Forma site weighs less than a single stock
+             photo. Pages load before your visitor finishes blinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a class="wordmark" href="#top">Forma<i>.</i></a>
+    <small>© 2026 Forma. All twelve demo businesses are fictional; the code is very real.</small>
+    <span class="wink">This page was <b>built with Forma</b>, obviously.</span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-h" hidden>
+  <div class="modal-panel">
+    <div class="modal-bar">
+      <div class="modal-title">
+        <h2 id="modal-h">Template</h2>
+        <span class="chip" id="modal-chip"></span>
+      </div>
+      <div class="devices" role="group" aria-label="Preview width">
+        <button type="button" class="device-btn" data-device="desktop" aria-pressed="true">Desktop</button>
+        <button type="button" class="device-btn" data-device="tablet" aria-pressed="false">Tablet</button>
+        <button type="button" class="device-btn" data-device="mobile" aria-pressed="false">Mobile</button>
+      </div>
+      <button type="button" class="close-btn" id="modal-close" aria-label="Close preview">✕</button>
+    </div>
+    <div class="modal-stage" id="stage">
+      <div class="stage-frame" id="stage-frame">
+        <iframe id="modal-frame" title="Template preview"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="templates-data" type="application/json">__TEMPLATES_JSON__</script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Data ---------- */
+  var templates = [];
+  try{
+    var raw = document.getElementById("templates-data").textContent;
+    var parsed = JSON.parse(raw);
+    if(Array.isArray(parsed)) templates = parsed;
+  }catch(e){ templates = []; }
+
+  var grid = document.getElementById("grid");
+  var filtersEl = document.getElementById("filters");
+  var CATEGORIES = ["Hospitality","Business","Commerce","Creative"];
+
+  if(!templates.length){
+    var empty = document.createElement("div");
+    empty.className = "empty";
+    empty.innerHTML =
+      '<h3>Templates are loading</h3>' +
+      '<p>The twelve demo sites are injected at build time and have not arrived yet. ' +
+      'Run the build, then refresh this page to browse them live.</p>';
+    grid.appendChild(empty);
+    return;
+  }
+
+  /* ---------- Filters ---------- */
+  var counts = { All: templates.length };
+  CATEGORIES.forEach(function(c){
+    counts[c] = templates.filter(function(t){ return t.category === c; }).length;
+  });
+  var current = "All";
+
+  ["All"].concat(CATEGORIES).forEach(function(cat){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "filter";
+    b.setAttribute("aria-pressed", cat === "All" ? "true" : "false");
+    b.innerHTML = cat + ' <span class="n">' + (counts[cat] || 0) + "</span>";
+    b.addEventListener("click", function(){
+      current = cat;
+      filtersEl.querySelectorAll(".filter").forEach(function(x){
+        x.setAttribute("aria-pressed", x === b ? "true" : "false");
+      });
+      applyFilter();
+    });
+    filtersEl.appendChild(b);
+  });
+
+  function applyFilter(){
+    grid.querySelectorAll(".card").forEach(function(card){
+      var show = current === "All" || card.dataset.category === current;
+      card.hidden = !show;
+    });
+  }
+
+  /* ---------- Cards ---------- */
+  var scaler = ("ResizeObserver" in window)
+    ? new ResizeObserver(function(entries){
+        entries.forEach(function(en){
+          en.target.style.setProperty("--s", (en.contentRect.width / 1280).toFixed(4));
+        });
+      })
+    : null;
+
+  templates.forEach(function(t, i){
+    var card = document.createElement("article");
+    card.className = "card";
+    card.dataset.category = t.category;
+    card.style.setProperty("--a", t.accent || "");
+
+    var thumb = document.createElement("div");
+    thumb.className = "thumb";
+    thumb.setAttribute("aria-hidden", "true");
+    var fr = document.createElement("iframe");
+    fr.loading = "lazy";
+    fr.setAttribute("tabindex", "-1");
+    fr.setAttribute("title", t.name + " preview thumbnail");
+    fr.srcdoc = t.html;
+    thumb.appendChild(fr);
+    if(scaler) scaler.observe(thumb);
+    else thumb.style.setProperty("--s", ".25");
+
+    var body = document.createElement("div");
+    body.className = "card-body";
+
+    var top = document.createElement("div");
+    top.className = "card-top";
+    var h3 = document.createElement("h3");
+    h3.textContent = t.name;
+    var chip = document.createElement("span");
+    chip.className = "chip";
+    chip.textContent = t.category;
+    top.appendChild(h3);
+    top.appendChild(chip);
+
+    var tag = document.createElement("p");
+    tag.className = "tag";
+    tag.textContent = t.tagline;
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "preview-btn";
+    btn.textContent = "Preview";
+    btn.setAttribute("aria-label", "Preview " + t.name + " — " + (t.description || t.tagline));
+    btn.addEventListener("click", function(){ openModal(i, btn); });
+
+    body.appendChild(top);
+    body.appendChild(tag);
+    body.appendChild(btn);
+    card.appendChild(thumb);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+
+  /* ---------- Modal ---------- */
+  var modal = document.getElementById("modal");
+  var modalH = document.getElementById("modal-h");
+  var modalChip = document.getElementById("modal-chip");
+  var modalFrame = document.getElementById("modal-frame");
+  var stage = document.getElementById("stage");
+  var stageFrame = document.getElementById("stage-frame");
+  var closeBtn = document.getElementById("modal-close");
+  var deviceBtns = Array.prototype.slice.call(modal.querySelectorAll(".device-btn"));
+  var lastFocus = null;
+  var settleTimer = null;
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  var WIDTHS = { tablet: 768, mobile: 390 };
+
+  function setDevice(device){
+    deviceBtns.forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.device === device ? "true" : "false");
+    });
+    clearTimeout(settleTimer);
+    var pad = 44;
+    var avail = stage.clientWidth - pad;
+    if(device === "desktop"){
+      stageFrame.style.width = Math.max(avail, 320) + "px";
+      stageFrame.classList.remove("framed");
+      /* settle to fluid 100% after the width animation so resizes stay live */
+      settleTimer = setTimeout(function(){ stageFrame.style.width = "100%"; },
+        reducedMotion.matches ? 0 : 400);
+    }else{
+      if(stageFrame.style.width === "100%" || !stageFrame.style.width){
+        /* pin current px width first so % → px animates */
+        stageFrame.style.width = stageFrame.getBoundingClientRect().width + "px";
+        void stageFrame.offsetWidth;
+      }
+      stageFrame.style.width = Math.min(WIDTHS[device], Math.max(avail, 320)) + "px";
+      stageFrame.classList.add("framed");
+    }
+  }
+
+  function focusables(){
+    return Array.prototype.slice.call(
+      modal.querySelectorAll("button, [href], iframe, [tabindex]:not([tabindex='-1'])")
+    ).filter(function(el){ return !el.disabled && el.offsetParent !== null; });
+  }
+
+  function onKeydown(e){
+    if(e.key === "Escape"){ e.preventDefault(); closeModal(); return; }
+    if(e.key !== "Tab") return;
+    var f = focusables();
+    if(!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+
+  function openModal(index, trigger){
+    var t = templates[index];
+    if(!t) return;
+    lastFocus = trigger || document.activeElement;
+    modalH.textContent = t.name;
+    modalChip.textContent = t.category;
+    modal.querySelector(".modal-panel").style.setProperty("--a", t.accent || "");
+    modalFrame.setAttribute("title", t.name + " — live preview");
+    modalFrame.srcdoc = t.html;
+    modal.hidden = false;
+    modal.classList.add("open");
+    document.body.classList.add("locked");
+    stageFrame.style.width = "100%";
+    setDevice("desktop");
+    document.addEventListener("keydown", onKeydown, true);
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove("open");
+    modal.hidden = true;
+    document.body.classList.remove("locked");
+    document.removeEventListener("keydown", onKeydown, true);
+    modalFrame.srcdoc = "";
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  deviceBtns.forEach(function(b){
+    b.addEventListener("click", function(){ setDevice(b.dataset.device); });
+  });
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("mousedown", function(e){
+    if(e.target === modal) closeModal();
+  });
+})();
+</script>
