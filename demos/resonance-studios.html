@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resonance — Analog Recording Studio, Echo Park</title>
+<meta name="description" content="Resonance is a three-room analog recording studio in Echo Park, Los Angeles. Neve 8048, Studer A800, and engineers who print to tape.">
+<style>
+:root{
+  --bg:#151110;
+  --bg2:#1c1714;
+  --panel:#211a15;
+  --panel2:#28201a;
+  --line:rgba(232,163,61,.16);
+  --line2:rgba(239,231,218,.1);
+  --text:#efe7da;
+  --dim:#a39682;
+  --amber:#e8a33d;
+  --amber2:#f6c66a;
+  --red:#c8402e;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sans:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;
+  --sh1:0 1px 2px rgba(0,0,0,.4);
+  --sh2:0 6px 18px -6px rgba(0,0,0,.55);
+  --sh3:0 24px 48px -16px rgba(0,0,0,.65),0 8px 20px -10px rgba(0,0,0,.5);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber);color:#1a1410}
+a{color:var(--amber2);text-decoration:none}
+.uln{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;transition:background-size .3s ease,color .2s}
+.uln:hover,.uln:focus-visible{background-size:100% 1px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:.7em}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--amber);display:inline-block}
+h1,h2,h3{font-weight:700;letter-spacing:-.02em;line-height:1.08}
+h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin:.55em 0 .4em}
+.sub{color:var(--dim);max-width:56ch}
+section{padding:96px 0}
+@media(max-width:768px){section{padding:64px 0}}
+
+/* ---- nav ---- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid var(--line2);
+  background:rgba(21,17,16,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@supports not (backdrop-filter:blur(12px)){.nav{background:rgba(21,17,16,.97)}}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.6rem;font-family:var(--mono);font-weight:700;letter-spacing:.16em;color:var(--text);font-size:.95rem}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 10px rgba(200,64,46,.8);animation:blink 2.6s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+.nav-links{display:flex;gap:2rem;align-items:center;font-size:.85rem}
+.nav-links a{color:var(--dim)}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.85em 1.6em;border-radius:4px;border:1px solid var(--amber);color:#1a1410;background:linear-gradient(180deg,var(--amber2),var(--amber));
+  cursor:pointer;transition:transform .18s ease,box-shadow .25s ease,filter .2s;box-shadow:var(--sh2)}
+.btn:hover{filter:brightness(1.08);box-shadow:0 10px 26px -8px rgba(232,163,61,.45);transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.99);filter:brightness(.95)}
+.btn.ghost{background:transparent;color:var(--amber2);border-color:rgba(232,163,61,.5);box-shadow:none}
+.btn.ghost:hover{background:rgba(232,163,61,.08);box-shadow:none}
+.btn.sm{padding:.6em 1.1em;font-size:.72rem}
+@media(max-width:640px){.nav-links a:not(.btn){display:none}}
+
+/* ---- hero ---- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,#241b14 0%,var(--bg) 58%)}
+#viz{position:absolute;inset:auto 0 0 0;width:100%;height:52%;display:block;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(21,17,16,0) 40%,rgba(21,17,16,.55) 78%,rgba(21,17,16,.92) 100%)}
+.hero-in{position:relative;z-index:2;padding:140px 24px 220px;width:100%}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.9rem);max-width:13ch;margin:.35em 0 .3em}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .sub{font-size:clamp(1rem,1.6vw,1.15rem);margin-bottom:2.2rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.hud{position:absolute;left:0;right:0;bottom:26px;z-index:3}
+.hud-in{display:flex;gap:2.5rem;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.hud-in b{color:var(--amber);font-weight:400}
+@media(max-width:640px){.hud-in{gap:.4rem 1.4rem;font-size:.62rem}}
+.js .st{opacity:0;animation:rise .9s cubic-bezier(.2,.75,.2,1) forwards}
+.js .st1{animation-delay:.1s}.js .st2{animation-delay:.25s}.js .st3{animation-delay:.4s}.js .st4{animation-delay:.55s}.js .st5{animation-delay:.75s}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* ---- ticker ---- */
+.tick{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--bg2);overflow:hidden;padding:14px 0}
+.tick-in{display:flex;width:max-content;gap:3rem;white-space:nowrap;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;color:var(--dim);animation:tick 36s linear infinite}
+.tick-in span::after{content:"·";color:var(--red);margin-left:3rem}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---- reveals ---- */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}
+
+/* ---- rooms ---- */
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:2.4rem;perspective:1400px}
+@media(max-width:960px){.rooms-grid{grid-template-columns:1fr;max-width:560px}}
+.room{position:relative;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:10px;
+  padding:26px 24px 24px;box-shadow:var(--sh2);transform-style:preserve-3d;will-change:transform;transition:box-shadow .35s ease}
+.room::before{content:"";position:absolute;inset:0;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(360px 240px at var(--mx,50%) var(--my,0%),rgba(246,198,106,.13),transparent 70%)}
+.room:hover{box-shadow:var(--sh3)}
+.room:hover::before{opacity:1}
+.room-tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.room h3{font-size:1.35rem;margin:.5rem 0 .15rem}
+.room .rname{color:var(--dim);font-size:.88rem;font-style:italic}
+.room ul{list-style:none;margin:1.1rem 0 1.2rem;font-size:.86rem;color:var(--dim)}
+.room li{padding:.42em 0;border-bottom:1px dashed var(--line2);display:flex;gap:.6em}
+.room li::before{content:"—";color:var(--amber);flex:none}
+.rate{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;border-top:1px solid var(--line);padding-top:1rem}
+.rate b{font-size:1.5rem;letter-spacing:-.02em}
+.rate span{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+
+/* ---- console / desk ---- */
+.desk-sec{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+.desk-cols{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+@media(max-width:960px){.desk-cols{grid-template-columns:1fr;gap:32px}}
+.chain{list-style:none;margin-top:1.6rem;font-family:var(--mono);font-size:.78rem}
+.chain li{display:flex;gap:1em;align-items:baseline;padding:.65em 0;border-bottom:1px solid var(--line2);color:var(--dim)}
+.chain li b{color:var(--amber);font-weight:400;min-width:3.5em}
+.stage{perspective:1200px;display:flex;justify-content:center;padding:30px 0 46px;touch-action:pan-y}
+.desk-scale{transition:transform .3s}
+.desk{position:relative;width:520px;height:300px;transform-style:preserve-3d;transform:rotateX(50deg) rotateZ(-12deg);will-change:transform}
+@media(max-width:1100px){.desk{width:460px;height:270px}}
+@media(max-width:560px){.desk-scale{transform:scale(.68)}.stage{padding:0;margin:-30px 0 -10px}}
+.face-top{position:absolute;inset:0;border-radius:10px;transform-style:preserve-3d;
+  background:linear-gradient(160deg,#3a2f24 0%,#2b221a 45%,#241c15 100%);
+  border:1px solid #4a3c2c;box-shadow:inset 0 1px 0 rgba(246,198,106,.18)}
+.face-front{position:absolute;left:4px;right:4px;top:100%;height:40px;transform-origin:top;transform:rotateX(-68deg);
+  background:linear-gradient(180deg,#1c1610,#0f0b08);border-radius:0 0 8px 8px}
+.desk-shadow{position:absolute;left:6%;right:6%;top:96%;height:60px;transform:translateZ(-60px);
+  background:radial-gradient(50% 60% at 50% 40%,rgba(0,0,0,.6),transparent 70%);filter:blur(8px)}
+.meterrow{position:absolute;top:16px;left:22px;right:22px;height:64px;display:flex;align-items:center;gap:18px;transform-style:preserve-3d}
+.vu{width:84px;height:56px;border-radius:6px;background:linear-gradient(180deg,#f3e6c6,#e3d1a8);position:relative;overflow:hidden;
+  border:2px solid #171310;box-shadow:var(--sh1),inset 0 0 12px rgba(120,90,30,.35);transform:translateZ(10px)}
+.vu::before{content:"VU";position:absolute;bottom:3px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;color:#6b5636}
+.vu::after{content:"";position:absolute;top:8px;left:10px;right:10px;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,#6b5636 0 72%,var(--red) 72% 100%)}
+.needle{position:absolute;left:50%;bottom:6px;width:2px;height:38px;background:#2b2015;transform-origin:bottom center;transform:rotate(-42deg)}
+.js .needle{animation:swing 2.8s ease-in-out infinite alternate}
+.vu:nth-child(2) .needle{animation-delay:-1.3s;animation-duration:3.4s}
+@keyframes swing{0%{transform:rotate(-44deg)}45%{transform:rotate(18deg)}70%{transform:rotate(-8deg)}100%{transform:rotate(34deg)}}
+.desklabel{margin-left:auto;font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;color:var(--amber);text-transform:uppercase;transform:translateZ(6px)}
+.chrow{position:absolute;left:22px;right:22px;top:96px;bottom:18px;display:flex;gap:10px;transform-style:preserve-3d}
+.ch{flex:1;border-radius:5px;background:linear-gradient(180deg,#33291f,#241c15);border:1px solid rgba(246,198,106,.12);
+  position:relative;transform-style:preserve-3d;padding-top:10px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.kb{width:16px;height:16px;border-radius:50%;flex:none;position:relative;transform:translateZ(8px);
+  background:radial-gradient(circle at 35% 30%,#5c4c38,#241c15 70%);
+  border:1px solid #0e0a07;box-shadow:0 3px 5px rgba(0,0,0,.5)}
+.kb::after{content:"";position:absolute;left:50%;top:1px;width:2px;height:6px;margin-left:-1px;background:var(--amber2);border-radius:1px}
+.ch:nth-child(2n) .kb:first-child::after{transform-origin:1px 7px;transform:rotate(40deg)}
+.ch:nth-child(3n) .kb:last-of-type::after{transform-origin:1px 7px;transform:rotate(-55deg)}
+.tr{position:relative;width:6px;flex:1;margin:4px 0 10px;border-radius:3px;background:#0d0906;box-shadow:inset 0 1px 3px rgba(0,0,0,.9)}
+.fd{position:absolute;left:50%;top:var(--p,50%);width:26px;height:14px;margin:-7px 0 0 -13px;border-radius:3px;transform:translateZ(14px);
+  background:linear-gradient(180deg,#5a4a36,#2e251b 45%,#463829);border:1px solid #0e0a07;box-shadow:0 6px 8px rgba(0,0,0,.55)}
+.fd::after{content:"";position:absolute;left:3px;right:3px;top:50%;height:2px;margin-top:-1px;background:var(--amber);border-radius:1px}
+.js .fd{animation:drift 6s ease-in-out infinite alternate}
+.ch:nth-child(1) .fd{--p:32%;animation-delay:-.6s}.ch:nth-child(2) .fd{--p:58%;animation-delay:-1.8s}
+.ch:nth-child(3) .fd{--p:44%;animation-delay:-3s}.ch:nth-child(4) .fd{--p:66%;animation-delay:-.2s}
+.ch:nth-child(5) .fd{--p:38%;animation-delay:-2.4s}.ch:nth-child(6) .fd{--p:52%;animation-delay:-4.2s}
+.ch:nth-child(7) .fd{--p:28%;animation-delay:-1.1s}.ch:nth-child(8) .fd{--p:60%;animation-delay:-3.6s}
+@keyframes drift{from{transform:translateZ(14px) translateY(-7px)}to{transform:translateZ(14px) translateY(7px)}}
+.ch em{font-style:normal;font-family:var(--mono);font-size:.5rem;color:var(--dim);letter-spacing:.1em;padding-bottom:6px}
+@media(max-width:560px){.ch:nth-child(n+7){display:none}}
+
+/* ---- engineers ---- */
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:2.4rem}
+@media(max-width:960px){.eng-grid{grid-template-columns:1fr;max-width:560px}}
+.eng{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:24px;box-shadow:var(--sh1);
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s}
+.eng:hover{transform:translateY(-6px);box-shadow:var(--sh3);border-color:var(--line)}
+.eng-face{width:64px;height:64px;border-radius:50%;margin-bottom:1.1rem;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:700;font-size:1.1rem;color:#1a1410;
+  background:conic-gradient(from 210deg,var(--amber2),var(--amber) 40%,#9d6a25 75%,var(--amber2));box-shadow:var(--sh2)}
+.eng h3{font-size:1.15rem}
+.eng .role{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin:.3rem 0 .8rem}
+.eng p{font-size:.88rem;color:var(--dim)}
+
+/* ---- sessions ---- */
+.sess{width:100%;border-collapse:collapse;margin-top:2.2rem;font-size:.9rem}
+.sess th{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-align:left;
+  padding:0 14px 12px;border-bottom:1px solid var(--line)}
+.sess td{padding:14px;border-bottom:1px solid var(--line2);vertical-align:top}
+.sess tr{transition:background .25s}
+.sess tbody tr:hover{background:rgba(232,163,61,.05)}
+.sess .yr{font-family:var(--mono);color:var(--amber);white-space:nowrap}
+.sess .rm{font-family:var(--mono);font-size:.72rem;color:var(--dim);white-space:nowrap}
+.sess i{color:var(--dim);font-size:.82rem}
+@media(max-width:640px){.sess .hide-m{display:none}.sess td,.sess th{padding:12px 8px}}
+
+/* ---- booking ---- */
+.book{background:linear-gradient(180deg,var(--bg2),#191411);border-top:1px solid var(--line2)}
+.book-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+@media(max-width:900px){.book-cols{grid-template-columns:1fr;gap:36px}}
+.book-info{font-size:.92rem;color:var(--dim)}
+.book-info dl{margin-top:1.8rem;display:grid;grid-template-columns:auto 1fr;gap:.7rem 1.6rem}
+.book-info dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);padding-top:.25em}
+.book-info dd{color:var(--text)}
+form{display:grid;gap:14px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.frow{grid-template-columns:1fr}}
+label{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);display:grid;gap:.5em}
+input,select,textarea{font:inherit;font-size:.95rem;color:var(--text);background:var(--panel);border:1px solid var(--line2);
+  border-radius:6px;padding:.75em .9em;transition:border-color .25s,box-shadow .25s;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(232,163,61,.18)}
+textarea{resize:vertical;min-height:96px}
+.formnote{font-family:var(--mono);font-size:.72rem;color:var(--amber);min-height:1.2em}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line2);padding:34px 0 44px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--dim)}
+.foot-in{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+#grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .st{animation:none;opacity:1}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .tick-in,.js .needle,.js .fd,.logo i{animation:none}
+  .btn,.eng,.room{transition:none}
+}
+</style>
+</head>
+<body>
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Resonance home"><i aria-hidden="true"></i>RESONANCE</a>
+    <nav class="nav-links" aria-label="Main">
+      <a class="uln" href="#rooms">Rooms</a>
+      <a class="uln" href="#desk">The Desk</a>
+      <a class="uln" href="#engineers">Engineers</a>
+      <a class="uln" href="#sessions">Sessions</a>
+      <a class="btn sm" href="#book">Book a session</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="hero" aria-label="Intro">
+  <canvas id="viz" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <p class="eyebrow st st1">Est. 2011 · Echo Park, Los Angeles</p>
+    <h1 class="st st2">The room is <em>half</em> the record.</h1>
+    <p class="sub st st3">Three tracking rooms, a 1978 Neve 8048, and engineers who still print to
+      two-inch tape. Bring the song; we will make it hold air.</p>
+    <div class="hero-cta st st4">
+      <a class="btn" href="#book">Book a session</a>
+      <a class="btn ghost" href="#rooms">See rooms &amp; rates</a>
+    </div>
+  </div>
+  <div class="hud st st5">
+    <div class="wrap hud-in">
+      <span>Input <b>32ch Neve 8048</b></span>
+      <span>Tape <b>Studer A800 MkIII</b></span>
+      <span>Monitoring <b>ATC SCM110</b></span>
+      <span>Status <b>Tracking · Studio A</b></span>
+    </div>
+  </div>
+</section>
+
+<div class="tick" aria-hidden="true">
+  <div class="tick-in">
+    <span>NEVE 8048</span><span>STUDER A800</span><span>NEUMANN U47</span><span>AKG C12</span><span>LA-2A</span><span>1176 REV D</span><span>FAIRCHILD 670</span><span>EMT 140 PLATE</span><span>COLES 4038</span><span>PULTEC EQP-1A</span><span>HAMMOND B3 + 147</span><span>LUDWIG '68 MAPLE</span>
+    <span>NEVE 8048</span><span>STUDER A800</span><span>NEUMANN U47</span><span>AKG C12</span><span>LA-2A</span><span>1176 REV D</span><span>FAIRCHILD 670</span><span>EMT 140 PLATE</span><span>COLES 4038</span><span>PULTEC EQP-1A</span><span>HAMMOND B3 + 147</span><span>LUDWIG '68 MAPLE</span>
+  </div>
+</div>
+
+<section id="rooms">
+  <div class="wrap">
+    <p class="eyebrow rv">Rooms &amp; gear</p>
+    <h2 class="rv">Three rooms, one signal path philosophy.</h2>
+    <p class="sub rv d1">Every room shares the same house rule: commit early, commit warm. Day rates
+      cover twelve hours and an assistant engineer.</p>
+    <div class="rooms-grid">
+      <article class="room tilt rv d1">
+        <p class="room-tag">Studio A</p>
+        <h3>The Big Room</h3>
+        <p class="rname">1,150 sq ft live floor, 22-ft ceilings</p>
+        <ul>
+          <li>Neve 8048 · 32 ch, 31102 EQs</li>
+          <li>Studer A800 MkIII 2" 24-track</li>
+          <li>Yamaha C7 grand, restored 2019</li>
+          <li>Iso booths ×2, variable drapes</li>
+          <li>ATC SCM110 mains / NS-10M</li>
+        </ul>
+        <div class="rate"><b>$1,400</b><span>per day · 12 hrs</span></div>
+      </article>
+      <article class="room tilt rv d2">
+        <p class="room-tag">Studio B</p>
+        <h3>The Control Deck</h3>
+        <p class="rname">Overdubs, vocals, mixing in the box + out</p>
+        <ul>
+          <li>API 1608 · 32 ch with 550A EQs</li>
+          <li>Burl B80 Mothership conversion</li>
+          <li>Vocal booth tuned for U47 / C12</li>
+          <li>Outboard wall: 1176s, LA-2A, Distressors</li>
+          <li>EMT 140 plate on tie lines</li>
+        </ul>
+        <div class="rate"><b>$850</b><span>per day · 12 hrs</span></div>
+      </article>
+      <article class="room tilt rv d3">
+        <p class="room-tag">Room C</p>
+        <h3>The Den</h3>
+        <p class="rname">Writing &amp; production suite, daylight window</p>
+        <ul>
+          <li>Neumann KH310 monitoring</li>
+          <li>Prophet-6, Juno-60, OP-1 field</li>
+          <li>Hammond B3 with 147 Leslie</li>
+          <li>Guitar wall: Jazzmaster, ES-335, J-45</li>
+          <li>Direct tie lines to Studio A floor</li>
+        </ul>
+        <div class="rate"><b>$400</b><span>per day · flexible</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="desk-sec" id="desk">
+  <div class="wrap desk-cols">
+    <div>
+      <p class="eyebrow rv">The desk</p>
+      <h2 class="rv">Serial 3417. Forty-seven years in service.</h2>
+      <p class="sub rv d1">Our Neve 8048 was installed at Basing Street, London in 1978 and has never
+        been modified beyond recapping. Every channel you hear on a Resonance record passed through
+        these transformers.</p>
+      <ul class="chain rv d2">
+        <li><b>01</b>Source → 1073 preamp, gain staged to tape</li>
+        <li><b>02</b>31102 EQ — broad strokes only, in the room</li>
+        <li><b>03</b>Bus → Studer A800 at 15 ips, +6 over 250 nWb</li>
+        <li><b>04</b>Monitor mix printed nightly. No recalls, no regrets.</li>
+      </ul>
+    </div>
+    <div class="stage rv d2" id="deskstage">
+      <div class="desk-scale">
+        <div class="desk" id="deskEl" role="img" aria-label="Illustration of an analog mixing console with faders and VU meters">
+          <div class="face-top">
+            <div class="meterrow">
+              <div class="vu"><div class="needle"></div></div>
+              <div class="vu"><div class="needle"></div></div>
+              <span class="desklabel">Neve 8048 · Master</span>
+            </div>
+            <div class="chrow">
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>01</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>02</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>03</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>04</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>05</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>06</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>07</em></div>
+              <div class="ch"><span class="kb"></span><span class="kb"></span><span class="tr"><span class="fd"></span></span><em>08</em></div>
+            </div>
+          </div>
+          <div class="face-front"></div>
+          <div class="desk-shadow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engineers">
+  <div class="wrap">
+    <p class="eyebrow rv">Engineers</p>
+    <h2 class="rv">People who listen for a living.</h2>
+    <div class="eng-grid">
+      <article class="eng rv d1">
+        <div class="eng-face" aria-hidden="true">MV</div>
+        <h3>Marisol Vega</h3>
+        <p class="role">Chief engineer · Mix</p>
+        <p>Fourteen years at the 8048. Grammy-nominated for Glass Harbor's <i>Undertow</i>. Known for
+          drum rooms that feel a foot from your face.</p>
+      </article>
+      <article class="eng rv d2">
+        <div class="eng-face" aria-hidden="true">DO</div>
+        <h3>Dez Okafor</h3>
+        <p class="role">Tracking · Tape op</p>
+        <p>Cut his teeth on the last Ampex fleet at Sunset Sound. If a band plays live in a room, Dez
+          gets it in three takes, printed hot.</p>
+      </article>
+      <article class="eng rv d3">
+        <div class="eng-face" aria-hidden="true">JT</div>
+        <h3>June Tanaka</h3>
+        <p class="role">Mix · Mastering prep</p>
+        <p>Hybrid mixer — analog summing, surgical ears. June's mixes have shipped on 40+ records
+          since 2018, half of them from this building.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="sessions">
+  <div class="wrap">
+    <p class="eyebrow rv">Notable sessions</p>
+    <h2 class="rv">Printed here.</h2>
+    <table class="sess rv d1">
+      <thead>
+        <tr><th>Year</th><th>Artist</th><th class="hide-m">Record</th><th>Room</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="yr">2026</td><td>Copper Canyon</td><td class="hide-m"><i>Static Bloom</i> — LP, all analog</td><td class="rm">Studio A</td></tr>
+        <tr><td class="yr">2025</td><td>Wren &amp; The Wires</td><td class="hide-m"><i>Parallel Lives</i> — LP</td><td class="rm">Studio A</td></tr>
+        <tr><td class="yr">2025</td><td>Salt Cathedral Choir</td><td class="hide-m"><i>Vespers</i> — live to 2-track</td><td class="rm">Studio A</td></tr>
+        <tr><td class="yr">2024</td><td>Night Bus</td><td class="hide-m"><i>Terminal Songs</i> — EP</td><td class="rm">Studio B</td></tr>
+        <tr><td class="yr">2024</td><td>The Marlowes</td><td class="hide-m"><i>Low Ceiling</i> — LP, mixed by June Tanaka</td><td class="rm">B / C</td></tr>
+        <tr><td class="yr">2023</td><td>Glass Harbor</td><td class="hide-m"><i>Undertow</i> — Grammy nom., Best Engineered</td><td class="rm">Studio A</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap book-cols">
+    <div class="book-info">
+      <p class="eyebrow rv">Booking</p>
+      <h2 class="rv">Hold your dates.</h2>
+      <p class="rv d1">Tell us the project, the room, and the window. We reply within one business
+        day with availability and an engineer pairing. A 50% deposit locks the dates.</p>
+      <dl class="rv d2">
+        <dt>Address</dt><dd>2140 Glendale Blvd, Los Angeles, CA 90039</dd>
+        <dt>Phone</dt><dd><a class="uln" href="tel:+13235550184">(323) 555-0184</a></dd>
+        <dt>Email</dt><dd><a class="uln" href="mailto:book@resonance.la">book@resonance.la</a></dd>
+        <dt>Hours</dt><dd>Sessions 10:00 – 02:00 · Office Mon–Fri 10–6</dd>
+      </dl>
+    </div>
+    <form id="bookform" class="rv d2" novalidate>
+      <div class="frow">
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      </div>
+      <div class="frow">
+        <label>Room
+          <select name="room">
+            <option>Studio A — $1,400/day</option>
+            <option>Studio B — $850/day</option>
+            <option>Room C — $400/day</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>Dates<input type="text" name="dates" placeholder="e.g. Sep 14–18"></label>
+      </div>
+      <label>Project<textarea name="notes" placeholder="Band, headcount, what we're making"></textarea></label>
+      <div><button class="btn" type="submit">Request dates</button></div>
+      <p class="formnote" id="formnote" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>RESONANCE RECORDING © 2026</span>
+    <span>2140 GLENDALE BLVD · LOS ANGELES</span>
+    <span>REEL-TO-REEL SINCE 2011</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var d=document;
+d.documentElement.classList.add('js');
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FINE=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* film grain (generated once, static) */
+try{
+  var tileC=d.createElement('canvas');tileC.width=tileC.height=160;
+  var tc=tileC.getContext('2d');
+  var img=tc.createImageData(160,160);
+  for(var i=0;i<img.data.length;i+=4){var v=Math.random()*255|0;img.data[i]=img.data[i+1]=img.data[i+2]=v;img.data[i+3]=255;}
+  tc.putImageData(img,0,0);
+  var g=d.getElementById('grain'),gc=g.getContext('2d');
+  function paintGrain(){
+    g.width=innerWidth;g.height=innerHeight;
+    gc.fillStyle=gc.createPattern(tileC,'repeat');
+    gc.fillRect(0,0,g.width,g.height);
+  }
+  paintGrain();
+  var grRaf=0;
+  addEventListener('resize',function(){
+    if(grRaf)return;grRaf=requestAnimationFrame(function(){grRaf=0;paintGrain();});
+  });
+}catch(e){}
+
+/* scroll reveals */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  Array.prototype.forEach.call(d.querySelectorAll('.rv'),function(el){io.observe(el);});
+}else{
+  Array.prototype.forEach.call(d.querySelectorAll('.rv'),function(el){el.classList.add('in');});
+}
+
+/* spectrum analyser hero */
+var cv=d.getElementById('viz');
+if(cv&&cv.getContext){
+  var ctx=cv.getContext('2d'),W=0,H=0,DPR=1;
+  var N=88,peaks=new Array(N).fill(0),t=0,mx=.5,tmx=.5;
+  function sizeViz(){
+    var hero=d.getElementById('hero');
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=hero.clientWidth;H=Math.round(hero.clientHeight*.52);
+    cv.width=W*DPR;cv.height=H*DPR;
+    cv.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function level(x,tt){
+    var v=.32
+      +.26*Math.sin(tt*1.7+x*9.1)
+      +.22*Math.sin(tt*.83+x*20.4+2.1)
+      +.16*Math.sin(tt*2.6+x*4.3+.7)
+      +.10*Math.sin(tt*4.1+x*33.2);
+    v+= .45*Math.exp(-Math.pow((x-mx)*4.2,2))*(0.6+0.4*Math.sin(tt*3.2));
+    v*= .55+.45*Math.exp(-Math.pow((x-.45)*2.1,2)); /* mid-heavy envelope */
+    return Math.max(.03,Math.min(1,v));
+  }
+  function drawViz(tt){
+    ctx.clearRect(0,0,W,H);
+    var gap=2,bw=(W-(N-1)*gap)/N;
+    for(var i=0;i<N;i++){
+      var x=i/(N-1),v=level(x,tt);
+      var bh=v*(H-18);
+      peaks[i]=Math.max(peaks[i]-.006,v);
+      var px=i*(bw+gap);
+      var gr=ctx.createLinearGradient(0,H,0,H-bh);
+      gr.addColorStop(0,'rgba(232,163,61,.14)');
+      gr.addColorStop(.65,'rgba(232,163,61,.65)');
+      gr.addColorStop(1,'rgba(246,198,106,.95)');
+      ctx.fillStyle=gr;
+      ctx.fillRect(px,H-bh,bw,bh);
+      /* peak cap */
+      var py=H-peaks[i]*(H-18)-4;
+      ctx.fillStyle=peaks[i]>.82?'rgba(200,64,46,.95)':'rgba(246,198,106,.85)';
+      ctx.fillRect(px,py,bw,2);
+    }
+  }
+  var running=false;
+  function loop(){
+    t+=.016;
+    mx+=(tmx-mx)*.06;
+    drawViz(t);
+    if(running)requestAnimationFrame(loop);
+  }
+  sizeViz();
+  if(RM){drawViz(4.2);}
+  else{running=true;requestAnimationFrame(loop);}
+  var rzRaf=0;
+  addEventListener('resize',function(){
+    if(rzRaf)return;
+    rzRaf=requestAnimationFrame(function(){rzRaf=0;sizeViz();if(RM)drawViz(4.2);});
+  });
+  if(FINE&&!RM){
+    d.getElementById('hero').addEventListener('pointermove',function(e){
+      tmx=e.clientX/Math.max(1,innerWidth);
+    });
+  }
+}
+
+/* 3D tilt cards */
+function tilt(el,max){
+  if(!FINE||RM)return;
+  var raf=0,rx=0,ry=0,hov=false;
+  function apply(){
+    raf=0;
+    el.style.transform=hov?'perspective(900px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-6px)':'';
+  }
+  el.addEventListener('pointermove',function(e){
+    var r=el.getBoundingClientRect();
+    var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+    rx=-py*max;ry=px*max;hov=true;
+    el.style.setProperty('--mx',((px+.5)*100).toFixed(1)+'%');
+    el.style.setProperty('--my',((py+.5)*100).toFixed(1)+'%');
+    if(!raf)raf=requestAnimationFrame(apply);
+  });
+  el.addEventListener('pointerleave',function(){hov=false;if(!raf)raf=requestAnimationFrame(apply);});
+}
+Array.prototype.forEach.call(d.querySelectorAll('.tilt'),function(el){tilt(el,6);});
+
+/* console desk tilt */
+var stage=d.getElementById('deskstage'),desk=d.getElementById('deskEl');
+if(stage&&desk&&FINE&&!RM){
+  var draf=0,dx=0,dy=0;
+  function dapply(){
+    draf=0;
+    desk.style.transform='rotateX('+(50+dy*5)+'deg) rotateZ('+(-12+dx*7)+'deg)';
+  }
+  stage.addEventListener('pointermove',function(e){
+    var r=stage.getBoundingClientRect();
+    dx=(e.clientX-r.left)/r.width-.5;
+    dy=(e.clientY-r.top)/r.height-.5;
+    if(!draf)draf=requestAnimationFrame(dapply);
+  });
+  stage.addEventListener('pointerleave',function(){dx=0;dy=0;if(!draf)draf=requestAnimationFrame(dapply);});
+}
+
+/* booking form */
+var f=d.getElementById('bookform');
+if(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var note=d.getElementById('formnote');
+    var nm=f.elements['name'].value.trim(),em=f.elements['email'].value.trim();
+    if(!nm||!em){note.textContent='Add a name and email so we can reply.';return;}
+    note.textContent='Request received — we reply within one business day.';
+    f.querySelector('button').disabled=true;
+  });
+}
+})();
+</script>
+</body>
+</html>

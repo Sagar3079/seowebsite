@@ -1,0 +1,29 @@
+[
+  {
+    "id": "vantage-law",
+    "name": "Vantage & Rowe",
+    "category": "Professional",
+    "tagline": "Trial lawyers judged by juries, not brochures",
+    "description": "A monolithic litigation-firm site in deep ink and oxblood, with a mouse-tilt stack of case files, count-up verdict figures, and Didone authority in every headline.",
+    "accent": "#8C2B3A",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/vantage-law.html"
+  },
+  {
+    "id": "axiom-architecture",
+    "name": "Axiom Atelier",
+    "category": "Professional",
+    "tagline": "Mass, light, reason — architecture from Chicago",
+    "description": "A blueprint-meets-gallery studio site whose hero is a CSS-built massing model that assembles itself and turns on a slow turntable above a cyan survey grid.",
+    "accent": "#0E7FA6",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/axiom-architecture.html"
+  },
+  {
+    "id": "northgate-dental",
+    "name": "Northgate Smile Studio",
+    "category": "Professional",
+    "tagline": "Dentistry that feels like a deep breath",
+    "description": "A porcelain-and-seafoam clinic site where glass appointment panels float on mouse parallax over a clean-air particle field, and every price is on the wall.",
+    "accent": "#2E7D6E",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/northgate-dental.html"
+  }
+]

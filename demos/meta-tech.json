@@ -1,0 +1,29 @@
+[
+  {
+    "id": "helios-ev",
+    "name": "Helios Motors",
+    "category": "Tech",
+    "tagline": "Electric performance, drawn by light",
+    "description": "A cinematic obsidian-and-solar-gold stage for an EV marque, with a tilting hero set-piece, parallax depth, and spec counters that snap to attention.",
+    "accent": "#F2B63C",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/helios-ev.html"
+  },
+  {
+    "id": "neuraflow-ai",
+    "name": "Neuraflow",
+    "category": "Tech",
+    "tagline": "Inference infrastructure that routes itself",
+    "description": "Phosphor-on-green-black AI infrastructure branding with a cursor-reactive neural mesh and a floating 3D terminal built entirely from CSS planes.",
+    "accent": "#3DFF9E",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/neuraflow-ai.html"
+  },
+  {
+    "id": "orbital-imaging",
+    "name": "Orbital",
+    "category": "Tech",
+    "tagline": "Survey-grade aerial data, from 400 feet",
+    "description": "A descent through stratosphere blues to horizon amber — parallax clouds and ridgelines, a hovering CSS 3D drone, and a live altimeter that falls as you scroll.",
+    "accent": "#E8933C",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/orbital-imaging.html"
+  }
+]

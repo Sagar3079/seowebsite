@@ -1,18 +1,19 @@
 # Forma — Website Builder Template Showcase
 
-A single self-contained showcase site for a fictional website builder called **Forma**,
-featuring **12 fully working demo websites** across 4 categories, browsable in a gallery
-with live scaled-down previews, category filters, and a fullscreen preview modal with
-desktop / tablet / mobile device toggles.
+A single self-contained showcase site for a fictional website builder called **Forma** —
+the **Premium Collection**: 12 fully working, agency-grade demo business websites, each with
+real 3D design work (mouse-tilt perspective heroes, scroll parallax depth, CSS-built 3D
+objects, canvas/particle scenes), browsable in a gallery with live scaled-down previews,
+category filters, and a fullscreen preview modal with desktop / tablet / mobile toggles.
 
 ## Templates
 
 | Category | Templates |
 |---|---|
-| Hospitality | Ember & Oak (restaurant) · Daybreak Roasters (coffee) · The Linden House (hotel) |
-| Business | Pulse (SaaS analytics) · Studio North (agency) · Meridian Advisory (financial) |
-| Commerce | Atelier Noir (fashion) · Kickflip Supply (skate shop) · Hearth & Haven (ceramics) |
-| Creative | Mara Voss (photography) · June & Theo (wedding) · Forge Fitness (training) |
+| Professional | Vantage & Rowe (law firm) · Axiom Atelier (architecture) · Northgate Smile Studio (dental) |
+| Tech | Helios Motors (electric cars) · Neuraflow (AI infrastructure) · Orbital (drone imaging) |
+| Lifestyle | Onyx Chair Co. (barbershop) · Solstice Bathhouse (spa) · Aurea (jewelry) |
+| Entertainment | Resonance (recording studio) · Nova Esports (gaming org) · Alta Basecamp (adventure travel) |
 
 ## Structure
 

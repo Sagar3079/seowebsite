@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital — Drone Survey &amp; Aerial Imaging</title>
+<style>
+:root{
+  --deep:#0d2138; --mid:#1c3f61; --skyhi:#12294a; --paper:#eef4fa; --paper2:#f7fafd;
+  --ink:#14293e; --dim:#54697e; --cloud:#ffffff;
+  --amber:#e8933c; --amber2:#f7b05e; --amberdk:#c2701d;
+  --line:rgba(20,41,62,.12); --linelt:rgba(255,255,255,.16);
+  --body:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --e1:0 1px 3px rgba(13,33,56,.1);
+  --e2:0 10px 28px rgba(13,33,56,.14),0 2px 6px rgba(13,33,56,.08);
+  --e3:0 28px 60px rgba(13,33,56,.22),0 10px 24px rgba(13,33,56,.12);
+  --ease:cubic-bezier(.22,.9,.28,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--amber);color:#fff}
+a{color:inherit}
+svg{display:block;max-width:100%}
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:#fff;padding:.6rem 1rem;z-index:99;font-weight:700}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:2px solid var(--amberdk);outline-offset:3px;border-radius:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+section{padding:clamp(4.5rem,9vw,7.5rem) 0;position:relative}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--amberdk);display:inline-flex;align-items:center;gap:.7rem}
+.tag::before{content:"◦";color:var(--amber)}
+h2{font-size:clamp(1.9rem,4.2vw,2.9rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:.9rem 0 1rem}
+.lede{color:var(--dim);max-width:56ch}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s,box-shadow .35s,border-color .35s;
+  border-bottom:1px solid transparent}
+.nav.solid{background:rgba(247,250,253,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-color:var(--line);box-shadow:var(--e1)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:#fff;transition:color .35s}
+.nav.solid .logo{color:var(--ink)}
+.logo svg{width:24px;height:24px}
+.logo .ring{stroke:var(--amber)}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;font-size:.86rem;font-weight:600;color:rgba(255,255,255,.85);position:relative;padding:.25rem 0;transition:color .35s}
+.nav.solid .nav-links a{color:var(--dim)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--body);font-weight:700;font-size:.88rem;
+  padding:.8rem 1.5rem;border-radius:999px;border:0;cursor:pointer;text-decoration:none;position:relative;overflow:hidden;
+  transition:transform .25s var(--ease),box-shadow .3s var(--ease),background .3s}
+.btn-amber{background:linear-gradient(160deg,var(--amber2),var(--amber));color:#2b1503;box-shadow:0 8px 22px -6px rgba(232,147,60,.55)}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(232,147,60,.65)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.4);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
+.btn-navy{background:var(--deep);color:#fff}
+.btn-navy:hover{background:var(--mid);transform:translateY(-2px);box-shadow:var(--e2)}
+.btn:active{transform:translateY(0) scale(.97)}
+.nav .btn{padding:.55rem 1.15rem;font-size:.8rem}
+@media(max-width:820px){.nav-links li:not(:last-child){display:none}}
+
+/* ================= HERO ================= */
+.hero{min-height:100svh;padding:0;overflow:clip;position:relative;display:flex;align-items:center;
+  background:linear-gradient(#081729 0%,#0d2138 26%,#1c3f61 55%,#54759b 78%,#a8bfd4 92%,#dfe9f2 100%)}
+.stars{position:absolute;inset:0 0 60% 0;opacity:.7;
+  background-image:radial-gradient(1px 1px at 12% 22%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 34% 8%,#fff 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 58% 16%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 77% 27%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 89% 9%,#fff 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 45% 30%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 22% 38%,#fff 50%,transparent 51%);
+  -webkit-mask:linear-gradient(#000 40%,transparent);mask:linear-gradient(#000 40%,transparent)}
+.sun{position:absolute;left:50%;bottom:6%;width:min(560px,80vw);aspect-ratio:2.2/1;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 100%,rgba(247,176,94,.75),rgba(232,147,60,.28) 45%,transparent 72%);
+  pointer-events:none}
+.cloudband{position:absolute;left:-22%;width:144%;pointer-events:none;will-change:transform}
+.cb1{bottom:30%;opacity:.5}
+.cb2{bottom:20%;opacity:.75}
+.cb3{bottom:12%;opacity:.95}
+.cloud-drift{animation:drift 90s linear infinite alternate}
+.cb2 .cloud-drift{animation-duration:64s;animation-direction:alternate-reverse}
+.cb3 .cloud-drift{animation-duration:48s}
+@keyframes drift{from{transform:translate3d(-2.5%,0,0)}to{transform:translate3d(2.5%,0,0)}}
+.ridge{position:absolute;left:-4%;width:108%;bottom:-2px;pointer-events:none;will-change:transform}
+.hero-inner{position:relative;z-index:5;width:100%;padding:120px 0 34vh;text-align:center;color:#fff}
+.hero h1{font-size:clamp(2.5rem,6.4vw,4.6rem);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:1rem 0 1.1rem;text-shadow:0 2px 30px rgba(8,23,41,.5)}
+.hero h1 em{font-style:normal;color:var(--amber2)}
+.hero .tag{color:var(--amber2)}
+.hero-sub{color:rgba(233,241,248,.92);max-width:47ch;margin:0 auto 1.8rem;text-shadow:0 1px 18px rgba(8,23,41,.55)}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;justify-content:center;gap:clamp(1.4rem,4vw,3.2rem);flex-wrap:wrap;margin-top:2.4rem}
+.hero-stats div{text-align:center}
+.hero-stats b{font-family:var(--mono);font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:600;display:block;color:#fff}
+.hero-stats span{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(233,241,248,.7)}
+
+/* altimeter */
+.alti{position:absolute;left:clamp(14px,3vw,40px);top:50%;transform:translateY(-50%);z-index:6;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:.8rem}
+.alti-ticks{width:10px;height:190px;
+  background:repeating-linear-gradient(rgba(255,255,255,.65) 0 1px,transparent 1px 12px)}
+.alti-read{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+.alti-read b{font-size:.95rem;letter-spacing:.04em}
+@media(max-width:760px){.alti{display:none}}
+
+/* drone */
+.drone-scene{position:absolute;z-index:4;right:clamp(4%,10vw,14%);top:16%;width:230px;height:200px;perspective:900px;pointer-events:none}
+.bob{width:100%;height:100%;animation:bob 5.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.dtilt{width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.dbase{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotateX(56deg) rotateZ(-18deg);transform-style:preserve-3d}
+.hull{position:absolute;left:-42px;top:-30px;width:84px;height:60px;border-radius:26px;
+  background:linear-gradient(150deg,#3f5a76,#182c42 70%);border:1px solid rgba(255,255,255,.18);transform:translateZ(6px)}
+.hull-top{position:absolute;left:-30px;top:-21px;width:60px;height:42px;border-radius:20px;
+  background:linear-gradient(150deg,#54759b,#24405c);transform:translateZ(16px)}
+.hull-eye{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#f7b05e,#c2701d 70%);transform:translateZ(17px);
+  box-shadow:0 0 14px rgba(247,176,94,.8)}
+.gimbal{position:absolute;left:-11px;top:6px;width:22px;height:22px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#2b4763,#0d1f33 75%);border:1px solid rgba(255,255,255,.15);transform:translateZ(-12px)}
+.arm{position:absolute;left:-55px;top:-4px;width:110px;height:8px;border-radius:4px;
+  background:linear-gradient(#4a6885,#1c3550);transform-style:preserve-3d}
+.arm1{transform:rotateZ(45deg) translateX(58px) translateZ(8px)}
+.arm2{transform:rotateZ(135deg) translateX(58px) translateZ(8px)}
+.arm3{transform:rotateZ(225deg) translateX(58px) translateZ(8px)}
+.arm4{transform:rotateZ(315deg) translateX(58px) translateZ(8px)}
+.rotor{position:absolute;right:-26px;top:50%;width:56px;height:56px;margin-top:-28px;border-radius:50%;
+  transform:translateZ(6px);transform-style:preserve-3d;
+  background:radial-gradient(circle,rgba(255,255,255,.05) 55%,rgba(255,255,255,.16) 56% 62%,transparent 63%)}
+.blades{position:absolute;inset:6px;animation:spin .4s linear infinite}
+.blades::before,.blades::after{content:"";position:absolute;left:50%;top:50%;width:44px;height:3px;margin:-1.5px 0 0 -22px;
+  border-radius:2px;background:linear-gradient(90deg,rgba(233,241,248,.9),rgba(233,241,248,.35))}
+.blades::after{transform:rotate(90deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.drone-shadow{position:absolute;left:50%;top:78%;width:120px;height:26px;transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgba(8,23,41,.4),transparent 70%);filter:blur(4px);
+  animation:shrink 5.5s ease-in-out infinite}
+@keyframes shrink{0%,100%{transform:translateX(-50%) scale(1);opacity:.8}50%{transform:translateX(-50%) scale(.82);opacity:.55}}
+@media(max-width:760px){.drone-scene{right:50%;transform:translateX(50%);top:12%;width:180px;height:160px}
+  .hero-inner{padding-top:190px}}
+
+/* staged entrance */
+.st{opacity:0;transform:translateY(24px)}
+body.ready .st{animation:rise .9s var(--ease) forwards}
+body.ready .st1{animation-delay:.1s}body.ready .st2{animation-delay:.24s}
+body.ready .st3{animation-delay:.38s}body.ready .st4{animation-delay:.52s}
+body.ready .st5{animation-delay:.68s}
+@keyframes rise{to{opacity:1;transform:none}}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}.js .rv.d4{transition-delay:.32s}
+
+/* ================= SERVICES ================= */
+.services{background:var(--paper)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2.4rem}
+.scell{perspective:800px}
+.scard{position:relative;height:100%;background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:1.5rem 1.3rem;box-shadow:var(--e1);transform-style:preserve-3d;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .35s}
+.scard:hover{box-shadow:var(--e3);border-color:rgba(232,147,60,.4)}
+.scard::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,30%),rgba(247,176,94,.16),transparent 60%)}
+.scard:hover::after{opacity:1}
+.sico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:1rem;
+  background:linear-gradient(150deg,#eaf2fa,#dbe8f4);border:1px solid var(--line)}
+.sico svg{width:22px;height:22px;stroke:var(--mid);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.scard h3{font-size:1.02rem;font-weight:700;margin-bottom:.4rem}
+.scard p{font-size:.85rem;color:var(--dim)}
+.sprice{display:block;margin-top:1rem;padding-top:.8rem;border-top:1px dashed var(--line);
+  font-family:var(--mono);font-size:.78rem;color:var(--amberdk);font-weight:600}
+.sres{font-family:var(--mono);font-size:.66rem;color:var(--dim);display:block;margin-top:.2rem}
+@media(max-width:980px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+/* ================= INDUSTRIES ================= */
+.industries{background:var(--paper2);border-block:1px solid var(--line)}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:2.2rem}
+.ind h3{font-size:.95rem;font-weight:700;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+.ind h3::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--amber);transform:rotate(45deg)}
+.ind p{font-size:.85rem;color:var(--dim)}
+@media(max-width:900px){.ind-grid{grid-template-columns:1fr 1fr;gap:1.5rem}}
+@media(max-width:520px){.ind-grid{grid-template-columns:1fr}}
+
+/* ================= FLIGHT LOG ================= */
+.flightlog{background:var(--deep);color:#e9f1f8}
+.flightlog .tag{color:var(--amber2)}
+.flightlog .lede{color:#9db4c9}
+.log{margin-top:2.4rem;border:1px solid var(--linelt);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03)}
+.log-row{display:grid;grid-template-columns:110px 1fr 1fr auto;gap:1.2rem;align-items:center;
+  padding:1.25rem 1.5rem;border-bottom:1px solid var(--linelt);transition:background .3s,transform .3s var(--ease)}
+.log-row:last-child{border-bottom:0}
+.log-row:hover{background:rgba(247,176,94,.06)}
+.log-id{font-family:var(--mono);font-size:.78rem;color:var(--amber2);letter-spacing:.08em}
+.log-id small{display:block;color:#7f97ac;font-size:.66rem;margin-top:.2rem;letter-spacing:.1em}
+.log-site b{display:block;font-size:.98rem;font-weight:700}
+.log-site span{font-size:.8rem;color:#9db4c9}
+.log-data{font-family:var(--mono);font-size:.74rem;color:#b8cadb;line-height:1.8}
+.log-out{font-family:var(--mono);font-size:.72rem;color:var(--amber2);text-align:right;white-space:nowrap}
+@media(max-width:860px){.log-row{grid-template-columns:1fr 1fr;row-gap:.6rem}.log-out{text-align:left}}
+@media(max-width:560px){.log-row{grid-template-columns:1fr}}
+
+/* ================= CERTS ================= */
+.certs{background:var(--paper)}
+.cert-row{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2rem}
+.cert{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:.65rem 1.15rem;font-size:.83rem;font-weight:600;box-shadow:var(--e1);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.cert:hover{transform:translateY(-3px);box-shadow:var(--e2);border-color:rgba(232,147,60,.45)}
+.cert svg{width:16px;height:16px;stroke:var(--amberdk);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ================= QUOTE ================= */
+.quote{background:linear-gradient(180deg,var(--paper) 0%,#dfe9f2 100%)}
+.quote-panel{background:linear-gradient(165deg,#123152,var(--deep) 70%);color:#e9f1f8;border-radius:20px;
+  padding:clamp(2rem,5vw,3.5rem);box-shadow:var(--e3);position:relative;overflow:hidden}
+.quote-panel::before{content:"";position:absolute;right:-15%;top:-40%;width:60%;aspect-ratio:1;
+  background:radial-gradient(circle,rgba(247,176,94,.22),transparent 65%)}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.5rem);position:relative}
+.quote h2{color:#fff}
+.quote-panel .lede{color:#b8cadb}
+.qmeta{font-family:var(--mono);font-size:.72rem;color:#9db4c9;margin-top:1.6rem;line-height:2}
+.qmeta b{color:var(--amber2)}
+.qform{display:grid;gap:.9rem;align-content:start}
+.qform label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#9db4c9;font-weight:600}
+.qform input,.qform select{width:100%;background:rgba(255,255,255,.07);border:1px solid var(--linelt);border-radius:10px;
+  color:#fff;font-family:var(--body);font-size:.95rem;padding:.8rem 1rem;margin-top:.35rem;
+  transition:border-color .3s,box-shadow .3s,background .3s}
+.qform input::placeholder{color:#7f97ac}
+.qform select{color:#e9f1f8}
+.qform select option{color:var(--ink)}
+.qform input:focus,.qform select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(232,147,60,.25);background:rgba(255,255,255,.1)}
+.qform .btn{justify-self:start;margin-top:.4rem}
+.qok{font-family:var(--mono);font-size:.74rem;color:var(--amber2)}
+@media(max-width:860px){.quote-grid{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:#dfe9f2;padding:2.5rem 0;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:1.4rem;flex-wrap:wrap;color:var(--dim);font-size:.82rem}
+.foot ul{display:flex;gap:1.4rem;list-style:none}
+.foot a{color:var(--dim);text-decoration:none;transition:color .3s}
+.foot a:hover{color:var(--amberdk)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .st{opacity:1;transform:none}
+  .bob,.blades,.drone-shadow,.cloud-drift{animation:none}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Orbital home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><ellipse class="ring" cx="12" cy="12" rx="10" ry="4" fill="none" stroke-width="1.5" transform="rotate(-18 12 12)"/></svg>
+      Orbital
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#log">Flight log</a></li>
+        <li><a href="#certs">Compliance</a></li>
+        <li><a class="btn btn-amber" href="#quote">Get a quote</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="stars" data-par="-0.18" aria-hidden="true"></div>
+  <div class="sun" data-par="-0.1" aria-hidden="true"></div>
+
+  <div class="cloudband cb1" data-par="-0.06" aria-hidden="true"><div class="cloud-drift">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:90px">
+      <path fill="rgba(233,241,248,.35)" d="M0 90c90-34 190-46 300-36 60-30 170-42 260-22 80-38 210-40 300-8 90-22 200-16 280 12 110-10 220 4 300 34v50H0Z"/>
+    </svg></div></div>
+  <div class="cloudband cb2" data-par="-0.11" aria-hidden="true"><div class="cloud-drift">
+    <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style="width:100%;height:110px">
+      <path fill="rgba(240,246,251,.6)" d="M0 100C110 60 240 48 360 62c70-36 200-48 300-24 90-40 230-38 330 0 100-24 220-12 300 22 60-8 110-4 150 10v60H0Z"/>
+    </svg></div></div>
+  <div class="cloudband cb3" data-par="-0.17" aria-hidden="true"><div class="cloud-drift">
+    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" style="width:100%;height:130px">
+      <path fill="rgba(250,253,255,.9)" d="M0 110C130 66 260 54 380 70c80-42 220-54 330-26 100-44 250-40 360 2 110-26 250-10 370 30v64H0Z"/>
+    </svg></div></div>
+
+  <!-- drone -->
+  <div class="drone-scene" aria-hidden="true">
+    <div class="bob">
+      <div class="dtilt" id="dtilt">
+        <div class="dbase">
+          <div class="arm arm1"><span class="rotor"><span class="blades"></span></span></div>
+          <div class="arm arm2"><span class="rotor"><span class="blades"></span></span></div>
+          <div class="arm arm3"><span class="rotor"><span class="blades"></span></span></div>
+          <div class="arm arm4"><span class="rotor"><span class="blades"></span></span></div>
+          <div class="hull"></div>
+          <div class="hull-top"></div>
+          <div class="hull-eye"></div>
+          <div class="gimbal"></div>
+        </div>
+      </div>
+    </div>
+    <div class="drone-shadow"></div>
+  </div>
+
+  <div class="alti" aria-hidden="true">
+    <div class="alti-ticks"></div>
+    <p class="alti-read"><b id="altNum">12,500</b>&nbsp;ft AGL</p>
+  </div>
+
+  <div class="hero-inner">
+    <div class="wrap">
+      <p class="tag st st1">FAA Part 107 · Survey-grade aerial data</p>
+      <h1 class="st st2">Your whole site,<br><em>seen from 400 feet.</em></h1>
+      <p class="hero-sub st st3">Orbital flies licensed drone missions over construction sites, solar fields, and farmland — and lands survey-grade maps in your inbox by 9 a.m. the next morning.</p>
+      <div class="hero-cta st st4">
+        <a class="btn btn-amber" href="#quote">Get a flight quote</a>
+        <a class="btn btn-ghost" href="#log">Read the flight log</a>
+      </div>
+      <div class="hero-stats st st5" aria-label="Track record">
+        <div><b>1,240</b><span>missions flown</span></div>
+        <div><b>96,000</b><span>acres mapped</span></div>
+        <div><b>2.1&thinsp;cm</b><span>best resolution</span></div>
+        <div><b>0</b><span>incidents</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ridge" data-par="0.06" aria-hidden="true">
+    <svg viewBox="0 0 1440 190" preserveAspectRatio="none" style="width:100%;height:170px">
+      <path fill="#2c4c6d" d="M0 150 130 96l110 34 150-62 140 48 170-74 160 58 150-40 130 52 120-30 180 62v46H0Z"/>
+    </svg></div>
+  <div class="ridge" data-par="0.12" aria-hidden="true">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" style="width:100%;height:130px">
+      <path fill="#16324e" d="M0 120 170 70l140 36 160-52 150 44 180-60 170 52 160-34 150 44 160-26v76H0Z"/>
+    </svg></div>
+  <div class="ridge" data-par="0.2" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none" style="width:100%;height:96px">
+      <path fill="#0d2138" d="M0 90 200 46l160 30 180-44 170 36 190-48 180 42 190-30 170 34v44H0Z"/>
+      <rect x="0" y="100" width="1440" height="10" fill="#0d2138"/>
+    </svg></div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <p class="tag rv">Services</p>
+    <h2 class="rv">Four deliverables.<br>One flight.</h2>
+    <p class="lede rv">Every mission is flown by a licensed pilot, tied to ground control points, and processed overnight in our Davis, CA lab. Prices are per site up to 160 acres.</p>
+    <div class="svc-grid">
+      <div class="scell rv d1">
+        <article class="scard tilt">
+          <span class="sico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></span>
+          <h3>Orthomosaic mapping</h3>
+          <p>Stitched, georeferenced site maps accurate enough to measure stockpiles and set-outs.</p>
+          <span class="sprice">from $1,800 / site</span>
+          <span class="sres">2.1 cm/px · GCP-tied</span>
+        </article>
+      </div>
+      <div class="scell rv d2">
+        <article class="scard tilt">
+          <span class="sico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17c3-1 4-6 7-6s4 4 7 4 4-7 4-7"/><path d="M3 21h18M3 12V3"/></svg></span>
+          <h3>LiDAR terrain</h3>
+          <p>Bare-earth surface models through canopy for grading plans and cut/fill volumes.</p>
+          <span class="sprice">from $3,400 / site</span>
+          <span class="sres">340 pts/m² · ±3 cm vertical</span>
+        </article>
+      </div>
+      <div class="scell rv d3">
+        <article class="scard tilt">
+          <span class="sico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></span>
+          <h3>Thermal inspection</h3>
+          <p>Radiometric IR flights that find failing solar strings and wet roof insulation.</p>
+          <span class="sprice">from $1,200 / site</span>
+          <span class="sres">640×512 radiometric</span>
+        </article>
+      </div>
+      <div class="scell rv d4">
+        <article class="scard tilt">
+          <span class="sico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V9l6-5 6 5M10 20v-6h4v6M4 20h16"/></svg></span>
+          <h3>Progress monitoring</h3>
+          <p>Recurring flights on the same flight plan — a scrollable 4D timeline of your build.</p>
+          <span class="sprice">$850 / visit</span>
+          <span class="sres">weekly or monthly cadence</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="industries">
+  <div class="wrap">
+    <p class="tag rv">Who flies with us</p>
+    <h2 class="rv">Built for people who bill by the acre.</h2>
+    <div class="ind-grid">
+      <div class="ind rv d1"><h3>Construction</h3><p>Weekly earthwork verification and pay-app documentation general contractors can stand behind.</p></div>
+      <div class="ind rv d2"><h3>Energy &amp; solar</h3><p>Commissioning scans and annual thermal audits across utility-scale arrays.</p></div>
+      <div class="ind rv d3"><h3>Agriculture</h3><p>NDVI and drainage mapping for growers managing 500+ acre operations.</p></div>
+      <div class="ind rv d4"><h3>Infrastructure</h3><p>Bridge decks, levees, and rail corridors — inspected without lane closures.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLIGHT LOG ============ -->
+<section class="flightlog" id="log">
+  <div class="wrap">
+    <p class="tag rv">Flight log</p>
+    <h2 class="rv">Recent missions, on the record.</h2>
+    <p class="lede rv">Every flight gets a log number, a pilot in command, and a deliverable deadline. Here are three from this season.</p>
+    <div class="log rv d1">
+      <article class="log-row">
+        <p class="log-id">FL-0412<small>2026-05-14</small></p>
+        <p class="log-site"><b>Sacramento River levee</b><span>West Sacramento, CA · USACE contractor</span></p>
+        <p class="log-data">388 ft AGL · 412 acres<br>orthomosaic @ 2.1 cm/px</p>
+        <p class="log-out">delivered in 14 h ↗</p>
+      </article>
+      <article class="log-row">
+        <p class="log-id">FL-0398<small>2026-04-02</small></p>
+        <p class="log-site"><b>Copper Ridge Solar</b><span>Bakersfield, CA · 180 MW array</span></p>
+        <p class="log-data">210 ft AGL · thermal IR<br>6 failing strings isolated</p>
+        <p class="log-out">est. $48k/yr recovered ↗</p>
+      </article>
+      <article class="log-row">
+        <p class="log-id">FL-0371<small>2026-02-19</small></p>
+        <p class="log-site"><b>Truckee River bridge deck</b><span>I-80 corridor, NV · DOT inspection</span></p>
+        <p class="log-data">140 ft AGL · 11,400 images<br>3D mesh, cracks to 0.8 mm</p>
+        <p class="log-out">zero lane closures ↗</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTS ============ -->
+<section class="certs" id="certs">
+  <div class="wrap">
+    <p class="tag rv">Compliance</p>
+    <h2 class="rv">Paperwork you never have to chase.</h2>
+    <p class="lede rv">Airspace authorizations, insurance certificates, and pilot credentials arrive with your proposal — before you ask.</p>
+    <div class="cert-row rv d1">
+      <span class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>FAA Part 107 — every pilot</span>
+      <span class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>§107.29 night-operations waiver</span>
+      <span class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>$5M liability coverage</span>
+      <span class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Part 89 Remote ID compliant</span>
+      <span class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>ASPRS accuracy standards</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote" id="quote">
+  <div class="wrap">
+    <div class="quote-panel rv">
+      <div class="quote-grid">
+        <div>
+          <p class="tag" style="color:#f7b05e">Get a quote</p>
+          <h2>Tell us about the site.<br>We'll plan the flight.</h2>
+          <p class="lede">Send the basics and a flight planner replies within one business day with a fixed price, a mission window, and the airspace review already done.</p>
+          <p class="qmeta">
+            Response time — <b>1 business day</b><br>
+            Service area — <b>Northern CA &amp; NV</b><br>
+            Rush missions — <b>48 h, +25%</b>
+          </p>
+        </div>
+        <form class="qform" autocomplete="off">
+          <div><label for="qname">Name</label>
+          <input id="qname" name="name" type="text" placeholder="Dana Whitfield" required></div>
+          <div><label for="qemail">Work email</label>
+          <input id="qemail" name="email" type="email" placeholder="dana@buildco.com" required></div>
+          <div><label for="qsize">Site size</label>
+          <select id="qsize" name="size">
+            <option>Under 40 acres</option>
+            <option>40–160 acres</option>
+            <option>160–640 acres</option>
+            <option>Over 640 acres</option>
+          </select></div>
+          <button class="btn btn-amber" type="submit">Request flight quote</button>
+          <p class="qok" hidden id="qok">✔ Received — flight plan on its way to your inbox.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© 2026 Orbital Aerial Imaging LLC · 2210 Fifth St, Davis, CA 95618</p>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#log">Flight log</a></li>
+      <li><a href="#quote">Quote</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var d=document,w=window;
+d.body.classList.remove('no-js');
+d.documentElement.classList.add('js');
+var RM=w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var COARSE=w.matchMedia('(pointer: coarse)').matches;
+
+requestAnimationFrame(function(){requestAnimationFrame(function(){d.body.classList.add('ready');});});
+
+/* reveals */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.15,rootMargin:'0px 0px -34px 0px'});
+d.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* nav state */
+var nav=d.getElementById('nav'),hero=d.querySelector('.hero');
+function navState(){
+  if(w.scrollY>40)nav.classList.add('solid');else nav.classList.remove('solid');
+}
+navState();
+
+/* parallax + altimeter (rAF-throttled) */
+var pars=[].slice.call(d.querySelectorAll('[data-par]'));
+var altNum=d.getElementById('altNum');
+var sy=w.scrollY||0,queued=false;
+function frame(){
+  queued=false;
+  navState();
+  var h=hero?hero.offsetHeight:1;
+  if(!RM&&sy<h+80){
+    pars.forEach(function(el){
+      el.style.transform='translate3d(0,'+(sy*parseFloat(el.getAttribute('data-par'))).toFixed(2)+'px,0)';
+    });
+  }
+  if(altNum){
+    var p=Math.min(sy/Math.max(h-w.innerHeight,1),1);
+    var alt=Math.round(12500-p*12100);
+    altNum.textContent=alt.toLocaleString('en-US');
+  }
+}
+w.addEventListener('scroll',function(){
+  sy=w.scrollY;
+  if(!queued){queued=true;requestAnimationFrame(frame);}
+},{passive:true});
+frame();
+
+/* drone tilt */
+(function(){
+  var el=d.getElementById('dtilt');
+  if(!el||RM||COARSE)return;
+  var tx=0,ty=0,cx=0,cy=0,raf=null;
+  function step(){
+    cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;
+    el.style.transform='rotateY('+(cx*10).toFixed(3)+'deg) rotateX('+(-cy*8).toFixed(3)+'deg) rotateZ('+(cx*3).toFixed(3)+'deg)';
+    if(Math.abs(tx-cx)>.001||Math.abs(ty-cy)>.001)raf=requestAnimationFrame(step);
+    else raf=null;
+  }
+  w.addEventListener('pointermove',function(e){
+    tx=(e.clientX/w.innerWidth-.5)*2;ty=(e.clientY/w.innerHeight-.5)*2;
+    if(!raf)raf=requestAnimationFrame(step);
+  },{passive:true});
+})();
+
+/* service card tilt */
+if(!RM&&!COARSE){
+  d.querySelectorAll('.tilt').forEach(function(card){
+    var raf=null,px=.5,py=.5;
+    function apply(){
+      raf=null;
+      card.style.transform='translateY(-5px) rotateX('+((.5-py)*6).toFixed(2)+'deg) rotateY('+((px-.5)*8).toFixed(2)+'deg)';
+      card.style.setProperty('--mx',(px*100).toFixed(1)+'%');
+      card.style.setProperty('--my',(py*100).toFixed(1)+'%');
+    }
+    card.addEventListener('pointermove',function(e){
+      var r=card.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width;py=(e.clientY-r.top)/r.height;
+      card.style.transition='box-shadow .5s cubic-bezier(.22,.9,.28,1),border-color .35s';
+      if(!raf)raf=requestAnimationFrame(apply);
+    });
+    card.addEventListener('pointerleave',function(){
+      if(raf){cancelAnimationFrame(raf);raf=null;}
+      card.style.transition='';card.style.transform='';
+    });
+  });
+}
+
+/* quote form */
+var qf=d.querySelector('.qform');
+if(qf){
+  qf.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=qf.querySelector('button');
+    btn.textContent='Quote requested ✓';
+    btn.setAttribute('disabled','');
+    d.getElementById('qok').hidden=false;
+  });
+}
+})();
+</script>
+</body>
+</html>

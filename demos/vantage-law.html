@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vantage &amp; Rowe — Trial Lawyers, New York</title>
+<style>
+:root{
+  --ink:#0F1114; --ink2:#15181D; --graphite:#23272E; --line:#2C313A;
+  --marble:#ECE8DF; --marble2:#DDD6C8; --vein:#B9B1A0;
+  --ox:#71212E; --ox2:#8C2B3A; --ox-glow:rgba(140,43,58,.35);
+  --text:#E9E5DC; --mut:#A9A294; --faint:#6E6A5F;
+  --didone:Didot,'Bodoni MT','Noto Serif Display','URW Palladio L',P052,serif;
+  --grot:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sh1:0 1px 2px rgba(0,0,0,.4);
+  --sh2:0 6px 18px -6px rgba(0,0,0,.5);
+  --sh3:0 24px 48px -18px rgba(0,0,0,.65);
+  --sh4:0 40px 90px -24px rgba(0,0,0,.75);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--ink); color:var(--text);
+  font-family:var(--grot); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(140,43,58,.07), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgba(185,177,160,.05), transparent 55%),
+    repeating-linear-gradient(90deg, transparent 0 119px, rgba(233,229,220,.022) 119px 120px);
+}
+::selection{background:var(--ox2); color:#fff}
+a{color:inherit}
+img,svg,canvas{max-width:100%}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ox2);color:#fff;padding:.6rem 1rem;z-index:99;font-family:var(--mono);font-size:.8rem}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--ox2);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem);position:relative;z-index:1}
+
+/* ---------- header ---------- */
+.hd{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  border-bottom:1px solid rgba(233,229,220,.08);
+  background:rgba(15,17,20,.78);
+}
+@supports (backdrop-filter:blur(12px)){.hd{background:rgba(15,17,20,.55);backdrop-filter:blur(12px)}}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:baseline;gap:.55rem;text-decoration:none}
+.logo b{font-family:var(--didone);font-weight:400;font-size:1.25rem;letter-spacing:.04em}
+.logo b i{font-style:normal;color:var(--ox2)}
+.logo span{font-family:var(--mono);font-size:.6rem;letter-spacing:.28em;color:var(--mut);text-transform:uppercase}
+.nav{display:flex;gap:1.7rem;align-items:center}
+.nav a{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--mut);position:relative;padding:.3rem 0;transition:color .25s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--ox2);transition:right .3s cubic-bezier(.4,0,.2,1)}
+.nav a:hover{color:var(--text)}
+.nav a:hover::after{right:0}
+.nav .cta{color:var(--marble);border:1px solid rgba(233,229,220,.25);padding:.55rem 1.1rem;transition:border-color .25s,background .25s,color .25s}
+.nav .cta::after{display:none}
+.nav .cta:hover{background:var(--ox);border-color:var(--ox);color:#fff}
+.nav .cta:active{transform:translateY(1px)}
+@media (max-width:840px){.nav a:not(.cta){display:none}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center;width:100%}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:3.5rem}}
+.kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:.8rem;margin-bottom:1.6rem}
+.kick::before{content:"";width:34px;height:1px;background:var(--ox2)}
+.hero h1{
+  font-family:var(--didone);font-weight:400;
+  font-size:clamp(2.6rem,5.6vw,4.4rem);line-height:1.04;letter-spacing:.005em;
+}
+.hero h1 em{font-style:italic;color:var(--marble2)}
+.hero h1 .ox{color:var(--ox2)}
+.hero p.lede{margin:1.6rem 0 2.2rem;max-width:44ch;color:var(--mut);font-size:1.02rem}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.95rem 1.7rem;border:1px solid transparent;position:relative;overflow:hidden;
+  transition:color .3s,border-color .3s,box-shadow .3s,transform .15s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-solid{background:var(--ox);color:#fff;box-shadow:var(--sh2)}
+.btn-solid::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);transform:translateX(-110%);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.btn-solid:hover::before{transform:translateX(110%)}
+.btn-solid:hover{box-shadow:0 10px 30px -8px var(--ox-glow)}
+.btn-ghost{border-color:rgba(233,229,220,.28);color:var(--marble)}
+.btn-ghost:hover{border-color:var(--marble);}
+.hero-meta{margin-top:3rem;display:flex;gap:2.4rem;flex-wrap:wrap}
+.hero-meta div{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;line-height:1.9}
+.hero-meta b{display:block;color:var(--marble2);font-size:.82rem;font-weight:500}
+
+/* --- tilt scene: stacked case files --- */
+.scene{perspective:1300px;display:grid;place-items:center;min-height:480px}
+@media (max-width:900px){.scene{min-height:420px}}
+.stack{position:relative;width:min(380px,82vw);height:440px;transform-style:preserve-3d;will-change:transform}
+.stk-float{position:absolute;inset:0;transform-style:preserve-3d;animation:heroFloat 9s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0) rotateZ(0)}50%{transform:translateY(-12px) rotateZ(.4deg)}}
+.pl{
+  position:absolute;left:50%;top:50%;width:100%;height:78%;
+  transform:translate(-50%,-50%) translateZ(var(--z,0)) rotate(var(--r,0deg));
+  border:1px solid rgba(15,17,20,.2);box-shadow:var(--sh3);
+  padding:1.5rem 1.6rem;overflow:hidden;
+}
+.pl-back{
+  --z:-150px; --r:5deg;
+  background:linear-gradient(160deg,#20242B,#171A1F 60%);
+  border-color:rgba(233,229,220,.08);
+  display:grid;place-items:center;
+}
+.pl-back span{font-family:var(--didone);font-size:9rem;color:transparent;-webkit-text-stroke:1px rgba(233,229,220,.14);line-height:1}
+.pl-file{
+  background:
+    radial-gradient(140% 90% at 20% 8%, rgba(185,177,160,.5), transparent 45%),
+    radial-gradient(120% 80% at 85% 90%, rgba(185,177,160,.35), transparent 50%),
+    linear-gradient(155deg,var(--marble),var(--marble2));
+  color:var(--ink);
+}
+.pl-file::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(115deg,transparent 42%,rgba(255,255,255,.35) 50%,transparent 58%);
+  mix-blend-mode:screen;opacity:.5}
+.pl-a{--z:-75px; --r:-4deg}
+.pl-b{--z:0px; --r:2.5deg}
+.docket{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#4c4536;border-bottom:1px solid rgba(15,17,20,.25);padding-bottom:.6rem;margin-bottom:1rem;display:flex;justify-content:space-between;gap:.6rem}
+.rl{height:9px;background:rgba(15,17,20,.16);margin:.55rem 0;border-radius:1px}
+.rl.w70{width:70%}.rl.w85{width:85%}.rl.w55{width:55%}.rl.w92{width:92%}.rl.ox{background:rgba(113,33,46,.55);width:38%}
+.stamp{
+  position:absolute;right:1.1rem;bottom:1.1rem;transform:rotate(-8deg);
+  border:2px solid rgba(113,33,46,.65);color:rgba(113,33,46,.8);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.24em;padding:.35rem .6rem;text-transform:uppercase;
+}
+.pl-title{
+  --z:85px; --r:-1.5deg; height:56%;
+  background:linear-gradient(150deg,var(--ox2),var(--ox) 55%,#571823);
+  border-color:rgba(0,0,0,.35);
+  display:flex;flex-direction:column;justify-content:center;gap:.4rem;
+  box-shadow:var(--sh4), inset 0 1px 0 rgba(255,255,255,.14);
+}
+.pl-title .sm{font-family:var(--mono);font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(236,232,223,.75)}
+.pl-title h2{font-family:var(--didone);font-weight:400;font-size:clamp(1.9rem,4vw,2.5rem);line-height:1.05;color:var(--marble);letter-spacing:.02em}
+.pl-title .rule{width:52px;height:1px;background:rgba(236,232,223,.5);margin:.5rem 0}
+.chip{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%) translate(120px,-185px) translateZ(150px) rotate(4deg);
+  background:var(--ink2);border:1px solid rgba(233,229,220,.2);color:var(--marble2);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;padding:.5rem .75rem;text-transform:uppercase;
+  box-shadow:var(--sh3);white-space:nowrap;
+}
+@media (max-width:430px){.chip{transform:translate(-50%,-50%) translate(70px,-180px) translateZ(150px) rotate(4deg)}}
+.stack-shadow{position:absolute;left:50%;bottom:-26px;width:78%;height:34px;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.55),transparent 70%);filter:blur(6px)}
+.scroll-cue{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;color:var(--faint);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scroll-cue::after{content:"";width:1px;height:34px;background:linear-gradient(var(--ox2),transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---------- staged entrance ---------- */
+.js .stg{opacity:0;transform:translateY(22px)}
+.js .stg.go{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
+.js .stack .pl,.js .stack .chip{opacity:0}
+.js .stack.go .pl,.js .stack.go .chip{opacity:1;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(4.5rem,9vw,7.5rem) 0;position:relative}
+.sec-head{margin-bottom:clamp(2.4rem,5vw,3.6rem);max-width:640px}
+.sec-head h2{font-family:var(--didone);font-weight:400;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.12;margin-top:.9rem}
+.sec-head p{color:var(--mut);margin-top:1rem;max-width:52ch}
+.js .rv{opacity:0;transform:translateY(18px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+
+/* results */
+.results{border-top:1px solid var(--line);background:linear-gradient(var(--ink2),var(--ink))}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+@media (max-width:840px){.figs{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.figs{grid-template-columns:1fr}}
+.fig{padding:2.1rem 1.8rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;transition:background .3s}
+.fig:hover{background:rgba(140,43,58,.05)}
+.fig .n{font-family:var(--didone);font-size:clamp(2.4rem,4.5vw,3.3rem);line-height:1;color:var(--marble)}
+.fig .n .pre,.fig .n .suf{color:var(--ox2)}
+.fig .t{font-size:.85rem;color:var(--mut);margin-top:.7rem;line-height:1.5}
+.fig .c{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;margin-top:.7rem}
+.note{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-top:1.2rem;letter-spacing:.06em}
+
+/* practice cards */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media (max-width:960px){.pgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.pgrid{grid-template-columns:1fr}}
+.pcard{
+  position:relative;background:linear-gradient(165deg,var(--ink2),#12151A);
+  border:1px solid var(--line);padding:1.9rem 1.7rem 1.7rem;
+  transform-style:preserve-3d;will-change:transform;
+  transition:border-color .3s,box-shadow .35s;box-shadow:var(--sh1);
+  overflow:hidden;
+}
+.pcard::before{ /* sheen */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 35%,rgba(236,232,223,.07) 50%,transparent 65%);
+  transform:translateX(-120%);transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.pcard:hover::before{transform:translateX(120%)}
+.pcard:hover{border-color:rgba(140,43,58,.5);box-shadow:var(--sh3),0 0 0 1px rgba(140,43,58,.15)}
+.pcard .idx{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;color:var(--ox2)}
+.pcard h3{font-family:var(--didone);font-weight:400;font-size:1.45rem;margin:.8rem 0 .7rem;transform:translateZ(30px)}
+.pcard p{font-size:.88rem;color:var(--mut);line-height:1.65}
+.pcard .rep{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;color:var(--vein);line-height:1.7}
+.pcard .rep b{color:var(--marble2);font-weight:500}
+
+/* partners */
+.partners{background:linear-gradient(var(--ink),var(--ink2))}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+@media (max-width:960px){.tgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.tgrid{grid-template-columns:1fr}}
+.tcard{border:1px solid var(--line);background:var(--ink2);transition:transform .35s cubic-bezier(.2,.6,.2,1),box-shadow .35s,border-color .3s}
+.tcard:hover{transform:translateY(-6px);box-shadow:var(--sh3);border-color:rgba(233,229,220,.2)}
+.tport{
+  aspect-ratio:4/4.4;display:grid;place-items:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(130% 100% at 25% 10%, rgba(185,177,160,.45), transparent 50%),
+    radial-gradient(110% 90% at 80% 95%, rgba(185,177,160,.3), transparent 55%),
+    linear-gradient(150deg,var(--marble),var(--marble2));
+}
+.tport::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--ox)}
+.tport b{font-family:var(--didone);font-weight:400;font-size:3.2rem;color:var(--ink);letter-spacing:.06em}
+.tport span{position:absolute;top:.8rem;left:.9rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;color:#5d564699;text-transform:uppercase}
+.tinfo{padding:1.2rem 1.2rem 1.35rem}
+.tinfo h3{font-family:var(--didone);font-weight:400;font-size:1.2rem}
+.tinfo .role{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ox2);margin:.4rem 0 .7rem}
+.tinfo p{font-size:.8rem;color:var(--mut);line-height:1.6}
+
+/* consult */
+.consult{border-top:1px solid var(--line)}
+.consult-in{display:grid;grid-template-columns:1.2fr 1fr;gap:3.5rem;align-items:center}
+@media (max-width:840px){.consult-in{grid-template-columns:1fr;gap:2.5rem}}
+.consult h2{font-family:var(--didone);font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1.1}
+.consult h2 em{font-style:italic;color:var(--ox2)}
+.consult p{color:var(--mut);margin:1.2rem 0 2rem;max-width:46ch}
+.cbox{border:1px solid var(--line);background:var(--ink2);padding:2rem;box-shadow:var(--sh2)}
+.cbox dl{display:grid;gap:1.1rem}
+.cbox dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.cbox dd{font-size:1rem;color:var(--marble);margin-top:.2rem}
+.cbox dd a{text-decoration:none;border-bottom:1px solid rgba(140,43,58,.5);transition:border-color .25s,color .25s}
+.cbox dd a:hover{color:var(--ox2);border-color:var(--ox2)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:2.4rem 0 2.8rem;background:var(--ink)}
+.ft{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;align-items:baseline}
+.ft small{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--faint);line-height:1.8;max-width:62ch}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  .js .stg,.js .rv,.js .stack .pl,.js .stack .chip{opacity:1;transform:none}
+  .stk-float{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <div class="wrap hd-in">
+    <a class="logo" href="#top" aria-label="Vantage &amp; Rowe home"><b>Vantage <i>&amp;</i> Rowe</b><span>LLP</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#results">Results</a>
+      <a href="#practice">Practice</a>
+      <a href="#partners">Partners</a>
+      <a class="cta" href="#consult">Consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top" aria-label="Introduction">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kick stg" data-d="0">New York · Trial &amp; Appellate Litigation</p>
+      <h1 class="stg" data-d="120">The verdict is<br>the <em>only</em> brief<br>that <span class="ox">matters.</span></h1>
+      <p class="lede stg" data-d="260">Vantage &amp; Rowe tries the cases other firms settle. Twenty-two lawyers, one courtroom standard, and $486&nbsp;million in verdicts and recoveries since 2019.</p>
+      <div class="btn-row stg" data-d="400">
+        <a class="btn btn-solid" href="#consult">Request a consultation</a>
+        <a class="btn btn-ghost" href="#results">See the record</a>
+      </div>
+      <div class="hero-meta stg" data-d="540">
+        <div><b>S.D.N.Y. · E.D.N.Y.</b>Home districts</div>
+        <div><b>2nd, 5th, 9th, D.C. Cir.</b>Appellate practice</div>
+        <div><b>Est. 2011</b>Founded by two former AUSAs</div>
+      </div>
+    </div>
+    <div class="scene" aria-hidden="true">
+      <div class="stack" id="stack">
+        <div class="stk-float">
+          <div class="pl pl-back"><span>&amp;</span></div>
+          <div class="pl pl-file pl-a">
+            <div class="docket"><span>No. 24-cv-8471</span><span>S.D.N.Y.</span></div>
+            <div class="rl w85"></div><div class="rl w70"></div><div class="rl w92"></div>
+            <div class="rl w55"></div><div class="rl ox"></div><div class="rl w70"></div>
+            <div class="stamp">Sealed</div>
+          </div>
+          <div class="pl pl-file pl-b">
+            <div class="docket"><span>Exhibit A-114</span><span>Confidential</span></div>
+            <div class="rl w70"></div><div class="rl w92"></div><div class="rl w55"></div>
+            <div class="rl w85"></div><div class="rl w70"></div><div class="rl ox"></div>
+            <div class="stamp">Filed · 2026</div>
+          </div>
+          <div class="pl pl-title">
+            <span class="sm">Trial Lawyers</span>
+            <h2>Vantage<br>&amp; Rowe</h2>
+            <span class="rule"></span>
+            <span class="sm" style="letter-spacing:.2em">New York</span>
+          </div>
+          <div class="chip">Verdict — $212,000,000</div>
+        </div>
+        <div class="stack-shadow"></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="kick">The record</p>
+      <h2>Judged by juries, not by brochures.</h2>
+      <p>Every figure below was won in a courtroom or across a settlement table we set. We publish them because our clients ask one question first — and deserve an answer.</p>
+    </div>
+    <div class="figs rv">
+      <div class="fig"><div class="n"><span class="pre">$</span><span class="cnt" data-count="212">0</span><span class="suf">M</span></div><div class="t">Jury verdict — securities fraud class action</div><div class="c">In re Meridian Capital · S.D.N.Y. 2024</div></div>
+      <div class="fig"><div class="n"><span class="pre">$</span><span class="cnt" data-count="94">0</span><span class="suf">M</span></div><div class="t">Settlement — nationwide freight price-fixing action</div><div class="c">Halloran v. TriState Freight · 2023</div></div>
+      <div class="fig"><div class="n"><span class="pre">$</span><span class="cnt" data-count="38">0</span><span class="suf">M</span></div><div class="t">Arbitration award — technology supply contract</div><div class="c">Corvale Systems v. Aldon Group · ICC 2025</div></div>
+      <div class="fig"><div class="n"><span class="cnt" data-count="91">0</span><span class="suf">%</span></div><div class="t">Favorable resolutions in matters taken through verdict or dispositive motion</div><div class="c">2019 – 2026</div></div>
+      <div class="fig"><div class="n"><span class="cnt" data-count="14">0</span></div><div class="t">Appellate arguments in the federal circuits since 2020</div><div class="c">11 affirmances · 3 reversals won</div></div>
+      <div class="fig"><div class="n"><span class="pre">$</span><span class="cnt" data-count="486">0</span><span class="suf">M</span></div><div class="t">Aggregate verdicts, awards and settlements recovered for clients since 2019</div><div class="c">All practice groups</div></div>
+    </div>
+    <p class="note rv">Prior results do not guarantee a similar outcome. Attorney advertising.</p>
+  </div>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="kick">Practice areas</p>
+      <h2>Six disciplines. One posture: trial-ready from day one.</h2>
+      <p>We staff every matter as if it will be tried, because opposing counsel can tell when you don't.</p>
+    </div>
+    <div class="pgrid">
+      <article class="pcard tilt rv">
+        <span class="idx">I</span>
+        <h3>Complex Commercial</h3>
+        <p>Contract, fiduciary-duty and business-tort disputes where nine figures ride on the outcome — for plaintiffs and defendants alike.</p>
+        <p class="rep"><b>Corvale Systems v. Aldon Group</b> — $38M ICC award for a jilted technology supplier, 2025.</p>
+      </article>
+      <article class="pcard tilt rv">
+        <span class="idx">II</span>
+        <h3>Securities &amp; Shareholder</h3>
+        <p>10b-5 class actions, M&amp;A litigation and derivative suits — prosecuted and defended before the country's most demanding benches.</p>
+        <p class="rep"><b>In re Meridian Capital</b> — $212M jury verdict for a certified investor class, S.D.N.Y. 2024.</p>
+      </article>
+      <article class="pcard tilt rv">
+        <span class="idx">III</span>
+        <h3>White Collar &amp; Investigations</h3>
+        <p>Grand-jury matters, DOJ and SEC enforcement, and board-level internal investigations, handled with discretion and speed.</p>
+        <p class="rep"><b>Fortune 250 CFO</b> — full declination after a 14-month cross-border inquiry, 2024.</p>
+      </article>
+      <article class="pcard tilt rv">
+        <span class="idx">IV</span>
+        <h3>Antitrust &amp; Competition</h3>
+        <p>Price-fixing, monopolization and merger challenges — plus the private damages actions that follow them.</p>
+        <p class="rep"><b>Halloran v. TriState Freight</b> — $94M settlement for a class of 1,900 shippers, 2023.</p>
+      </article>
+      <article class="pcard tilt rv">
+        <span class="idx">V</span>
+        <h3>Intellectual Property</h3>
+        <p>Patent, trade-secret and licensing trials in the venues where they are actually won — W.D. Tex., D. Del. and the ITC.</p>
+        <p class="rep"><b>Averline v. Corax Semiconductor</b> — complete defense verdict, W.D. Tex. 2024.</p>
+      </article>
+      <article class="pcard tilt rv">
+        <span class="idx">VI</span>
+        <h3>Appellate &amp; Critical Motions</h3>
+        <p>Preserving wins and reversing losses. Our appellate group briefs the case the trial team actually tried.</p>
+        <p class="rep"><b>14 circuit arguments</b> since 2020 — including a 2nd Cir. reversal reinstating a $61M judgment.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" id="partners">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="kick">Partners</p>
+      <h2>The people who stand up when the gavel falls.</h2>
+    </div>
+    <div class="tgrid">
+      <article class="tcard rv">
+        <div class="tport"><span>Founding</span><b>EV</b></div>
+        <div class="tinfo">
+          <h3>Eleanor Vantage</h3>
+          <p class="role">Founding Partner</p>
+          <p>Former AUSA, S.D.N.Y. Yale Law '99. Has tried 41 cases to verdict; lead counsel in Meridian.</p>
+        </div>
+      </article>
+      <article class="tcard rv">
+        <div class="tport"><span>Founding</span><b>MR</b></div>
+        <div class="tinfo">
+          <h3>Marcus Rowe</h3>
+          <p class="role">Founding Partner</p>
+          <p>Fellow, American College of Trial Lawyers. Columbia Law '01. Built the firm's antitrust bench.</p>
+        </div>
+      </article>
+      <article class="tcard rv">
+        <div class="tport"><span>Securities</span><b>DO</b></div>
+        <div class="tinfo">
+          <h3>Dana Okonkwo</h3>
+          <p class="role">Partner · Securities</p>
+          <p>Former SEC Enforcement senior counsel. Harvard Law '07. Argues the numbers as well as the law.</p>
+        </div>
+      </article>
+      <article class="tcard rv">
+        <div class="tport"><span>Appellate</span><b>JM</b></div>
+        <div class="tinfo">
+          <h3>Julian Marsh</h3>
+          <p class="role">Partner · Appellate</p>
+          <p>Former clerk, U.S. Court of Appeals for the Second Circuit. NYU Law '10. 23 federal arguments.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULT -->
+<section class="consult" id="consult">
+  <div class="wrap consult-in">
+    <div class="rv">
+      <p class="kick">Consultation</p>
+      <h2>If the matter is serious, <em>the conversation should be too.</em></h2>
+      <p>Initial consultations are confidential, conflict-checked within hours, and handled by a partner — never an intake service. We respond within one business day.</p>
+      <a class="btn btn-solid" href="tel:+12125550184">Call (212) 555-0184</a>
+    </div>
+    <div class="cbox rv">
+      <dl>
+        <div><dt>Office</dt><dd>620 Eighth Avenue, 38th Floor<br>New York, NY 10018</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:counsel@vantagerowe.law">counsel@vantagerowe.law</a></dd></div>
+        <div><dt>Telephone</dt><dd><a href="tel:+12125550184">(212) 555-0184</a></dd></div>
+        <div><dt>Hours</dt><dd>Weekdays 8:00 – 19:00 ET · Urgent matters, any hour</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap ft">
+    <a class="logo" href="#top"><b>Vantage <i>&amp;</i> Rowe</b><span>LLP</span></a>
+    <small>© 2026 Vantage &amp; Rowe LLP. Attorney advertising. Prior results do not guarantee a similar outcome. 620 Eighth Avenue, 38th Floor, New York, NY 10018.</small>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* staged entrance */
+  var stg=d.querySelectorAll('.stg');
+  var stack=d.getElementById('stack');
+  function enter(){
+    for(var i=0;i<stg.length;i++){
+      (function(el){
+        var delay=parseInt(el.getAttribute('data-d')||'0',10);
+        setTimeout(function(){el.classList.add('go');},reduced?0:delay+80);
+      })(stg[i]);
+    }
+    if(stack){setTimeout(function(){stack.classList.add('go');},reduced?0:180);}
+  }
+  if(d.readyState==='loading'){d.addEventListener('DOMContentLoaded',enter);}else{enter();}
+
+  /* scroll reveals */
+  var rv=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    rv.forEach(function(el){io.observe(el);});
+  }else{
+    rv.forEach(function(el){el.classList.add('in');});
+  }
+
+  /* counters */
+  var counted=false;
+  function runCounters(){
+    if(counted)return; counted=true;
+    var cs=d.querySelectorAll('.cnt');
+    cs.forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10);
+      if(reduced){el.textContent=target;return;}
+      var t0=null, dur=1400;
+      function step(ts){
+        if(t0===null)t0=ts;
+        var p=Math.min((ts-t0)/dur,1);
+        var e=1-Math.pow(1-p,3);
+        el.textContent=Math.round(target*e);
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  var figs=d.querySelector('.figs');
+  if(figs && 'IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){runCounters();io2.disconnect();}});
+    },{threshold:.25});
+    io2.observe(figs);
+  }else{runCounters();}
+
+  /* hero mouse tilt (rAF-throttled, desktop only) */
+  if(stack && fine && !reduced){
+    var tx=0,ty=0,cx=0,cy=0,raf=null;
+    var scene=stack.parentElement;
+    function loop(){
+      cx+=(tx-cx)*.08; cy+=(ty-cy)*.08;
+      stack.style.transform='rotateX('+cy.toFixed(3)+'deg) rotateY('+cx.toFixed(3)+'deg)';
+      if(Math.abs(tx-cx)>.01||Math.abs(ty-cy)>.01){raf=requestAnimationFrame(loop);}
+      else{raf=null;}
+    }
+    d.addEventListener('pointermove',function(ev){
+      var r=scene.getBoundingClientRect();
+      if(r.bottom<0||r.top>window.innerHeight)return;
+      var nx=(ev.clientX/window.innerWidth)-.5;
+      var ny=(ev.clientY/window.innerHeight)-.5;
+      tx=nx*14; ty=ny*-10;
+      if(tx>8)tx=8; if(tx<-8)tx=-8; if(ty>8)ty=8; if(ty<-8)ty=-8;
+      if(!raf)raf=requestAnimationFrame(loop);
+    },{passive:true});
+  }
+
+  /* 3D hover cards with tilt */
+  if(fine && !reduced){
+    var cards=d.querySelectorAll('.tilt');
+    cards.forEach(function(card){
+      var pend=false,px=0,py=0;
+      card.addEventListener('pointermove',function(ev){
+        var r=card.getBoundingClientRect();
+        px=((ev.clientX-r.left)/r.width)-.5;
+        py=((ev.clientY-r.top)/r.height)-.5;
+        if(!pend){
+          pend=true;
+          requestAnimationFrame(function(){
+            pend=false;
+            card.style.transform='perspective(800px) rotateX('+(py*-6).toFixed(2)+'deg) rotateY('+(px*6).toFixed(2)+'deg) translateY(-4px)';
+          });
+        }
+      },{passive:true});
+      card.addEventListener('pointerleave',function(){
+        card.style.transition='transform .5s cubic-bezier(.2,.6,.2,1), border-color .3s, box-shadow .35s';
+        card.style.transform='';
+        setTimeout(function(){card.style.transition='';},500);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

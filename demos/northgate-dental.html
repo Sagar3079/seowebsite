@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northgate Smile Studio — Boutique Dental Care, Seattle</title>
+<style>
+:root{
+  --porcelain:#F6F4F0; --card:#FFFFFF; --mist:#EDF4F1;
+  --sea:#9AD5C7; --sea-mid:#4FA392; --sea-deep:#2E7D6E; --sea-ink:#1D5A4F;
+  --coral:#EF8A72; --coral-deep:#D96B52; --coral-soft:#FBE3DC;
+  --ink:#263A3E; --mut:#5E7478; --faint:#8AA0A3;
+  --round:ui-rounded,'Hiragino Maru Gothic ProN',Quicksand,Comfortaa,Manjari,'Arial Rounded MT','Arial Rounded MT Bold',Calibri,source-sans-pro,sans-serif;
+  --hum:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  --sh1:0 2px 8px -2px rgba(38,58,62,.08);
+  --sh2:0 14px 34px -14px rgba(46,125,110,.22);
+  --sh3:0 30px 60px -20px rgba(46,125,110,.3);
+  --r-lg:26px; --r-md:18px; --r-sm:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--porcelain);color:var(--ink);
+  font-family:var(--hum);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--sea);color:var(--sea-ink)}
+a{color:inherit}
+.skip{position:absolute;left:-9999px;top:0;background:var(--sea-deep);color:#fff;padding:.6rem 1rem;z-index:99;border-radius:0 0 var(--r-sm) 0;font-size:.85rem}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem);position:relative;z-index:1}
+h1,h2,h3,.btn,.logo{font-family:var(--round)}
+
+/* header */
+.hd{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(246,244,240,.85);border-bottom:1px solid rgba(46,125,110,.1)}
+@supports (backdrop-filter:blur(12px)){.hd{background:rgba(246,244,240,.6);backdrop-filter:blur(12px)}}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;font-size:1.05rem;color:var(--sea-ink)}
+.logo svg{width:30px;height:30px;flex:none}
+.logo small{display:block;font-family:var(--hum);font-weight:400;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.nav{display:flex;gap:1.5rem;align-items:center}
+.nav a{font-size:.85rem;font-weight:600;text-decoration:none;color:var(--mut);position:relative;padding:.3rem 0;transition:color .25s}
+.nav a::after{content:"";position:absolute;left:50%;right:50%;bottom:-2px;height:2.5px;border-radius:2px;background:var(--coral);transition:left .3s cubic-bezier(.4,0,.2,1),right .3s cubic-bezier(.4,0,.2,1)}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after{left:0;right:0}
+.nav .cta{background:var(--sea-deep);color:#fff;padding:.6rem 1.15rem;border-radius:999px;box-shadow:var(--sh1);transition:background .25s,box-shadow .25s,transform .15s}
+.nav .cta::after{display:none}
+.nav .cta:hover{background:var(--sea-ink);box-shadow:var(--sh2)}
+.nav .cta:active{transform:translateY(1px)}
+@media (max-width:860px){.nav a:not(.cta){display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+#air{position:absolute;inset:0;pointer-events:none}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(700px 520px at 82% 20%, rgba(154,213,199,.35), transparent 60%),
+  radial-gradient(560px 460px at 8% 85%, rgba(239,138,114,.14), transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:2.5rem;align-items:center;width:100%}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:3rem}}
+.pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid rgba(46,125,110,.18);color:var(--sea-deep);font-size:.78rem;font-weight:600;padding:.45rem 1rem;border-radius:999px;box-shadow:var(--sh1)}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--sea-mid);box-shadow:0 0 0 3px rgba(79,163,146,.25)}
+.hero h1{font-weight:700;font-size:clamp(2.4rem,5.4vw,3.9rem);line-height:1.08;letter-spacing:-.01em;margin:1.3rem 0 1.2rem}
+.hero h1 em{font-style:normal;color:var(--sea-deep)}
+.hero h1 .swash{position:relative;white-space:nowrap}
+.hero h1 .swash::after{content:"";position:absolute;left:2%;right:2%;bottom:.06em;height:.28em;background:var(--coral-soft);z-index:-1;border-radius:999px}
+.hero .lede{color:var(--mut);max-width:46ch;font-size:1.05rem}
+.btn-row{display:flex;gap:.9rem;margin-top:2rem;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.92rem;padding:.95rem 1.7rem;border-radius:999px;transition:transform .15s,box-shadow .3s,background .25s,color .25s;position:relative}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-coral{background:var(--coral);color:#5C2416;box-shadow:0 12px 26px -10px rgba(217,107,82,.5)}
+.btn-coral:hover{background:var(--coral-deep);color:#fff;box-shadow:0 16px 34px -12px rgba(217,107,82,.6)}
+.btn-soft{background:var(--card);color:var(--sea-ink);border:1.5px solid rgba(46,125,110,.25)}
+.btn-soft:hover{border-color:var(--sea-deep);box-shadow:var(--sh1)}
+.trust{display:flex;gap:1.8rem;margin-top:2.6rem;flex-wrap:wrap}
+.trust div{font-size:.78rem;color:var(--faint);line-height:1.5}
+.trust b{display:block;font-family:var(--round);font-size:1.15rem;color:var(--ink)}
+
+/* floating glass cluster */
+.cluster{position:relative;min-height:480px}
+@media (max-width:900px){.cluster{min-height:430px}}
+.gp{
+  position:absolute;border-radius:var(--r-lg);
+  background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.9);
+  box-shadow:var(--sh2), inset 0 1px 0 rgba(255,255,255,.9);
+  padding:1.3rem 1.4rem;will-change:transform;
+}
+@supports (backdrop-filter:blur(14px)){.gp{background:rgba(255,255,255,.62);backdrop-filter:blur(14px)}}
+.gp h3{font-size:.95rem;font-weight:700;color:var(--sea-ink)}
+.gp .sub{font-size:.72rem;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.gp-book{left:2%;top:6%;width:min(300px,78%);z-index:3}
+.gp-book .slot{display:flex;align-items:center;justify-content:space-between;background:var(--mist);border-radius:var(--r-sm);padding:.65rem .85rem;margin-top:.7rem;font-size:.85rem;transition:transform .25s,box-shadow .25s;cursor:default}
+.gp-book .slot:hover{transform:translateX(4px);box-shadow:var(--sh1)}
+.gp-book .slot b{color:var(--sea-deep)}
+.gp-book .slot .go{width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem;line-height:1}
+.gp-ring{right:0;top:20%;width:210px;z-index:2;text-align:center}
+.gp-ring svg{width:120px;height:120px;margin:.4rem auto 0;display:block}
+.gp-ring .big{font-family:var(--round);font-weight:700;font-size:1.5rem;fill:var(--sea-ink)}
+.gp-ring .sm2{font-size:.55rem;fill:var(--faint);letter-spacing:.12em;text-transform:uppercase}
+.ringtrack{fill:none;stroke:#E3EEEA;stroke-width:9}
+.ringval{fill:none;stroke:var(--sea-mid);stroke-width:9;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;transform:rotate(-90deg);transform-origin:60px 60px;transition:stroke-dashoffset 1.4s cubic-bezier(.3,.7,.3,1)}
+.gp-shade{left:10%;bottom:6%;width:min(280px,72%);z-index:4}
+.shades{display:flex;gap:6px;margin-top:.8rem}
+.shades span{flex:1;height:34px;border-radius:9px;border:1px solid rgba(38,58,62,.08)}
+.shades .s1{background:#CBB99F}.shades .s2{background:#DACDB4}.shades .s3{background:#E9DFC9}.shades .s4{background:#F4EDDD}.shades .s5{background:#FCF8EE;position:relative}
+.shades .s5::after{content:"";position:absolute;inset:-5px;border:2.5px solid var(--coral);border-radius:12px}
+.gp-shade p{font-size:.78rem;color:var(--mut);margin-top:.7rem}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);z-index:1}
+.blob-a{width:130px;height:130px;right:12%;bottom:14%;background:radial-gradient(circle at 32% 30%,#B8E2D7,#7CC3B2)}
+.blob-b{width:56px;height:56px;left:0;bottom:32%;background:radial-gradient(circle at 35% 30%,#FBD4C8,#F0977F)}
+.js .idle .gp{animation:bob 7s ease-in-out infinite}
+.js .idle .gp-ring{animation-delay:1.2s}
+.js .idle .gp-shade{animation-delay:2.4s}
+@keyframes bob{0%,100%{margin-top:0}50%{margin-top:-10px}}
+
+/* staged entrance */
+.js .stg{opacity:0;transform:translateY(24px)}
+.js .stg.go{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,.65,.25,1),transform .85s cubic-bezier(.2,.65,.25,1)}
+.js .rv{opacity:0;transform:translateY(18px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+
+/* sections */
+section{padding:clamp(4.2rem,8.5vw,6.8rem) 0;position:relative}
+.eyeb{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--coral-deep);background:var(--coral-soft);padding:.35rem .9rem;border-radius:999px}
+.sec-head{max-width:620px;margin-bottom:clamp(2rem,4.5vw,3rem)}
+.sec-head h2{font-weight:700;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.15;margin-top:1rem;letter-spacing:-.01em}
+.sec-head p{color:var(--mut);margin-top:.8rem}
+
+/* services */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media (max-width:960px){.sgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.sgrid{grid-template-columns:1fr}}
+.scard{
+  background:var(--card);border-radius:var(--r-lg);padding:1.7rem 1.6rem 1.5rem;
+  border:1px solid rgba(46,125,110,.1);box-shadow:var(--sh1);
+  transform-style:preserve-3d;will-change:transform;position:relative;overflow:hidden;
+  transition:box-shadow .35s,border-color .3s;
+}
+.scard::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,transparent 40%,rgba(154,213,199,.22) 52%,transparent 64%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.scard:hover::before{transform:translateX(130%)}
+.scard:hover{box-shadow:var(--sh3);border-color:rgba(46,125,110,.28)}
+.sico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--mist);margin-bottom:1rem;transform:translateZ(24px)}
+.sico svg{width:24px;height:24px;stroke:var(--sea-deep);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.scard h3{font-size:1.12rem;font-weight:700}
+.scard p{font-size:.86rem;color:var(--mut);margin:.5rem 0 1rem}
+.price{display:flex;align-items:baseline;justify-content:space-between;border-top:1px dashed rgba(46,125,110,.2);padding-top:.9rem}
+.price b{font-family:var(--round);font-size:1.25rem;color:var(--sea-deep)}
+.price span{font-size:.72rem;color:var(--faint);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+/* doctors */
+.docs{background:linear-gradient(var(--mist),var(--porcelain))}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+@media (max-width:900px){.dgrid{grid-template-columns:1fr}}
+.dcard{background:var(--card);border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(46,125,110,.1);box-shadow:var(--sh1);transition:transform .35s cubic-bezier(.2,.6,.2,1),box-shadow .35s}
+.dcard:hover{transform:translateY(-7px);box-shadow:var(--sh3)}
+.dface{aspect-ratio:5/3.4;position:relative;display:grid;place-items:center;overflow:hidden}
+.df-a{background:linear-gradient(140deg,#BCE4D9,#7CC3B2)}
+.df-b{background:linear-gradient(140deg,#FAD9CE,#F0A18B)}
+.df-c{background:linear-gradient(140deg,#D7E7E2,#9CC6BB)}
+.dface span{font-family:var(--round);font-weight:700;font-size:2.6rem;color:rgba(255,255,255,.95);width:88px;height:88px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.7)}
+.dbody{padding:1.3rem 1.4rem 1.5rem}
+.dbody h3{font-size:1.15rem;font-weight:700}
+.dbody .role{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-deep);margin:.3rem 0 .6rem}
+.dbody p{font-size:.85rem;color:var(--mut)}
+
+/* technology */
+.tech-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+@media (max-width:760px){.tech-list{grid-template-columns:1fr}}
+.titem{display:flex;gap:1.1rem;background:var(--card);border-radius:var(--r-md);padding:1.3rem 1.4rem;border:1px solid rgba(46,125,110,.1);box-shadow:var(--sh1);transition:transform .3s cubic-bezier(.2,.6,.2,1),box-shadow .3s}
+.titem:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.titem .tn{flex:none;width:40px;height:40px;border-radius:50%;background:var(--sea-deep);color:#fff;display:grid;place-items:center;font-family:var(--round);font-weight:700;font-size:.85rem}
+.titem h3{font-size:1rem;font-weight:700}
+.titem p{font-size:.84rem;color:var(--mut);margin-top:.3rem}
+
+/* booking */
+.book{background:var(--sea-ink);color:#EAF4F1;border-radius:clamp(24px,4vw,40px);margin:0 clamp(.6rem,2vw,1.4rem)}
+.book-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+@media (max-width:860px){.book-in{grid-template-columns:1fr}}
+.book .eyeb{background:rgba(239,138,114,.18);color:var(--coral)}
+.book h2{font-weight:700;font-size:clamp(1.8rem,3.6vw,2.5rem);margin-top:1rem;line-height:1.15}
+.book p.bl{color:#A9CCC3;margin-top:.8rem;max-width:44ch}
+.hours{margin-top:1.6rem;display:grid;gap:.4rem;max-width:320px}
+.hours div{display:flex;justify-content:space-between;font-size:.85rem;color:#C7DED7;border-bottom:1px dashed rgba(234,244,241,.2);padding-bottom:.4rem}
+.hours b{color:#fff;font-weight:600}
+.form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-lg);padding:1.8rem;display:grid;gap:1rem}
+.form label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A9CCC3;display:grid;gap:.45rem}
+.form input,.form select{
+  font:inherit;color:#fff;background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r-sm);
+  padding:.8rem .95rem;transition:border-color .25s,box-shadow .25s,background .25s;width:100%;
+}
+.form input::placeholder{color:#7FA39A}
+.form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#A9CCC3 50%),linear-gradient(135deg,#A9CCC3 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+.form select option{color:var(--ink)}
+.form input:focus,.form select:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 4px rgba(239,138,114,.25);background:rgba(255,255,255,.12)}
+.form button{
+  font-family:var(--round);font-weight:700;font-size:1rem;color:#5C2416;
+  background:var(--coral);border:0;border-radius:999px;padding:1rem 1.5rem;cursor:pointer;
+  transition:background .25s,transform .15s,box-shadow .3s;box-shadow:0 14px 30px -12px rgba(0,0,0,.4);
+}
+.form button:hover{background:#F4A28F}
+.form button:active{transform:translateY(1px)}
+.form small{color:#7FA39A;font-size:.72rem;text-align:center}
+
+/* insurance */
+.ins-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem}
+.ins{font-family:var(--round);font-weight:700;font-size:.9rem;color:var(--mut);background:var(--card);border:1px solid rgba(46,125,110,.12);border-radius:999px;padding:.6rem 1.2rem;box-shadow:var(--sh1);transition:transform .25s,color .25s,border-color .25s}
+.ins:hover{transform:translateY(-3px);color:var(--sea-deep);border-color:var(--sea-mid)}
+.plan{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;background:linear-gradient(120deg,#FFFFFF,var(--mist));border:1.5px solid rgba(46,125,110,.18);border-radius:var(--r-lg);padding:1.8rem 2rem;box-shadow:var(--sh2)}
+@media (max-width:700px){.plan{grid-template-columns:1fr}}
+.plan h3{font-size:1.25rem;font-weight:700}
+.plan p{font-size:.88rem;color:var(--mut);margin-top:.4rem;max-width:52ch}
+.plan .pp{font-family:var(--round);font-weight:700;font-size:2rem;color:var(--sea-deep);white-space:nowrap}
+.plan .pp span{font-size:.85rem;color:var(--faint)}
+
+/* footer */
+footer{padding:2.6rem 0 3rem;border-top:1px solid rgba(46,125,110,.12);margin-top:2rem}
+.ft{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2rem}
+@media (max-width:760px){.ft{grid-template-columns:1fr}}
+.ft h4{font-family:var(--round);font-size:.95rem;margin-bottom:.6rem;color:var(--sea-ink)}
+.ft p,.ft a{font-size:.85rem;color:var(--mut);text-decoration:none}
+.ft a:hover{color:var(--coral-deep)}
+.ft .small{margin-top:1.2rem;font-size:.72rem;color:var(--faint)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  .js .stg,.js .rv{opacity:1;transform:none}
+  .js .idle .gp{animation:none}
+  .ringval{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <div class="wrap hd-in">
+    <a class="logo" href="#top" aria-label="Northgate Smile Studio home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c-4 0-6 2.6-6 6.2 0 5 2.2 7.4 2.8 12.6.3 2.6.9 5.2 2.4 5.2 1.7 0 .8-5.4 2.6-5.4 1.8 0 .9 5.4 2.6 5.4 1.5 0 2.1-2.6 2.4-5.2.6-5.2 2.8-7.6 2.8-12.6C25.6 5.6 20 3 16 3Z" fill="none" stroke="#2E7D6E" stroke-width="2" stroke-linejoin="round"/><circle cx="22.5" cy="7.5" r="2.4" fill="#EF8A72"/></svg>
+      <span>Northgate Smile Studio<small>Seattle · Boutique dental</small></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#tech">Technology</a>
+      <a href="#insurance">Insurance</a>
+      <a class="cta" href="#book">Book a visit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top" aria-label="Introduction">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <canvas id="air" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill stg" data-d="0"><span class="dot"></span>Now welcoming new patients — next opening Tue 9:20 AM</span>
+      <h1 class="stg" data-d="130">Dentistry that feels like a <em class="swash">deep breath.</em></h1>
+      <p class="lede stg" data-d="270">Quiet rooms, warm hands, honest prices. Northgate Smile Studio is a three-dentist clinic above the light-rail station — built for people who put off going for years.</p>
+      <div class="btn-row stg" data-d="410">
+        <a class="btn btn-coral" href="#book">Book a visit</a>
+        <a class="btn btn-soft" href="#services">See prices first</a>
+      </div>
+      <div class="trust stg" data-d="550">
+        <div><b>4.9 ★</b>612 patient reviews</div>
+        <div><b>7:30 AM</b>earliest weekday slot</div>
+        <div><b>0 lectures</b>we promise</div>
+      </div>
+    </div>
+    <div class="cluster idle stg" data-d="350" aria-hidden="true">
+      <div class="blob blob-a" data-dp="0.35"></div>
+      <div class="blob blob-b" data-dp="0.6"></div>
+      <div class="gp gp-book" data-dp="0.22">
+        <p class="sub">This week</p>
+        <h3>Open appointments</h3>
+        <div class="slot"><span>Tue · <b>9:20 AM</b> · Hygiene</span><span class="go">→</span></div>
+        <div class="slot"><span>Wed · <b>12:40 PM</b> · Exam</span><span class="go">→</span></div>
+        <div class="slot"><span>Sat · <b>8:00 AM</b> · Whitening</span><span class="go">→</span></div>
+      </div>
+      <div class="gp gp-ring" data-dp="0.45">
+        <p class="sub">Avg. after 2 visits</p>
+        <h3>Gum health score</h3>
+        <svg viewBox="0 0 120 120">
+          <circle class="ringtrack" cx="60" cy="60" r="52"></circle>
+          <circle class="ringval" id="ring" cx="60" cy="60" r="52"></circle>
+          <text class="big" x="60" y="58" text-anchor="middle">96</text>
+          <text class="sm2" x="60" y="76" text-anchor="middle">of 100</text>
+        </svg>
+      </div>
+      <div class="gp gp-shade" data-dp="0.32">
+        <p class="sub">Whitening result</p>
+        <h3>+4 shades in one visit</h3>
+        <div class="shades"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
+        <p>Typical result, 75-minute in-studio session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyeb">Services &amp; prices</span>
+      <h2>The price on the wall is the price you pay.</h2>
+      <p>Every fee below is the full fee — quoted before we start, itemized after. No surprise codes, ever.</p>
+    </div>
+    <div class="sgrid">
+      <article class="scard tilt rv">
+        <span class="sico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        <h3>New-patient exam</h3>
+        <p>60 minutes with a dentist — full exam, digital X-rays, and a written plan you can take anywhere.</p>
+        <div class="price"><b>$145</b><span>All-in</span></div>
+      </article>
+      <article class="scard tilt rv">
+        <span class="sico"><svg viewBox="0 0 24 24"><path d="M4 17c3-1 5-1 8 0s5 1 8 0"/><path d="M4 12c3-1 5-1 8 0s5 1 8 0"/><path d="M4 7c3-1 5-1 8 0s5 1 8 0"/></svg></span>
+        <h3>Hygiene &amp; polish</h3>
+        <p>A gentle 50-minute clean with our hygienists, plus a gum-health score you can watch improve.</p>
+        <div class="price"><b>$120</b><span>Per visit</span></div>
+      </article>
+      <article class="scard tilt rv">
+        <span class="sico"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 4.8L19 9l-4 3.6L16 18l-4-2.6L8 18l1-5.4L5 9l4.8-1.2z"/></svg></span>
+        <h3>In-studio whitening</h3>
+        <p>75 minutes, up to four shades brighter, with desensitizing gel included — not sold separately.</p>
+        <div class="price"><b>$349</b><span>One session</span></div>
+      </article>
+      <article class="scard tilt rv">
+        <span class="sico"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="6"/><path d="M8 12h8"/></svg></span>
+        <h3>Invisalign</h3>
+        <p>Clear aligners planned on your iTero scan, with every check-up visit included in one flat price.</p>
+        <div class="price"><b>from $3,900</b><span>Full course</span></div>
+      </article>
+      <article class="scard tilt rv">
+        <span class="sico"><svg viewBox="0 0 24 24"><path d="M7 4h10v7a5 5 0 0 1-10 0z"/><path d="M12 16v4M9 20h6"/></svg></span>
+        <h3>Porcelain veneer</h3>
+        <p>Hand-layered by our Seattle lab partner, matched to your neighbors' shade in daylight.</p>
+        <div class="price"><b>$1,150</b><span>Per tooth</span></div>
+      </article>
+      <article class="scard tilt rv">
+        <span class="sico"><svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <h3>Implant + crown</h3>
+        <p>Placed and restored under one roof by Dr. Okafor — guided by 3D imaging, start to finish.</p>
+        <div class="price"><b>from $2,850</b><span>Complete</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section class="docs" id="doctors">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyeb">Your doctors</span>
+      <h2>Three dentists. One rule: explain first, treat second.</h2>
+    </div>
+    <div class="dgrid">
+      <article class="dcard rv">
+        <div class="dface df-a"><span>ML</span></div>
+        <div class="dbody">
+          <h3>Dr. Maya Lindqvist, DDS</h3>
+          <p class="role">General &amp; preventive</p>
+          <p>University of Washington '13. Twelve years of talking nervous patients through their first visit back — she keeps a no-drill first appointment policy.</p>
+        </div>
+      </article>
+      <article class="dcard rv">
+        <div class="dface df-b"><span>DO</span></div>
+        <div class="dbody">
+          <h3>Dr. Daniel Okafor, DDS</h3>
+          <p class="role">Implants &amp; restorative</p>
+          <p>Loma Linda '11, fellowship in implantology. Over 900 guided implant placements; he shows you the 3D plan before you commit to anything.</p>
+        </div>
+      </article>
+      <article class="dcard rv">
+        <div class="dface df-c"><span>PR</span></div>
+        <div class="dbody">
+          <h3>Dr. Priya Raman, DMD</h3>
+          <p class="role">Orthodontics &amp; Invisalign</p>
+          <p>Tufts '16. Diamond-tier Invisalign provider; she treats teens and the parents who swore they'd get to it someday.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyeb">Technology</span>
+      <h2>Modern tools, mostly so you feel less.</h2>
+      <p>The point of the equipment isn't the equipment. It's shorter visits, smaller needles, and no goop.</p>
+    </div>
+    <div class="tech-list">
+      <div class="titem rv"><span class="tn">3D</span><div><h3>CBCT cone-beam imaging</h3><p>A nine-second 3D scan replaces guesswork for implants and root canals — at a fraction of a medical CT's dose.</p></div></div>
+      <div class="titem rv"><span class="tn">iT</span><div><h3>iTero digital impressions</h3><p>A wand, not a tray of goop. Scans in minutes and lets you preview your Invisalign result the same day.</p></div></div>
+      <div class="titem rv"><span class="tn">Lz</span><div><h3>Soft-tissue laser</h3><p>Treats gums with less bleeding, less numbing, and healing measured in days instead of weeks.</p></div></div>
+      <div class="titem rv"><span class="tn">1d</span><div><h3>Same-day CEREC crowns</h3><p>Designed, milled and seated in a single two-hour visit. One appointment, zero temporary crowns.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="book" id="book">
+  <div class="wrap book-in">
+    <div class="rv">
+      <span class="eyeb">Booking</span>
+      <h2>Mornings before work, Saturdays before soccer.</h2>
+      <p class="bl">Request a time below and Naomi at the front desk will confirm by text within the hour — during opening hours, usually much faster.</p>
+      <div class="hours">
+        <div><span>Mon – Fri</span><b>7:30 AM – 6:00 PM</b></div>
+        <div><span>Saturday</span><b>8:00 AM – 2:00 PM</b></div>
+        <div><span>Sunday</span><b>Closed</b></div>
+      </div>
+    </div>
+    <form class="form rv" autocomplete="off">
+      <label>Your name<input type="text" name="name" placeholder="Jordan Avery" required></label>
+      <label>Mobile number<input type="tel" name="phone" placeholder="(206) 555-0000" required></label>
+      <label>What do you need?
+        <select name="service">
+          <option>New-patient exam — $145</option>
+          <option>Hygiene &amp; polish — $120</option>
+          <option>Whitening — $349</option>
+          <option>Invisalign consult — free</option>
+          <option>Something hurts — see me soon</option>
+        </select>
+      </label>
+      <label>Preferred time
+        <select name="time">
+          <option>Early morning (7:30–9:00)</option>
+          <option>Midday (11:00–2:00)</option>
+          <option>After work (4:00–6:00)</option>
+          <option>Saturday</option>
+        </select>
+      </label>
+      <button type="button">Request appointment</button>
+      <small>No payment now. Cancel or move anytime up to 24h before.</small>
+    </form>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section id="insurance">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyeb">Insurance &amp; plans</span>
+      <h2>In-network with the big five. A plan for everyone else.</h2>
+    </div>
+    <div class="ins-row rv">
+      <span class="ins">Delta Dental</span><span class="ins">Cigna</span><span class="ins">Aetna</span><span class="ins">MetLife</span><span class="ins">Guardian</span><span class="ins">Premera Blue Cross</span>
+    </div>
+    <div class="plan rv">
+      <div>
+        <h3>The Northgate Plan — for the uninsured</h3>
+        <p>Two hygiene visits, one exam with X-rays, and 15% off everything else, every year. No deductibles, no waiting periods, no denial letters.</p>
+      </div>
+      <div class="pp">$29<span>/month</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap ft">
+    <div>
+      <h4>Northgate Smile Studio</h4>
+      <p>401 NE Northgate Way, Suite 210<br>Seattle, WA 98125<br>Two floors above Northgate Station — free 2-hour parking.</p>
+      <p class="small">© 2026 Northgate Smile Studio PLLC. Dr. M. Lindqvist, owner. WA license D00061428.</p>
+    </div>
+    <div>
+      <h4>Reach us</h4>
+      <p><a href="tel:+12065550142">(206) 555-0142</a><br><a href="mailto:hello@northgatesmile.com">hello@northgatesmile.com</a><br>Text us — we actually reply.</p>
+    </div>
+    <div>
+      <h4>Good to know</h4>
+      <p>Emergencies seen same-day before noon.<br>Interpreters available: Spanish, Vietnamese, Amharic.<br>Nitrous available for the nervous — just ask.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var d=document;
+  d.documentElement.classList.add('js');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* staged entrance */
+  var stg=d.querySelectorAll('.stg');
+  function enter(){
+    for(var i=0;i<stg.length;i++){
+      (function(el){
+        var delay=parseInt(el.getAttribute('data-d')||'0',10);
+        setTimeout(function(){el.classList.add('go');},reduced?0:delay+70);
+      })(stg[i]);
+    }
+    var ring=d.getElementById('ring');
+    if(ring){setTimeout(function(){ring.style.strokeDashoffset=(326.7*(1-.96)).toFixed(1);},reduced?0:900);}
+  }
+  if(d.readyState==='loading'){d.addEventListener('DOMContentLoaded',enter);}else{enter();}
+
+  /* scroll reveals */
+  var rv=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+    rv.forEach(function(el){io.observe(el);});
+  }else{
+    rv.forEach(function(el){el.classList.add('in');});
+  }
+
+  /* canvas: clean-air ambient particles */
+  var cv=d.getElementById('air');
+  if(cv && cv.getContext){
+    var ctx=cv.getContext('2d');
+    var W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
+    var ps=[],N=42,mx=-999,my=-999;
+    function size(){
+      var r=cv.parentElement.getBoundingClientRect();
+      W=r.width;H=r.height;
+      cv.width=W*dpr;cv.height=H*dpr;
+      cv.style.width=W+'px';cv.style.height=H+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function seed(){
+      ps=[];
+      for(var i=0;i<N;i++){
+        ps.push({
+          x:Math.random()*W, y:Math.random()*H,
+          r:1.2+Math.random()*3.4,
+          vy:.12+Math.random()*.3, vx:(Math.random()-.5)*.12,
+          a:.12+Math.random()*.3, hue:Math.random()<.82
+        });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<ps.length;i++){
+        var p=ps[i];
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,6.2832);
+        ctx.fillStyle=p.hue?'rgba(79,163,146,'+p.a+')':'rgba(239,138,114,'+p.a+')';
+        ctx.fill();
+      }
+    }
+    function tick(){
+      for(var i=0;i<ps.length;i++){
+        var p=ps[i];
+        p.y-=p.vy; p.x+=p.vx;
+        var dx=p.x-mx,dy=p.y-my,dd=dx*dx+dy*dy;
+        if(dd<9000){p.x+=dx*.006;p.y+=dy*.006;}
+        if(p.y<-8){p.y=H+8;p.x=Math.random()*W;}
+        if(p.x<-8)p.x=W+8; if(p.x>W+8)p.x=-8;
+      }
+      draw();
+      if(!d.hidden)requestAnimationFrame(tick);
+    }
+    size();seed();
+    if(reduced){draw();}
+    else{
+      requestAnimationFrame(tick);
+      d.addEventListener('visibilitychange',function(){if(!d.hidden)requestAnimationFrame(tick);});
+    }
+    window.addEventListener('resize',function(){size();seed();if(reduced)draw();},{passive:true});
+    if(fine){
+      var pmRaf=null;
+      d.addEventListener('pointermove',function(ev){
+        if(pmRaf)return;
+        pmRaf=requestAnimationFrame(function(){
+          pmRaf=null;
+          var r=cv.getBoundingClientRect();
+          mx=ev.clientX-r.left; my=ev.clientY-r.top;
+        });
+      },{passive:true});
+    }
+  }
+
+  /* glass-panel parallax: mouse + scroll depth */
+  var panels=[];
+  d.querySelectorAll('[data-dp]').forEach(function(el){
+    panels.push({el:el,dp:parseFloat(el.getAttribute('data-dp'))});
+  });
+  if(panels.length && !reduced){
+    var tx2=0,ty2=0,cx2=0,cy2=0,sy=0,raf2=null,active=true;
+    function loop2(){
+      raf2=null;
+      cx2+=(tx2-cx2)*.06; cy2+=(ty2-cy2)*.06;
+      for(var i=0;i<panels.length;i++){
+        var o=panels[i];
+        o.el.style.transform='translate3d('+(cx2*o.dp*36).toFixed(1)+'px,'+((cy2*o.dp*26)+(sy*o.dp*-.28)).toFixed(1)+'px,0)';
+      }
+      if(Math.abs(tx2-cx2)>.002||Math.abs(ty2-cy2)>.002){raf2=requestAnimationFrame(loop2);}
+    }
+    function kick(){if(!raf2)raf2=requestAnimationFrame(loop2);}
+    if(fine){
+      d.addEventListener('pointermove',function(ev){
+        tx2=(ev.clientX/window.innerWidth)-.5;
+        ty2=(ev.clientY/window.innerHeight)-.5;
+        kick();
+      },{passive:true});
+    }
+    window.addEventListener('scroll',function(){
+      var s=window.scrollY;
+      if(s<window.innerHeight*1.3){sy=s;kick();}
+    },{passive:true});
+  }
+
+  /* service card tilt */
+  if(fine && !reduced){
+    d.querySelectorAll('.tilt').forEach(function(card){
+      var pend=false,px=0,py=0;
+      card.addEventListener('pointermove',function(ev){
+        var r=card.getBoundingClientRect();
+        px=((ev.clientX-r.left)/r.width)-.5;
+        py=((ev.clientY-r.top)/r.height)-.5;
+        if(!pend){
+          pend=true;
+          requestAnimationFrame(function(){
+            pend=false;
+            card.style.transform='perspective(700px) rotateX('+(py*-5).toFixed(2)+'deg) rotateY('+(px*5).toFixed(2)+'deg) translateY(-5px)';
+          });
+        }
+      },{passive:true});
+      card.addEventListener('pointerleave',function(){
+        card.style.transition='transform .5s cubic-bezier(.2,.6,.2,1), box-shadow .35s, border-color .3s';
+        card.style.transform='';
+        setTimeout(function(){card.style.transition='';},500);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

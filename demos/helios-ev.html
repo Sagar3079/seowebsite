@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helios Motors — Electric Performance</title>
+<style>
+:root{
+  --bg:#0a0a0d; --bg2:#101016; --panel:#14141b; --ink:#f4f1e8; --dim:#9a968b;
+  --gold:#f2b63c; --gold2:#ffd98a; --line:rgba(244,241,232,.09);
+  --disp:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --e1:0 2px 8px rgba(0,0,0,.45);
+  --e2:0 10px 30px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.4);
+  --e3:0 30px 70px rgba(0,0,0,.6),0 8px 24px rgba(0,0,0,.45),0 22px 60px -18px rgba(242,182,60,.18);
+  --ease:cubic-bezier(.22,.9,.28,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--disp);
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:#0a0a0d}
+a{color:inherit}
+img,svg{max-width:100%;display:block}
+.skip{position:absolute;left:-9999px;top:0;background:var(--gold);color:#0a0a0d;padding:.6rem 1rem;z-index:99;font-weight:700}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.eyebrow{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.9rem;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+h2{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:800;letter-spacing:-.015em;line-height:1.08;margin:1rem 0 1.1rem}
+.lede{color:var(--dim);max-width:56ch}
+section{padding:clamp(4.5rem,9vw,8rem) 0;position:relative}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:40;
+  background:linear-gradient(rgba(10,10,13,.82),rgba(10,10,13,.55));
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.65rem;font-weight:800;letter-spacing:.3em;font-size:.85rem;text-decoration:none;text-transform:uppercase}
+.logo svg{width:22px;height:22px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  position:relative;padding:.3rem 0;transition:color .3s;
+}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;position:relative;overflow:hidden;
+  font-family:var(--disp);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.85rem 1.7rem;border-radius:2px;border:0;cursor:pointer;text-decoration:none;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .3s;
+}
+.btn-gold{background:linear-gradient(160deg,var(--gold2),var(--gold));color:#141005;box-shadow:0 6px 24px -6px rgba(242,182,60,.5)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 34px -8px rgba(242,182,60,.65)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid rgba(244,241,232,.28)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);
+  transform:translateX(-120%);transition:transform .6s var(--ease);pointer-events:none;
+}
+.btn:hover::before{transform:translateX(120%)}
+.nav .btn{padding:.6rem 1.2rem}
+@media(max-width:820px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:110px 0 3rem;overflow:clip;position:relative;
+  background:
+    radial-gradient(90% 60% at 50% 108%,rgba(242,182,60,.10),transparent 60%),
+    radial-gradient(60% 45% at 50% 0%,rgba(30,30,42,.8),transparent 70%),
+    var(--bg);
+}
+.hero-copy{text-align:center;position:relative;z-index:3}
+.hero h1{
+  font-size:clamp(2.6rem,7.5vw,5.6rem);font-weight:900;letter-spacing:-.02em;line-height:1;
+  text-transform:uppercase;margin:1.1rem 0 .9rem;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--gold2) 20%,var(--gold) 55%,#c98a17 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .eyebrow{justify-content:center}
+.hero .eyebrow::after{content:"";width:34px;height:1px;background:linear-gradient(270deg,var(--gold),transparent)}
+.hero-sub{color:var(--dim);max-width:46ch;margin:0 auto 1.6rem}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* stage */
+.stage-wrap{perspective:1300px;margin:clamp(1rem,3vw,2.5rem) auto 0;width:min(880px,94vw)}
+.stage{position:relative;transform-style:preserve-3d;will-change:transform}
+.layer{will-change:transform}
+.l-sweep{
+  position:absolute;left:50%;top:44%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);
+  background:conic-gradient(from 210deg,transparent 0deg,rgba(242,182,60,.16) 22deg,rgba(255,217,138,.05) 48deg,transparent 80deg);
+  -webkit-mask:radial-gradient(closest-side,#000 20%,transparent 72%);
+  mask:radial-gradient(closest-side,#000 20%,transparent 72%);
+  animation:sweep 16s linear infinite;pointer-events:none;
+}
+@keyframes sweep{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.l-sun{
+  position:absolute;left:50%;top:30%;width:min(420px,60vw);aspect-ratio:1;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,217,138,.16),rgba(242,182,60,.05) 45%,transparent 68%);
+  pointer-events:none;
+}
+.car-svg{position:relative;z-index:2;filter:drop-shadow(0 26px 40px rgba(0,0,0,.7))}
+.car-reflect{
+  transform:scaleY(-1) translateY(-4px);opacity:.28;
+  -webkit-mask:linear-gradient(rgba(0,0,0,.5),transparent 55%);
+  mask:linear-gradient(rgba(0,0,0,.5),transparent 55%);
+  pointer-events:none;
+}
+.l-ring{
+  position:absolute;left:50%;bottom:-4%;width:88%;height:60px;transform:translateX(-50%);
+  border-radius:50%;border:1px solid rgba(242,182,60,.28);
+  box-shadow:0 0 40px rgba(242,182,60,.12),inset 0 0 30px rgba(242,182,60,.06);
+  pointer-events:none;
+}
+.lightline{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.2s var(--ease) .5s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.spec-strip{
+  display:flex;justify-content:center;gap:clamp(1.2rem,4vw,3rem);flex-wrap:wrap;
+  margin-top:clamp(1rem,3vw,2rem);position:relative;z-index:3;
+}
+.spec-strip div{text-align:center}
+.spec-strip b{font-family:var(--mono);font-size:clamp(1.3rem,3vw,1.9rem);font-weight:600;color:var(--gold2);display:block;letter-spacing:-.02em}
+.spec-strip span{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.cue{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+}
+.cue::after{content:"";width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* staged entrance */
+.st{opacity:0;transform:translateY(26px)}
+body.ready .st{animation:rise .9s var(--ease) forwards}
+body.ready .st1{animation-delay:.1s}
+body.ready .st2{animation-delay:.24s}
+body.ready .st3{animation-delay:.38s}
+body.ready .st4{animation-delay:.52s}
+body.ready .st5{animation-delay:.68s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* scroll reveals */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}
+
+/* ---------- models ---------- */
+.models{background:linear-gradient(var(--bg),var(--bg2))}
+.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem}
+.mcell{perspective:900px}
+.mcard{
+  position:relative;border-radius:6px;background:linear-gradient(165deg,#191922,#101016 60%);
+  border:1px solid var(--line);padding:1.8rem 1.6rem 1.6rem;height:100%;
+  transform-style:preserve-3d;box-shadow:var(--e1);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .4s;
+  overflow:hidden;
+}
+.mcard:hover{box-shadow:var(--e3);border-color:rgba(242,182,60,.35)}
+.mcard::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,40%),rgba(255,217,138,.14),transparent 60%);
+}
+.mcard:hover::after{opacity:1}
+.mtier{font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.mname{font-size:1.7rem;font-weight:900;letter-spacing:-.01em;margin:.4rem 0 .2rem;text-transform:uppercase}
+.mline{height:46px;margin:.8rem 0 .4rem;color:var(--dim)}
+.mspecs{list-style:none;margin:1rem 0 1.2rem;border-top:1px solid var(--line)}
+.mspecs li{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.mspecs li span{color:var(--dim);letter-spacing:.05em}
+.mspecs li b{font-family:var(--mono);font-weight:600;color:var(--ink)}
+.mprice{display:flex;align-items:baseline;justify-content:space-between}
+.mprice b{font-size:1.25rem;font-weight:800;color:var(--gold2)}
+.mprice span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.mcard .arrow{
+  position:absolute;top:1.5rem;right:1.4rem;color:var(--dim);transition:transform .35s var(--ease),color .3s;
+}
+.mcard:hover .arrow{transform:translate(4px,-4px);color:var(--gold)}
+.flag{
+  position:absolute;top:0;right:0;background:linear-gradient(120deg,var(--gold2),var(--gold));color:#141005;
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:.3rem .7rem;border-radius:0 6px 0 6px;font-weight:700;
+}
+@media(max-width:960px){.model-grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto}}
+
+/* ---------- charge ---------- */
+.charge{background:var(--bg2)}
+.charge-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:2.4rem}
+.counters{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.counter{
+  border:1px solid var(--line);border-radius:6px;padding:1.3rem 1.2rem;background:rgba(20,20,27,.6);
+  transition:border-color .3s,transform .3s var(--ease);
+}
+.counter:hover{border-color:rgba(242,182,60,.35);transform:translateY(-3px)}
+.counter b{font-family:var(--mono);font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:600;color:var(--gold2);display:block;letter-spacing:-.03em}
+.counter small{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.curve-panel{
+  border:1px solid var(--line);border-radius:8px;padding:1.6rem;background:linear-gradient(170deg,#15151d,#0e0e13);
+  box-shadow:var(--e2);
+}
+.curve-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
+.curve-head b{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+.curve-head span{font-family:var(--mono);font-size:.7rem;color:var(--gold)}
+.chargepath{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s var(--ease) .2s}
+.in .chargepath,.no-js .chargepath{stroke-dashoffset:0}
+@media(max-width:880px){.charge-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.counters{grid-template-columns:1fr 1fr;gap:.8rem}.counter{padding:1rem .9rem}}
+
+/* ---------- design story ---------- */
+.design{overflow:clip}
+.design-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.design p{color:var(--dim);margin-bottom:1.1rem}
+.pull{
+  border-left:2px solid var(--gold);padding:.4rem 0 .4rem 1.3rem;margin:1.6rem 0;
+  font-size:1.15rem;color:var(--ink);font-weight:600;line-height:1.5;
+}
+.pull cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:.7rem}
+.design-fig{
+  position:relative;aspect-ratio:4/4.6;border-radius:8px;overflow:hidden;border:1px solid var(--line);
+  background:
+    radial-gradient(70% 45% at 50% 78%,rgba(242,182,60,.24),transparent 65%),
+    linear-gradient(190deg,#1d1d28 0%,#0c0c10 70%);
+  box-shadow:var(--e2);
+}
+.design-fig .horizon{position:absolute;left:8%;right:8%;bottom:26%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 24px 2px rgba(242,182,60,.5)}
+.design-fig .disc{
+  position:absolute;left:50%;bottom:26%;width:34%;aspect-ratio:2/1;transform:translateX(-50%);
+  border-radius:200px 200px 0 0;
+  background:linear-gradient(rgba(255,217,138,.85),rgba(242,182,60,.15));
+  filter:blur(1px);
+}
+.design-fig .cd{
+  position:absolute;top:1.2rem;left:1.2rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dim);
+}
+.design-fig .cd b{display:block;color:var(--gold2);font-size:1.5rem;letter-spacing:-.02em;margin-top:.2rem}
+@media(max-width:880px){.design-grid{grid-template-columns:1fr}.design-fig{aspect-ratio:16/10}}
+
+/* ---------- reserve ---------- */
+.reserve{
+  background:
+    radial-gradient(70% 90% at 50% 115%,rgba(242,182,60,.14),transparent 65%),
+    var(--bg2);
+  text-align:center;border-top:1px solid var(--line);
+}
+.reserve h2{margin-inline:auto;max-width:20ch}
+.reserve .lede{margin:0 auto 2rem}
+.rform{display:flex;gap:.8rem;justify-content:center;max-width:520px;margin:0 auto 1rem;flex-wrap:wrap}
+.rform input{
+  flex:1;min-width:220px;background:rgba(20,20,27,.85);border:1px solid rgba(244,241,232,.2);border-radius:2px;
+  color:var(--ink);font-family:var(--disp);font-size:.95rem;padding:.85rem 1.1rem;
+  transition:border-color .3s,box-shadow .3s;
+}
+.rform input::placeholder{color:var(--dim)}
+.rform input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(242,182,60,.22)}
+.rnote{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:2.6rem 0;background:var(--bg)}
+.foot{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;align-items:center;color:var(--dim);font-size:.8rem}
+.foot a{color:var(--dim);text-decoration:none;transition:color .3s}
+.foot a:hover{color:var(--gold2)}
+.foot-links{display:flex;gap:1.4rem;list-style:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .st{opacity:1;transform:none}
+  .l-sweep{animation:none;transform:translate(-50%,-50%) rotate(40deg)}
+  .lightline{animation:none;stroke-dashoffset:0}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Helios Motors home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="#f2b63c"/><g stroke="#f2b63c" stroke-width="1.6" stroke-linecap="round"><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/></g></svg>
+      Helios
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#models">Lineup</a></li>
+        <li><a href="#range">Range</a></li>
+        <li><a href="#design">Design</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-gold" href="#reserve">Reserve</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-copy">
+    <p class="eyebrow st st1">Model year 2027 · Electric performance</p>
+    <h1 class="st st2">Chase <em>the sun.</em></h1>
+    <p class="hero-sub st st3">Three motors, one obsession: an electric grand tourer that turns 512 miles of range into a single held breath.</p>
+    <div class="hero-cta st st4">
+      <a class="btn btn-gold" href="#reserve">Reserve yours — $250</a>
+      <a class="btn btn-ghost" href="#models">Explore the lineup</a>
+    </div>
+  </div>
+
+  <div class="stage-wrap st st5">
+    <div class="stage" id="stage">
+      <div class="layer l-sweep" data-par="-0.06" aria-hidden="true"></div>
+      <div class="layer l-sun" data-par="-0.12" aria-hidden="true"></div>
+      <div class="layer" data-par="0.05">
+        <svg class="car-svg" viewBox="0 0 920 300" role="img" aria-label="Silhouette of the Helios GT electric coupe on a lit stage">
+          <defs>
+            <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2c2c38"/>
+              <stop offset=".45" stop-color="#191921"/>
+              <stop offset="1" stop-color="#0b0b0f"/>
+            </linearGradient>
+            <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4a4a5c"/>
+              <stop offset="1" stop-color="#15151d"/>
+            </linearGradient>
+            <linearGradient id="gline" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#f2b63c" stop-opacity="0"/>
+              <stop offset=".2" stop-color="#f2b63c"/>
+              <stop offset=".6" stop-color="#ffd98a"/>
+              <stop offset="1" stop-color="#f2b63c" stop-opacity="0"/>
+            </linearGradient>
+            <radialGradient id="hub" cx=".5" cy=".5" r=".5">
+              <stop offset="0" stop-color="#3a3a48"/>
+              <stop offset=".6" stop-color="#15151c"/>
+              <stop offset="1" stop-color="#0a0a0e"/>
+            </radialGradient>
+          </defs>
+          <!-- body -->
+          <path fill="url(#body)" d="M64 232c8-38 58-62 142-74 52-52 152-78 268-76 112 2 196 30 254 76 70 12 118 34 126 62 4 16-10 22-38 22H96c-24 0-34-4-32-10Z"/>
+          <!-- greenhouse -->
+          <path fill="url(#glass)" d="M300 152c34-34 108-52 186-50 70 2 130 22 164 50-56-8-140-12-206-10-62 2-116 6-144 10Z"/>
+          <!-- rocker shadow -->
+          <path fill="#08080b" d="M150 242h620c14 0 22-3 24-8H128c2 5 10 8 22 8Z"/>
+          <!-- light line along roof -->
+          <path class="lightline" pathLength="1" fill="none" stroke="url(#gline)" stroke-width="2.4" stroke-linecap="round"
+            d="M70 228c10-36 60-58 140-70 52-52 152-78 268-76 112 2 194 30 252 76 68 12 116 34 124 60"/>
+          <!-- rear light blade -->
+          <path fill="#f2b63c" opacity=".9" d="M846 218c6 2 10 6 10 10 0 3-3 4-9 4h-26c8-6 17-11 25-14Z"/>
+          <!-- wheels -->
+          <g>
+            <circle cx="252" cy="234" r="42" fill="url(#hub)" stroke="#31313e" stroke-width="3"/>
+            <circle cx="252" cy="234" r="16" fill="#0a0a0e" stroke="#f2b63c" stroke-width="1.4" opacity=".9"/>
+            <circle cx="700" cy="234" r="42" fill="url(#hub)" stroke="#31313e" stroke-width="3"/>
+            <circle cx="700" cy="234" r="16" fill="#0a0a0e" stroke="#f2b63c" stroke-width="1.4" opacity=".9"/>
+          </g>
+        </svg>
+        <svg class="car-svg car-reflect" viewBox="0 0 920 300" aria-hidden="true">
+          <path fill="url(#body)" d="M64 232c8-38 58-62 142-74 52-52 152-78 268-76 112 2 196 30 254 76 70 12 118 34 126 62 4 16-10 22-38 22H96c-24 0-34-4-32-10Z"/>
+        </svg>
+      </div>
+      <div class="layer l-ring" data-par="0.12" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="spec-strip st st5" aria-label="Headline specifications">
+    <div><b>1,020</b><span>horsepower</span></div>
+    <div><b>2.1&thinsp;s</b><span>0–60 mph</span></div>
+    <div><b>512&thinsp;mi</b><span>EPA range</span></div>
+    <div><b>350&thinsp;kW</b><span>peak charge</span></div>
+  </div>
+  <p class="cue" aria-hidden="true">Scroll</p>
+</section>
+
+<!-- ================= MODELS ================= -->
+<section class="models" id="models">
+  <div class="wrap">
+    <p class="eyebrow rv">The lineup</p>
+    <h2 class="rv">Three ways to<br>outrun daylight.</h2>
+    <p class="lede rv">Every Helios shares the same 800-volt bones — a milled aluminium skateboard, cell-to-chassis pack, and a rear drive unit we cast in-house in Pasadena.</p>
+    <div class="model-grid">
+      <div class="mcell rv d1">
+        <article class="mcard tilt">
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p class="mtier">Dual motor</p>
+          <h3 class="mname">Helios S</h3>
+          <p class="mline">The daily grand tourer. Rear-biased torque, air suspension, glass roof.</p>
+          <ul class="mspecs">
+            <li><span>Power</span><b>496 hp</b></li>
+            <li><span>0–60 mph</span><b>3.8 s</b></li>
+            <li><span>EPA range</span><b>402 mi</b></li>
+            <li><span>Top speed</span><b>149 mph</b></li>
+          </ul>
+          <p class="mprice"><b>$64,900</b><span>from</span></p>
+        </article>
+      </div>
+      <div class="mcell rv d2">
+        <article class="mcard tilt">
+          <span class="flag">Most reserved</span>
+          <p class="mtier">Tri motor</p>
+          <h3 class="mname">Helios GT</h3>
+          <p class="mline">The one on the stage above. Torque-vectoring rear axle, carbon roof.</p>
+          <ul class="mspecs">
+            <li><span>Power</span><b>788 hp</b></li>
+            <li><span>0–60 mph</span><b>2.9 s</b></li>
+            <li><span>EPA range</span><b>512 mi</b></li>
+            <li><span>Top speed</span><b>168 mph</b></li>
+          </ul>
+          <p class="mprice"><b>$89,500</b><span>from</span></p>
+        </article>
+      </div>
+      <div class="mcell rv d3">
+        <article class="mcard tilt">
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p class="mtier">Quad motor · Track</p>
+          <h3 class="mname">Helios R</h3>
+          <p class="mline">Built for Laguna Seca lap records. Carbon-ceramic brakes, roll cage ready.</p>
+          <ul class="mspecs">
+            <li><span>Power</span><b>1,020 hp</b></li>
+            <li><span>0–60 mph</span><b>2.1 s</b></li>
+            <li><span>EPA range</span><b>348 mi</b></li>
+            <li><span>Top speed</span><b>202 mph</b></li>
+          </ul>
+          <p class="mprice"><b>$129,000</b><span>from</span></p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RANGE / CHARGING ================= -->
+<section class="charge" id="range">
+  <div class="wrap">
+    <p class="eyebrow rv">Range &amp; charging</p>
+    <h2 class="rv">Eighteen minutes,<br>then gone again.</h2>
+    <div class="charge-grid">
+      <div class="rv d1">
+        <p class="lede" style="margin-bottom:1.8rem">The 118 kWh pack pre-conditions on the way to any of 2,400 Helios Solar Canopy stalls across North America — so you arrive at peak curve, not waiting for it.</p>
+        <div class="counters">
+          <div class="counter"><b><span data-count="512">0</span></b><small>mi EPA range · GT</small></div>
+          <div class="counter"><b><span data-count="18">0</span></b><small>min 10&#8202;→&#8202;80&#8202;%</small></div>
+          <div class="counter"><b><span data-count="350">0</span></b><small>kW peak DC rate</small></div>
+          <div class="counter"><b><span data-count="4.2" data-dec="1">0</span></b><small>mi / kWh efficiency</small></div>
+        </div>
+      </div>
+      <div class="curve-panel rv d2">
+        <div class="curve-head"><b>DC charge curve</b><span>kW vs state of charge</span></div>
+        <svg viewBox="0 0 600 240" role="img" aria-label="Charging power curve: 350 kilowatts held from 10 to 45 percent state of charge, tapering to 90 kilowatts at 80 percent">
+          <defs>
+            <linearGradient id="fillg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f2b63c" stop-opacity=".34"/>
+              <stop offset="1" stop-color="#f2b63c" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g stroke="rgba(244,241,232,.1)" stroke-width="1">
+            <path d="M40 30h540M40 90h540M40 150h540M40 210h540"/>
+          </g>
+          <g fill="#9a968b" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11">
+            <text x="6" y="34">350</text><text x="6" y="94">230</text><text x="6" y="154">110</text><text x="12" y="214">0</text>
+            <text x="40" y="232">10%</text><text x="290" y="232">45%</text><text x="540" y="232">80%</text>
+          </g>
+          <path fill="url(#fillg)" d="M40 44 L60 32 L330 32 C420 32 470 120 580 172 L580 210 L40 210 Z"/>
+          <path class="chargepath" pathLength="1" fill="none" stroke="#ffd98a" stroke-width="2.5" stroke-linecap="round" d="M40 44 L60 32 L330 32 C420 32 470 120 580 172"/>
+          <circle cx="330" cy="32" r="4" fill="#ffd98a"/>
+          <text x="316" y="18" fill="#ffd98a" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11">350 kW held</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DESIGN ================= -->
+<section class="design" id="design">
+  <div class="wrap design-grid">
+    <div>
+      <p class="eyebrow rv">Design story</p>
+      <h2 class="rv">Drawn by light.</h2>
+      <p class="rv d1">Every Helios begins as a single stroke — the gold line our designers pull from the front splitter, over the roof, to the rear blade. The studio calls it the heliograph. The body panels exist to hold it still at 200 mph.</p>
+      <p class="rv d1">That discipline shows up in the wind tunnel. At 0.197 drag coefficient, the GT is the slipperiest production car sold in America — no pop-out handles, no wing, no tricks. Just a shape that wants to keep going.</p>
+      <blockquote class="pull rv d2">“We didn't design a car and then chase the drag number. We drew the cleanest line we could and built a car underneath it.”
+        <cite>— Mara Ellison, Chief Designer</cite>
+      </blockquote>
+    </div>
+    <div class="design-fig rv d2" data-par2="0.05" aria-hidden="true">
+      <span class="cd">Drag coefficient<b>0.197&thinsp;Cd</b></span>
+      <span class="disc"></span>
+      <span class="horizon"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESERVE ================= -->
+<section class="reserve" id="reserve">
+  <div class="wrap">
+    <p class="eyebrow rv" style="justify-content:center">Reservations open</p>
+    <h2 class="rv">Hold your place in the sun.</h2>
+    <p class="lede rv d1">A fully refundable $250 deposit secures your build slot and locks 2027 pricing. Configurator invitations go out in order of reservation.</p>
+    <form class="rform rv d2" autocomplete="off">
+      <label for="remail" class="skip">Email address</label>
+      <input id="remail" type="email" name="email" placeholder="you@example.com" required>
+      <button class="btn btn-gold" type="submit">Reserve for $250</button>
+    </form>
+    <p class="rnote rv d3">Fully refundable · First deliveries Q3 2027</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© 2026 Helios Motors, Inc. · 2400 Arroyo Parkway, Pasadena, CA 91103</p>
+    <ul class="foot-links">
+      <li><a href="#models">Lineup</a></li>
+      <li><a href="#range">Charging</a></li>
+      <li><a href="#reserve">Reserve</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var d=document,w=window;
+d.body.classList.remove('no-js');
+d.documentElement.classList.add('js');
+var RM=w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var COARSE=w.matchMedia('(pointer: coarse)').matches;
+
+/* staged entrance */
+requestAnimationFrame(function(){requestAnimationFrame(function(){d.body.classList.add('ready');});});
+
+/* scroll reveals */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.16,rootMargin:'0px 0px -36px 0px'});
+d.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* counters */
+function runCount(el){
+  var t=parseFloat(el.getAttribute('data-count'))||0,dec=parseInt(el.getAttribute('data-dec')||'0',10),t0=null;
+  if(RM){el.textContent=t.toFixed(dec);return;}
+  function step(ts){
+    if(t0===null)t0=ts;
+    var p=Math.min((ts-t0)/1400,1),e=1-Math.pow(1-p,3),v=t*e;
+    el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US');
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){runCount(e.target);cio.unobserve(e.target);}});
+},{threshold:.6});
+d.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
+
+/* hero: mouse tilt + scroll parallax (rAF-driven, transform only) */
+var stage=d.getElementById('stage'),hero=d.querySelector('.hero');
+var pars=[].slice.call(d.querySelectorAll('[data-par]'));
+var par2=[].slice.call(d.querySelectorAll('[data-par2]'));
+var tx=0,ty=0,cx=0,cy=0,sy=w.scrollY||0,running=false;
+function kick(){if(!running){running=true;requestAnimationFrame(frame);}}
+function frame(){
+  var idle=true;
+  if(stage&&!RM&&!COARSE){
+    cx+=(tx-cx)*.085;cy+=(ty-cy)*.085;
+    if(Math.abs(tx-cx)>.0006||Math.abs(ty-cy)>.0006)idle=false;
+    stage.style.transform='rotateX('+(-cy*5).toFixed(3)+'deg) rotateY('+(cx*7).toFixed(3)+'deg)';
+  }
+  if(!RM){
+    var h=hero?hero.offsetHeight:0;
+    if(sy<h){
+      pars.forEach(function(el){
+        el.style.transform='translate3d(0,'+(sy*parseFloat(el.getAttribute('data-par'))).toFixed(2)+'px,0)';
+      });
+    }
+    par2.forEach(function(el){
+      var r=el.getBoundingClientRect(),off=(r.top+r.height/2-w.innerHeight/2)*parseFloat(el.getAttribute('data-par2'));
+      el.style.transform='translate3d(0,'+off.toFixed(2)+'px,0)';
+    });
+  }
+  running=!idle;
+  if(running)requestAnimationFrame(frame);
+}
+if(!RM&&!COARSE){
+  w.addEventListener('pointermove',function(e){
+    tx=(e.clientX/w.innerWidth-.5)*2;ty=(e.clientY/w.innerHeight-.5)*2;kick();
+  },{passive:true});
+}
+if(!RM){
+  w.addEventListener('scroll',function(){sy=w.scrollY;kick();},{passive:true});
+  kick();
+}
+
+/* 3D hover cards */
+if(!RM&&!COARSE){
+  d.querySelectorAll('.tilt').forEach(function(card){
+    var raf=null,px=.5,py=.5;
+    function apply(){
+      raf=null;
+      card.style.transform='translateY(-6px) rotateX('+((.5-py)*7).toFixed(2)+'deg) rotateY('+((px-.5)*9).toFixed(2)+'deg)';
+      card.style.setProperty('--mx',(px*100).toFixed(1)+'%');
+      card.style.setProperty('--my',(py*100).toFixed(1)+'%');
+    }
+    card.addEventListener('pointermove',function(e){
+      var r=card.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width;py=(e.clientY-r.top)/r.height;
+      card.style.transition='box-shadow .55s cubic-bezier(.22,.9,.28,1),border-color .4s';
+      if(!raf)raf=requestAnimationFrame(apply);
+    });
+    card.addEventListener('pointerleave',function(){
+      if(raf){cancelAnimationFrame(raf);raf=null;}
+      card.style.transition='';card.style.transform='';
+    });
+  });
+}
+
+/* reserve form */
+var form=d.querySelector('.rform');
+if(form){
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button');
+    btn.textContent='Reservation held ✓';
+    btn.setAttribute('disabled','');
+    d.querySelector('.rnote').textContent='Check your inbox — configurator invite on the way.';
+  });
+}
+})();
+</script>
+</body>
+</html>

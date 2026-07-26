@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurea — Fine Jewelry House, Florence &amp; New York</title>
+<meta name="description" content="Aurea, haute joaillerie since 1987. Hand-set stones, 18k candle gold, one atelier in Oltrarno. Boutiques in Florence and New York, by appointment.">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --velvet:#140a10;
+  --velvet2:#1d0f17;
+  --plum:#2a1620;
+  --ivory:#f3ecdf;
+  --champagne:#e6d3ab;
+  --gold:#d9b36a;
+  --gold-hi:#f4e2b4;
+  --gold-dp:#8f6f34;
+  --garnet:#7a2f3d;
+  --mut:#a4938f;
+  --hairline:rgba(217,179,106,.22);
+  --hairline-soft:rgba(243,236,223,.09);
+  --didone:Didot,'Bodoni MT','Noto Serif Display','URW Palladio L',P052,serif;
+  --charter:Charter,'Bitstream Charter','Sitka Text',Cambria,serif;
+  --glow-1:0 2px 10px rgba(0,0,0,.5);
+  --glow-2:0 12px 34px rgba(0,0,0,.55),0 0 24px rgba(217,179,106,.06);
+  --glow-3:0 30px 70px rgba(0,0,0,.65),0 0 44px rgba(217,179,106,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--velvet);color:var(--ivory);
+  font-family:var(--charter);font-size:16.5px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:#241505}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--didone);font-weight:400;line-height:1.08;letter-spacing:.01em}
+h2{font-size:clamp(2rem,4.4vw,3.2rem);margin:18px 0 16px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.over{font-family:var(--charter);font-style:italic;font-size:1rem;color:var(--gold);letter-spacing:.06em}
+.over::after{content:"";display:block;width:44px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-top:10px}
+.center .over::after{margin-inline:auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.lede{color:var(--mut);max-width:56ch}
+.center{text-align:center}
+.center .lede{margin-inline:auto}
+section{padding:104px 0;position:relative}
+.filet{width:min(520px,72%);height:14px;margin:0 auto;position:relative}
+.filet::before{content:"";position:absolute;inset:6px 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--hairline) 30%,var(--hairline) 70%,transparent)}
+.filet::after{content:"◆";position:absolute;left:50%;top:0;transform:translateX(-50%);font-size:9px;color:var(--gold-dp);background:var(--velvet);padding:0 14px}
+
+/* ---------- header ---------- */
+header{position:fixed;inset:0 0 auto;z-index:90;border-bottom:1px solid transparent;transition:background .4s ease,border-color .4s ease}
+header.on{background:rgba(20,10,16,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--hairline-soft)}
+@supports not (backdrop-filter:blur(2px)){header.on{background:rgba(20,10,16,.97)}}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px;max-width:1220px;margin:0 auto;padding:0 28px}
+.nav-l,.nav-r{display:flex;gap:26px;align-items:center}
+.nav-r{justify-content:flex-end}
+.nav a.lnk{font-family:var(--charter);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);position:relative;padding:6px 0}
+.nav a.lnk::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.nav a.lnk:hover{color:var(--ivory)}
+.nav a.lnk:hover::after{transform:scaleX(1)}
+.wordmark{font-family:var(--didone);font-size:1.7rem;letter-spacing:.34em;text-indent:.34em;color:var(--ivory)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--charter);font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;
+  padding:16px 34px;border:1px solid var(--gold-dp);color:var(--gold-hi);background:transparent;
+  position:relative;overflow:hidden;cursor:pointer;transition:color .35s ease,border-color .35s ease,transform .2s ease,box-shadow .35s ease;
+}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-dp));transform:scaleY(0);transform-origin:bottom;transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:-1}
+.btn:hover{color:#231404;border-color:var(--gold);box-shadow:var(--glow-2)}
+.btn:hover::before{transform:scaleY(1)}
+.btn:active{transform:translateY(1px)}
+.btn.fill{background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-dp));color:#231404;border-color:var(--gold-hi)}
+.btn.fill::before{background:#fff;opacity:0;transform:none;transition:opacity .3s ease}
+.btn.fill:hover::before{opacity:.22}
+.btn.slim{padding:11px 22px;letter-spacing:.2em}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;position:relative;overflow:clip;padding:120px 0 80px}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(720px 520px at 50% 62%,rgba(217,179,106,.13),transparent 65%),
+  radial-gradient(1100px 700px at 50% 118%,rgba(122,47,61,.22),transparent 60%),
+  radial-gradient(500px 300px at 12% 8%,rgba(42,22,32,.9),transparent 70%);
+  pointer-events:none}
+.hero .over{position:relative;z-index:4}
+.hero h1{position:relative;z-index:4;font-size:clamp(2.8rem,7vw,5.4rem);margin:22px 0 16px;color:var(--ivory)}
+.hero h1 em{font-style:italic;color:var(--champagne)}
+.hero .lede{position:relative;z-index:4;max-width:44ch;margin:0 auto 8px;font-size:1.06rem}
+
+/* the vitrine — 3D ring stage */
+.vitrine{position:relative;width:min(560px,92vw);height:400px;margin:8px auto 10px;perspective:1050px;perspective-origin:50% 30%;z-index:3}
+.pedtilt{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--px,0deg)) rotateY(var(--py,0deg));will-change:transform}
+.spinner{position:absolute;left:50%;top:56%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-64deg) rotateZ(0deg);animation:turn 26s linear infinite}
+@keyframes turn{from{transform:rotateX(-64deg) rotateZ(0deg)}to{transform:rotateX(-64deg) rotateZ(360deg)}}
+.spinner .seg{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.spinner i{position:absolute;left:0;top:0;display:block}
+.gemroot{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.plinth{position:absolute;left:50%;top:56%;width:340px;height:120px;transform:translate(-50%,-28%) translateZ(-60px);background:radial-gradient(50% 46% at 50% 42%,rgba(122,47,61,.5),rgba(42,22,32,.9) 70%,transparent 100%);border-radius:50%;filter:blur(2px)}
+.halo{position:absolute;left:50%;top:52%;width:420px;height:420px;transform:translate(-50%,-50%) translateZ(-120px);border-radius:50%;border:1px solid rgba(217,179,106,.16);box-shadow:0 0 90px rgba(217,179,106,.1) inset}
+.sweep{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(244,226,180,.1) 50%,transparent 58%);background-size:280% 100%;animation:sweep 7s ease-in-out infinite;mix-blend-mode:screen}
+@keyframes sweep{0%,55%{background-position:120% 0}85%,100%{background-position:-60% 0}}
+/* CSS-only fallback ring (shown without JS) */
+.fallring{position:absolute;left:50%;top:50%;width:230px;height:230px;transform:translate(-50%,-50%);border-radius:50%;border:16px solid transparent;background:
+  linear-gradient(var(--velvet),var(--velvet)) padding-box,
+  conic-gradient(from 210deg,var(--gold-dp),var(--gold-hi) 22%,var(--gold-dp) 48%,#5c4318 70%,var(--gold) 100%) border-box}
+.fallring::after{content:"";position:absolute;left:50%;top:-34px;transform:translateX(-50%) rotate(45deg);width:26px;height:26px;background:linear-gradient(135deg,#fdf6e3,var(--champagne) 55%,var(--gold-dp));box-shadow:0 0 26px rgba(244,226,180,.6)}
+.js .fallring{display:none}
+.vitrine-cap{position:relative;z-index:4;font-family:var(--charter);font-style:italic;color:var(--mut);font-size:.92rem}
+.vitrine-cap b{color:var(--champagne);font-weight:400}
+.hero-cta{position:relative;z-index:4;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+
+/* ---------- collections ---------- */
+#collections{background:linear-gradient(180deg,var(--velvet),var(--velvet2) 30%,var(--velvet))}
+.cgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:54px;perspective:1300px}
+.piece{
+  --rx:0deg;--ry:0deg;--sx:50%;--sy:35%;
+  position:relative;background:linear-gradient(180deg,var(--plum),var(--velvet2) 70%);
+  border:1px solid var(--hairline);padding:40px 36px 32px;
+  transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:border-color .35s ease,box-shadow .35s ease;box-shadow:var(--glow-1);
+  will-change:transform;overflow:hidden;
+}
+.piece::before{content:"";position:absolute;inset:0;background:radial-gradient(360px 240px at var(--sx) var(--sy),rgba(244,226,180,.13),transparent 60%);opacity:0;transition:opacity .35s ease;pointer-events:none}
+.piece:hover{border-color:rgba(217,179,106,.5);box-shadow:var(--glow-3)}
+.piece:hover::before{opacity:1}
+.piece .frame{height:150px;display:grid;place-items:center;margin-bottom:26px;transform:translateZ(34px)}
+.piece .frame svg{overflow:visible;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
+.piece h3{font-size:1.65rem;transform:translateZ(24px)}
+.piece .desc{color:var(--mut);font-size:.95rem;margin:10px 0 0;max-width:40ch;transform:translateZ(16px)}
+.piece .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:26px;padding-top:20px;border-top:1px solid var(--hairline-soft);transform:translateZ(12px)}
+.piece .price{font-family:var(--didone);font-size:1.5rem;color:var(--champagne);letter-spacing:.03em}
+.piece .en{font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);position:relative}
+.piece .en::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s ease}
+.piece .en:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ---------- craftsmanship ---------- */
+#craft .split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:center}
+#craft blockquote{font-family:var(--didone);font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.4;color:var(--champagne);margin:26px 0;padding-left:26px;border-left:1px solid var(--gold-dp)}
+#craft blockquote footer{font-family:var(--charter);font-style:italic;font-size:.95rem;color:var(--mut);margin-top:14px}
+.craft-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--hairline-soft);border:1px solid var(--hairline-soft)}
+.cstat{background:var(--velvet2);padding:32px 28px;transition:background .3s ease}
+.cstat:hover{background:var(--plum)}
+.cstat b{display:block;font-family:var(--didone);font-size:2.3rem;color:var(--gold-hi);font-weight:400;line-height:1.1}
+.cstat span{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+
+/* ---------- bespoke ---------- */
+#bespoke{background:linear-gradient(180deg,var(--velvet),#180c13 40%,var(--velvet))}
+.b-steps{margin:56px auto 0;max-width:760px;position:relative}
+.b-steps::before{content:"";position:absolute;left:19px;top:16px;bottom:16px;width:1px;background:linear-gradient(180deg,transparent,var(--gold-dp) 12%,var(--gold-dp) 88%,transparent)}
+.bstep{position:relative;padding:0 0 46px 74px}
+.bstep:last-child{padding-bottom:0}
+.bstep .dot{position:absolute;left:0;top:2px;width:39px;height:39px;border-radius:50%;border:1px solid var(--gold-dp);display:grid;place-items:center;font-family:var(--didone);color:var(--gold-hi);background:radial-gradient(circle at 34% 28%,rgba(217,179,106,.28),rgba(20,10,16,.9) 75%);transition:transform .35s cubic-bezier(.34,1.56,.5,1),box-shadow .3s ease}
+.bstep:hover .dot{transform:scale(1.12);box-shadow:0 0 24px rgba(217,179,106,.3)}
+.bstep h3{font-size:1.45rem}
+.bstep .when{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:6px 0 10px}
+.bstep p{color:var(--mut);max-width:56ch;font-size:.97rem}
+.b-note{text-align:center;margin-top:48px;color:var(--mut);font-style:italic}
+.b-note b{color:var(--champagne);font-weight:400}
+
+/* ---------- boutiques ---------- */
+.bout-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:52px}
+.bout{border:1px solid var(--hairline);padding:44px 40px;position:relative;background:linear-gradient(180deg,var(--velvet2),var(--velvet));transition:border-color .35s ease,box-shadow .35s ease,transform .35s cubic-bezier(.2,.7,.2,1)}
+.bout:hover{border-color:rgba(217,179,106,.5);box-shadow:var(--glow-2);transform:translateY(-6px)}
+.bout .city{font-family:var(--didone);font-size:2rem;color:var(--ivory)}
+.bout .sub{font-style:italic;color:var(--gold);margin:4px 0 22px}
+.bout address{font-style:normal;color:var(--mut);line-height:2}
+.bout address b{color:var(--ivory);font-weight:400}
+.bout .hrs{margin-top:20px;padding-top:18px;border-top:1px solid var(--hairline-soft);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.appt{margin-top:60px;text-align:center}
+.appt p{color:var(--mut);font-style:italic;margin-bottom:24px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hairline-soft);padding:56px 0 46px;text-align:center}
+footer .wordmark{font-size:1.4rem}
+footer p{color:var(--mut);font-size:.85rem;margin-top:14px}
+footer .fine{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#6d5f5c;margin-top:22px}
+
+/* ---------- motion system ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .js .ent{opacity:0;transform:translateY(20px)}
+  .js.go .ent{opacity:1;transform:none;transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+  .js.go .d1{transition-delay:.12s}.js.go .d2{transition-delay:.28s}.js.go .d3{transition-delay:.46s}
+  .js.go .d4{transition-delay:.64s}.js.go .d5{transition-delay:.8s}
+  .js .rv{opacity:0;transform:translateY(24px)}
+  .js .rv.in{opacity:1;transform:none;transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+  .js .rv.in.d1{transition-delay:.12s}.js .rv.in.d2{transition-delay:.24s}.js .rv.in.d3{transition-delay:.36s}
+}
+@media (prefers-reduced-motion:reduce){
+  .spinner{animation:none;transform:rotateX(-64deg) rotateZ(28deg)}
+  .sweep{animation:none;background-position:50% 0}
+  *{transition-duration:.01ms !important}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:940px){
+  .cgrid,.bout-grid{grid-template-columns:1fr}
+  #craft .split{grid-template-columns:1fr;gap:44px}
+  .nav{grid-template-columns:auto 1fr;height:68px}
+  .nav-l{display:none}
+  .nav .wordmark{justify-self:start;font-size:1.4rem}
+}
+@media (max-width:640px){
+  section{padding:76px 0}
+  .hero{padding-top:104px}
+  .vitrine{height:330px}
+  .vitrine .pedtilt{transform:none !important;scale:.78}
+  .craft-stats{grid-template-columns:1fr 1fr}
+  .cstat{padding:24px 18px}
+  .cstat b{font-size:1.8rem}
+  .piece{padding:30px 24px 26px}
+  .bout{padding:32px 26px}
+  .nav-r .lnk{display:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <nav class="nav" aria-label="Main">
+    <div class="nav-l">
+      <a class="lnk" href="#collections">Collections</a>
+      <a class="lnk" href="#craft">Craftsmanship</a>
+      <a class="lnk" href="#bespoke">Bespoke</a>
+    </div>
+    <a class="wordmark" href="#top" aria-label="Aurea home">AUREA</a>
+    <div class="nav-r">
+      <a class="lnk" href="#boutiques">Boutiques</a>
+      <a class="btn slim" href="#boutiques">Appointment</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <p class="over ent d1" style="text-align:center">Haute joaillerie · Firenze — New York · dal 1987</p>
+  <h1 class="ent d2">Made to<br><em>hold light.</em></h1>
+  <p class="lede ent d3">One atelier above the Arno. Eleven goldsmiths.
+  Every stone set by hand, every band finished by candlelight standards.</p>
+
+  <div class="vitrine ent d3" id="vitrine" aria-hidden="true">
+    <div class="pedtilt" id="pedtilt">
+      <div class="halo"></div>
+      <div class="plinth"></div>
+      <div class="fallring"></div>
+      <div class="spinner" id="spinner"></div>
+    </div>
+    <div class="sweep"></div>
+  </div>
+
+  <p class="vitrine-cap ent d4">The <b>Solène</b> solitaire — 1.2 ct, old-European cut, 18k candle gold</p>
+  <div class="hero-cta ent d5">
+    <a class="btn fill" href="#collections">View the collections</a>
+    <a class="btn" href="#bespoke">Commission a piece</a>
+  </div>
+</div>
+
+<div class="filet" aria-hidden="true"></div>
+
+<!-- ============ COLLECTIONS ============ -->
+<section id="collections">
+  <div class="wrap center">
+    <p class="over rv">The collections</p>
+    <h2 class="rv">Four signatures,<br>numbered and hallmarked</h2>
+    <p class="lede rv d1">Each piece is made to order in Oltrarno and engraved with its
+    edition number. Allow four to six weeks from order to vitrine box.</p>
+
+    <div class="cgrid" style="text-align:left">
+      <article class="piece rv" data-tilt>
+        <div class="frame">
+          <svg width="150" height="130" viewBox="0 0 150 130" fill="none" aria-hidden="true">
+            <circle cx="75" cy="78" r="40" stroke="#d9b36a" stroke-width="5"/>
+            <circle cx="75" cy="78" r="40" stroke="rgba(244,226,180,.65)" stroke-width="1.4"/>
+            <path d="M75 12 92 30 75 52 58 30Z" fill="none" stroke="#f4e2b4" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M58 30h34M75 12v40" stroke="rgba(244,226,180,.6)" stroke-width="1"/>
+            <path d="M66 33 60 38M84 33l6 5" stroke="#d9b36a" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Solène Solitaire</h3>
+        <p class="desc">A 1.2 carat old-European diamond in a hand-raised six-claw crown,
+        on a knife-edge band of 18k candle gold. Our signature since 1991.</p>
+        <div class="row"><span class="price">$8,400</span><a class="en" href="#boutiques">Enquire</a></div>
+      </article>
+
+      <article class="piece rv d1" data-tilt>
+        <div class="frame">
+          <svg width="150" height="130" viewBox="0 0 150 130" fill="none" aria-hidden="true">
+            <ellipse cx="75" cy="65" rx="46" ry="42" stroke="#d9b36a" stroke-width="9"/>
+            <ellipse cx="75" cy="65" rx="46" ry="42" stroke="rgba(143,111,52,.8)" stroke-width="2" stroke-dasharray="3 6"/>
+            <ellipse cx="75" cy="65" rx="46" ry="42" stroke="rgba(244,226,180,.7)" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3>Candela Band</h3>
+        <p class="desc">Hand-hammered 22k gold with a satin interior, its surface faceted
+        by four hundred strikes of the planishing hammer. No two bands match.</p>
+        <div class="row"><span class="price">$2,950</span><a class="en" href="#boutiques">Enquire</a></div>
+      </article>
+
+      <article class="piece rv d2" data-tilt>
+        <div class="frame">
+          <svg width="150" height="130" viewBox="0 0 150 130" fill="none" aria-hidden="true">
+            <path d="M50 18c0 10 8 12 8 22M100 18c0 10-8 12-8 22" stroke="#d9b36a" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="58" cy="46" r="6" stroke="#f4e2b4" stroke-width="2"/>
+            <circle cx="92" cy="46" r="6" stroke="#f4e2b4" stroke-width="2"/>
+            <path d="M58 55v14M92 55v14" stroke="#d9b36a" stroke-width="1.6"/>
+            <path d="M58 72l10 18-10 22-10-22Z" fill="none" stroke="#c25a5a" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M92 72l10 18-10 22-10-22Z" fill="none" stroke="#c25a5a" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M48 90h20M82 90h20" stroke="rgba(194,90,90,.6)" stroke-width="1"/>
+          </svg>
+        </div>
+        <h3>Vespera Drops</h3>
+        <p class="desc">Pendeloque-cut Mozambique garnets in milgrain bezels, hung to move
+        with candlelight. The pair weighs less than a sheet of writing paper.</p>
+        <div class="row"><span class="price">$5,600</span><a class="en" href="#boutiques">Enquire</a></div>
+      </article>
+
+      <article class="piece rv d3" data-tilt>
+        <div class="frame">
+          <svg width="150" height="130" viewBox="0 0 150 130" fill="none" aria-hidden="true">
+            <path d="M45 96c-6-26 4-58 30-58s36 32 30 58c-4 14-56 14-60 0Z" stroke="#d9b36a" stroke-width="5"/>
+            <ellipse cx="75" cy="58" rx="21" ry="16" fill="none" stroke="#f4e2b4" stroke-width="2"/>
+            <path d="M67 54c3 4 13 4 16 0M69 62h12" stroke="rgba(244,226,180,.75)" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Nocturne Signet</h3>
+        <p class="desc">An 18k signet with a black intaglio table, engraved by hand with
+        your cipher — three letters, a crest, or nothing at all.</p>
+        <div class="row"><span class="price">$3,250</span><a class="en" href="#boutiques">Enquire</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CRAFT ============ -->
+<section id="craft">
+  <div class="wrap split">
+    <div>
+      <p class="over rv">Craftsmanship</p>
+      <h2 class="rv">Slow gold</h2>
+      <p class="lede rv d1">Aurea keeps one workshop, on the third floor of a
+      sixteenth-century palazzo in Oltrarno. Nothing is cast off-site, nothing is
+      outsourced, and no piece leaves before the master's loupe does a final pass.</p>
+      <blockquote class="rv d2">
+        "A machine can be precise. Only a hand can be certain."
+        <footer>— Elena Vanni, master goldsmith &amp; atelier director</footer>
+      </blockquote>
+    </div>
+    <div class="craft-stats rv d1">
+      <div class="cstat"><b>60–140</b><span>hours per piece</span></div>
+      <div class="cstat"><b>11</b><span>goldsmiths, one room</span></div>
+      <div class="cstat"><b>92%</b><span>recycled gold, assayed</span></div>
+      <div class="cstat"><b>1987</b><span>first hallmark struck</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="filet" aria-hidden="true"></div>
+
+<!-- ============ BESPOKE ============ -->
+<section id="bespoke">
+  <div class="wrap center">
+    <p class="over rv">Bespoke</p>
+    <h2 class="rv">A piece that exists once</h2>
+    <p class="lede rv d1">Commissions begin at $6,000 and take eight to fourteen weeks.
+    Four meetings, one ring — or brooch, or tiara; we don't judge ambition.</p>
+
+    <div class="b-steps" style="text-align:left">
+      <div class="bstep rv">
+        <span class="dot">I</span>
+        <h3>The Conversation</h3>
+        <p class="when">Week 1 · Florence, New York, or by video</p>
+        <p>An hour with a designer and strong coffee. Bring photographs, heirlooms,
+        a sentence, or nothing but the occasion. We take notes in pencil.</p>
+      </div>
+      <div class="bstep rv d1">
+        <span class="dot">II</span>
+        <h3>The Gouache</h3>
+        <p class="when">Weeks 2–4 · Two revisions included</p>
+        <p>Your piece is painted at actual size in gouache on grey paper, the way
+        this house has presented designs since its first commission. You approve the
+        painting before metal is touched.</p>
+      </div>
+      <div class="bstep rv d2">
+        <span class="dot">III</span>
+        <h3>The Wax</h3>
+        <p class="when">Weeks 5–8 · One fitting</p>
+        <p>A carved wax model, sized to your hand, fitted in person or by post.
+        This is where millimetres are argued about, and should be.</p>
+      </div>
+      <div class="bstep rv d3">
+        <span class="dot">IV</span>
+        <h3>The Setting</h3>
+        <p class="when">Weeks 9–14 · Hallmarked &amp; delivered</p>
+        <p>Stones are set under the loupe, the band is finished and struck with the
+        Aurea hallmark and your edition mark, and the piece is delivered in its
+        walnut vitrine box. We keep the gouache; you keep everything else.</p>
+      </div>
+    </div>
+    <p class="b-note rv">Every commission includes <b>a lifetime of cleaning, sizing, and re-tipping</b> — bring it home once a year and we treat it like it never left.</p>
+  </div>
+</section>
+
+<!-- ============ BOUTIQUES ============ -->
+<section id="boutiques">
+  <div class="wrap center">
+    <p class="over rv">Boutiques</p>
+    <h2 class="rv">Two rooms, two cities</h2>
+    <p class="lede rv d1">Both boutiques are appointment-first — an hour, unhurried,
+    with the pieces out of the vitrine and on your hand where they belong.</p>
+
+    <div class="bout-grid" style="text-align:left">
+      <div class="bout rv">
+        <p class="city">Firenze</p>
+        <p class="sub">The atelier boutique</p>
+        <address>
+          <b>Via Maggio 14R, Oltrarno</b><br>
+          50125 Firenze, Italia<br>
+          +39 055 555 0187
+        </address>
+        <p class="hrs">Tue – Sat · 10:00 – 19:00 · closed Aug 10–24</p>
+      </div>
+      <div class="bout rv d1">
+        <p class="city">New York</p>
+        <p class="sub">The town house</p>
+        <address>
+          <b>21 East 67th Street, Second Floor</b><br>
+          New York, NY 10065<br>
+          +1 (212) 555-0187
+        </address>
+        <p class="hrs">Tue – Sat · 11:00 – 18:00 · by appointment</p>
+      </div>
+    </div>
+
+    <div class="appt rv d2">
+      <p>Appointments are held to one party at a time. Champagne is cold; pressure is not on the menu.</p>
+      <a class="btn fill" href="#top">Request an appointment</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p class="wordmark">AUREA</p>
+  <p>Fine jewelry house · Firenze &amp; New York · dal 1987</p>
+  <p class="fine">© 2026 Aurea S.r.l. · Responsibly sourced, hand set, worn forever</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var docEl=document.documentElement;
+  var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fine=window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* staged entrance */
+  function go(){requestAnimationFrame(function(){docEl.classList.add("go")})}
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go)}else{go()}
+
+  /* header state */
+  var hdr=document.getElementById("hdr"),hRaf=null;
+  function hCheck(){hRaf=null;hdr.classList.toggle("on",window.scrollY>30)}
+  window.addEventListener("scroll",function(){if(!hRaf){hRaf=requestAnimationFrame(hCheck)}},{passive:true});
+  hCheck();
+
+  /* scroll reveals */
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}
+      });
+    },{threshold:.12,rootMargin:"0px 0px -52px 0px"});
+    Array.prototype.forEach.call(document.querySelectorAll(".rv"),function(el){io.observe(el)});
+  }else{
+    Array.prototype.forEach.call(document.querySelectorAll(".rv"),function(el){el.classList.add("in")});
+  }
+
+  /* ------- build the 3D ring + gem from planes ------- */
+  var spinner=document.getElementById("spinner");
+  if(spinner){
+    var SEG=26, R=112, BAND=44;
+    var segW=2*R*Math.tan(Math.PI/SEG)+1.2;
+    var lightDir=.7; /* baked key light angle */
+    var frag=document.createDocumentFragment();
+    for(var i=0;i<SEG;i++){
+      var a=i/SEG*Math.PI*2;
+      var lum=Math.max(0,Math.cos(a-lightDir));
+      var L1=(34+lum*38).toFixed(1), L2=(22+lum*26).toFixed(1), Lh=(58+lum*32).toFixed(1);
+      var seg=document.createElement("div");
+      seg.className="seg";
+      var face=document.createElement("i");
+      face.style.cssText="width:"+segW.toFixed(2)+"px;height:"+BAND+"px;margin-left:"+(-segW/2).toFixed(2)+"px;margin-top:"+(-BAND/2)+"px;"+
+        "transform:rotateZ("+(a*180/Math.PI).toFixed(2)+"deg) translateY("+(-R)+"px) rotateX(90deg);"+
+        "background:linear-gradient(180deg,hsl(43 62% "+Lh+"%) 0%,hsl(42 56% "+L1+"%) 30%,hsl(40 52% "+L2+"%) 78%,hsl(43 58% "+L1+"%) 100%);";
+      seg.appendChild(face);
+      frag.appendChild(seg);
+    }
+    /* gem: two 8-facet pyramids (crown up, pavilion down) at the ring's 12 o'clock */
+    var gem=document.createElement("div");
+    gem.className="gemroot";
+    /* position on band rim: ring lies in XY plane (rotateX(-64) applied by parent) */
+    gem.style.transform="rotateZ(0deg) translateY("+(-R)+"px) rotateX(90deg) translateY("+(-BAND/2-2)+"px)";
+    var GN=8, GR=30, CH=34, PH=44;
+    function facet(j,up){
+      var ga=j/GN*360;
+      var lum=Math.max(.12,Math.cos((ga-40)*Math.PI/180));
+      var faceW=2*GR*Math.tan(Math.PI/GN)+1;
+      var h=up?CH:PH;
+      var tilt=Math.asin(Math.min(1,GR/h))*180/Math.PI;
+      var f=document.createElement("i");
+      var Lb=up?(46+lum*40):(34+lum*30);
+      f.style.cssText="width:"+faceW.toFixed(2)+"px;height:"+h+"px;margin-left:"+(-faceW/2).toFixed(2)+"px;"+
+        "clip-path:polygon(50% "+(up?"0%":"100%")+",100% "+(up?"100%":"0%")+",0% "+(up?"100%":"0%")+");"+
+        "transform-origin:50% "+(up?"100%":"0%")+";"+
+        "transform:rotateY("+ga+"deg) translateZ("+GR+"px) rotateX("+((up?1:-1)*(90-tilt)).toFixed(2)+"deg);"+
+        "top:"+(up?(-CH)+"px":"0px")+";"+
+        "background:linear-gradient("+(up?"180deg":"0deg")+",hsl(45 78% "+(Lb+18).toFixed(1)+"%) 0%,hsl(43 62% "+Lb.toFixed(1)+"%) 55%,hsl(40 48% "+(Lb-16).toFixed(1)+"%) 100%);"+
+        "opacity:.94;";
+      return f;
+    }
+    for(var j=0;j<GN;j++){gem.appendChild(facet(j,true));gem.appendChild(facet(j,false));}
+    var spark=document.createElement("i");
+    spark.style.cssText="width:16px;height:16px;margin:-42px 0 0 -8px;border-radius:50%;"+
+      "background:radial-gradient(circle,rgba(255,250,235,.95),rgba(244,226,180,.25) 55%,transparent 75%);"+
+      "transform:rotateX(-26deg);filter:blur(.5px);";
+    gem.appendChild(spark);
+    frag.appendChild(gem);
+    spinner.appendChild(frag);
+  }
+
+  if(reduced||!fine){return}
+
+  /* ------- hero stage mouse tilt, rAF throttled ------- */
+  var vit=document.getElementById("vitrine");
+  var ped=document.getElementById("pedtilt");
+  if(vit&&ped){
+    var raf=null,tx=0,ty=0,cx=0,cy=0;
+    function apply(){
+      raf=null;
+      cx+=(tx-cx)*.1; cy+=(ty-cy)*.1;
+      ped.style.setProperty("--py",cx.toFixed(2)+"deg");
+      ped.style.setProperty("--px",cy.toFixed(2)+"deg");
+      if(Math.abs(tx-cx)>.05||Math.abs(ty-cy)>.05){raf=requestAnimationFrame(apply)}
+    }
+    var zone=document.querySelector(".hero");
+    zone.addEventListener("pointermove",function(e){
+      var r=vit.getBoundingClientRect();
+      tx=((e.clientX-(r.left+r.width/2))/r.width)*10;
+      ty=-((e.clientY-(r.top+r.height/2))/r.height)*7;
+      tx=Math.max(-8,Math.min(8,tx)); ty=Math.max(-6,Math.min(6,ty));
+      if(!raf){raf=requestAnimationFrame(apply)}
+    });
+    zone.addEventListener("pointerleave",function(){
+      tx=0;ty=0;
+      if(!raf){raf=requestAnimationFrame(apply)}
+    });
+  }
+
+  /* ------- collection cards: tilt + sheen, rAF throttled ------- */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-tilt]"),function(card){
+    var cRaf=null,px=0,py=0;
+    function cApply(){
+      cRaf=null;
+      card.style.setProperty("--ry",(px*6.5).toFixed(2)+"deg");
+      card.style.setProperty("--rx",(-py*5.5).toFixed(2)+"deg");
+      card.style.setProperty("--sx",((px+.5)*100).toFixed(1)+"%");
+      card.style.setProperty("--sy",((py+.5)*100).toFixed(1)+"%");
+    }
+    card.addEventListener("pointermove",function(e){
+      var r=card.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width-.5;
+      py=(e.clientY-r.top)/r.height-.5;
+      if(!cRaf){cRaf=requestAnimationFrame(cApply)}
+    });
+    card.addEventListener("pointerleave",function(){
+      px=0;py=0;
+      if(!cRaf){cRaf=requestAnimationFrame(cApply)}
+    });
+  });
+})();
+</script>
+</body>
+</html>

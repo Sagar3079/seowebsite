@@ -7,12 +7,12 @@ import json
 import os
 
 ORDER = [
-    'ember-oak', 'daybreak-roasters', 'linden-house',
-    'pulse-analytics', 'studio-north', 'meridian-advisory',
-    'atelier-noir', 'kickflip-supply', 'hearth-home',
-    'mara-voss', 'june-theo', 'forge-fitness',
+    'vantage-law', 'axiom-architecture', 'northgate-dental',
+    'helios-ev', 'neuraflow-ai', 'orbital-imaging',
+    'onyx-grooming', 'solstice-spa', 'aurea-jewelry',
+    'resonance-studios', 'nova-esports', 'alta-basecamp',
 ]
-META_FILES = ['meta-hospitality.json', 'meta-business.json', 'meta-commerce.json', 'meta-creative.json']
+META_FILES = ['meta-professional.json', 'meta-tech.json', 'meta-lifestyle.json', 'meta-entertainment.json']
 
 root = os.path.dirname(os.path.abspath(__file__))
 demos = os.path.join(root, 'demos')

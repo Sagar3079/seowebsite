@@ -1,0 +1,29 @@
+[
+  {
+    "id": "onyx-grooming",
+    "name": "Onyx Chair Co.",
+    "category": "Lifestyle",
+    "tagline": "Noir barbershop with a razor-built 3D hero",
+    "description": "A near-black editorial build for a Greenpoint barbershop — a CSS-plane straight razor turning under cursor tilt, an engraved price ledger, and brass micro-interactions throughout.",
+    "accent": "#c9a45c",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/onyx-grooming.html"
+  },
+  {
+    "id": "solstice-spa",
+    "name": "Solstice Bathhouse",
+    "category": "Lifestyle",
+    "tagline": "Mineral-calm spa with parallax light and mist",
+    "description": "Travertine and eucalyptus serenity for a Fishtown bathhouse — sun, arc, and arch layers drifting at different depths under a live canvas mist, with rituals that float gently into place.",
+    "accent": "#4c5f52",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/solstice-spa.html"
+  },
+  {
+    "id": "aurea-jewelry",
+    "name": "Aurea",
+    "category": "Lifestyle",
+    "tagline": "Candlelit jewelry house with a faceted 3D ring",
+    "description": "Dark velvet and Didone restraint for a Florentine jewelry house — a solitaire ring composed from lit CSS facets revolving under a specular sweep, with collection cards that tilt toward the hand.",
+    "accent": "#d9b36a",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/aurea-jewelry.html"
+  }
+]

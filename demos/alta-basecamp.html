@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alta Basecamp — Guided Expeditions Since 2009</title>
+<meta name="description" content="Alta Basecamp runs guided expeditions across four ranges — Mont Blanc, the Haute Route, Patagonia and the Khumbu — with IFMGA-certified guides.">
+<style>
+:root{
+  --sky1:#1e3350;
+  --sky2:#3a5c7f;
+  --sky3:#87abc2;
+  --dawn:#e9caa2;
+  --glacier:#cfe0ea;
+  --granite:#26313b;
+  --granite2:#33414d;
+  --stone:#5d6f7d;
+  --paper:#eef1f3;
+  --card:#ffffff;
+  --ember:#dd5a26;
+  --ember2:#f07a42;
+  --line:rgba(38,49,59,.14);
+  --slab:Rockwell,'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif;
+  --body:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  --sh1:0 1px 3px rgba(30,51,80,.12);
+  --sh2:0 10px 26px -10px rgba(30,51,80,.25);
+  --sh3:0 28px 56px -18px rgba(30,51,80,.35),0 10px 24px -12px rgba(30,51,80,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{background:var(--paper);color:var(--granite);font-family:var(--body);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ember);color:#fff}
+a{color:var(--ember);text-decoration:none}
+.uln{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 2px;transition:background-size .3s}
+.uln:hover,.uln:focus-visible{background-size:100% 2px}
+:focus-visible{outline:3px solid var(--ember);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--slab);font-weight:700;line-height:1.12}
+h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin:.5em 0 .45em}
+section{padding:100px 0}
+@media(max-width:768px){section{padding:64px 0}}
+.eyebrow{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ember);display:flex;align-items:center;gap:.7em}
+.eyebrow svg{width:16px;height:12px;flex:none}
+.sub{color:var(--stone);max-width:58ch}
+.btn{display:inline-block;font-family:var(--body);font-weight:700;font-size:.86rem;letter-spacing:.06em;
+  background:linear-gradient(180deg,var(--ember2),var(--ember));color:#fff;padding:.95em 1.9em;border-radius:999px;border:0;cursor:pointer;
+  box-shadow:0 8px 20px -8px rgba(221,90,38,.55);transition:transform .18s ease,box-shadow .25s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 14px 28px -10px rgba(221,90,38,.6)}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.65)}
+.btn.ghost:hover{background:rgba(255,255,255,.22)}
+.btn.dark-ghost{background:transparent;color:var(--granite);box-shadow:inset 0 0 0 1.5px var(--granite)}
+.btn.dark-ghost:hover{background:rgba(38,49,59,.06)}
+.btn.sm{padding:.6em 1.3em;font-size:.78rem}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s,box-shadow .35s;padding:0}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:.6rem;font-family:var(--slab);font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:#fff;transition:color .35s}
+.logo svg{width:26px;height:20px}
+.logo svg path{transition:fill .35s,stroke .35s}
+.nav-links{display:flex;gap:1.8rem;align-items:center;font-size:.86rem;font-weight:600}
+.nav-links a{color:rgba(255,255,255,.85);transition:color .35s}
+.nav-links a:hover{color:#fff}
+.nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--sh1)}
+.nav.scrolled .logo{color:var(--granite)}
+.nav.scrolled .nav-links a{color:var(--stone)}
+.nav.scrolled .nav-links a:hover{color:var(--granite)}
+.nav.scrolled .nav-links a.btn,.nav-links a.btn{color:#fff}
+@media(max-width:680px){.nav-links a:not(.btn){display:none}}
+
+/* hero */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 30%,var(--sky3) 47%,var(--dawn) 60%,#f3dcb8 72%)}
+.sun{position:absolute;left:56%;top:48%;width:64vmin;height:64vmin;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(circle,rgba(246,222,178,.85) 0%,rgba(246,222,178,.25) 34%,transparent 62%)}
+.ridge{position:absolute;left:-2%;right:-2%;bottom:-2px;pointer-events:none;will-change:transform}
+.ridge svg{display:block;width:100%;height:auto}
+@media(max-width:700px){
+  .r1 svg{height:140px}.r2 svg{height:180px}.r3 svg{height:200px}.r4 svg{height:230px}.r5 svg{height:230px}
+}
+.r1{bottom:24%;opacity:.85}
+.r2{bottom:17%}
+.r3{bottom:9%}
+.r4{bottom:2%}
+.r5{bottom:-2px}
+.cloud{position:absolute;pointer-events:none;width:46vmin;height:12vmin;border-radius:50%;
+  background:radial-gradient(50% 60% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);filter:blur(6px)}
+.c1{top:22%;left:-30%}
+.c2{top:36%;left:-45%;width:60vmin;opacity:.7}
+.js .c1{animation:driftc 110s linear infinite}
+.js .c2{animation:driftc 150s linear infinite;animation-delay:-60s}
+@keyframes driftc{to{transform:translate3d(160vw,0,0)}}
+.hero-txt{position:absolute;z-index:5;left:0;right:0;top:16%;color:#fff;will-change:transform}
+.hero-txt h1{font-size:clamp(2.3rem,5.6vw,4.2rem);max-width:15ch;margin:.4em 0 .35em;text-shadow:0 2px 24px rgba(20,35,55,.45)}
+.hero-txt .eyebrow{color:#ffd9a8}
+.hero-txt .sub{color:rgba(255,255,255,.92);font-size:clamp(1rem,1.6vw,1.15rem);text-shadow:0 1px 12px rgba(20,35,55,.4)}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.js .st{opacity:0;animation:up .9s cubic-bezier(.2,.75,.2,1) forwards}
+.js .st1{animation-delay:.15s}.js .st2{animation-delay:.3s}.js .st3{animation-delay:.45s}.js .st4{animation-delay:.62s}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.js .ridge{animation:massif 1.2s cubic-bezier(.2,.75,.2,1) both}
+.js .r1{animation-delay:.15s}.js .r2{animation-delay:.28s}.js .r3{animation-delay:.41s}.js .r4{animation-delay:.54s}.js .r5{animation-delay:.67s}
+@keyframes massif{from{opacity:0;transform:translate3d(0,48px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.js.parallax-on .ridge{animation:none;opacity:1}
+
+/* reveals */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}
+
+/* expeditions */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:2.6rem;perspective:1500px}
+@media(max-width:860px){.exp-grid{grid-template-columns:1fr}}
+.exp{position:relative;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--sh2);
+  transform-style:preserve-3d;will-change:transform;transition:box-shadow .35s;border:1px solid var(--line)}
+.exp:hover{box-shadow:var(--sh3)}
+.exp-art{height:132px;position:relative}
+.exp-art svg{position:absolute;inset:0;width:100%;height:100%}
+.exp-body{padding:22px 24px 24px}
+.exp .where{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--stone)}
+.exp h3{font-size:1.4rem;margin:.3rem 0 .7rem}
+.exp-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;font-size:.86rem;color:var(--stone);border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:.8rem 0;margin-bottom:1rem}
+.exp-meta b{color:var(--granite);font-weight:600}
+.pips{display:inline-flex;gap:3px;vertical-align:-2px}
+.pips svg{width:13px;height:11px}
+.exp-foot{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.price{font-family:var(--slab);font-size:1.5rem;font-weight:700}
+.price span{font-family:var(--body);font-size:.74rem;font-weight:600;color:var(--stone);letter-spacing:.08em;text-transform:uppercase;display:block}
+.spots{font-size:.76rem;font-weight:700;color:var(--ember);letter-spacing:.06em;text-transform:uppercase}
+.spots.open{color:var(--stone)}
+
+/* guides */
+.guides{background:linear-gradient(180deg,#e4ebef,var(--paper))}
+.gd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:2.6rem}
+@media(max-width:900px){.gd-grid{grid-template-columns:1fr;max-width:520px}}
+.gd{background:var(--card);border-radius:14px;padding:26px;box-shadow:var(--sh1);border:1px solid var(--line);
+  transition:transform .3s ease,box-shadow .3s ease}
+.gd:hover{transform:translateY(-6px);box-shadow:var(--sh3)}
+.gd-face{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;
+  font-family:var(--slab);font-weight:700;font-size:1.25rem;color:#fff;
+  background:linear-gradient(145deg,var(--sky2),var(--sky1));box-shadow:var(--sh2)}
+.gd h3{font-size:1.2rem}
+.gd .cert{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ember);margin:.35rem 0 .8rem}
+.gd p{font-size:.92rem;color:var(--stone)}
+
+/* gear */
+.gear-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:2.4rem}
+@media(max-width:760px){.gear-cols{grid-template-columns:1fr}}
+.gear-col h3{font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:.6em}
+.gear-col ul{list-style:none}
+.gear-col li{display:flex;gap:.8em;align-items:flex-start;padding:.55em 0;border-bottom:1px solid var(--line);font-size:.94rem;color:var(--granite2)}
+.gear-col li svg{width:17px;height:17px;flex:none;margin-top:.25em}
+
+/* safety */
+.safety{background:linear-gradient(180deg,var(--granite),#1d2731);color:#e8edf1}
+.safety .sub{color:#a9b8c4}
+.safety .eyebrow{color:var(--ember2)}
+.saf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:2.6rem 0;background:rgba(255,255,255,.08);border-radius:12px;overflow:hidden}
+@media(max-width:760px){.saf-stats{grid-template-columns:repeat(2,1fr)}}
+.saf{background:rgba(29,39,49,.9);padding:24px 22px}
+.saf b{display:block;font-family:var(--slab);font-size:2rem;line-height:1.1;color:#fff}
+.saf b i{font-style:normal;color:var(--ember2)}
+.saf span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#93a5b3;font-weight:600}
+.protocol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 3rem;max-width:60rem}
+@media(max-width:760px){.protocol{grid-template-columns:1fr}}
+.protocol li{display:flex;gap:.9em;font-size:.94rem;color:#c4d0da;align-items:flex-start}
+.protocol li svg{width:16px;height:16px;flex:none;margin-top:.3em}
+
+/* booking */
+.book-cols{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start;margin-top:1rem}
+@media(max-width:880px){.book-cols{grid-template-columns:1fr;gap:36px}}
+.book-info dl{margin-top:1.8rem;display:grid;grid-template-columns:auto 1fr;gap:.7rem 1.6rem;font-size:.95rem}
+.book-info dt{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ember);padding-top:.3em}
+.bform{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--sh2);display:grid;gap:15px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+@media(max-width:560px){.frow{grid-template-columns:1fr}}
+label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--stone);display:grid;gap:.45em}
+input,select{font:inherit;color:var(--granite);background:#f6f8f9;border:1.5px solid var(--line);border-radius:9px;padding:.72em .9em;width:100%;transition:border-color .25s,box-shadow .25s,background .25s}
+input:focus,select:focus{outline:none;border-color:var(--ember);background:#fff;box-shadow:0 0 0 4px rgba(221,90,38,.14)}
+.formnote{font-size:.85rem;font-weight:600;color:var(--ember);min-height:1.3em}
+.deposit{font-size:.82rem;color:var(--stone)}
+
+/* footer */
+footer{background:#1d2731;color:#93a5b3;padding:38px 0 48px;font-size:.82rem}
+.foot-in{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+footer a{color:#c4d0da}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .st,.js .ridge{animation:none;opacity:1}
+  .js .c1,.js .c2{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .btn,.gd,.exp{transition:none}
+}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Alta Basecamp home">
+      <svg viewBox="0 0 26 20" aria-hidden="true"><path d="M1 19L9 4l4 7 3-5 8 13z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      Alta Basecamp
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a class="uln" href="#expeditions">Expeditions</a>
+      <a class="uln" href="#guides">Guides</a>
+      <a class="uln" href="#gear">Gear</a>
+      <a class="uln" href="#safety">Safety</a>
+      <a class="btn sm" href="#book">Book</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="hero" aria-label="Intro">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="cloud c1" aria-hidden="true"></div>
+  <div class="cloud c2" aria-hidden="true"></div>
+
+  <div class="ridge r1" data-k=".42" aria-hidden="true"><svg viewBox="0 0 1440 200" preserveAspectRatio="none"><path d="M0 200V96l96-38 74 30 92-52 86 40 72-24 96 44 84-58 92 46 70-18 96 38 78-30 90 42 82-24 88 32 84-16 56 22L1440 70V200z" fill="#8fb0c4"/></svg></div>
+  <div class="ridge r2" data-k=".3" aria-hidden="true"><svg viewBox="0 0 1440 210" preserveAspectRatio="none"><path d="M0 210V110l84-46 88 38 76-56 98 48 88-30 84 40 96-64 88 52 92-26 84 34 90-44 96 40 82-20 94 30L1340 96 1440 124V210z" fill="#6a8ba1"/></svg></div>
+  <div class="ridge r3" data-k=".2" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 220V118l72-40 96 44 90-62 104 56 78-26 92 46 100-70 96 58 84-22 98 40 88-48 92 44 78-16 72 26L1352 98 1440 132V220z" fill="#47677e"/></svg></div>
+  <div class="ridge r4" data-k=".11" aria-hidden="true"><svg viewBox="0 0 1440 230" preserveAspectRatio="none"><path d="M0 230V122l88-52 96 48 84-40 100 58 92-68 96 60 88-30 96 44 92-54 100 52 84-24 96 38 68-20 60 28L1356 104 1440 136V230z" fill="#2f4b60"/></svg></div>
+  <div class="ridge r5" data-k=".04" aria-hidden="true"><svg viewBox="0 0 1440 190" preserveAspectRatio="none"><path d="M0 190V96l104-44 112 52 96-34 118 56 104-52 116 48 100-26 120 44 108-40 112 38 96-18 118 34 96-24 60 20v110z" fill="#22333f"/></svg></div>
+
+  <div class="hero-txt" id="herotxt">
+    <div class="wrap">
+      <p class="eyebrow st st1">
+        <svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 11L6 2l3 5 2-3 4 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Alta Basecamp · Mountain guides since 2009
+      </p>
+      <h1 class="st st2">The summit is optional. Coming home is not.</h1>
+      <p class="sub st st3">Guided expeditions across four ranges — Mont Blanc, the Haute Route,
+        Patagonia and the Khumbu — led by IFMGA-certified guides at a 2:1 ratio.</p>
+      <div class="hero-cta st st4">
+        <a class="btn" href="#expeditions">Browse expeditions</a>
+        <a class="btn ghost" href="#guides">Meet the guides</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expeditions">
+  <div class="wrap">
+    <p class="eyebrow rv"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 11L6 2l3 5 2-3 4 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>2026–27 season</p>
+    <h2 class="rv">Choose your line.</h2>
+    <p class="sub rv d1">Every departure includes your guide, group technical gear, hut or basecamp
+      lodging and a pre-trip fitness consult. Difficulty runs from trekking (1) to technical
+      alpinism (5).</p>
+    <div class="exp-grid">
+
+      <article class="exp tilt rv d1">
+        <div class="exp-art" aria-hidden="true">
+          <svg viewBox="0 0 400 132" preserveAspectRatio="none">
+            <rect width="400" height="132" fill="#d7e4ec"/>
+            <path d="M0 132V70l60-30 54 26 62-44 70 40 58-20 60 30 36-12v72z" fill="#8fb0c4"/>
+            <path d="M0 132V96l76-40 66 32 70-52 78 44 62-18 48 22v48z" fill="#47677e"/>
+            <circle cx="318" cy="34" r="18" fill="#f2d9ae" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <p class="where">Chamonix, France</p>
+          <h3>Mont Blanc Classic — Goûter Route</h3>
+          <div class="exp-meta">
+            <span><b>Sep 7–12, 2026</b> · 6 days</span>
+            <span>Difficulty <span class="pips" aria-label="Difficulty 4 of 5">
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 1.5L11.7 10H1.3z" fill="none" stroke="#b7c2cb"/></svg>
+            </span></span>
+            <span>Ratio <b>2:1</b></span>
+          </div>
+          <div class="exp-foot">
+            <p class="price">$2,890<span>per person</span></p>
+            <span class="spots">3 spots left</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="exp tilt rv d2">
+        <div class="exp-art" aria-hidden="true">
+          <svg viewBox="0 0 400 132" preserveAspectRatio="none">
+            <rect width="400" height="132" fill="#e3e9ee"/>
+            <path d="M0 132V64l66-34 58 30 66-48 74 44 62-24 74 34v66z" fill="#a8bfce"/>
+            <path d="M0 132V100l88-44 72 36 80-56 84 48 76-22v70z" fill="#5d7d93"/>
+            <path d="M120 96l40-22 40 22z" fill="#fff" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <p class="where">Chamonix → Zermatt</p>
+          <h3>Haute Route Ski Traverse</h3>
+          <div class="exp-meta">
+            <span><b>Mar 14–21, 2027</b> · 8 days</span>
+            <span>Difficulty <span class="pips" aria-label="Difficulty 3 of 5">
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 1.5L11.7 10H1.3z" fill="none" stroke="#b7c2cb"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 1.5L11.7 10H1.3z" fill="none" stroke="#b7c2cb"/></svg>
+            </span></span>
+            <span>Ratio <b>4:1</b></span>
+          </div>
+          <div class="exp-foot">
+            <p class="price">$3,450<span>per person</span></p>
+            <span class="spots open">Booking opens Oct 1</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="exp tilt rv d2">
+        <div class="exp-art" aria-hidden="true">
+          <svg viewBox="0 0 400 132" preserveAspectRatio="none">
+            <rect width="400" height="132" fill="#e9dfd2"/>
+            <path d="M0 132V78l52-24 48 20 40-64 34 62 48-18 58 26 60-40 60 34v58z" fill="#b08b6e" opacity=".55"/>
+            <path d="M0 132V104l70-30 58 24 46-76 40 72 66-20 72 30 48-14v42z" fill="#6e5a4d"/>
+            <circle cx="66" cy="30" r="14" fill="#f2d9ae"/>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <p class="where">El Chaltén, Argentina</p>
+          <h3>Patagonia — Fitz Roy Circuit</h3>
+          <div class="exp-meta">
+            <span><b>Nov 9–19, 2026</b> · 11 days</span>
+            <span>Difficulty <span class="pips" aria-label="Difficulty 2 of 5">
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 1.5L11.7 10H1.3z" fill="none" stroke="#b7c2cb"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 1.5L11.7 10H1.3z" fill="none" stroke="#b7c2cb"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 1.5L11.7 10H1.3z" fill="none" stroke="#b7c2cb"/></svg>
+            </span></span>
+            <span>Ratio <b>6:1</b></span>
+          </div>
+          <div class="exp-foot">
+            <p class="price">$4,120<span>per person</span></p>
+            <span class="spots">6 spots left</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="exp tilt rv d3">
+        <div class="exp-art" aria-hidden="true">
+          <svg viewBox="0 0 400 132" preserveAspectRatio="none">
+            <rect width="400" height="132" fill="#ccdbe6"/>
+            <path d="M0 132V60l58-26 52 24 52-46 62 44 46-30 58 36 72-42v112z" fill="#7fa0b5"/>
+            <path d="M0 132V92l80-40 64 32 60-58 70 52 66-28 60 34v48z" fill="#3d5a70"/>
+            <path d="M204 26l14 26h-28z" fill="#fff" opacity=".85"/>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <p class="where">Khumbu, Nepal</p>
+          <h3>Island Peak &amp; the Khumbu Valley</h3>
+          <div class="exp-meta">
+            <span><b>Oct 4–22, 2026</b> · 19 days</span>
+            <span>Difficulty <span class="pips" aria-label="Difficulty 5 of 5">
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+              <svg viewBox="0 0 13 11"><path d="M6.5 0L13 11H0z" fill="#dd5a26"/></svg>
+            </span></span>
+            <span>Ratio <b>2:1</b></span>
+          </div>
+          <div class="exp-foot">
+            <p class="price">$5,980<span>per person</span></p>
+            <span class="spots">2 spots left</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="guides" id="guides">
+  <div class="wrap">
+    <p class="eyebrow rv"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 11L6 2l3 5 2-3 4 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>The guides</p>
+    <h2 class="rv">Certified. Local. Unhurried.</h2>
+    <div class="gd-grid">
+      <article class="gd rv d1">
+        <div class="gd-face" aria-hidden="true">LR</div>
+        <h3>Lena Roth</h3>
+        <p class="cert">IFMGA · Chamonix</p>
+        <p>Fourteen seasons on the massif and 120+ ascents of Mont Blanc. Lena leads the Goûter
+          departures and our ski-alpinism program.</p>
+      </article>
+      <article class="gd rv d2">
+        <div class="gd-face" aria-hidden="true">MI</div>
+        <h3>Mateo Iriarte</h3>
+        <p class="cert">UIAGM · El Chaltén</p>
+        <p>Patagonia specialist with nine first ascents in the Fitz Roy massif. Reads Patagonian
+          weather windows like a tide table.</p>
+      </article>
+      <article class="gd rv d3">
+        <div class="gd-face" aria-hidden="true">DS</div>
+        <h3>Dawa Sherpa</h3>
+        <p class="cert">IFMGA · Khumbu</p>
+        <p>Six Everest summits and two decades guiding the valley he grew up in. Dawa leads every
+          Alta itinerary in Nepal, end to end.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="gear">
+  <div class="wrap">
+    <p class="eyebrow rv"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 11L6 2l3 5 2-3 4 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Gear</p>
+    <h2 class="rv">In your duffel — and on your list.</h2>
+    <div class="gear-cols">
+      <div class="gear-col rv d1">
+        <h3>We provide</h3>
+        <ul>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#dd5a26" stroke-width="1.6"/><path d="M5 8.7l2.4 2.5L12 6" fill="none" stroke="#dd5a26" stroke-width="1.8" stroke-linecap="round"/></svg>Ropes, harnesses, helmets and crampons (sized at basecamp)</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#dd5a26" stroke-width="1.6"/><path d="M5 8.7l2.4 2.5L12 6" fill="none" stroke="#dd5a26" stroke-width="1.8" stroke-linecap="round"/></svg>Ice axes and avalanche kit — beacon, probe, shovel</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#dd5a26" stroke-width="1.6"/><path d="M5 8.7l2.4 2.5L12 6" fill="none" stroke="#dd5a26" stroke-width="1.8" stroke-linecap="round"/></svg>Expedition tents, stoves and group cook kit</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#dd5a26" stroke-width="1.6"/><path d="M5 8.7l2.4 2.5L12 6" fill="none" stroke="#dd5a26" stroke-width="1.8" stroke-linecap="round"/></svg>Sat phone + inReach on every rope team</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#dd5a26" stroke-width="1.6"/><path d="M5 8.7l2.4 2.5L12 6" fill="none" stroke="#dd5a26" stroke-width="1.8" stroke-linecap="round"/></svg>Group medical kit with altitude protocol drugs</li>
+        </ul>
+      </div>
+      <div class="gear-col rv d2">
+        <h3>You bring</h3>
+        <ul>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#5d6f7d" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="2.4" fill="#5d6f7d"/></svg>B2/B3 mountaineering boots, broken in — not new</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#5d6f7d" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="2.4" fill="#5d6f7d"/></svg>Layering system: base, mid, hardshell, summit parka</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#5d6f7d" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="2.4" fill="#5d6f7d"/></svg>Sleeping bag rated to −20°C for Nepal and Patagonia</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#5d6f7d" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="2.4" fill="#5d6f7d"/></svg>Headlamp, glacier glasses, 40L summit pack</li>
+          <li><svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.5" fill="none" stroke="#5d6f7d" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="2.4" fill="#5d6f7d"/></svg>Full list arrives with your booking — 38 items, nothing exotic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="safety" id="safety">
+  <div class="wrap">
+    <p class="eyebrow rv"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 11L6 2l3 5 2-3 4 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Safety record</p>
+    <h2 class="rv">The number we're proudest of is zero.</h2>
+    <p class="sub rv d1">Seventeen years, four ranges, and a turn-around time that has never once
+      been negotiable. This is what disciplined guiding looks like on paper.</p>
+    <div class="saf-stats rv d2">
+      <div class="saf"><b>17</b><span>Years operating</span></div>
+      <div class="saf"><b>4,860</b><span>Guests guided</span></div>
+      <div class="saf"><b>92<i>%</i></b><span>Summit-window success</span></div>
+      <div class="saf"><b>0</b><span>Serious incidents since 2014</span></div>
+    </div>
+    <ul class="protocol rv d3">
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l7 13H1z" fill="none" stroke="#f07a42" stroke-width="1.5" stroke-linejoin="round"/></svg>06:00 weather call every expedition day with Météo-France Chamonix or local equivalent.</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l7 13H1z" fill="none" stroke="#f07a42" stroke-width="1.5" stroke-linejoin="round"/></svg>Beacon check before every glacier travel day — no exceptions, including guides.</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l7 13H1z" fill="none" stroke="#f07a42" stroke-width="1.5" stroke-linejoin="round"/></svg>Turn-around times set the night before and honored regardless of distance to the summit.</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l7 13H1z" fill="none" stroke="#f07a42" stroke-width="1.5" stroke-linejoin="round"/></svg>Every guide holds current wilderness-medicine certification, rechecked each season.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <p class="eyebrow rv"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 11L6 2l3 5 2-3 4 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Booking</p>
+    <h2 class="rv">Hold your place on the rope.</h2>
+    <div class="book-cols">
+      <div class="book-info rv d1">
+        <p class="sub">Tell us which departure you're eyeing and we'll come back within two business
+          days with availability, a fitness questionnaire and a call slot with your lead guide.</p>
+        <dl>
+          <dt>Office</dt><dd>24 Rue du Docteur Paccard, 74400 Chamonix-Mont-Blanc, France</dd>
+          <dt>Phone</dt><dd><a class="uln" href="tel:+33450550184">+33 4 50 55 01 84</a></dd>
+          <dt>Email</dt><dd><a class="uln" href="mailto:hello@altabasecamp.com">hello@altabasecamp.com</a></dd>
+          <dt>Deposit</dt><dd>$500 to hold a spot, refundable for 14 days. Balance due 60 days before departure.</dd>
+        </dl>
+      </div>
+      <form class="bform rv d2" id="bookform" novalidate>
+        <div class="frow">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        </div>
+        <div class="frow">
+          <label>Expedition
+            <select name="trip">
+              <option>Mont Blanc Classic — Sep 2026</option>
+              <option>Haute Route Ski — Mar 2027</option>
+              <option>Fitz Roy Circuit — Nov 2026</option>
+              <option>Island Peak — Oct 2026</option>
+              <option>Not sure yet — advise me</option>
+            </select>
+          </label>
+          <label>Party size
+            <select name="party">
+              <option>1</option><option>2</option><option>3</option><option>4+</option>
+            </select>
+          </label>
+        </div>
+        <div><button class="btn" type="submit">Request a spot</button></div>
+        <p class="formnote" id="formnote" role="status" aria-live="polite"></p>
+        <p class="deposit">No payment now — this only starts the conversation.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Alta Basecamp SARL · Chamonix-Mont-Blanc</span>
+    <span>IFMGA-member guide office</span>
+    <a class="uln" href="#top">Back to the top</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var d=document;
+d.documentElement.classList.add('js');
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FINE=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* reveals */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  Array.prototype.forEach.call(d.querySelectorAll('.rv'),function(el){io.observe(el);});
+}else{
+  Array.prototype.forEach.call(d.querySelectorAll('.rv'),function(el){el.classList.add('in');});
+}
+
+/* nav state + ridge parallax, one rAF-throttled scroll handler */
+var nav=d.getElementById('nav');
+var ridges=Array.prototype.slice.call(d.querySelectorAll('.ridge'));
+var herotxt=d.getElementById('herotxt');
+var hero=d.getElementById('hero');
+var ticking=false;
+function onScroll(){
+  ticking=false;
+  var y=window.pageYOffset||d.documentElement.scrollTop;
+  if(y>40)nav.classList.add('scrolled');else nav.classList.remove('scrolled');
+  if(RM)return;
+  var hh=hero.offsetHeight||1;
+  if(y<hh){
+    for(var i=0;i<ridges.length;i++){
+      var k=parseFloat(ridges[i].getAttribute('data-k'))||0;
+      ridges[i].style.transform='translate3d(0,'+(y*k).toFixed(1)+'px,0)';
+    }
+    if(herotxt){
+      herotxt.style.transform='translate3d(0,'+(y*.5).toFixed(1)+'px,0)';
+      herotxt.style.opacity=Math.max(0,1-y/(hh*.55)).toFixed(2);
+    }
+  }
+}
+addEventListener('scroll',function(){
+  if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
+},{passive:true});
+/* switch ridges from entrance animation to parallax control once loaded */
+if(!RM){
+  setTimeout(function(){d.documentElement.classList.add('parallax-on');onScroll();},2000);
+}
+onScroll();
+
+/* expedition card tilt */
+function tilt(el,max){
+  if(!FINE||RM)return;
+  var raf=0,rx=0,ry=0,hov=false;
+  function apply(){
+    raf=0;
+    el.style.transform=hov?'perspective(1100px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-5px)':'';
+  }
+  el.addEventListener('pointermove',function(e){
+    var r=el.getBoundingClientRect();
+    var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+    rx=-py*max;ry=px*max;hov=true;
+    if(!raf)raf=requestAnimationFrame(apply);
+  });
+  el.addEventListener('pointerleave',function(){hov=false;if(!raf)raf=requestAnimationFrame(apply);});
+}
+Array.prototype.forEach.call(d.querySelectorAll('.tilt'),function(el){tilt(el,4.5);});
+
+/* booking form */
+var f=d.getElementById('bookform');
+if(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var note=d.getElementById('formnote');
+    if(!f.elements['name'].value.trim()||!f.elements['email'].value.trim()){
+      note.textContent='Add your name and email so we can reply.';return;
+    }
+    note.textContent='Request received — expect our reply within two business days.';
+    f.querySelector('button').disabled=true;
+  });
+}
+})();
+</script>
+</body>
+</html>

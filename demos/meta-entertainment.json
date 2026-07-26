@@ -1,0 +1,29 @@
+[
+  {
+    "id": "resonance-studios",
+    "name": "Resonance",
+    "category": "Entertainment",
+    "tagline": "Analog rooms, tape machines, engineers who listen.",
+    "description": "A charcoal-and-amber recording studio site with a live spectrum-analyzer hero and a CSS-built Neve console you can almost touch.",
+    "accent": "#E8A33D",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/resonance-studios.html"
+  },
+  {
+    "id": "nova-esports",
+    "name": "Nova Esports",
+    "category": "Entertainment",
+    "tagline": "Three rosters. Eleven titles. One badge.",
+    "description": "A void-black esports HQ with a warp-speed starfield, HUD-framed stats and a holographic jersey card that tilts toward the cursor.",
+    "accent": "#3EE1FF",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/nova-esports.html"
+  },
+  {
+    "id": "alta-basecamp",
+    "name": "Alta Basecamp",
+    "category": "Entertainment",
+    "tagline": "Guided expeditions across four ranges since 2009.",
+    "description": "An alpine-dawn outfitter with five layers of parallax ridgeline, drifting cloudbanks and expedition cards that tilt like a map table.",
+    "accent": "#DD5A26",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/alta-basecamp.html"
+  }
+]

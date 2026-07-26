@@ -1,168 +1,161 @@
-# MASTER SPEC — "Forma" Website-Builder Template Showcase
+# MASTER SPEC V2 — "Forma" Premium Collection (12 new $10k-grade 3D websites)
 
-## What we are building
+## Mission
 
-A single, self-contained showcase website for a fictional website builder called **Forma**.
-The showcase presents **12 fully working demo websites** ("templates") that Forma can supposedly
-produce. Visitors browse a gallery of live template thumbnails, filter by category, and open any
-template in a fullscreen preview with desktop / tablet / mobile device toggles.
+Replace the previous template set with **12 brand-new demo websites for different businesses**,
+each built to the standard of a **$10,000 custom agency site**: distinctive art direction,
+layered 3D depth, orchestrated motion, and obsessive detail. A visitor should open any one and
+think "a real studio charged real money for this."
 
-The final deliverable is ONE self-contained HTML page (the shell) with all 12 demo sites embedded
-as JSON and rendered in sandboxed iframes via `srcdoc`.
+The shell (gallery site) is also rebuilt to the same bar. The data contract with the build step
+is UNCHANGED from v1.
 
-## Hard technical constraints (apply to EVERY file)
+## Hard technical constraints (unchanged, non-negotiable)
 
-1. **Fully self-contained.** A strict CSP blocks ALL external requests. No CDN scripts, no Google
-   Fonts, no remote images, no fetch/XHR. Everything inline in one HTML file per site.
-2. **Fonts:** system font stacks ONLY. Use them deliberately — e.g.
-   - Humanist sans: `Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif`
+1. Fully self-contained per file — a strict CSP blocks ALL external requests. No CDNs, no
+   Google Fonts, no remote images, no three.js — every byte inline.
+2. System font stacks only, deliberately paired, different per site:
+   - Humanist: `Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif`
    - Neo-grotesque: `Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif`
    - Transitional serif: `Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif`
    - Didone: `Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, serif`
    - Old-style serif: `'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif`
    - Slab: `Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif`
-   - Monospace: `ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace`
-   - Geometric sans: `Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif`
-   Different demos MUST use different stacks so each feels distinct.
-3. **Images:** none from network. Build visuals from CSS gradients, patterns, inline SVG, and
-   canvas. No `<img src="http...">`. Emoji allowed sparingly where it fits the brand (not as
-   section markers).
-4. **Each demo site is a complete standalone HTML document**: `<!DOCTYPE html>`, `<html>`, `<head>`
-   with `<meta charset>` + `<meta name="viewport">` + `<title>`, inline `<style>`, body content,
-   optional inline `<script>` at the end. It must render perfectly when loaded alone in a browser
-   AND inside an iframe via `srcdoc`.
-5. **Responsive:** every demo must look right at 390px, 768px, and 1280px wide. The shell's device
-   toggle will show all three. No horizontal page scroll at any width.
-6. **Size budget:** 15–45 KB per demo file. Lean, hand-tuned CSS. No frameworks.
-7. **JS is optional per demo** — small touches only (mobile nav toggle, scroll reveal, tab switch,
-   simple counters). Everything must degrade gracefully without JS. Respect
-   `prefers-reduced-motion`.
-8. **Quality bar:** close every tag, double-quote attributes, visible keyboard focus states,
-   WCAG-legible contrast. No lorem ipsum anywhere — write real, specific copy with names, prices,
-   dates, menus, testimonials.
+   - Mono: `ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace`
+   - Geometric: `Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif`
+   - Rounded: `ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif`
+3. Visuals from CSS gradients/patterns, inline SVG, and `<canvas>` (2D or hand-written WebGL).
+   No external images.
+4. Each demo: complete standalone HTML document (doctype, head with charset/viewport/title,
+   inline style, inline script). Must work standalone AND inside iframe `srcdoc`.
+5. Responsive and flawless at 390 / 768 / 1280 px. No horizontal page scroll anywhere.
+6. Size budget per demo: 30–75 KB. Shell ≤ 80 KB before JSON injection.
+7. Real, specific copy everywhere — names, prices, addresses, dates. Zero lorem ipsum.
+8. Valid HTML, error-free JS, visible focus states, legible contrast, graceful no-JS fallback
+   (content must be readable with JS off even if effects are gone).
 
-## Design direction (applies to every demo)
+## THE 3D MANDATE (what makes this set different)
 
-Each demo is a *portfolio piece* for the fictional builder — it must look like a real small
-business paid a good studio for it. Every demo needs:
+Every site must feel dimensional, not flat. Each demo must include **at least TWO** of these,
+executed smoothly:
 
-- A distinct palette (4–6 values) grounded in its subject. Neutrals with a hue bias toward the
-  accent, never pure mid-grey.
-- A deliberate typeface pairing from the stacks above — display + body, different per demo.
-- A real layout idea, not just centered stacks: asymmetric grids, editorial columns, split
-  screens, sticky sidebars, overlapping cards — pick what the subject calls for.
-- Complete IA: nav (with mobile behavior), hero, 3–5 content sections, footer with real details.
-- **Banned clichés:** purple-blue gradient hero on white; warm-cream + terracotta + serif combo
-  used twice; emoji section markers; numbered 01/02/03 markers unless content is truly sequential;
-  everything-centered layouts; identical rounded-card grids across demos.
+- **Mouse-tilt hero scene**: a composition in a `perspective` container that tilts with cursor
+  position (rotateX/rotateY, throttled via requestAnimationFrame; max ~8deg; disabled on touch).
+- **Scroll parallax depth**: 3+ layers moving at different rates (translateZ/translate3d based,
+  rAF-driven or CSS-only), creating real depth in hero or section transitions.
+- **3D object built from CSS**: an actual composed 3D form — a product box, card stack, cube,
+  ring, device mock — made of transformed planes with consistent lighting (gradient faces,
+  believable shadows), idle-rotating or interaction-driven.
+- **Canvas scene**: particle field, 3D-projected wireframe, starfield, flowing mesh, or
+  generative ambient animation reacting subtly to pointer.
+- **Hand-written WebGL shader background** (only if you can make it flawless): fragment-shader
+  gradient flow/noise. Must feature-detect and fall back to CSS.
+- **3D hover cards**: content cards that lift, tilt toward the cursor, and cast layered soft
+  shadows with a specular sheen sweep.
 
-## The 12 demos, their agents, categories, and IDs
+Rules: 60fps feel — transform/opacity only, no layout thrash, all pointer handlers rAF-throttled.
+Everything honors `prefers-reduced-motion: reduce` (freeze idle motion, keep a beautiful static
+composition). Touch devices get the static composition, not broken tilt.
 
-Category filter values (exact strings): `Hospitality`, `Business`, `Commerce`, `Creative`.
+## The $10k design bar
 
-**Agent 1 — Hospitality**
-1. `ember-oak` — "Ember & Oak", wood-fire fine-dining restaurant. Moody, candlelit: deep charcoal,
-   ember orange, brass. Didone or old-style serif display. Tasting menu with prices, chef bio,
-   reservations CTA, hours/location footer.
-2. `daybreak-roasters` — "Daybreak Roasters", specialty coffee roastery + café. Warm daylight
-   palette (bone, roast brown, sunrise yellow accent). Menu board, bean subscription cards with
-   prices, brew guide section, two locations.
-3. `linden-house` — "The Linden House", 9-room boutique countryside hotel. Calm, botanical:
-   sage/moss, linen, ink. Serif display. Room types with nightly rates, seasonal offers,
-   breakfast/garden story section, booking CTA.
+- One committed art direction per site, grounded in the business — palette (5–7 values), type
+  pairing, layout geometry, motion personality. The 12 must look like 12 different studios.
+- A signature hero set-piece: the 3D moment lives here. No generic "headline + two buttons on
+  a gradient".
+- Orchestrated entrance: staged reveal on load (150–600ms stagger), scroll-triggered section
+  reveals via IntersectionObserver (subtle: 12–24px translate + fade, once).
+- Micro-interactions on every interactive element: buttons with press states, links with
+  animated underlines/sweeps, inputs with focus glow.
+- Depth system: consistent elevation language (shadow ramp), glass/blur layers where they fit
+  the direction (`backdrop-filter` with solid fallback).
+- Banned: the v1 look repeated, purple-blue gradient on white, cream+terracotta+serif default,
+  emoji as section markers, identical card grids across sites, Bootstrap-feeling layouts.
 
-**Agent 2 — Business**
-4. `pulse-analytics` — "Pulse", SaaS product analytics tool. Dark UI-chrome aesthetic OR crisp
-   light data aesthetic (pick one, commit). Product hero with a believable dashboard mock built in
-   pure CSS/SVG (charts, sparklines, metric tiles), feature grid, 3-tier pricing, customer quote.
-5. `studio-north` — "Studio North", 8-person brand & web design agency. Confident editorial
-   layout, oversized type, selected-work case grid with CSS-art thumbnails, services list,
-   client logos as typographic wordmarks, contact section.
-6. `meridian-advisory` — "Meridian Advisory", boutique financial planning firm. Trustworthy,
-   quiet luxury: deep navy or forest, warm paper, one metallic-feel accent. Serif + humanist
-   sans. Services, 3 advisors with initials-monogram avatars (CSS), fee philosophy, compliance
-   footer.
+## The 12 NEW businesses (all different from v1)
 
-**Agent 3 — Commerce**
-7. `atelier-noir` — "Atelier Noir", minimal fashion boutique. Near-monochrome with one accent;
-   high fashion editorial feel, generous whitespace, product grid (6+ garments, names + prices)
-   with CSS-art product cards, lookbook strip, newsletter signup.
-8. `kickflip-supply` — "Kickflip Supply", skate shop + limited sneaker drops. Loud, energetic:
-   poster-like type collisions, sticker/stamp motifs in CSS, drop countdown (JS), product cards
-   with prices, crew/community section.
-9. `hearth-home` — "Hearth & Haven", handmade ceramics and home goods. Soft clay tones,
-   craft-market warmth. Product bestsellers grid with prices, maker story with process steps,
-   markets calendar, gift-card CTA.
+Category strings (exact): `Professional`, `Tech`, `Lifestyle`, `Entertainment`.
 
-**Agent 4 — Creative**
-10. `mara-voss` — "Mara Voss — Photographer". Gallery-first portfolio: full-bleed CSS/SVG
-    "photograph" compositions (abstract gradient-scapes standing in for photos), project index
-    list, about + awards, booking contact. Typography-forward, quiet chrome.
-11. `june-theo` — "June & Theo", wedding website. Romantic but modern (not cream+terracotta):
-    e.g. ink + blush + garden green. Date/venue hero, love-story timeline (genuinely sequential),
-    schedule, RSVP form (non-submitting, validates inline), registry links, FAQ.
-12. `forge-fitness` — "Forge Fitness", personal training studio. High-contrast athletic feel,
-    condensed/heavy type treatment, class schedule table, coach cards, transformation stats,
-    membership pricing, free-trial CTA.
+**Agent 1 — Professional**
+1. `vantage-law` — "Vantage & Rowe", modern litigation law firm. Monolithic confidence: deep
+   ink/graphite, marble-vein neutrals, one authority accent (oxblood or imperial blue). Didone
+   display. 3D: mouse-tilt hero of layered typographic slabs like stacked case files; practice
+   areas as 3D hover cards. Sections: results (real verdict figures), practice areas, partners,
+   consultation CTA.
+2. `axiom-architecture` — "Axiom Atelier", architecture studio. Blueprint-meets-gallery: bone
+   white, graphite, cyan blueprint accent. 3D: CSS-built rotating building massing model
+   (extruded planes) in hero; project cards with parallax depth. Sections: selected works,
+   process, studio, awards, contact.
+3. `northgate-dental` — "Northgate Smile Studio", boutique dental clinic. Calm clinical warmth:
+   porcelain, seafoam, soft coral accent. Rounded geometry. 3D: floating glass panels with
+   parallax + canvas particle "clean air" ambient; service cards tilt. Sections: services with
+   prices, doctors, technology, booking, insurance.
 
-## Metadata each agent must return (structured output)
+**Agent 2 — Tech**
+4. `helios-ev` — "Helios Motors", electric performance car brand. Cinematic dark: obsidian,
+   solar gold, white. 3D: CSS 3D car silhouette/stage with rotating light sweep OR WebGL glow
+   backdrop; spec counters animate; scroll parallax stage. Sections: model lineup with specs +
+   prices, range/charging, design story, reserve CTA.
+5. `neuraflow-ai` — "Neuraflow", AI infrastructure startup. Not the clichéd purple: pick e.g.
+   deep green-black + phosphor + silver. 3D: canvas neural particle mesh reacting to cursor;
+   3D code-terminal mock built from planes. Sections: product, how it works (pipeline diagram
+   in SVG), benchmarks table, pricing, docs CTA.
+6. `orbital-imaging` — "Orbital", drone survey & aerial imaging co. Atmosphere: stratosphere
+   blues, horizon amber. 3D: parallax cloud/terrain layers with a CSS 3D drone that tilts with
+   cursor; altitude-styled stats. Sections: services, industries, flight log case studies,
+   certifications, quote CTA.
 
-For every demo built, return: `id` (exact ID above), `name`, `category` (exact string),
-`tagline` (≤60 chars, the business's own tagline), `description` (one sentence about the
-template, written as Forma marketing copy, e.g. "A moody, reservation-driven template for
-restaurants that take their fire seriously."), `accent` (one hex color representing the demo,
-used by the shell for chips/hover), `file` (absolute path of the written HTML file).
+**Agent 3 — Lifestyle**
+7. `onyx-grooming` — "Onyx Chair Co.", premium barbershop. Noir editorial: near-black, smoke,
+   brass razor accent. Slab or mono details. 3D: hero with 3D rotating clipper/razor built from
+   CSS planes or layered SVG with tilt; price list as engraved card stack. Sections: services +
+   prices, barbers, the ritual, booking, house rules.
+8. `solstice-spa` — "Solstice Bathhouse", wellness spa & sauna. Mineral serenity: travertine,
+   eucalyptus, dusk lavender-grey (not purple-gradient). 3D: slow parallax steam/light layers,
+   canvas ambient mist; ritual cards float gently. Sections: rituals with durations/prices,
+   circuits, gift cards, membership, visit.
+9. `aurea-jewelry` — "Aurea", fine jewelry house. Dark velvet + candlelight gold. Didone
+   display. 3D: CSS 3D rotating ring/gem built from faceted planes with specular sweep;
+   product cards with tilt + sheen. Sections: collections with prices, craftsmanship, bespoke
+   process, boutique visits.
 
-## Agent 5 — The shell ("Forma" showcase site itself)
+**Agent 4 — Entertainment**
+10. `resonance-studios` — "Resonance", recording studio. Analog warmth in the dark: charcoal,
+    VU-meter amber, cable red. Mono + grotesque. 3D: canvas waveform/frequency visualizer as
+    living hero; 3D console fader panel from CSS planes. Sections: rooms & gear with day rates,
+    engineers, notable sessions, booking.
+11. `nova-esports` — "Nova Esports", pro gaming organization. Electric contrast: void black,
+    plasma cyan, signal magenta — handled with restraint, not vaporwave soup. 3D: WebGL/canvas
+    starfield warp + 3D jersey/logo card tilt; stats HUD styling. Sections: teams & rosters,
+    trophy record, upcoming matches, sponsors as typographic marks, shop teaser.
+12. `alta-basecamp` — "Alta Basecamp", adventure travel outfitter. Alpine dawn: glacier blues,
+    granite, ember orange. 3D: layered mountain parallax (SVG ridgelines at depths) with slow
+    cloud drift; expedition cards tilt. Sections: expeditions with dates/prices/difficulty,
+    guides, gear included, booking, safety record.
 
-One HTML file: the marketing/showcase site for Forma. It is the artifact users see first —
-it must be the best-designed page of all 13.
+## Metadata (same shape as v1)
 
-**Brand:** Forma — tagline direction: "Websites that feel designed." Voice: confident, craft-led,
-zero corporate filler.
+Per template: `id`, `name`, `category` (exact string above), `tagline` (≤60 chars),
+`description` (one Forma-marketing sentence), `accent` (hex), `file` (absolute path).
 
-**Required structure:**
-1. Slim sticky nav: Forma wordmark (typographic, no image), links: Templates, Why Forma, CTA
-   button "Start building" (scrolls to gallery).
-2. Hero: strong typographic thesis + one-line subhead + small stat row (12 templates ·
-   4 categories · 100% yours). No giant empty hero; get to the gallery fast.
-3. **Template gallery (the core):**
-   - Filter bar: All / Hospitality / Business / Commerce / Creative (exact category strings),
-     with counts. Filtering is instant (JS show/hide), keyboard accessible.
-   - Grid of 12 template cards. Each card shows a **live scaled-down preview**: an
-     `<iframe loading="lazy">` whose `srcdoc` is the demo's full HTML, rendered at 1280px
-     virtual width and scaled with `transform: scale()` inside a fixed-ratio clipped container
-     (pointer-events: none on the thumbnail iframe). Below: template name, category chip
-     (tinted with the template's accent), tagline, "Preview" button.
-4. **Fullscreen preview modal:** opens on card click/Enter. Contains: top bar with template name,
-   device toggles — Desktop (100%), Tablet (768px), Mobile (390px) — an "Open in new tab" note is
-   NOT needed, and a close button (Esc works, focus is trapped, background scroll locked). Body:
-   the demo in an iframe (`srcdoc`), centered, device-width applied with a smooth transition,
-   subtle device frame at tablet/mobile widths.
-5. "Why Forma" strip: 3 short, concrete value props (own your code, real typography, ships
-   fast — write them properly).
-6. Footer: Forma wordmark, small print, "Built with Forma" wink.
+## Agent 5 — Shell v2 ("Forma — Premium Collection")
 
-**Data contract:** the shell must NOT hardcode the 12 demos. It must contain exactly:
-```html
-<script id="templates-data" type="application/json">__TEMPLATES_JSON__</script>
-```
-and at runtime `JSON.parse(document.getElementById('templates-data').textContent)` — an array of
-objects `{id, name, category, tagline, description, accent, html}` where `html` is the complete
-demo document. Build cards and modal from this array in JS. Cards render in the array order.
-The build step replaces `__TEMPLATES_JSON__` with real JSON (it will never contain a literal
-`</script`). Handle the placeholder gracefully during development (try/catch → show a "templates
-loading" empty state if parse fails).
+Rebuild the shell to the same $10k bar. Everything from v1's contract holds:
 
-**Shell theming:** theme-aware. Define palette as CSS custom properties on `:root`; redefine
-tokens under `@media (prefers-color-scheme: dark)`, then again under `:root[data-theme="dark"]`
-and `:root[data-theme="light"]` so the host's theme toggle wins in both directions. Both themes
-fully designed. Demo iframes keep their own internal look — only the shell chrome adapts.
+- Exact placeholder: `<script id="templates-data" type="application/json">__TEMPLATES_JSON__</script>`,
+  runtime JSON.parse with try/catch empty state, cards built from the array in order,
+  fields {id, name, category, tagline, description, accent, html}.
+- Live scaled iframe thumbnails (srcdoc, 1280px virtual width, transform scale, clipped,
+  pointer-events none, lazy). Fullscreen modal with Desktop/Tablet(768)/Mobile(390) toggles,
+  Esc close, focus trap, scroll lock, animated width transitions.
+- Filter bar with counts — categories now: All / Professional / Tech / Lifestyle / Entertainment.
+- Theme-aware token pattern (:root vars, prefers-color-scheme dark, then
+  :root[data-theme="dark"] / :root[data-theme="light"] winning overrides). Both themes superb.
+- `<title>Forma — Website Builder Template Showcase</title>`.
 
-**Shell design bar:** must not look templated. Avoid the banned clichés above. Pick a
-characterful display stack + quiet body stack from the approved list. One deliberate signature
-moment (e.g. the hero wordmark set huge with tight tracking, or template cards that tilt subtly
-on hover) — spend boldness once, keep the rest quiet.
-
-**Shell title:** `<title>Forma — Website Builder Template Showcase</title>`.
-Size budget for the shell alone (without injected JSON): ≤ 60 KB.
+**New for v2:** the shell itself gets the 3D treatment — template cards tilt toward the cursor
+with layered shadows and a sheen sweep; hero has a dimensional set-piece (e.g. a fanned 3D
+stack of the templates, or type set in perspective) with staged entrance; a quiet ambient
+background (canvas grain/particles or layered gradients) that never fights the thumbnails.
+Copy updated to sell the premium collection ("Twelve businesses. Twelve one-off builds.").
+Keep it fast: transform/opacity only, rAF-throttled pointer work, reduced-motion respected.

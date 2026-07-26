@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onyx Chair Co. — Barbershop, Greenpoint Brooklyn</title>
+<meta name="description" content="Onyx Chair Co. Precision cuts, straight-razor shaves, and the ritual of the chair. 212 Frost Street, Greenpoint.">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --bg:#0b0a07;
+  --bg2:#100e0a;
+  --panel:#15120c;
+  --panel2:#1a1610;
+  --ink:#eae3d3;
+  --muted:#9a9280;
+  --smoke:#6b6455;
+  --brass:#c9a45c;
+  --brass-hi:#e8cf94;
+  --brass-dp:#8a6c33;
+  --line:rgba(201,164,92,.16);
+  --line-soft:rgba(234,227,211,.08);
+  --slab:Rockwell,'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sans:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;
+  --sh-1:0 1px 2px rgba(0,0,0,.5);
+  --sh-2:0 6px 18px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.4);
+  --sh-3:0 24px 48px rgba(0,0,0,.55),0 8px 16px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--brass);color:#14100a}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--brass-dp)}
+h1,h2,h3{font-family:var(--slab);font-weight:700;line-height:1.08;letter-spacing:.005em}
+h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:14px 0 12px}
+.lede{color:var(--muted);max-width:56ch}
+section{padding:96px 0;position:relative}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent)}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(11,10,7,.82);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-soft);
+}
+@supports not (backdrop-filter:blur(2px)){header{background:rgba(11,10,7,.97)}}
+.nav{display:flex;align-items:center;gap:28px;height:66px;max-width:1160px;margin:0 auto;padding:0 24px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand b{font-family:var(--slab);font-size:1.15rem;letter-spacing:.06em}
+.brand span{font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;color:var(--smoke)}
+.nav-links{display:flex;gap:24px;margin-left:auto}
+.nav-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--brass);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 26px;border:1px solid var(--brass-dp);color:var(--brass-hi);
+  background:linear-gradient(180deg,rgba(201,164,92,.14),rgba(201,164,92,.03));
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:transform .18s ease,box-shadow .25s ease,border-color .25s ease;
+  box-shadow:var(--sh-1);
+}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(232,207,148,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease}
+.btn:hover{border-color:var(--brass);box-shadow:var(--sh-2)}
+.btn:hover::before{transform:translateX(120%)}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn.solid{background:linear-gradient(180deg,var(--brass-hi),var(--brass) 55%,var(--brass-dp));color:#191204;border-color:var(--brass-hi);font-weight:700}
+.btn.slim{padding:11px 20px}
+.nav .btn{margin-left:8px}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 40px;min-height:calc(100vh - 66px);display:flex;align-items:center;position:relative;overflow:clip}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(900px 480px at 78% 34%,rgba(201,164,92,.09),transparent 62%),
+  radial-gradient(700px 500px at 12% 88%,rgba(201,164,92,.05),transparent 60%);
+  pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:36px;align-items:center;width:100%}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.4rem);margin:20px 0 18px}
+.hero h1 em{font-style:normal;color:var(--brass);position:relative}
+.hero p.lede{font-size:1.05rem;margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.hero-meta{display:flex;gap:34px;flex-wrap:wrap;border-top:1px solid var(--line-soft);padding-top:22px}
+.hero-meta div{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--smoke);text-transform:uppercase;line-height:2}
+.hero-meta b{display:block;color:var(--ink);font-size:.82rem}
+
+/* the razor stage */
+.stage{position:relative;height:480px;perspective:1150px;perspective-origin:50% 42%}
+.tiltbox{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));will-change:transform}
+.bigword{
+  position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) translateZ(-150px);
+  font-family:var(--slab);font-weight:700;font-size:clamp(120px,17vw,208px);letter-spacing:.04em;
+  color:transparent;-webkit-text-stroke:1px rgba(201,164,92,.28);text-stroke:1px rgba(201,164,92,.28);
+  user-select:none;white-space:nowrap;
+}
+.floorsh{position:absolute;left:50%;bottom:52px;width:340px;height:44px;transform:translateX(-50%) translateZ(-30px);background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.68),transparent 70%);filter:blur(6px)}
+.rz{position:absolute;left:50%;top:44%;width:460px;height:300px;margin:-150px 0 0 -230px;transform-style:preserve-3d;animation:idle 12s ease-in-out infinite alternate}
+@keyframes idle{
+  0%{transform:rotateY(-17deg) rotateX(7deg)}
+  100%{transform:rotateY(17deg) rotateX(2deg)}
+}
+.rz .grp{position:absolute;transform-style:preserve-3d}
+.rz .p{position:absolute;inset:0}
+/* blade */
+.blade{left:16px;top:112px;width:286px;height:62px;transform-origin:100% 50%;transform:rotate(-14deg)}
+.blade .p{clip-path:polygon(0 32%,3% 8%,86% 0,100% 12%,100% 88%,88% 100%,4% 92%,0 66%)}
+.blade .f{transform:translateZ(9px);background:linear-gradient(102deg,rgba(38,34,26,.85) 0%,rgba(228,220,200,.4) 26%,rgba(125,117,101,.2) 46%,rgba(250,244,226,.5) 60%,rgba(139,130,114,.25) 74%,rgba(38,34,26,.85) 100%),linear-gradient(180deg,#4a4436,#e3dbc6 30%,#8a8272 52%,#f7f0dc 58%,#413c32)}
+.blade .m{transform:translateZ(0);background:linear-gradient(180deg,#2c2820,#8f8878 45%,#4a453a)}
+.blade .b{transform:translateZ(-9px);background:linear-gradient(180deg,#191611,#3c382e)}
+.blade .edge{position:absolute;left:6%;right:0;bottom:0;height:5px;transform:translateZ(9px);background:linear-gradient(90deg,transparent,#fdf7e4 30%,#fdf7e4 84%,transparent);clip-path:polygon(0 100%,3% 0,97% 0,100% 100%);opacity:.85}
+.blade .spine{position:absolute;left:7%;right:1%;top:0;height:5px;transform:translateZ(9px);background:linear-gradient(90deg,#6b6455,#a89f8a 50%,#5a5445)}
+/* tang */
+.tang{position:absolute;right:-58px;top:22px;width:78px;height:17px;transform-style:preserve-3d}
+.tang .p{border-radius:9px}
+.tang .f{transform:translateZ(8px);background:linear-gradient(180deg,#c9c0aa,#6f6858 65%,#d9d1bc)}
+.tang .b{transform:translateZ(-8px);background:#2a261e}
+/* scales / handle */
+.scales{left:288px;top:164px;width:212px;height:38px;transform-origin:0 50%;transform:rotate(33deg)}
+.scales .p{border-radius:19px}
+.scales .f{transform:translateZ(8px);background:linear-gradient(180deg,#241a0e,#4a3417 42%,#17100a 92%);box-shadow:inset 0 1px 0 rgba(232,207,148,.28)}
+.scales .m{transform:translateZ(0);background:#1c1409}
+.scales .b{transform:translateZ(-8px);background:#0f0b06}
+.scales .inlay{position:absolute;left:14%;right:8%;top:46%;height:1px;transform:translateZ(9px);background:linear-gradient(90deg,transparent,var(--brass) 30%,var(--brass-hi) 55%,transparent)}
+.scales .cap{position:absolute;right:-2px;top:5px;width:26px;height:28px;border-radius:50%;transform:translateZ(9px);background:radial-gradient(circle at 34% 30%,var(--brass-hi),var(--brass-dp) 68%)}
+/* pivot pin */
+.pin{position:absolute;left:288px;top:172px;width:18px;height:18px;margin:-9px;border-radius:50%;transform:translateZ(14px);background:radial-gradient(circle at 34% 30%,#f4e2b4,var(--brass) 45%,#5c451e 90%);box-shadow:0 0 14px rgba(201,164,92,.45)}
+.stage .tag{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);font-family:var(--mono);font-size:.66rem;letter-spacing:.3em;color:var(--smoke);text-transform:uppercase}
+
+/* ---------- ticker ---------- */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--bg2)}
+.ticker-track{display:flex;gap:0;width:max-content;animation:tick 30s linear infinite}
+.ticker span{font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--smoke);padding:14px 0;white-space:nowrap}
+.ticker i{font-style:normal;color:var(--brass);padding:0 22px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- ledger ---------- */
+.ledger{margin-top:44px;display:flex;flex-direction:column}
+.lcard{
+  position:relative;background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);border-left:3px double var(--brass-dp);
+  padding:26px 30px;display:grid;grid-template-columns:64px minmax(0,1fr) auto auto;gap:8px 26px;align-items:center;
+  box-shadow:var(--sh-1), inset 0 1px 0 rgba(234,227,211,.05);
+  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,border-color .3s ease;
+  overflow:hidden;
+}
+.lcard + .lcard{margin-top:-14px}
+.lcard:nth-child(odd){transform:rotate(-.45deg)}
+.lcard:nth-child(even){transform:rotate(.4deg)}
+.lcard::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(232,207,148,.1) 50%,transparent 65%);transform:translateX(-130%);transition:transform .7s ease;pointer-events:none}
+.lcard:hover{transform:translateY(-8px) rotate(0);z-index:5;border-color:var(--brass);box-shadow:var(--sh-3)}
+.lcard:hover::after{transform:translateX(130%)}
+.lcard .no{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--brass-dp)}
+.lcard h3{font-size:1.25rem;text-shadow:0 1px 0 rgba(0,0,0,.85)}
+.lcard p{grid-column:2;color:var(--muted);font-size:.92rem;max-width:52ch}
+.lcard .dur{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--smoke);text-transform:uppercase}
+.lcard .price{font-family:var(--slab);font-size:1.7rem;color:var(--brass);text-shadow:0 1px 0 rgba(0,0,0,.9)}
+.ledger-note{margin-top:26px;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--smoke)}
+
+/* ---------- barbers ---------- */
+#barbers{background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.crew{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px;perspective:1100px}
+.bcard{
+  --rx:0deg;--ry:0deg;--gx:50%;--gy:0%;
+  position:relative;background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);padding:34px 28px 30px;
+  transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:box-shadow .3s ease,border-color .3s ease;
+  box-shadow:var(--sh-1);will-change:transform;
+}
+.bcard::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 260px at var(--gx) var(--gy),rgba(232,207,148,.1),transparent 62%);opacity:0;transition:opacity .3s ease;pointer-events:none}
+.bcard:hover{border-color:rgba(201,164,92,.45);box-shadow:var(--sh-3)}
+.bcard:hover::before{opacity:1}
+.mono-ring{width:76px;height:76px;border-radius:50%;border:1px solid var(--brass-dp);display:grid;place-items:center;font-family:var(--slab);font-size:1.5rem;color:var(--brass-hi);background:radial-gradient(circle at 34% 28%,rgba(201,164,92,.22),rgba(201,164,92,.03) 70%);transform:translateZ(26px);margin-bottom:20px;box-shadow:var(--sh-1)}
+.bcard h3{font-size:1.3rem;transform:translateZ(18px)}
+.bcard .chair{font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;color:var(--brass);text-transform:uppercase;margin:6px 0 14px;transform:translateZ(14px)}
+.bcard p{color:var(--muted);font-size:.92rem;transform:translateZ(10px)}
+.bcard .since{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;color:var(--smoke);text-transform:uppercase;transform:translateZ(8px)}
+
+/* ---------- ritual ---------- */
+.steps{margin-top:48px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.step{padding:30px 22px 8px;border-left:1px solid var(--line-soft);position:relative}
+.step:first-child{border-left:none}
+.step::before{content:"";position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--brass);transition:width .5s ease}
+.step:hover::before{width:100%}
+.step .t{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--brass)}
+.step h3{font-size:1.06rem;margin:12px 0 8px}
+.step p{color:var(--muted);font-size:.86rem}
+
+/* ---------- booking ---------- */
+#book .panel{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0;margin-top:44px;
+  border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));box-shadow:var(--sh-2)
+}
+.book-left{padding:44px 40px;border-right:1px solid var(--line-soft)}
+.book-left h3{font-size:1.7rem;margin-bottom:12px}
+.book-left p{color:var(--muted);max-width:44ch;margin-bottom:26px}
+.book-left .tel{font-family:var(--slab);font-size:1.5rem;color:var(--brass-hi);letter-spacing:.04em}
+.book-left .tel-sub{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;color:var(--smoke);text-transform:uppercase;margin:6px 0 26px}
+.hours{padding:44px 40px}
+.hours h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:18px}
+.hours dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px}
+.hours dt{color:var(--muted);font-size:.9rem}
+.hours dd{text-align:right;font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;color:var(--ink)}
+.hours dd.closed{color:var(--smoke)}
+
+/* ---------- rules ---------- */
+#rules{background:var(--bg2)}
+.rules-list{margin-top:40px;columns:2;column-gap:60px;max-width:960px}
+.rules-list li{list-style:none;break-inside:avoid;font-family:var(--mono);font-size:.84rem;letter-spacing:.04em;color:var(--muted);padding:16px 0 16px 46px;position:relative;border-bottom:1px solid var(--line-soft)}
+.rules-list li b{color:var(--ink);font-weight:600}
+.rules-list li::before{content:attr(data-n);position:absolute;left:0;top:16px;color:var(--brass);letter-spacing:.1em}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:52px 0 40px;background:var(--bg)}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-end}
+.foot .brand b{font-size:1.35rem}
+.foot address{font-style:normal;color:var(--muted);font-size:.9rem;line-height:1.9}
+.foot .fine{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;color:var(--smoke);text-transform:uppercase}
+
+/* ---------- motion system ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .js .ent{opacity:0;transform:translateY(18px)}
+  .js.go .ent{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .js.go .d1{transition-delay:.08s}.js.go .d2{transition-delay:.2s}.js.go .d3{transition-delay:.32s}
+  .js.go .d4{transition-delay:.46s}.js.go .d5{transition-delay:.6s}
+  .js .rv{opacity:0;transform:translateY(22px)}
+  .js .rv.in{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .js .rv.in.d1{transition-delay:.08s}.js .rv.in.d2{transition-delay:.16s}.js .rv.in.d3{transition-delay:.24s}
+  .js .rv.in.d4{transition-delay:.32s}.js .rv.in.d5{transition-delay:.4s}
+}
+@media (prefers-reduced-motion:reduce){
+  .rz{animation:none;transform:rotateY(-12deg) rotateX(5deg)}
+  .ticker-track{animation:none}
+  .btn::before,.lcard::after{display:none}
+  *{transition-duration:.01ms !important}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:8px}
+  .stage{height:420px;order:-1}
+  .hero{min-height:0;padding-top:36px}
+  .crew{grid-template-columns:1fr;gap:16px}
+  .steps{grid-template-columns:1fr;border-top:none;border-left:1px solid var(--line)}
+  .step{border-left:none;padding:22px 0 22px 26px;border-bottom:1px solid var(--line-soft)}
+  .step::before{width:1px;height:0;top:0;transition:height .5s ease}
+  .step:hover::before{height:100%;width:1px}
+  #book .panel{grid-template-columns:1fr}
+  .book-left{border-right:none;border-bottom:1px solid var(--line-soft)}
+  .rules-list{columns:1}
+}
+@media (max-width:640px){
+  .nav-links{display:none}
+  .nav{justify-content:space-between}
+  .nav .btn{white-space:nowrap;padding:10px 14px;letter-spacing:.12em;margin-left:auto}
+  .brand span{display:none}
+  section{padding:68px 0}
+  .stage{height:330px}
+  .rz{transform-origin:50% 44%;scale:.68}
+  .bigword{font-size:110px}
+  .lcard{grid-template-columns:minmax(0,1fr) auto;padding:22px 20px}
+  .lcard .no{grid-column:1}
+  .lcard p{grid-column:1 / -1}
+  .lcard .dur{grid-column:1}
+  .lcard .price{grid-row:1;grid-column:2}
+  .hours,.book-left{padding:30px 24px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Onyx Chair Co. home">
+      <b>ONYX</b><span>CHAIR&nbsp;CO.&nbsp;·&nbsp;EST&nbsp;2016</span>
+    </a>
+    <div class="nav-links">
+      <a href="#ledger">The Ledger</a>
+      <a href="#barbers">Barbers</a>
+      <a href="#ritual">The Ritual</a>
+      <a href="#rules">House Rules</a>
+    </div>
+    <a class="btn slim solid" href="#book">Book a chair</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow ent d1">Greenpoint · Brooklyn</p>
+      <h1 class="ent d2">A sharper state<br>of <em>order.</em></h1>
+      <p class="lede ent d3">Six chairs, three barbers, one standard. Precision cuts and
+      straight-razor shaves in a room built for quiet — hot towels, heavy scissors,
+      and no small talk unless you start it.</p>
+      <div class="hero-cta ent d4">
+        <a class="btn solid" href="#book">Book a chair</a>
+        <a class="btn" href="#ledger">Read the ledger</a>
+      </div>
+      <div class="hero-meta ent d5">
+        <div>Hours<b>Tue – Sat · 10:00 – 20:00</b></div>
+        <div>Walk-ins<b>After 18:00, chair permitting</b></div>
+        <div>Address<b>212 Frost St, Brooklyn</b></div>
+      </div>
+    </div>
+
+    <div class="stage ent d3" id="stage" aria-hidden="true">
+      <div class="tiltbox" id="tiltbox">
+        <div class="bigword">ONYX</div>
+        <div class="floorsh"></div>
+        <div class="rz">
+          <div class="grp blade">
+            <div class="p b"></div>
+            <div class="p m"></div>
+            <div class="p f"></div>
+            <div class="spine"></div>
+            <div class="edge"></div>
+            <div class="grp tang">
+              <div class="p b"></div>
+              <div class="p f"></div>
+            </div>
+          </div>
+          <div class="grp scales">
+            <div class="p b"></div>
+            <div class="p m"></div>
+            <div class="p f"></div>
+            <div class="inlay"></div>
+            <div class="cap"></div>
+          </div>
+          <div class="pin"></div>
+        </div>
+      </div>
+      <div class="tag">Solingen steel · honed nightly</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Hot towel<i>—</i>Straight razor<i>—</i>Scissor work<i>—</i>Clipper fades<i>—</i>Beard architecture<i>—</i>Neck cleanups<i>—</i>Cash or card<i>—</i></span>
+    <span>Hot towel<i>—</i>Straight razor<i>—</i>Scissor work<i>—</i>Clipper fades<i>—</i>Beard architecture<i>—</i>Neck cleanups<i>—</i>Cash or card<i>—</i></span>
+  </div>
+</div>
+
+<!-- ============ LEDGER ============ -->
+<section id="ledger">
+  <div class="wrap">
+    <p class="eyebrow rv">Services &amp; tariffs</p>
+    <h2 class="rv">The Ledger</h2>
+    <p class="lede rv d1">Every service is timed, priced, and honored to the minute.
+    The book is the law of the house — what it says is what you pay.</p>
+
+    <div class="ledger">
+      <article class="lcard rv">
+        <span class="no">No. 01</span>
+        <h3>The Cut</h3>
+        <span class="dur">50 min</span>
+        <span class="price">$65</span>
+        <p>Consultation, scissor-and-clipper cut, hot-towel finish, styled to leave. Includes a neck shave and a two-week tidy-up guarantee.</p>
+      </article>
+      <article class="lcard rv d1">
+        <span class="no">No. 02</span>
+        <h3>Skin Fade</h3>
+        <span class="dur">60 min</span>
+        <span class="price">$75</span>
+        <p>Zero-gap fade blended by open blade, mapped to your growth pattern. Photographed at the end so any barber in the house can repeat it.</p>
+      </article>
+      <article class="lcard rv d2">
+        <span class="no">No. 03</span>
+        <h3>Hot-Towel Shave</h3>
+        <span class="dur">45 min</span>
+        <span class="price">$60</span>
+        <p>Three lathers, two passes of the straight razor, cold-towel close, alum and balm. The chair reclines fully. Most men fall asleep.</p>
+      </article>
+      <article class="lcard rv d3">
+        <span class="no">No. 04</span>
+        <h3>Beard Architecture</h3>
+        <span class="dur">30 min</span>
+        <span class="price">$40</span>
+        <p>Line, taper, and weight reduction with shears and razor. We set the cheek line where your bone structure says it goes, not where the trimmer slipped.</p>
+      </article>
+      <article class="lcard rv d4">
+        <span class="no">No. 05</span>
+        <h3>The Full Onyx</h3>
+        <span class="dur">2 hrs</span>
+        <span class="price">$140</span>
+        <p>Cut, shave, beard work, scalp treatment, and a pour of something dark. The whole book, one sitting, one chair. By appointment only.</p>
+      </article>
+    </div>
+    <p class="ledger-note">Gray coverage +$25 · First-timers add 10 min, no charge · 24-hour cancellation or the ledger remembers.</p>
+  </div>
+</section>
+
+<!-- ============ BARBERS ============ -->
+<section id="barbers">
+  <div class="wrap">
+    <p class="eyebrow rv">The men on the floor</p>
+    <h2 class="rv">Three barbers. Six chairs.<br>No apprentices on your head.</h2>
+    <div class="crew">
+      <article class="bcard rv" data-tilt>
+        <div class="mono-ring">MB</div>
+        <h3>Marcus Bell</h3>
+        <p class="chair">Chair 01 · Master Barber</p>
+        <p>Twenty-two years on the clippers, trained on Flatbush Avenue. If your fade has ever been photographed for a shop wall in Brooklyn, odds are Marcus cut it.</p>
+        <p class="since">Cutting since 2004 · Books 3 weeks out</p>
+      </article>
+      <article class="bcard rv d1" data-tilt>
+        <div class="mono-ring">DF</div>
+        <h3>Dario Fontaine</h3>
+        <p class="chair">Chair 02 · Razor Specialist</p>
+        <p>Apprenticed in a Palermo barberia where the shave came before the cut. Dario hones his own blades and will not be rushed. Book him for the ritual, not the clock.</p>
+        <p class="since">Cutting since 2011 · Shaves only after 14:00</p>
+      </article>
+      <article class="bcard rv d2" data-tilt>
+        <div class="mono-ring">EN</div>
+        <h3>Eli Navarro</h3>
+        <p class="chair">Chair 03 · Scissor Work</p>
+        <p>Longer shapes, textured crops, and the kind of scissor-over-comb that never shows a line. Eli cuts dry first, wet second, and checks it against how you actually wear it.</p>
+        <p class="since">Cutting since 2015 · Takes walk-in consults Sat</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RITUAL ============ -->
+<section id="ritual">
+  <div class="wrap">
+    <p class="eyebrow rv">Forty-five minutes, accounted for</p>
+    <h2 class="rv">The Ritual of the Chair</h2>
+    <p class="lede rv d1">A shave here follows the same order it has since barbering was surgery's
+    quieter cousin. Every minute is part of the work.</p>
+    <div class="steps">
+      <div class="step rv"><span class="t">00:00</span><h3>The Reading</h3><p>Grain mapped by hand, skin assessed, blade chosen. Nothing touches your face before this.</p></div>
+      <div class="step rv d1"><span class="t">00:05</span><h3>First Heat</h3><p>Two towels, steamed over eucalyptus. Pores open, bristle softens, shoulders drop.</p></div>
+      <div class="step rv d2"><span class="t">00:12</span><h3>The Lather</h3><p>Tallow soap worked in a warm bowl for a full three minutes, painted with the grain.</p></div>
+      <div class="step rv d3"><span class="t">00:18</span><h3>The Passes</h3><p>With the grain, then across it. The razor is honest — it takes exactly what it is asked to.</p></div>
+      <div class="step rv d4"><span class="t">00:38</span><h3>Cold Close</h3><p>Iced towel, alum block, unscented balm. You leave with the face you were promised.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section id="book">
+  <div class="wrap">
+    <p class="eyebrow rv">Appointments</p>
+    <h2 class="rv">Take a seat in the book</h2>
+    <div class="panel rv d1">
+      <div class="book-left">
+        <h3>Call the desk, or text the word <b style="color:var(--brass)">CHAIR</b>.</h3>
+        <p>We hold the book by phone because a cut is a conversation, not a checkout flow.
+        Tell us the service, the barber if you have one, and the week you're aiming for.</p>
+        <p class="tel">(718) 555-0212</p>
+        <p class="tel-sub">Desk staffed Tue – Sat · 09:30 – 19:30</p>
+        <a class="btn solid" href="#top">Request first available</a>
+      </div>
+      <div class="hours">
+        <h4>Floor hours</h4>
+        <dl>
+          <dt>Monday</dt><dd class="closed">Closed — blades honed</dd>
+          <dt>Tuesday</dt><dd>10:00 – 20:00</dd>
+          <dt>Wednesday</dt><dd>10:00 – 20:00</dd>
+          <dt>Thursday</dt><dd>10:00 – 21:00</dd>
+          <dt>Friday</dt><dd>10:00 – 21:00</dd>
+          <dt>Saturday</dt><dd>09:00 – 18:00</dd>
+          <dt>Sunday</dt><dd class="closed">Closed — rest day</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section id="rules">
+  <div class="wrap">
+    <p class="eyebrow rv">Posted since day one</p>
+    <h2 class="rv">House Rules</h2>
+    <ul class="rules-list">
+      <li class="rv" data-n="I."><b>Be on time.</b> Ten minutes late is a rebooking, not a shorter cut.</li>
+      <li class="rv d1" data-n="II."><b>Phones on silent.</b> The chair is the last quiet room in Brooklyn. Keep it that way.</li>
+      <li class="rv d2" data-n="III."><b>Say what you want.</b> Bring a photo, bring a sentence, bring a doubt — we work with all three.</li>
+      <li class="rv d3" data-n="IV."><b>Kids from twelve.</b> A straight razor room is no place for a birthday party.</li>
+      <li class="rv d4" data-n="V."><b>The barber's word is final on the fade line.</b> You chose a professional; let him be one.</li>
+      <li class="rv d5" data-n="VI."><b>Tip in cash if you can.</b> The card machine takes a cut. So do we, but ours is better earned.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <p class="brand"><b>ONYX</b>&nbsp;<span style="font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;color:var(--smoke)">CHAIR CO.</span></p>
+      <address>212 Frost Street, Greenpoint<br>Brooklyn, NY 11222<br>(718) 555-0212 · @onyxchairco</address>
+    </div>
+    <p class="fine">© 2026 Onyx Chair Co. · Cut with intent</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var docEl=document.documentElement;
+  var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fine=window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* staged entrance */
+  function go(){requestAnimationFrame(function(){docEl.classList.add("go")})}
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go)}else{go()}
+
+  /* scroll reveals */
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}
+      });
+    },{threshold:.12,rootMargin:"0px 0px -48px 0px"});
+    Array.prototype.forEach.call(document.querySelectorAll(".rv"),function(el){io.observe(el)});
+  }else{
+    Array.prototype.forEach.call(document.querySelectorAll(".rv"),function(el){el.classList.add("in")});
+  }
+
+  if(reduced||!fine){return}
+
+  /* hero mouse-tilt — rAF throttled */
+  var stage=document.getElementById("stage");
+  var tiltbox=document.getElementById("tiltbox");
+  if(stage&&tiltbox){
+    var tRaf=null,tx=0,ty=0,cx=0,cy=0;
+    function tApply(){
+      tRaf=null;
+      cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
+      tiltbox.style.setProperty("--tx",cy.toFixed(2)+"deg");
+      tiltbox.style.setProperty("--ty",cx.toFixed(2)+"deg");
+      if(Math.abs(tx-cx)>.05||Math.abs(ty-cy)>.05){tRaf=requestAnimationFrame(tApply)}
+    }
+    stage.addEventListener("pointermove",function(e){
+      var r=stage.getBoundingClientRect();
+      tx=((e.clientX-r.left)/r.width-.5)*14;   /* rotateY, max 7deg */
+      ty=-((e.clientY-r.top)/r.height-.5)*10;  /* rotateX, max 5deg */
+      if(!tRaf){tRaf=requestAnimationFrame(tApply)}
+    });
+    stage.addEventListener("pointerleave",function(){
+      tx=0;ty=0;
+      if(!tRaf){tRaf=requestAnimationFrame(tApply)}
+    });
+  }
+
+  /* barber card tilt + specular tracking — rAF throttled per card */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-tilt]"),function(card){
+    var raf=null,px=0,py=0;
+    function apply(){
+      raf=null;
+      card.style.setProperty("--ry",(px*7).toFixed(2)+"deg");
+      card.style.setProperty("--rx",(-py*6).toFixed(2)+"deg");
+      card.style.setProperty("--gx",((px+.5)*100).toFixed(1)+"%");
+      card.style.setProperty("--gy",((py+.5)*100).toFixed(1)+"%");
+    }
+    card.addEventListener("pointermove",function(e){
+      var r=card.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width-.5;
+      py=(e.clientY-r.top)/r.height-.5;
+      if(!raf){raf=requestAnimationFrame(apply)}
+    });
+    card.addEventListener("pointerleave",function(){
+      px=0;py=0;
+      if(!raf){raf=requestAnimationFrame(apply)}
+    });
+  });
+})();
+</script>
+</body>
+</html>
