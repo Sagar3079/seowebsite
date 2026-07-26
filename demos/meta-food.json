@@ -1,0 +1,29 @@
+[
+  {
+    "id": "saffron-vine",
+    "name": "Saffron & Vine",
+    "category": "Food",
+    "tagline": "Mediterranean fine dining on a candlelit dusk terrace",
+    "description": "A dusk-terrace dining experience where a candlelit 3D table scene tilts with the cursor and seven tasting courses plate themselves as you scroll.",
+    "accent": "#E29A2E",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/saffron-vine.html"
+  },
+  {
+    "id": "flour-fold",
+    "name": "Flour & Fold",
+    "category": "Food",
+    "tagline": "French pâtisserie in butter cream, copper and morning light",
+    "description": "A morning-lit pâtisserie whose signature entremet is built from true 3D layers that explode apart on hover, over a drifting canvas of flour motes.",
+    "accent": "#B26E3F",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/flour-fold.html"
+  },
+  {
+    "id": "koya-ramen",
+    "name": "Koya Ramen Bar",
+    "category": "Food",
+    "tagline": "Late-night ramen from a lacquer-and-neon Tokyo alley",
+    "description": "A neon-lit alley counter where canvas steam rises off a cursor-tilted ramen bowl and menu tiles flick like chopsticks under your pointer.",
+    "accent": "#FF5B3B",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/koya-ramen.html"
+  }
+]

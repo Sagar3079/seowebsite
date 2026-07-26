@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azure Cove — Private Island Resort, Laamu Atoll</title>
+<meta name="description" content="Azure Cove is a sixteen-villa private island on Laamu Atoll. Pool villas from $780 a night, a house reef forty metres from your deck, and a seaplane that leaves Malé twice a day.">
+<style>
+:root{
+  --shell:#fbf7ee;
+  --sand:#f1e7d2;
+  --sand2:#e6d8bb;
+  --sea:#79c9c0;
+  --sea2:#3aa9a4;
+  --lagoon:#0f7f8b;
+  --deep:#0a3a44;
+  --ink:#123840;
+  --coral:#e96a47;
+  --sun:#f4c775;
+  --line:rgba(10,58,68,.15);
+  --disp:'Iowan Old Style','Palatino Linotype','URW Palladio L',P052,serif;
+  --body:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  --sh1:0 1px 3px rgba(10,58,68,.10);
+  --sh2:0 12px 28px -12px rgba(10,58,68,.28);
+  --sh3:0 30px 60px -20px rgba(10,58,68,.38),0 12px 24px -14px rgba(10,58,68,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{background:var(--shell);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.66;-webkit-font-smoothing:antialiased}
+::selection{background:var(--lagoon);color:#fff}
+a{color:var(--lagoon);text-decoration:none}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--disp);font-weight:600;line-height:1.12;letter-spacing:.005em}
+h2{font-size:clamp(1.85rem,3.6vw,2.7rem);margin:.4em 0 .4em}
+h2 em,h1 em{font-style:italic;color:var(--lagoon)}
+section{padding:96px 0}
+@media(max-width:768px){section{padding:62px 0}}
+.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--sea2);display:flex;align-items:center;gap:.8em}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--coral);border-radius:2px}
+.sub{color:#3f6169;max-width:56ch}
+.uln{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1.5px;transition:background-size .3s;padding-bottom:2px}
+.uln:hover,.uln:focus-visible{background-size:100% 1.5px}
+.btn{display:inline-block;font-family:var(--body);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,#158e9a,var(--lagoon));padding:1em 2em;border-radius:999px;border:0;cursor:pointer;
+  box-shadow:0 10px 22px -8px rgba(15,127,139,.55);transition:transform .18s ease,box-shadow .25s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 16px 30px -10px rgba(15,127,139,.6)}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn.coral{background:linear-gradient(180deg,#f07b58,var(--coral));box-shadow:0 10px 22px -8px rgba(233,106,71,.55)}
+.btn.ghost{background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75)}
+.btn.ghost:hover{background:rgba(255,255,255,.28)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .35s,box-shadow .35s}
+.nav.solid{background:rgba(251,247,238,.86);backdrop-filter:blur(12px);box-shadow:var(--sh1)}
+@supports not (backdrop-filter:blur(1px)){.nav.solid{background:rgba(251,247,238,.97)}}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--disp);font-size:1.32rem;color:var(--deep);letter-spacing:.02em}
+.logo b{color:var(--lagoon);font-weight:600;font-style:italic}
+.nav nav{display:flex;gap:1.7em;align-items:center}
+.nav nav a{color:var(--deep);font-size:.86rem;font-weight:600;letter-spacing:.05em}
+@media(max-width:820px){.nav nav a:not(.btn){display:none}}
+.nav .btn{padding:.6em 1.35em;font-size:.74rem}
+
+/* ---------- hero ocean ---------- */
+.hero{position:relative;min-height:100svh;min-height:640px;display:flex;align-items:center;overflow:hidden;
+  background:linear-gradient(180deg,#dff2ef 0%,#f6efdd 46%,#efe3c8 100%)}
+.layer{position:absolute;left:0;right:0;will-change:transform}
+.sun{top:8%;left:auto;right:8%;width:min(30vw,300px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#fbe3ae 0%,var(--sun) 42%,rgba(244,199,117,0) 72%);filter:blur(2px);opacity:.9}
+.glint{top:38%;height:10px;background:linear-gradient(90deg,transparent,rgba(255,236,190,.85),transparent);filter:blur(3px)}
+.waveband{height:32svh;min-height:200px;bottom:auto}
+.waveband .drift{display:flex;width:200%;height:100%;animation:drift linear infinite}
+.waveband svg{width:50%;height:100%;flex:none;display:block}
+.w1{top:41%}.w1 .drift{animation-duration:46s}
+.w2{top:50%}.w2 .drift{animation-duration:32s;animation-direction:reverse}
+.w3{top:59%}.w3 .drift{animation-duration:22s}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.shore{bottom:-2px;top:auto;height:24svh;min-height:150px}
+.shore svg{width:100%;height:100%;display:block}
+.hero-copy{position:relative;z-index:4;width:100%;padding-top:60px}
+.hero-copy .eyebrow{color:var(--lagoon)}
+.hero-copy h1{font-size:clamp(2.5rem,6.6vw,4.6rem);color:var(--deep);max-width:12em;margin:.28em 0 .3em}
+.hero-copy p{max-width:44ch;color:#2c545d;font-size:1.06rem}
+.hero-cta{display:flex;gap:14px;margin-top:1.9em;flex-wrap:wrap;align-items:center}
+.hero-note{font-size:.82rem;color:#4c6f77;letter-spacing:.04em}
+.js .hr-a{opacity:0;transform:translateY(26px)}
+.js .hr-a.go{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+
+/* ---------- villas ---------- */
+.villas{background:linear-gradient(180deg,#efe3c8,var(--shell) 26%)}
+.cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+@media(max-width:980px){.cardgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.cardgrid{grid-template-columns:1fr}}
+.vcard{position:relative;background:#fff;border-radius:18px;box-shadow:var(--sh2);overflow:hidden;
+  transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;--mx:50%;--my:40%}
+.vcard:hover{box-shadow:var(--sh3)}
+.vcard::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;border-radius:18px;
+  background:radial-gradient(340px circle at var(--mx) var(--my),rgba(255,255,255,.5),rgba(255,255,255,0) 62%)}
+.vcard:hover::after{opacity:1}
+.vart{height:150px;position:relative;overflow:hidden}
+.vart svg{position:absolute;inset:0;width:100%;height:100%}
+.vbody{padding:22px 24px 26px}
+.vbody h3{font-size:1.32rem;color:var(--deep)}
+.vmeta{display:flex;gap:.9em;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:#5a7b83;font-weight:700;margin:.5em 0 .7em;flex-wrap:wrap}
+.vbody p{font-size:.93rem;color:#41626a}
+.vrate{display:flex;align-items:baseline;justify-content:space-between;margin-top:1.1em;padding-top:1em;border-top:1px solid var(--line)}
+.vrate b{font-family:var(--disp);font-size:1.5rem;color:var(--lagoon);font-weight:600}
+.vrate span{font-size:.78rem;color:#5a7b83}
+
+/* ---------- experiences ---------- */
+.exp{background:var(--deep);color:#e8f3f1;position:relative;overflow:hidden}
+.exp::before{content:"";position:absolute;inset:auto 0 0;height:180px;
+  background:radial-gradient(60% 130% at 50% 100%,rgba(121,201,192,.22),transparent 70%)}
+.exp .eyebrow{color:var(--sea)}
+.exp h2{color:#fff}
+.exp .sub{color:#9dc4c4}
+.exlist{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:34px;position:relative}
+@media(max-width:768px){.exlist{grid-template-columns:1fr}}
+.exrow{display:flex;justify-content:space-between;gap:1.4em;align-items:baseline;padding:1.15em 4px;border-bottom:1px solid rgba(232,243,241,.16)}
+.exrow h3{font-size:1.06rem;font-family:var(--body);font-weight:700;color:#fff}
+.exrow small{display:block;color:#8fb9b9;font-size:.84rem;font-weight:400;margin-top:2px}
+.exrow .px{font-family:var(--disp);color:var(--sun);font-size:1.15rem;white-space:nowrap}
+
+/* ---------- dining / spa ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+@media(max-width:900px){.duo{grid-template-columns:1fr}}
+.venue{padding:1.2em 0;border-bottom:1px solid var(--line)}
+.venue h3{font-size:1.22rem;color:var(--deep)}
+.venue .hours{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sea2);font-weight:700;margin:.25em 0 .4em}
+.venue p{font-size:.93rem;color:#41626a}
+.sparow{display:flex;justify-content:space-between;gap:1.2em;align-items:baseline;padding:1.05em 0;border-bottom:1px solid var(--line)}
+.sparow div b{color:var(--deep);font-weight:700;font-size:1rem}
+.sparow div small{display:block;color:#5a7b83;font-size:.82rem}
+.sparow .px{font-family:var(--disp);color:var(--lagoon);font-size:1.12rem;white-space:nowrap}
+
+/* ---------- getting there ---------- */
+.route{background:var(--sand);position:relative;overflow:hidden}
+.route .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+@media(max-width:900px){.route .wrap{grid-template-columns:1fr}}
+.planecard{background:#fff;border-radius:18px;box-shadow:var(--sh2);padding:28px}
+.planecard dl{display:grid;grid-template-columns:auto 1fr;gap:.55em 1.4em;font-size:.94rem}
+.planecard dt{font-weight:700;color:var(--deep);white-space:nowrap}
+.planecard dd{color:#41626a}
+.planecard svg{width:100%;height:auto;margin-bottom:14px;display:block}
+
+/* ---------- booking ---------- */
+.book{background:linear-gradient(180deg,var(--shell),#e9f2ee)}
+.bookbox{max-width:720px;margin:40px auto 0;background:#fff;border-radius:20px;box-shadow:var(--sh2);padding:34px}
+.bform{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.bform{grid-template-columns:1fr}}
+.bform label{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#5a7b83;margin-bottom:.45em}
+.bform input,.bform select{width:100%;padding:.85em 1em;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:.95rem;background:var(--shell);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.bform input:focus,.bform select:focus{outline:none;border-color:var(--lagoon);box-shadow:0 0 0 4px rgba(15,127,139,.16)}
+.bform .full{grid-column:1/-1}
+.bmsg{margin-top:1em;font-size:.92rem;color:var(--lagoon);font-weight:700;min-height:1.4em}
+
+/* ---------- footer ---------- */
+footer{background:var(--deep);color:#8fb9b9;padding:56px 0 40px;font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:2em;flex-wrap:wrap}
+footer .logo{color:#fff}
+footer a{color:#c8e2de}
+
+/* reveals */
+.js .rv{opacity:0;transform:translateY(20px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .waveband .drift{animation:none}
+  .js .rv,.js .hr-a{opacity:1;transform:none;transition:none}
+  .vcard,.btn{transition:none}
+  *{animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topnav">
+  <div class="wrap">
+    <a class="logo" href="#top">Azure <b>Cove</b></a>
+    <nav aria-label="Primary">
+      <a class="uln" href="#villas">Villas</a>
+      <a class="uln" href="#experiences">Experiences</a>
+      <a class="uln" href="#dining">Dining &amp; Spa</a>
+      <a class="uln" href="#getting-there">Getting there</a>
+      <a class="btn coral" href="#book">Check dates</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" aria-label="Azure Cove lagoon">
+  <div class="layer sun" data-sp="0.22" aria-hidden="true"></div>
+  <div class="layer glint" data-sp="0.2" aria-hidden="true"></div>
+  <div class="layer waveband w1" data-sp="0.14" aria-hidden="true"><div class="drift">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#a8ded6" d="M0,90 C360,150 360,30 720,90 C1080,150 1080,30 1440,90 L1440,220 L0,220 Z"/></svg>
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#a8ded6" d="M0,90 C360,150 360,30 720,90 C1080,150 1080,30 1440,90 L1440,220 L0,220 Z"/></svg>
+  </div></div>
+  <div class="layer waveband w2" data-sp="0.09" aria-hidden="true"><div class="drift">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#79c9c0" d="M0,100 C300,40 420,160 720,100 C1020,40 1140,160 1440,100 L1440,220 L0,220 Z"/></svg>
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#79c9c0" d="M0,100 C300,40 420,160 720,100 C1020,40 1140,160 1440,100 L1440,220 L0,220 Z"/></svg>
+  </div></div>
+  <div class="layer waveband w3" data-sp="0.05" aria-hidden="true"><div class="drift">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#2f9b96" d="M0,80 C360,140 360,20 720,80 C1080,140 1080,20 1440,80 L1440,220 L0,220 Z"/></svg>
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#2f9b96" d="M0,80 C360,140 360,20 720,80 C1080,140 1080,20 1440,80 L1440,220 L0,220 Z"/></svg>
+  </div></div>
+  <div class="layer shore" data-sp="0" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path fill="#f6eeda" d="M0,120 C280,60 560,150 900,100 C1150,64 1320,110 1440,86 L1440,200 L0,200 Z"/>
+      <path fill="#efe3c8" d="M0,160 C320,110 640,185 980,145 C1200,120 1340,155 1440,138 L1440,200 L0,200 Z"/>
+    </svg>
+  </div>
+  <div class="wrap hero-copy">
+    <p class="eyebrow hr-a" style="transition-delay:.1s">Laamu Atoll · Maldives · 16 villas</p>
+    <h1 class="hr-a" style="transition-delay:.22s">One island. One reef. <em>Nowhere to be.</em></h1>
+    <p class="hr-a" style="transition-delay:.36s">Azure Cove is a sixteen-villa island a forty-minute seaplane hop south of Malé. No lobby, no schedule — just sand paths, a house reef forty metres off your deck, and staff who learn your name before your bags arrive.</p>
+    <div class="hero-cta hr-a" style="transition-delay:.5s">
+      <a class="btn coral" href="#book">Check dates</a>
+      <a class="btn ghost" href="#villas" style="color:var(--deep);box-shadow:inset 0 0 0 1.5px var(--deep)">See the villas</a>
+      <span class="hero-note">May–November from $780 / night</span>
+    </div>
+  </div>
+</section>
+
+<section class="villas" id="villas">
+  <div class="wrap">
+    <p class="eyebrow rv">Stay</p>
+    <h2 class="rv">Sixteen villas, three ways to <em>wake up</em></h2>
+    <p class="sub rv">Every villa faces west for the sunset and none shares a wall. Rates include breakfast at The Shallows, non-motorised watersports and the twice-daily reef shuttle.</p>
+    <div class="cardgrid">
+      <article class="vcard tilt rv d1">
+        <div class="vart" aria-hidden="true"><svg viewBox="0 0 400 150" preserveAspectRatio="none">
+          <rect width="400" height="150" fill="#d9efe9"/>
+          <path d="M0,95 C100,70 220,115 400,85 L400,150 L0,150 Z" fill="#79c9c0"/>
+          <rect x="120" y="46" width="160" height="52" rx="5" fill="#0a3a44"/>
+          <rect x="132" y="58" width="42" height="28" rx="3" fill="#f4c775"/>
+          <rect x="188" y="58" width="80" height="40" rx="3" fill="#158e9a"/>
+          <path d="M100,46 L200,18 L300,46 Z" fill="#123840"/>
+        </svg></div>
+        <div class="vbody">
+          <h3>Lagoon Pool Villa</h3>
+          <p class="vmeta"><span>92 m²</span><span>2 guests</span><span>Plunge pool</span></p>
+          <p>A palm-shaded pavilion on the calm side of the island, ten steps from water so still it mirrors the sky. Outdoor rain shower, pool deck, daybed for two.</p>
+          <p class="vrate"><b>$780</b><span>per night · B&amp;B</span></p>
+        </div>
+      </article>
+      <article class="vcard tilt rv d2">
+        <div class="vart" aria-hidden="true"><svg viewBox="0 0 400 150" preserveAspectRatio="none">
+          <rect width="400" height="150" fill="#f1e7d2"/>
+          <path d="M0,110 C140,80 260,125 400,95 L400,150 L0,150 Z" fill="#e6d8bb"/>
+          <rect x="90" y="50" width="100" height="48" rx="5" fill="#123840"/>
+          <rect x="210" y="58" width="100" height="40" rx="5" fill="#0a3a44"/>
+          <path d="M70,50 L140,26 L210,50 Z" fill="#0f7f8b"/>
+          <path d="M190,58 L260,36 L330,58 Z" fill="#158e9a"/>
+          <circle cx="352" cy="34" r="16" fill="#f4c775"/>
+        </svg></div>
+        <div class="vbody">
+          <h3>Sandbar Residence</h3>
+          <p class="vmeta"><span>140 m²</span><span>4 guests</span><span>2 bedrooms</span></p>
+          <p>Two pavilions joined by a shaded sala on the island's private sandbar tip. Sunrise on one terrace, sunset on the other, and a butler on speed-dial.</p>
+          <p class="vrate"><b>$1,150</b><span>per night · B&amp;B</span></p>
+        </div>
+      </article>
+      <article class="vcard tilt rv d3">
+        <div class="vart" aria-hidden="true"><svg viewBox="0 0 400 150" preserveAspectRatio="none">
+          <rect width="400" height="150" fill="#bfe6df"/>
+          <path d="M0,105 C200,80 260,120 400,100 L400,150 L0,150 Z" fill="#2f9b96"/>
+          <rect x="60" y="98" width="280" height="8" rx="4" fill="#c9a86a"/>
+          <rect x="150" y="44" width="120" height="54" rx="5" fill="#0a3a44"/>
+          <path d="M130,44 L210,18 L290,44 Z" fill="#123840"/>
+          <rect x="164" y="58" width="34" height="30" rx="3" fill="#79c9c0"/>
+          <rect x="92" y="88" width="6" height="20" fill="#c9a86a"/><rect x="300" y="88" width="6" height="20" fill="#c9a86a"/>
+        </svg></div>
+        <div class="vbody">
+          <h3>Reef House</h3>
+          <p class="vmeta"><span>210 m²</span><span>4 guests</span><span>Over-water</span></p>
+          <p>The island's only over-water house, set on stilts above the drop-off. Glass floor panel, sea-level hammock net, ladder straight into the blue.</p>
+          <p class="vrate"><b>$2,400</b><span>per night · B&amp;B</span></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="exp" id="experiences">
+  <div class="wrap">
+    <p class="eyebrow rv">Days here</p>
+    <h2 class="rv">The lagoon sets the programme</h2>
+    <p class="sub rv">Nothing is compulsory and everything is bookable the evening before. Our marine team briefs at 08:30 on the day's visibility, currents and manta sightings.</p>
+    <div class="exlist">
+      <div class="exrow rv"><h3>Manta snorkel safari<small>Hanifaru-trained guides · 3 hrs, departs 09:00</small></h3><span class="px">$120</span></div>
+      <div class="exrow rv d1"><h3>Sandbank castaway picnic<small>Private sandbank, cool box &amp; parasol · half day</small></h3><span class="px">$240 for two</span></div>
+      <div class="exrow rv"><h3>Night kayak — bioluminescence<small>Clear-hull kayaks, new-moon weeks · 90 min</small></h3><span class="px">$85</span></div>
+      <div class="exrow rv d1"><h3>Freediving introduction<small>AIDA instructor, max 4 guests · 2 sessions</small></h3><span class="px">$190</span></div>
+      <div class="exrow rv"><h3>Sunset dhoni sail<small>Traditional sailboat, sparkling wine · 2 hrs</small></h3><span class="px">$150</span></div>
+      <div class="exrow rv d1"><h3>House-reef dive<small>Shore entry, all gear included · any level</small></h3><span class="px">$95</span></div>
+      <div class="exrow rv"><h3>Astronomy on the sandbar<small>8-inch telescope, southern-sky charts · new-moon nights</small></h3><span class="px">$60</span></div>
+      <div class="exrow rv d1"><h3>Snorkel gear &amp; kayaks<small>Fitted on arrival, yours all stay</small></h3><span class="px">Included</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="dining">
+  <div class="wrap duo">
+    <div>
+      <p class="eyebrow rv">Dining</p>
+      <h2 class="rv">Three tables, one <em>tide clock</em></h2>
+      <div class="venue rv"><h3>Driftwood</h3><p class="hours">Dinner · 18:30 – 22:30</p><p>Open-fire grill on the beach. The day's catch — usually wahoo, jobfish or reef snapper — over coconut-husk coals. Tasting menu $110, wine pairing $65.</p></div>
+      <div class="venue rv"><h3>The Shallows</h3><p class="hours">Breakfast &amp; lunch · 07:00 – 15:00</p><p>Over-water pavilion where breakfast is included and unhurried: hoppers, tropical fruit, proper espresso. Lunch mains $18–34.</p></div>
+      <div class="venue rv"><h3>Palm Bar</h3><p class="hours">11:00 – late</p><p>Toes-in-sand bar. Green-coconut mixers, a short rum list, and the island's only screen — off unless the cricket is on.</p></div>
+    </div>
+    <div>
+      <p class="eyebrow rv">Spa</p>
+      <h2 class="rv">The Coral Spa</h2>
+      <p class="sub rv">Four open-sided treatment rooms over the shallows, run by a Balinese-led team of six. Book before 10:00 for same-day slots.</p>
+      <div class="sparow rv"><div><b>Coral Stone Ritual</b><small>Warm stone + island coconut oil · 90 min</small></div><span class="px">$210</span></div>
+      <div class="sparow rv"><div><b>Sea Salt Polish &amp; Wrap</b><small>Lagoon-salt scrub, aloe wrap · 60 min</small></div><span class="px">$140</span></div>
+      <div class="sparow rv"><div><b>Sunset Couples Massage</b><small>Twin tables, last light · 75 min</small></div><span class="px">$320</span></div>
+      <div class="sparow rv"><div><b>After-Sun Face Remedy</b><small>Cucumber + cold jade · 45 min</small></div><span class="px">$95</span></div>
+      <div class="sparow rv"><div><b>Sleep Ritual</b><small>Slow massage + lagoon sound bath · 120 min</small></div><span class="px">$260</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="route" id="getting-there">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rv">Getting there</p>
+      <h2 class="rv">Forty minutes over <em>a hundred atolls</em></h2>
+      <p class="sub rv">Land at Malé (MLE), walk 200 m to the seaplane terminal, and we take it from there — bags, check-in, cold towels. The flight south over Vaavu and Meemu is the best welcome we could design, so we didn't design anything else.</p>
+      <p class="sub rv" style="margin-top:1em">Departures daily at <strong>09:15</strong> and <strong>13:45</strong>; returns 10:30 and 15:00. $420 return per guest, booked with your stay. Private charters on request.</p>
+    </div>
+    <div class="planecard rv d1">
+      <svg viewBox="0 0 360 120" aria-hidden="true">
+        <path d="M10,86 C90,70 250,98 350,80" stroke="#79c9c0" stroke-width="2.5" fill="none" stroke-dasharray="6 7"/>
+        <circle cx="14" cy="85" r="6" fill="#0f7f8b"/><circle cx="346" cy="81" r="6" fill="#e96a47"/>
+        <g transform="translate(168,52) rotate(6)">
+          <ellipse cx="0" cy="0" rx="34" ry="9" fill="#0a3a44"/>
+          <rect x="-8" y="-22" width="10" height="22" rx="4" fill="#0a3a44"/>
+          <ellipse cx="-2" cy="-24" rx="30" ry="5" fill="#0f7f8b"/>
+          <path d="M-34,0 L-46,-14 L-38,-14 L-28,-5 Z" fill="#0f7f8b"/>
+          <ellipse cx="-2" cy="14" rx="22" ry="3.5" fill="#123840"/>
+        </g>
+        <text x="14" y="108" font-family="Avenir,Montserrat,sans-serif" font-size="11" fill="#41626a" font-weight="700">MLE · Malé</text>
+        <text x="272" y="104" font-family="Avenir,Montserrat,sans-serif" font-size="11" fill="#41626a" font-weight="700">Azure Cove</text>
+      </svg>
+      <dl>
+        <dt>Flight time</dt><dd>40 minutes, Twin Otter seaplane</dd>
+        <dt>Luggage</dt><dd>25 kg + 5 kg cabin per guest</dd>
+        <dt>Transfer</dt><dd>$420 return, children under 12 half fare</dd>
+        <dt>Tip</dt><dd>Sit on the left flying in — the sandbar photo everyone wants</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="notes" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Good to know</p>
+    <h2 class="rv">Island notes</h2>
+    <div class="cardgrid" style="margin-top:34px">
+      <div class="vcard rv" style="padding:24px"><h3 style="font-size:1.1rem;color:var(--deep)">Seasons &amp; rates</h3><p style="font-size:.92rem;color:#41626a;margin-top:.5em">May–November is our green-season sweet spot: villa rates from $780, glassy lagoons in the morning, dramatic skies at dusk. December–April peak rates run 35–50% higher; New Year requires a 7-night minimum.</p></div>
+      <div class="vcard rv d1" style="padding:24px"><h3 style="font-size:1.1rem;color:var(--deep)">Children &amp; quiet</h3><p style="font-size:.92rem;color:#41626a;margin-top:.5em">Families are welcome in the Sandbar Residence and Reef House year-round. The Lagoon Pool Villas and the Coral Spa deck stay adults-only, so honeymooners keep their hush.</p></div>
+      <div class="vcard rv d2" style="padding:24px"><h3 style="font-size:1.1rem;color:var(--deep)">Reef promise</h3><p style="font-size:.92rem;color:#41626a;margin-top:.5em">Reef-safe sunscreen is in every villa (and the only kind allowed in the water). Our resident marine biologist, Dr. Leena Rasheed, runs a free house-reef walk every Tuesday at low tide.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow rv" style="justify-content:center">Booking</p>
+    <h2 class="rv">Check your <em>dates</em></h2>
+    <p class="sub rv" style="margin:0 auto">Stay four nights or more between 1 May and 30 November 2026 and the seaplane transfer is on us. Our reservations team replies within one working day.</p>
+    <form class="bookbox rv d1" id="bookform" novalidate>
+      <div class="bform">
+        <div><label for="bin">Check-in</label><input id="bin" name="in" type="date" min="2026-08-01" value="2026-09-14" required></div>
+        <div><label for="bout">Check-out</label><input id="bout" name="out" type="date" min="2026-08-02" value="2026-09-19" required></div>
+        <div><label for="bvilla">Villa</label><select id="bvilla" name="villa"><option>Lagoon Pool Villa — $780</option><option>Sandbar Residence — $1,150</option><option>Reef House — $2,400</option></select></div>
+        <div><label for="bmail">Email</label><input id="bmail" name="email" type="email" placeholder="you@example.com" required></div>
+        <div class="full" style="text-align:left"><button class="btn coral" type="submit">Request availability</button></div>
+      </div>
+      <p class="bmsg" id="bmsg" role="status" aria-live="polite"></p>
+      <p style="margin-top:1.2em;font-size:.8rem;color:#5a7b83;text-align:left">A 30% deposit holds your villa; the balance is due 45 days before arrival. Cancel more than 60 days out for a full refund — closer in, we move your dates once for free within twelve months.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p class="logo">Azure <b style="font-style:italic">Cove</b></p>
+      <p style="max-width:34ch;margin-top:.6em">Olhuveli Kandu, Laamu Atoll, Republic of Maldives.<br>reservations@azurecove.mv · +960 680 44 12</p>
+    </div>
+    <div>
+      <p style="color:#c8e2de;font-weight:700;margin-bottom:.5em">On the island</p>
+      <p><a class="uln" href="#villas">Villas &amp; rates</a><br><a class="uln" href="#experiences">Experiences</a><br><a class="uln" href="#dining">Dining &amp; spa</a></p>
+    </div>
+    <div>
+      <p style="color:#c8e2de;font-weight:700;margin-bottom:.5em">Plan</p>
+      <p><a class="uln" href="#getting-there">Seaplane transfers</a><br><a class="uln" href="#book">Check dates</a><br>© 2026 Azure Cove Resorts Pvt Ltd</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var d=document,de=d.documentElement;
+de.classList.add('js');
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* staged hero entrance */
+var heroBits=[].slice.call(d.querySelectorAll('.hr-a'));
+requestAnimationFrame(function(){requestAnimationFrame(function(){
+  heroBits.forEach(function(el){el.classList.add('go');});
+});});
+
+/* scroll reveals */
+var rvs=[].slice.call(d.querySelectorAll('.rv'));
+if(rm||!('IntersectionObserver' in window)){
+  rvs.forEach(function(el){el.classList.add('in');});
+}else{
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -36px'});
+  rvs.forEach(function(el){io.observe(el);});
+}
+
+/* nav solid on scroll + ocean parallax, one rAF loop gate */
+var nav=d.getElementById('topnav');
+var layers=[].slice.call(d.querySelectorAll('[data-sp]')).map(function(el){
+  return {el:el,sp:parseFloat(el.getAttribute('data-sp'))};
+});
+var ticking=false;
+function onScroll(){
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(function(){
+    ticking=false;
+    var y=window.scrollY||de.scrollTop;
+    nav.classList.toggle('solid',y>24);
+    if(!rm){
+      for(var i=0;i<layers.length;i++){
+        var L=layers[i];
+        if(L.sp)L.el.style.transform='translate3d(0,'+(y*L.sp).toFixed(1)+'px,0)';
+      }
+    }
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+/* villa card tilt + sheen (pointer-fine only) */
+if(!rm&&fine){
+  [].slice.call(d.querySelectorAll('.tilt')).forEach(function(card){
+    var rect=null,queued=false,px=.5,py=.4;
+    function apply(){
+      queued=false;
+      card.style.transform='perspective(950px) rotateX('+((.42-py)*7).toFixed(2)+'deg) rotateY('+((px-.5)*9).toFixed(2)+'deg) translateY(-6px)';
+      card.style.setProperty('--mx',(px*100).toFixed(1)+'%');
+      card.style.setProperty('--my',(py*100).toFixed(1)+'%');
+    }
+    card.addEventListener('pointerenter',function(){rect=card.getBoundingClientRect();});
+    card.addEventListener('pointermove',function(e){
+      if(!rect)rect=card.getBoundingClientRect();
+      px=(e.clientX-rect.left)/rect.width;py=(e.clientY-rect.top)/rect.height;
+      if(!queued){queued=true;requestAnimationFrame(apply);}
+    });
+    card.addEventListener('pointerleave',function(){rect=null;card.style.transform='';});
+  });
+}
+
+/* booking form (demo — never submits) */
+var form=d.getElementById('bookform'),msg=d.getElementById('bmsg');
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var inD=d.getElementById('bin').value,outD=d.getElementById('bout').value,em=d.getElementById('bmail').value;
+  if(!inD||!outD||new Date(outD)<=new Date(inD)){msg.textContent='Check-out must be after check-in.';msg.style.color='#c2452a';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg.textContent='Enter a valid email so we can reply.';msg.style.color='#c2452a';return;}
+  msg.style.color='';
+  msg.textContent='Request noted for '+inD+' → '+outD+'. Reservations will reply within one working day.';
+});}
+})();
+</script>
+</body>
+</html>

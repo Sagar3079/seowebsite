@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="Forma Premium Collection — twelve one-off demo sites, each art-directed like a $10,000 commission.">
+<meta name="description" content="Forma Premium Collection II — twenty-four one-off demo sites across eight categories, each art-directed like a $10,000 commission.">
 <title>Forma — Website Builder Template Showcase</title>
 <style>
 /* ================= Tokens ================= */
@@ -271,15 +271,37 @@ body::before{
 
 /* ================= Gallery ================= */
 .gallery{padding:clamp(36px,5vw,60px) 0 clamp(52px,7vw,88px)}
-.gallery-head{display:flex;flex-wrap:wrap;align-items:end;gap:16px;margin-bottom:26px}
+.gallery-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-bottom:16px}
 .gallery-head h2{
   font-family:Didot,'Bodoni MT','Noto Serif Display','URW Palladio L',P052,serif;
   font-weight:600;font-size:clamp(1.55rem,3.2vw,2.2rem);letter-spacing:-.01em;
 }
-.gallery-head .sub{width:100%;margin-top:-8px;color:var(--muted);font-size:.94rem;max-width:60ch}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.gallery-head .sub{width:100%;color:var(--muted);font-size:.94rem;max-width:64ch}
+.search{position:relative;display:flex;align-items:center;margin-left:auto;flex:0 1 320px;min-width:min(100%,230px)}
+.search .s-ico{position:absolute;left:14px;width:15px;height:15px;color:var(--muted);pointer-events:none}
+.search input{
+  width:100%;font:inherit;font-size:.9rem;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;
+  padding:8px 38px 8px 38px;appearance:none;-webkit-appearance:none;
+  transition:border-color .16s ease,box-shadow .16s ease;
+}
+.search input::placeholder{color:var(--muted)}
+.search input::-webkit-search-cancel-button,.search input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
+.search input:focus{
+  outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent);
+}
+.search-clear{
+  position:absolute;right:7px;width:24px;height:24px;border-radius:999px;
+  display:grid;place-items:center;font-size:.72rem;line-height:1;color:var(--ink-2);
+  background:var(--surface-2);transition:background .16s ease,color .16s ease;
+}
+.search-clear:hover{background:var(--accent-soft);color:var(--ink)}
+.search-clear[hidden]{display:none}
+@media (max-width:640px){.search{flex:1 1 100%;margin-left:0}}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
 .filter{
-  display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
   border:1px solid var(--line-strong);border-radius:999px;
   padding:7px 15px;font-size:.87rem;color:var(--ink-2);background:var(--surface);
   transition:border-color .16s ease,background .16s ease,color .16s ease,transform .16s ease;
@@ -289,6 +311,18 @@ body::before{
 .filter .n{
   font-family:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
   font-size:.7rem;opacity:.72;
+}
+@media (max-width:640px){
+  /* nine chips: one snap-scrolling row inside its own container, never the page */
+  .filters{
+    flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;
+    margin-left:calc(-1 * clamp(18px,4vw,44px));margin-right:calc(-1 * clamp(18px,4vw,44px));
+    padding:2px clamp(18px,4vw,44px) 10px;
+  }
+  .filter{flex:0 0 auto;scroll-snap-align:start;scroll-margin-left:clamp(18px,4vw,44px)}
+  .filter:hover{transform:none}
 }
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:30px}
 
@@ -321,7 +355,10 @@ body::before{
   width:1280px;height:800px;border:0;
   transform-origin:0 0;transform:scale(var(--s,.25));
   pointer-events:none;display:block;background:#fff;
+  opacity:0;transition:opacity .45s ease;
 }
+.thumb iframe.ready{opacity:1}
+@media (prefers-reduced-motion: reduce){.thumb iframe{opacity:1}}
 .thumb::after{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
   background:radial-gradient(360px circle at var(--mx,50%) var(--my,38%),var(--sheen),transparent 62%);
@@ -367,6 +404,8 @@ body::before{
   font-size:1.35rem;margin-bottom:8px;
 }
 .empty p{color:var(--muted);max-width:46ch;margin:0 auto;font-size:.95rem}
+.empty .btn{margin-top:20px}
+.empty[hidden]{display:none}
 
 /* ================= Standard ================= */
 .standard{border-top:1px solid var(--line);background:var(--surface);padding:clamp(48px,7vw,84px) 0}
@@ -525,18 +564,19 @@ body.locked{overflow:hidden}
   <section class="hero">
     <div class="wrap hero-in">
       <div>
-        <p class="eyebrow rise">Premium collection · Vol. 02</p>
-        <h1 class="rise d1">Twelve businesses. Twelve <em>one-off</em> builds.</h1>
-        <p class="lede rise d2">No shared skeleton, no recycled grid. Each site below was art-directed
-           like a $10,000 commission — its own palette, its own typography, its own dimensional
-           moments. Open one and look around.</p>
+        <p class="eyebrow rise">Premium collection · No. II</p>
+        <h1 class="rise d1">Twenty-four businesses. Twenty-four <em>one-off</em> builds.</h1>
+        <p class="lede rise d2">Collection II doubles the shelf — restaurants, resorts, retailers
+           and studios join the originals. Still no shared skeleton, no recycled grid: each site
+           art-directed like a $10,000 commission, with its own palette, its own typography,
+           its own dimensional moments.</p>
         <div class="hero-cta rise d3">
           <a class="btn" href="#gallery">Browse the collection</a>
           <a class="ghost-link" href="#standard">How they're built</a>
         </div>
         <div class="stats rise d4" role="list" aria-label="Collection facts">
-          <div class="stat" role="listitem"><b>12</b><span>one-off sites</span></div>
-          <div class="stat" role="listitem"><b>4</b><span>categories</span></div>
+          <div class="stat" role="listitem"><b>24</b><span>one-off sites</span></div>
+          <div class="stat" role="listitem"><b>8</b><span>categories</span></div>
           <div class="stat" role="listitem"><b>0</b><span>stock assets</span></div>
         </div>
       </div>
@@ -553,27 +593,34 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="gallery-head">
         <h2 id="gallery-h">The collection</h2>
-        <div class="filters" role="group" aria-label="Filter templates by category" id="filters"></div>
-        <p class="sub">Every thumbnail is the real site, rendered live. Filter by category,
-           then open any build to walk through it at desktop, tablet, and phone widths.</p>
+        <div class="search" role="search">
+          <svg class="s-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.6 10.6 3.4 3.4"/></svg>
+          <input id="search" type="search" placeholder="Search the collection" autocomplete="off" spellcheck="false" aria-label="Search templates by name, tagline, or category">
+          <button type="button" class="search-clear" id="search-clear" aria-label="Clear search" hidden>✕</button>
+        </div>
+        <p class="sub">Every thumbnail is the real site, rendered live as it scrolls into view.
+           Search or filter across all twenty-four, then open any build to walk through it at
+           desktop, tablet, and phone widths.</p>
       </div>
+      <div class="filters" role="group" aria-label="Filter templates by category" id="filters"></div>
       <div class="grid" id="grid"></div>
       <p class="vh" aria-live="polite" id="filter-status"></p>
-      <noscript><p style="padding:40px 0;color:inherit">The live gallery needs JavaScript. Enable it to browse all twelve sites in place.</p></noscript>
+      <noscript><p style="padding:40px 0;color:inherit">The live gallery needs JavaScript. Enable it to browse all twenty-four sites in place.</p></noscript>
     </div>
   </section>
 
   <section class="standard" id="standard" aria-labelledby="standard-h">
     <div class="wrap">
       <h2 id="standard-h">The standard</h2>
-      <p class="sub">The rule for Vol. 02 was simple: nothing that looks like a template.
-         Three disciplines hold across all twelve sites.</p>
+      <p class="sub">The rule has not changed for Collection II: nothing that looks like a template.
+         Three disciplines hold across all twenty-four sites.</p>
       <div class="props">
         <div class="prop">
           <span class="k">Direction</span>
           <h3>One art direction each</h3>
           <p>A committed palette, a deliberate type pairing, and layout geometry grounded in the
-             business itself. The twelve read like twelve different studios — because that was the brief.</p>
+             business itself. The twenty-four read like twenty-four different studios — because
+             that was the brief.</p>
         </div>
         <div class="prop">
           <span class="k">Depth</span>
@@ -595,7 +642,7 @@ body.locked{overflow:hidden}
 <footer class="footer">
   <div class="wrap footer-in">
     <a class="wordmark" href="#top">Forma<i>.</i></a>
-    <small>© 2026 Forma. All twelve demo businesses are fictional; the code is very real.</small>
+    <small>© 2026 Forma. All twenty-four demo businesses are fictional; the code is very real.</small>
     <span class="wink">This page was <b>built with Forma</b>, obviously.</span>
   </div>
 </footer>
@@ -665,12 +712,15 @@ body.locked{overflow:hidden}
   var grid = document.getElementById("grid");
   var filtersEl = document.getElementById("filters");
   var statusEl = document.getElementById("filter-status");
-  var CATEGORIES = ["Professional","Tech","Lifestyle","Entertainment"];
+  var CATEGORIES = ["Professional","Tech","Lifestyle","Entertainment","Food","Travel","Retail","Services"];
 
   function esc(s){
     return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
       return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
     });
+  }
+  function hay(t){
+    return ((t.name || "") + " " + (t.tagline || "") + " " + (t.category || "")).toLowerCase();
   }
 
   /* ---------- Hero fan set-piece ---------- */
@@ -834,31 +884,50 @@ body.locked{overflow:hidden}
     });
   })();
 
-  /* ---------- Empty state ---------- */
+  /* ---------- Empty state (no data injected) ---------- */
   if(!templates.length){
     var empty = document.createElement("div");
     empty.className = "empty";
     empty.innerHTML =
       "<h3>The collection is being hung</h3>" +
-      "<p>The twelve sites are injected at build time and have not arrived yet. " +
+      "<p>The twenty-four sites are injected at build time and have not arrived yet. " +
       "Run the build, then refresh this page to browse them live.</p>";
     grid.appendChild(empty);
     return;
   }
 
-  /* ---------- Filters ---------- */
-  var counts = { All: templates.length };
-  CATEGORIES.forEach(function(c){
-    counts[c] = templates.filter(function(t){ return t.category === c; }).length;
-  });
+  /* ---------- Filters + search (combined) ---------- */
   var current = "All";
+  var query = "";
+  var searchInput = document.getElementById("search");
+  var searchClear = document.getElementById("search-clear");
+  var cards = [];
+  var hays = [];
+  var chipCounts = {};
+
+  function countFor(cat, q){
+    var n = 0;
+    for(var i = 0; i < templates.length; i++){
+      if(cat !== "All" && templates[i].category !== cat) continue;
+      if(q && hays[i].indexOf(q) === -1) continue;
+      n++;
+    }
+    return n;
+  }
+
+  templates.forEach(function(t){ hays.push(hay(t)); });
 
   ["All"].concat(CATEGORIES).forEach(function(cat){
     var b = document.createElement("button");
     b.type = "button";
     b.className = "filter";
     b.setAttribute("aria-pressed", cat === "All" ? "true" : "false");
-    b.innerHTML = esc(cat) + ' <span class="n">' + (counts[cat] || 0) + "</span>";
+    var n = document.createElement("span");
+    n.className = "n";
+    n.textContent = countFor(cat, "");
+    b.appendChild(document.createTextNode(cat + " "));
+    b.appendChild(n);
+    chipCounts[cat] = n;
     b.addEventListener("click", function(){
       current = cat;
       filtersEl.querySelectorAll(".filter").forEach(function(x){
@@ -869,16 +938,75 @@ body.locked{overflow:hidden}
     filtersEl.appendChild(b);
   });
 
+  /* "No matches" empty state, built once */
+  var noMatch = document.createElement("div");
+  noMatch.className = "empty";
+  noMatch.hidden = true;
+  var nmH = document.createElement("h3");
+  nmH.textContent = "No matches";
+  var nmP = document.createElement("p");
+  var nmBtn = document.createElement("button");
+  nmBtn.type = "button";
+  nmBtn.className = "btn";
+  nmBtn.textContent = "Clear search";
+  nmBtn.addEventListener("click", function(){
+    setQuery("");
+    if(current !== "All"){
+      current = "All";
+      filtersEl.querySelectorAll(".filter").forEach(function(x, i){
+        x.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      });
+      applyFilter();
+    }
+    searchInput.focus();
+  });
+  noMatch.appendChild(nmH);
+  noMatch.appendChild(nmP);
+  noMatch.appendChild(nmBtn);
+
   function applyFilter(){
+    var q = query.trim().toLowerCase();
     var shown = 0;
-    grid.querySelectorAll(".card").forEach(function(card){
-      var show = current === "All" || card.dataset.category === current;
+    cards.forEach(function(card, i){
+      var show = (current === "All" || templates[i].category === current) &&
+                 (!q || hays[i].indexOf(q) !== -1);
       card.hidden = !show;
       if(show) shown++;
     });
+    /* live counts follow the active search */
+    ["All"].concat(CATEGORIES).forEach(function(cat){
+      chipCounts[cat].textContent = countFor(cat, q);
+    });
+    noMatch.hidden = shown !== 0;
+    if(!shown){
+      nmP.textContent = "Nothing in the collection matches" +
+        (q ? ' "' + query.trim() + '"' : "") +
+        (current === "All" ? "" : " in " + current) +
+        ". Try another word, or start over.";
+    }
     statusEl.textContent = "Showing " + shown + " of " + templates.length + " sites" +
-      (current === "All" ? "" : " in " + current);
+      (current === "All" ? "" : " in " + current) +
+      (q ? ' matching "' + query.trim() + '"' : "");
   }
+
+  function setQuery(v){
+    query = v;
+    if(searchInput.value !== v) searchInput.value = v;
+    searchClear.hidden = !v;
+    applyFilter();
+  }
+  searchInput.addEventListener("input", function(){ setQuery(searchInput.value); });
+  searchInput.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && searchInput.value){
+      e.preventDefault();
+      e.stopPropagation();
+      setQuery("");
+    }
+  });
+  searchClear.addEventListener("click", function(){
+    setQuery("");
+    searchInput.focus();
+  });
 
   /* ---------- Cards ---------- */
   var scaler = ("ResizeObserver" in window)
@@ -900,6 +1028,24 @@ body.locked{overflow:hidden}
       }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 })
     : null;
 
+  /* Thumbnails only receive their srcdoc once the card first nears the
+     viewport, so 24 live iframes never render on initial load. */
+  var thumbLoader = ("IntersectionObserver" in window)
+    ? new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(!en.isIntersecting) return;
+          var fr = en.target.querySelector("iframe");
+          var idx = parseInt(en.target.getAttribute("data-index"), 10);
+          if(fr && !fr.dataset.loaded && templates[idx]){
+            fr.dataset.loaded = "1";
+            fr.addEventListener("load", function(){ fr.classList.add("ready"); }, { once: true });
+            fr.srcdoc = templates[idx].html;
+          }
+          thumbLoader.unobserve(en.target);
+        });
+      }, { rootMargin: "300px 0px 300px 0px", threshold: 0.01 })
+    : null;
+
   templates.forEach(function(t, i){
     var card = document.createElement("article");
     card.className = "card";
@@ -910,14 +1056,21 @@ body.locked{overflow:hidden}
     var thumb = document.createElement("div");
     thumb.className = "thumb";
     thumb.setAttribute("aria-hidden", "true");
+    thumb.setAttribute("data-index", String(i));
     var fr = document.createElement("iframe");
     fr.loading = "lazy";
     fr.setAttribute("tabindex", "-1");
     fr.setAttribute("title", t.name + " preview thumbnail");
-    fr.srcdoc = t.html;
     thumb.appendChild(fr);
     if(scaler) scaler.observe(thumb);
     else thumb.style.setProperty("--s", ".25");
+    if(thumbLoader){
+      thumbLoader.observe(thumb);
+    }else{
+      fr.dataset.loaded = "1";
+      fr.classList.add("ready");
+      fr.srcdoc = t.html;
+    }
 
     var body = document.createElement("div");
     body.className = "card-body";
@@ -954,6 +1107,7 @@ body.locked{overflow:hidden}
     card.appendChild(thumb);
     card.appendChild(body);
     grid.appendChild(card);
+    cards.push(card);
 
     if(revealer) revealer.observe(card);
     else card.classList.add("in");
@@ -961,6 +1115,7 @@ body.locked{overflow:hidden}
     attachTilt(card, card, 5, { cls: "tilting", sheen: true });
   });
 
+  grid.appendChild(noMatch);
   applyFilter();
 
   /* ---------- Modal ---------- */

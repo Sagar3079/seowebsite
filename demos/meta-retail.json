@@ -1,0 +1,29 @@
+[
+  {
+    "id": "paper-bloom",
+    "name": "Paper & Bloom",
+    "category": "Retail",
+    "tagline": "Kraft-and-petal florist with a parallax bouquet",
+    "description": "A fresh-cut editorial build for a Savannah florist — a three-layer SVG bouquet tilting in real depth under drifting petals, with arrangement cards that lean toward the cursor and weekly subscription tiers priced to order.",
+    "accent": "#a94f60",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/paper-bloom.html"
+  },
+  {
+    "id": "oakline-studio",
+    "name": "Oakline",
+    "category": "Retail",
+    "tagline": "Furniture workshop with a CSS-built turntable credenza",
+    "description": "Workshop warmth for a Hudson furniture studio — a white-oak credenza composed from lit CSS planes revolving on its plinth, material swatches that flip in 3D to their specs, and a collection priced with dimensions in mono.",
+    "accent": "#b97d3f",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/oakline-studio.html"
+  },
+  {
+    "id": "novel-house",
+    "name": "The Novel House",
+    "category": "Retail",
+    "tagline": "Lamp-lit bookshop with an opening 3D book hero",
+    "description": "Library dusk for a Burlington bookshop and café — a CSS-plane book whose cover breathes open under a brass lamp of canvas dust motes, staff-pick cards with page-edge detail, and an author-night calendar with real dates.",
+    "accent": "#c9973f",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/novel-house.html"
+  }
+]

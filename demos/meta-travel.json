@@ -1,0 +1,29 @@
+[
+  {
+    "id": "azure-cove",
+    "name": "Azure Cove",
+    "category": "Travel",
+    "tagline": "Barefoot-luxury island resort on Laamu Atoll",
+    "description": "A lagoon that drifts as you scroll — layered ocean parallax, sheen-lit villa cards and seaplane-era calm for a sixteen-villa private island.",
+    "accent": "#0f7f8b",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/azure-cove.html"
+  },
+  {
+    "id": "terra-fauna",
+    "name": "Terra & Fauna",
+    "category": "Travel",
+    "tagline": "Small-group safaris across Kenya, Botswana, Namibia",
+    "description": "Golden-hour savanna silhouettes drift in parallax behind guide-owned itineraries, a published conservation pledge and dusk-violet night sections.",
+    "accent": "#c07f2a",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/terra-fauna.html"
+  },
+  {
+    "id": "aurora-air",
+    "name": "Aurora Air",
+    "category": "Travel",
+    "tagline": "Boutique arctic airline flying fjords and Svalbard",
+    "description": "A CSS-3D turboprop banks with your cursor over aurora ribbons while animated route arcs, mono fare chips and a real winter timetable sell the north.",
+    "accent": "#35e0b2",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/aurora-air.html"
+  }
+]

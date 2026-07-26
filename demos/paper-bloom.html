@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper &amp; Bloom — Florist Studio, Savannah</title>
+<meta name="description" content="Paper &amp; Bloom is a two-bench florist studio on Marigold Lane, Savannah. Fresh-cut arrangements, weekly subscriptions, weddings.">
+<style>
+:root{
+  --paper:#ece2cf;--paper2:#e2d5ba;--kraft:#d3bd94;--cream:#f7f1e3;
+  --ink:#272b20;--ink2:#4c5140;--leaf:#5f7248;--leaf2:#77875a;
+  --petal:#c4707f;--petal2:#eec2c8;--accent:#a94f60;
+  --disp:'Iowan Old Style','Palatino Linotype','URW Palladio L',P052,serif;
+  --body:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  --sh1:0 1px 2px rgba(39,43,32,.08),0 6px 18px rgba(39,43,32,.09);
+  --sh2:0 2px 4px rgba(39,43,32,.1),0 18px 40px rgba(39,43,32,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;font-size:17px}
+h1,h2,h3{font-family:var(--disp);font-weight:600;line-height:1.12;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--leaf);font-weight:600}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--cream);padding:8px 14px;z-index:99;border-radius:4px}
+.skip:focus{left:8px}
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(236,226,207,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(39,43,32,.12)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{font-family:var(--disp);font-size:22px;text-decoration:none;font-weight:700}
+.brand em{font-style:italic;color:var(--accent)}
+.top nav{display:flex;gap:22px;margin-left:auto}
+.top nav a{text-decoration:none;font-size:14.5px;color:var(--ink2);position:relative;padding:4px 0}
+.top nav a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--accent);transition:right .25s ease}
+.top nav a:hover::after{right:0}
+.btn{display:inline-block;background:var(--ink);color:var(--cream);text-decoration:none;padding:13px 24px;border-radius:999px;font-size:15px;font-weight:600;border:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
+.btn:hover{background:#33382a;box-shadow:var(--sh1);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn.small{padding:9px 18px;font-size:13.5px}
+.btn.rose{background:var(--accent)}
+.btn.rose:hover{background:#93404f}
+.tlink{font-weight:600;text-decoration:none;color:var(--accent);border-bottom:2px solid rgba(169,79,96,.35);padding-bottom:2px;transition:border-color .2s}
+.tlink:hover{border-color:var(--accent)}
+@media (max-width:840px){.top nav{display:none}.top .btn{margin-left:auto}}
+@media (max-width:460px){.top .btn{display:none}}
+/* hero */
+.hero{position:relative;overflow:clip}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,64px);align-items:center;min-height:min(88vh,760px);padding-top:48px;padding-bottom:56px}
+.hero h1{font-size:clamp(38px,5.2vw,66px);margin:14px 0 20px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.lede{font-size:clamp(16px,1.4vw,19px);color:var(--ink2);max-width:46ch}
+.cta{display:flex;gap:22px;align-items:center;margin-top:30px;flex-wrap:wrap}
+.facts{list-style:none;display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+.facts li{font-size:13px;color:var(--ink2);letter-spacing:.04em;padding-left:16px;position:relative}
+.facts li::before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--leaf2)}
+/* bouquet stage */
+.stagewrap{position:relative;height:clamp(420px,52vw,620px);perspective:1100px}
+.stagewrap::before{content:'';position:absolute;inset:4% 6% 0;background:linear-gradient(180deg,var(--paper2),var(--kraft));border-radius:999px 999px 12px 12px;box-shadow:inset 0 2px 0 rgba(255,255,255,.4),var(--sh1)}
+.stagewrap::after{content:'';position:absolute;left:14%;right:14%;bottom:2%;height:26px;background:radial-gradient(50% 100% at 50% 50%,rgba(39,43,32,.28),transparent 70%);filter:blur(4px)}
+.stage{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.blayer{position:absolute;inset:0;will-change:transform}
+.blayer svg{width:100%;height:100%;display:block}
+/* drifting petals */
+.petals{position:absolute;inset:0;pointer-events:none;overflow:clip}
+.petals i{position:absolute;top:-30px;width:16px;height:12px;background:radial-gradient(circle at 35% 35%,var(--petal2),var(--petal));border-radius:70% 30% 65% 35%;opacity:.8;animation:drift 16s linear infinite}
+.petals i:nth-child(1){left:16%;animation-delay:0s}
+.petals i:nth-child(2){left:44%;width:12px;height:9px;animation-delay:4.5s;animation-duration:19s}
+.petals i:nth-child(3){left:70%;animation-delay:9s}
+.petals i:nth-child(4){left:86%;width:11px;height:8px;animation-delay:13s;animation-duration:21s}
+@keyframes drift{0%{transform:translate3d(0,-4vh,0) rotate(0deg)}100%{transform:translate3d(-46px,68vh,0) rotate(320deg)}}
+@media (max-width:840px){
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:36px}
+  .stagewrap{height:min(94vw,480px);max-width:460px;margin:0 auto}
+}
+/* section scaffolding */
+section{padding:clamp(64px,9vw,120px) 0}
+.shead{max-width:640px;margin-bottom:clamp(30px,4vw,54px)}
+.shead h2{font-size:clamp(28px,3.4vw,44px);margin-top:12px}
+.shead p{color:var(--ink2);margin-top:14px}
+/* arrangements */
+#arrangements{background:linear-gradient(180deg,var(--paper),var(--paper2))}
+.agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.acard{position:relative;background:var(--cream);border-radius:14px;padding:22px 22px 24px;box-shadow:var(--sh1);transform-style:preserve-3d;transition:box-shadow .3s ease}
+.js .acard{will-change:transform}
+.acard:hover{box-shadow:var(--sh2)}
+.acard::after{content:'';position:absolute;inset:0;border-radius:14px;background:radial-gradient(circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.5),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.acard:hover::after{opacity:1}
+.acard svg{width:100%;height:110px;display:block;margin-bottom:14px}
+.acard h3{font-size:20px}
+.acard .note{font-size:14px;color:var(--ink2);margin:8px 0 14px;min-height:3.2em}
+.price{font-family:var(--disp);font-style:italic;font-size:22px;color:var(--accent)}
+.tagpill{position:absolute;top:14px;right:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--leaf);color:var(--cream);padding:4px 10px;border-radius:999px}
+@media (max-width:980px){.agrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.agrid{grid-template-columns:1fr}.acard .note{min-height:0}}
+/* subscriptions */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.tier{background:var(--cream);border:1px solid rgba(39,43,32,.1);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+.tier:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.tier.mid{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tier.mid .eyebrow{color:#b9c69b}
+.tier.mid li{color:#d9d4c2}
+.tier h3{font-size:24px;margin-top:8px}
+.tier .amt{font-family:var(--disp);font-style:italic;font-size:34px;margin:14px 0 4px}
+.tier .amt small{font-size:15px;font-style:normal;font-family:var(--body);opacity:.7}
+.tier ul{list-style:none;margin:16px 0 26px;flex:1}
+.tier li{padding:7px 0 7px 24px;font-size:15px;color:var(--ink2);position:relative}
+.tier li::before{content:'';position:absolute;left:2px;top:14px;width:10px;height:6px;border-left:2px solid var(--leaf2);border-bottom:2px solid var(--leaf2);transform:rotate(-45deg)}
+.tier .btn{text-align:center}
+.tier.mid .btn{background:var(--accent)}
+.tier.mid .btn:hover{background:#93404f}
+@media (max-width:840px){.tiers{grid-template-columns:1fr;max-width:440px;margin-inline:auto}}
+/* weddings */
+#weddings{background:var(--ink);color:var(--cream)}
+#weddings .eyebrow{color:#b9c69b}
+#weddings .shead p{color:#cfcaba}
+.wgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:center}
+.wquote{font-family:var(--disp);font-style:italic;font-size:clamp(22px,2.6vw,32px);line-height:1.4;border-left:3px solid var(--accent);padding-left:24px}
+.wquote footer{font-family:var(--body);font-style:normal;font-size:14px;color:#b8b3a2;margin-top:16px;letter-spacing:.06em}
+.wlist{list-style:none;margin-top:8px}
+.wlist li{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(247,241,227,.16);font-size:15.5px}
+.wlist .p{font-family:var(--disp);font-style:italic;color:#e5b7c0;white-space:nowrap}
+.wnote{font-size:13.5px;color:#b8b3a2;margin-top:14px}
+@media (max-width:840px){.wgrid{grid-template-columns:1fr}}
+/* care guide */
+.care{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;counter-reset:step}
+.care article{background:var(--cream);border-radius:12px;padding:22px 20px;box-shadow:var(--sh1);counter-increment:step}
+.care article::before{content:counter(step,decimal-leading-zero);font-family:var(--disp);font-style:italic;font-size:30px;color:var(--petal);display:block;margin-bottom:8px}
+.care h3{font-size:16.5px;margin-bottom:6px}
+.care p{font-size:13.5px;color:var(--ink2);line-height:1.55}
+@media (max-width:980px){.care{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.care{grid-template-columns:1fr}}
+/* visit / footer */
+#visit{background:linear-gradient(180deg,var(--paper2),var(--kraft));padding-bottom:0}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px)}
+.hours{list-style:none;margin-top:14px;max-width:380px}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(39,43,32,.25);font-size:15.5px}
+.hours .closed{color:var(--accent);font-style:italic}
+address{font-style:normal;line-height:1.8;margin-top:14px}
+address a{color:var(--accent)}
+.vgrid .btn{margin-top:22px}
+footer.site{margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(39,43,32,.2);padding:26px 0 34px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
+@media (max-width:840px){.vgrid{grid-template-columns:1fr}}
+/* reveals + entrance */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.7,.3,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .hr{animation:up .85s cubic-bezier(.22,.7,.3,1) both;animation-delay:var(--d,0s)}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .js .hr{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .petals i{animation:none;opacity:0}
+  .tier,.btn,.acard{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#main">Paper <em>&amp;</em> Bloom</a>
+    <nav aria-label="Primary">
+      <a href="#arrangements">Arrangements</a>
+      <a href="#subscriptions">Subscriptions</a>
+      <a href="#weddings">Weddings</a>
+      <a href="#care">Care guide</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn small rose" href="#subscriptions">Order for Wednesday</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-label="Introduction">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow hr">Florist studio · Savannah, Georgia</p>
+      <h1 class="hr" style="--d:.08s">Cut this morning, tied by hand <em>before noon.</em></h1>
+      <p class="lede hr" style="--d:.16s">Paper &amp; Bloom is a two-bench florist studio on Marigold Lane. We buy from six Georgia flower farms, wrap everything in kraft and twine, and deliver by bicycle anywhere in the historic district.</p>
+      <div class="cta hr" style="--d:.24s">
+        <a class="btn rose" href="#subscriptions">This week's bunch — $35</a>
+        <a class="tlink" href="#arrangements">Signature arrangements</a>
+      </div>
+      <ul class="facts hr" style="--d:.34s">
+        <li>Six partner farms</li>
+        <li>Same-day before 1&thinsp;pm</li>
+        <li>Compostable wrap only</li>
+      </ul>
+    </div>
+    <div class="stagewrap hr" style="--d:.2s" aria-hidden="true">
+      <div class="stage" id="stage">
+        <div class="blayer" data-z="-70" data-r="-0.05">
+          <svg viewBox="0 50 600 590" role="presentation" focusable="false">
+            <g fill="none" stroke="#66744b" stroke-width="6" stroke-linecap="round">
+              <path d="M300 628 C286 500 264 418 222 330"/>
+              <path d="M312 628 C332 488 358 402 404 322"/>
+              <path d="M296 628 C300 520 304 442 308 366"/>
+              <path d="M306 628 C312 540 288 470 258 420"/>
+            </g>
+            <g fill="#77875a">
+              <ellipse cx="252" cy="392" rx="17" ry="9" transform="rotate(-38 252 392)"/>
+              <ellipse cx="238" cy="360" rx="15" ry="8" transform="rotate(-30 238 360)"/>
+              <ellipse cx="262" cy="428" rx="16" ry="9" transform="rotate(-44 262 428)"/>
+              <ellipse cx="374" cy="382" rx="17" ry="9" transform="rotate(34 374 382)"/>
+              <ellipse cx="388" cy="352" rx="15" ry="8" transform="rotate(40 388 352)"/>
+              <ellipse cx="362" cy="416" rx="16" ry="9" transform="rotate(28 362 416)"/>
+            </g>
+            <g fill="#5c6b45">
+              <path d="M222 330 C186 298 176 246 198 204 C240 236 246 290 222 330Z"/>
+              <path d="M404 322 C438 288 444 238 420 198 C380 232 376 284 404 322Z"/>
+              <path d="M308 366 C282 330 280 282 302 246 C332 280 334 330 308 366Z"/>
+            </g>
+          </svg>
+        </div>
+        <div class="blayer" data-z="0" data-r="-0.11">
+          <svg viewBox="0 50 600 590" role="presentation" focusable="false">
+            <defs>
+              <path id="pt" d="M0 -62 C30 -50 34 -14 0 8 C-34 -14 -30 -50 0 -62 Z"/>
+              <radialGradient id="g1" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#eec2c8"/><stop offset="1" stop-color="#c4707f"/></radialGradient>
+              <radialGradient id="g2" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#f7ecd9"/><stop offset="1" stop-color="#d9bd93"/></radialGradient>
+              <radialGradient id="g3" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#c98795"/><stop offset="1" stop-color="#9d4b58"/></radialGradient>
+            </defs>
+            <g transform="translate(214 318)">
+              <g fill="url(#g1)"><use href="#pt"/><use href="#pt" transform="rotate(45)"/><use href="#pt" transform="rotate(90)"/><use href="#pt" transform="rotate(135)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(225)"/><use href="#pt" transform="rotate(270)"/><use href="#pt" transform="rotate(315)"/></g>
+              <g fill="url(#g1)" opacity=".95" transform="rotate(22) scale(.62)"><use href="#pt"/><use href="#pt" transform="rotate(60)"/><use href="#pt" transform="rotate(120)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(240)"/><use href="#pt" transform="rotate(300)"/></g>
+              <circle r="15" fill="#a85562"/>
+            </g>
+            <g transform="translate(396 272) scale(.94)">
+              <g fill="url(#g2)"><use href="#pt"/><use href="#pt" transform="rotate(45)"/><use href="#pt" transform="rotate(90)"/><use href="#pt" transform="rotate(135)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(225)"/><use href="#pt" transform="rotate(270)"/><use href="#pt" transform="rotate(315)"/></g>
+              <g fill="url(#g2)" opacity=".95" transform="rotate(30) scale(.6)"><use href="#pt"/><use href="#pt" transform="rotate(60)"/><use href="#pt" transform="rotate(120)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(240)"/><use href="#pt" transform="rotate(300)"/></g>
+              <circle r="14" fill="#c59f66"/>
+            </g>
+            <g transform="translate(238 196) scale(.5) rotate(-18)">
+              <g fill="url(#g3)"><use href="#pt"/><use href="#pt" transform="rotate(60)"/><use href="#pt" transform="rotate(120)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(240)"/><use href="#pt" transform="rotate(300)"/></g>
+              <circle r="14" fill="#7e3a46"/>
+            </g>
+            <g transform="translate(452 372) scale(.46) rotate(24)">
+              <g fill="url(#g1)"><use href="#pt"/><use href="#pt" transform="rotate(60)"/><use href="#pt" transform="rotate(120)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(240)"/><use href="#pt" transform="rotate(300)"/></g>
+              <circle r="14" fill="#a85562"/>
+            </g>
+            <g fill="#b3c18f">
+              <circle cx="330" cy="180" r="7"/><circle cx="352" cy="158" r="5"/><circle cx="310" cy="150" r="5"/><circle cx="340" cy="132" r="4"/>
+              <circle cx="170" cy="260" r="6"/><circle cx="152" cy="236" r="4"/><circle cx="182" cy="228" r="4"/>
+              <circle cx="452" cy="230" r="6"/><circle cx="470" cy="206" r="4"/><circle cx="440" cy="198" r="4"/>
+            </g>
+            <g transform="translate(310 424) scale(.78) rotate(14)">
+              <g fill="url(#g3)"><use href="#pt"/><use href="#pt" transform="rotate(45)"/><use href="#pt" transform="rotate(90)"/><use href="#pt" transform="rotate(135)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(225)"/><use href="#pt" transform="rotate(270)"/><use href="#pt" transform="rotate(315)"/></g>
+              <g fill="url(#g3)" opacity=".95" transform="rotate(20) scale(.6)"><use href="#pt"/><use href="#pt" transform="rotate(60)"/><use href="#pt" transform="rotate(120)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(240)"/><use href="#pt" transform="rotate(300)"/></g>
+              <circle r="13" fill="#7e3a46"/>
+            </g>
+          </svg>
+        </div>
+        <div class="blayer" data-z="70" data-r="-0.17">
+          <svg viewBox="0 50 600 590" role="presentation" focusable="false">
+            <defs>
+              <linearGradient id="kw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#dcc6a2"/><stop offset=".55" stop-color="#cdb287"/><stop offset="1" stop-color="#bfa274"/></linearGradient>
+            </defs>
+            <path d="M186 640 L252 368 L348 368 L436 640 Z" fill="url(#kw)"/>
+            <path d="M252 368 L302 640 L186 640 Z" fill="#c9ad80" opacity=".65"/>
+            <path d="M348 368 L326 640 L436 640 Z" fill="#b3966a" opacity=".5"/>
+            <g stroke="#8a6d4a" stroke-width="7" fill="none" stroke-linecap="round">
+              <path d="M234 456 C300 480 348 474 414 450"/>
+              <path d="M238 472 C302 494 346 490 410 468"/>
+            </g>
+            <g transform="translate(322 468)" fill="#8a6d4a">
+              <circle r="8"/>
+              <path d="M0 0 C-26 -12 -40 -2 -34 14 C-18 18 -6 10 0 0Z" opacity=".85"/>
+              <path d="M0 0 C26 -12 40 -2 34 14 C18 18 6 10 0 0Z" opacity=".85"/>
+            </g>
+            <g fill="#6c7c50">
+              <path d="M264 380 C238 352 234 312 252 280 C282 306 284 348 264 380Z"/>
+              <path d="M344 376 C368 346 370 306 350 276 C324 304 322 346 344 376Z"/>
+            </g>
+            <g transform="translate(302 362) scale(.55)">
+              <g fill="url(#g3)"><use href="#pt"/><use href="#pt" transform="rotate(60)"/><use href="#pt" transform="rotate(120)"/><use href="#pt" transform="rotate(180)"/><use href="#pt" transform="rotate(240)"/><use href="#pt" transform="rotate(300)"/></g>
+              <circle r="14" fill="#7e3a46"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="petals"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section id="arrangements">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Signature arrangements</p>
+      <h2>Four bunches we never take off the bench</h2>
+      <p>Stems change with the truck; the shape and spirit of each arrangement never do. All four come wrapped in kraft or dropped into a recycled-glass vase (+$14).</p>
+    </div>
+    <div class="agrid">
+      <article class="acard tc rv">
+        <svg viewBox="0 0 200 110" role="presentation" focusable="false"><g fill="none" stroke="#66744b" stroke-width="4" stroke-linecap="round"><path d="M70 108 C74 78 82 60 96 44"/><path d="M104 108 C102 82 106 62 118 46"/><path d="M88 108 C88 84 86 66 82 52"/></g><circle cx="96" cy="38" r="20" fill="#c4707f"/><circle cx="96" cy="38" r="10" fill="#a85562"/><circle cx="124" cy="44" r="15" fill="#eec2c8"/><circle cx="124" cy="44" r="7" fill="#c4707f"/><circle cx="76" cy="50" r="12" fill="#d9bd93"/><circle cx="76" cy="50" r="5" fill="#c59f66"/></svg>
+        <h3>The Marigold Lane</h3>
+        <p class="note">Garden roses, ranunculus, and whatever the Tuesday truck was proudest of. Our default gift.</p>
+        <p class="price">$65</p>
+      </article>
+      <article class="acard tc rv" style="--d:.08s">
+        <span class="tagpill">Most gifted</span>
+        <svg viewBox="0 0 200 110" role="presentation" focusable="false"><g fill="none" stroke="#66744b" stroke-width="4" stroke-linecap="round"><path d="M66 108 C72 76 84 58 100 42"/><path d="M110 108 C108 80 114 60 128 44"/><path d="M90 108 C90 82 88 64 84 50"/></g><circle cx="100" cy="36" r="21" fill="#f0dcc0"/><circle cx="100" cy="36" r="10" fill="#d9a86b"/><circle cx="130" cy="46" r="14" fill="#e8b48c"/><circle cx="130" cy="46" r="6" fill="#c98a52"/><circle cx="72" cy="52" r="12" fill="#f2e3cf"/><circle cx="72" cy="52" r="5" fill="#d9bd93"/></svg>
+        <h3>Porch Light</h3>
+        <p class="note">Peach, cream, and toffee tones — lisianthus, café au lait dahlias, spray roses. Soft, warm, southern.</p>
+        <p class="price">$85</p>
+      </article>
+      <article class="acard tc rv" style="--d:.16s">
+        <svg viewBox="0 0 200 110" role="presentation" focusable="false"><g fill="none" stroke="#5c6b45" stroke-width="4" stroke-linecap="round"><path d="M62 108 C70 74 86 54 104 40"/><path d="M112 108 C110 78 118 58 134 42"/><path d="M88 108 C86 80 82 62 76 48"/></g><circle cx="104" cy="34" r="22" fill="#9d4b58"/><circle cx="104" cy="34" r="11" fill="#7e3a46"/><circle cx="136" cy="44" r="15" fill="#c4707f"/><circle cx="136" cy="44" r="7" fill="#a85562"/><circle cx="70" cy="50" r="13" fill="#8a5c74"/><circle cx="70" cy="50" r="6" fill="#6d4560"/></svg>
+        <h3>Garden Crush</h3>
+        <p class="note">A dense, saturated handful — oxblood dahlias, plum scabiosa, raspberry snapdragons. No filler.</p>
+        <p class="price">$120</p>
+      </article>
+      <article class="acard tc rv" style="--d:.24s">
+        <svg viewBox="0 0 200 110" role="presentation" focusable="false"><g fill="none" stroke="#66744b" stroke-width="4" stroke-linecap="round"><path d="M74 108 C74 72 80 52 92 36"/><path d="M108 108 C110 76 120 54 140 40"/><path d="M92 108 C90 78 84 58 72 44"/></g><path d="M92 40 C78 20 96 4 108 18 C120 2 140 16 128 36 C142 40 136 60 118 56 C112 70 92 66 92 52 C78 56 74 44 92 40Z" fill="#e0e4d2"/><circle cx="108" cy="36" r="8" fill="#c59f66"/><circle cx="150" cy="52" r="10" fill="#77875a"/><circle cx="62" cy="54" r="9" fill="#5c6b45"/></svg>
+        <h3>Still Life</h3>
+        <p class="note">Sculptural and asymmetric: anthurium, fritillaria, one improbable branch. For people who own vases.</p>
+        <p class="price">$160</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="subscriptions">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Weekly subscriptions</p>
+      <h2>Flowers every Wednesday, like clockwork</h2>
+      <p>Billed monthly, skip any week by Sunday night, cancel whenever. Bicycle delivery is free inside the historic district; $6 elsewhere in Savannah.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier rv">
+        <p class="eyebrow">For the kitchen table</p>
+        <h3>The Stem</h3>
+        <p class="amt">$35<small> / week</small></p>
+        <ul>
+          <li>One-variety market bunch, 12–15 stems</li>
+          <li>Whatever peaked at the farm that week</li>
+          <li>Kraft wrap, care card included</li>
+        </ul>
+        <a class="btn" href="#visit">Start The Stem</a>
+      </div>
+      <div class="tier mid rv" style="--d:.08s">
+        <p class="eyebrow">Most ordered</p>
+        <h3>The Bench</h3>
+        <p class="amt">$60<small> / week</small></p>
+        <ul>
+          <li>Full mixed arrangement, designer's choice</li>
+          <li>First pick of Tuesday's farm delivery</li>
+          <li>Vase swap program — return, refill, repeat</li>
+        </ul>
+        <a class="btn" href="#visit">Start The Bench</a>
+      </div>
+      <div class="tier rv" style="--d:.16s">
+        <p class="eyebrow">For lobbies &amp; restaurants</p>
+        <h3>The Standing Order</h3>
+        <p class="amt">$110<small> / week</small></p>
+        <ul>
+          <li>Statement piece, 60&thinsp;cm+ in your vessel</li>
+          <li>Wednesday install before 9&thinsp;am</li>
+          <li>Mid-week refresh visit on Friday</li>
+        </ul>
+        <a class="btn" href="#visit">Talk to the studio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="weddings">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Weddings &amp; events</p>
+      <h2>Now booking April – November 2027</h2>
+      <p>We take twenty weddings a year — enough to care about every one, few enough to be at yours. Savannah, Tybee, and the Lowcountry within ninety minutes.</p>
+    </div>
+    <div class="wgrid">
+      <blockquote class="wquote rv">
+        “The arch looked like it had grown there overnight. Guests were picking sprigs off it at midnight and Rosa just laughed and handed out twine.”
+        <footer>— Camille &amp; Theo, married at The Wyld, October 2025</footer>
+      </blockquote>
+      <div class="rv" style="--d:.1s">
+        <ul class="wlist">
+          <li><span>Elopement package — bouquet, boutonnière, crown</span><span class="p">from $480</span></li>
+          <li><span>Intimate wedding — up to 40 guests</span><span class="p">from $2,400</span></li>
+          <li><span>Full service — ceremony, reception, installs</span><span class="p">from $6,500</span></li>
+          <li><span>Événement — dinners, launches, shoots</span><span class="p">by quote</span></li>
+        </ul>
+        <p class="wnote">Every proposal starts with a 45-minute walk through the studio. Bring photos, fabric swatches, or nothing at all.</p>
+        <a class="btn rose" style="margin-top:18px" href="#visit">Request a 2027 date</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="care">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Care guide</p>
+      <h2>Five habits, ten extra days</h2>
+      <p>Printed on the back of every care card since we opened in 2019. The order matters — that's the routine, start to finish.</p>
+    </div>
+    <div class="care">
+      <article class="rv"><h3>Trim on arrival</h3><p>Two centimetres off every stem, cut at 45° under running water. Blunt scissors bruise; use a knife if you have one.</p></article>
+      <article class="rv" style="--d:.06s"><h3>Strip the waterline</h3><p>No leaf below the surface, ever. Submerged foliage is what turns vase water into soup by Thursday.</p></article>
+      <article class="rv" style="--d:.12s"><h3>Cold, clean, daily</h3><p>Fresh cold water every day beats flower food every time. Rinse the vase — film on glass feeds bacteria.</p></article>
+      <article class="rv" style="--d:.18s"><h3>Mind the fruit bowl</h3><p>Ripening fruit exhales ethylene, and ethylene ends flowers. Keep arrangements a table away from bananas.</p></article>
+      <article class="rv" style="--d:.24s"><h3>Edit as you go</h3><p>Pull spent blooms the moment they slump. A smaller, editing-down arrangement always outlives a crowded one.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="vgrid">
+      <div class="rv">
+        <p class="eyebrow">Visit the studio</p>
+        <h2 style="font-size:clamp(28px,3.4vw,42px);margin-top:12px">48 Marigold Lane</h2>
+        <address>
+          Between Whitaker and Barnard, behind the blue gate<br>
+          Savannah, Georgia 31401<br>
+          <a href="tel:+19125550148">(912) 555-0148</a> · <a href="mailto:studio@paperandbloom.com">studio@paperandbloom.com</a>
+        </address>
+        <a class="btn" href="tel:+19125550148">Call the bench</a>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <p class="eyebrow">Hours</p>
+        <ul class="hours">
+          <li><span>Tuesday – Friday</span><span>9&thinsp;am – 6&thinsp;pm</span></li>
+          <li><span>Saturday</span><span>8&thinsp;am – 4&thinsp;pm</span></li>
+          <li><span>Sunday</span><span class="closed">at the farmers' market</span></li>
+          <li><span>Monday</span><span class="closed">closed — buying day</span></li>
+        </ul>
+        <p style="font-size:13.5px;color:var(--ink2);margin-top:16px">Same-day orders placed before 1&thinsp;pm ride out the same afternoon.</p>
+      </div>
+    </div>
+    <footer class="site">
+      <div class="wrap" style="padding:0">
+        <span>© 2026 Paper &amp; Bloom LLC · Savannah, GA</span>
+        <span>Florist's choice always available in store, from $28</span>
+      </div>
+    </footer>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var d=document;
+  d.documentElement.classList.add('js');
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* scroll reveals */
+  var els=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !rm){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{
+    els.forEach(function(el){el.classList.add('in');});
+  }
+
+  /* hero bouquet: mouse tilt + scroll parallax */
+  var stage=d.getElementById('stage');
+  if(stage && !rm){
+    var layers=[].slice.call(stage.querySelectorAll('.blayer'));
+    var tx=0,ty=0,cx=0,cy=0,sy=0,csy=0,raf=null;
+    function loop(){
+      raf=null;
+      cx+=(tx-cx)*.09; cy+=(ty-cy)*.09; csy+=(sy-csy)*.14;
+      stage.style.transform='rotateX('+(-cy*6).toFixed(3)+'deg) rotateY('+(cx*7).toFixed(3)+'deg)';
+      for(var i=0;i<layers.length;i++){
+        var l=layers[i];
+        l.style.transform='translateZ('+l.dataset.z+'px) translateY('+(csy*parseFloat(l.dataset.r)).toFixed(2)+'px)';
+      }
+      if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002||Math.abs(sy-csy)>.4){queue();}
+    }
+    function queue(){if(!raf){raf=requestAnimationFrame(loop);}}
+    if(fine){
+      addEventListener('pointermove',function(e){
+        var w=innerWidth,h=innerHeight;
+        tx=(e.clientX/w-.5)*2; ty=(e.clientY/h-.5)*2; queue();
+      },{passive:true});
+    }
+    addEventListener('scroll',function(){
+      sy=Math.min(scrollY,900); queue();
+    },{passive:true});
+    queue();
+  }
+
+  /* arrangement card tilt + sheen */
+  if(fine && !rm){
+    [].slice.call(d.querySelectorAll('.tc')).forEach(function(c){
+      var rx=0,ry=0,q=null;
+      function ap(){
+        q=null;
+        c.style.transform='perspective(760px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-4px)';
+      }
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        ry=px*7; rx=-py*7;
+        c.style.setProperty('--mx',(px*100+50)+'%');
+        c.style.setProperty('--my',(py*100+50)+'%');
+        if(!q){q=requestAnimationFrame(ap);}
+      });
+      c.addEventListener('pointerleave',function(){
+        if(q){cancelAnimationFrame(q);q=null;}
+        c.style.transform='';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "crestview-realty",
+    "name": "Crestview Realty",
+    "category": "Services",
+    "tagline": "Homes with a view, sales with a record",
+    "description": "A daylight limestone-and-slate brokerage site whose hero is a cursor-tilting isometric streetscape built from CSS planes, with tilting listing cards and a sold record priced to the dollar.",
+    "accent": "#A8813C",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/crestview-realty.html"
+  },
+  {
+    "id": "hive-workspace",
+    "name": "Hive",
+    "category": "Services",
+    "tagline": "Four floors for people who make things",
+    "description": "A honey-and-graphite coworking campus whose exploded isometric floor plan separates as you scroll, with tilting membership cards and a calendar of real community nights.",
+    "accent": "#E8A21D",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/hive-workspace.html"
+  },
+  {
+    "id": "velvet-pine",
+    "name": "Velvet & Pine",
+    "category": "Services",
+    "tagline": "The best-planned day feels unplanned",
+    "description": "A deep-pine and champagne wedding studio site with drifting floral parallax, an inked ribbon of light, tilting real-wedding portfolios, and an enquiry form that validates as gently as it reads.",
+    "accent": "#D9BC85",
+    "file": "/tmp/claude-0/-home-user-seowebsite/d4ede775-72c4-54d1-9f3e-29d50fbc772a/scratchpad/showcase/demos-v2/velvet-pine.html"
+  }
+]

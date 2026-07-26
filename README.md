@@ -1,7 +1,7 @@
 # Forma — Website Builder Template Showcase
 
 A single self-contained showcase site for a fictional website builder called **Forma** —
-the **Premium Collection**: 12 fully working, agency-grade demo business websites, each with
+the **Premium Collection**: 24 fully working, agency-grade demo business websites, each with
 real 3D design work (mouse-tilt perspective heroes, scroll parallax depth, CSS-built 3D
 objects, canvas/particle scenes), browsable in a gallery with live scaled-down previews,
 category filters, and a fullscreen preview modal with desktop / tablet / mobile toggles.
@@ -14,6 +14,10 @@ category filters, and a fullscreen preview modal with desktop / tablet / mobile 
 | Tech | Helios Motors (electric cars) · Neuraflow (AI infrastructure) · Orbital (drone imaging) |
 | Lifestyle | Onyx Chair Co. (barbershop) · Solstice Bathhouse (spa) · Aurea (jewelry) |
 | Entertainment | Resonance (recording studio) · Nova Esports (gaming org) · Alta Basecamp (adventure travel) |
+| Food | Saffron & Vine (fine dining) · Flour & Fold (pâtisserie) · Koya Ramen Bar (ramen kitchen) |
+| Travel | Azure Cove (island resort) · Terra & Fauna (safari tours) · Aurora Air (boutique airline) |
+| Retail | Paper & Bloom (florist) · Oakline (furniture) · The Novel House (bookshop) |
+| Services | Crestview (real estate) · Hive (coworking) · Velvet & Pine (wedding planning) |
 
 ## Structure
 

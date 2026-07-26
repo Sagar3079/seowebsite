@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saffron &amp; Vine — Mediterranean Dining, Venice CA</title>
+<style>
+:root{
+  --stone:#E9DEC7;
+  --stone-2:#DFD1B4;
+  --cream:#F7F0DF;
+  --auber:#2E1B2A;
+  --auber-2:#1F1220;
+  --auber-3:#43293C;
+  --olive:#5C5C2E;
+  --olive-2:#7A7E43;
+  --saff:#E29A2E;
+  --saff-2:#F2BA55;
+  --ink:#2B1E28;
+  --serif:'Iowan Old Style','Palatino Linotype','URW Palladio L',P052,serif;
+  --sans:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--sans);
+  background:var(--stone);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img,svg,canvas{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--saff);color:var(--auber-2)}
+:focus-visible{outline:2px solid var(--saff);outline-offset:3px;border-radius:2px}
+
+/* ---------- header ---------- */
+.hd{
+  position:fixed;inset:0 0 auto 0;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,4vw,56px);
+  background:linear-gradient(rgba(31,18,32,.82),rgba(31,18,32,.55) 70%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:var(--cream);
+}
+@supports not (backdrop-filter:blur(8px)){.hd{background:rgba(31,18,32,.9)}}
+.hd-mark{display:flex;align-items:center;gap:11px;text-decoration:none}
+.hd-mark svg{width:30px;height:30px}
+.hd-mark b{font-family:var(--serif);font-weight:600;font-size:1.15rem;letter-spacing:.04em}
+.hd nav{display:flex;gap:clamp(14px,2.4vw,30px);align-items:center}
+.hd nav a{
+  text-decoration:none;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(247,240,223,.82);position:relative;padding:4px 0;
+}
+.hd nav a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--saff-2);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.hd nav a:hover::after,.hd nav a:focus-visible::after{transform:scaleX(1);transform-origin:left}
+.hd .cta{
+  border:1px solid var(--saff);color:var(--saff-2);padding:9px 20px;border-radius:2px;
+  transition:background .25s,color .25s;
+}
+.hd .cta::after{display:none}
+.hd .cta:hover,.hd .cta:focus-visible{background:var(--saff);color:var(--auber-2)}
+@media (max-width:820px){.hd nav a:not(.cta){display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;min-height:100svh;overflow:hidden;
+  background:var(--auber-2);color:var(--cream);
+  display:flex;align-items:flex-end;
+}
+.scene{position:absolute;inset:0;perspective:1100px}
+.layer{position:absolute;inset:-6% -4%;will-change:transform}
+.sky{
+  background:
+    radial-gradient(120% 62% at 50% 102%,rgba(226,154,46,.55),rgba(110,52,60,.34) 42%,transparent 70%),
+    linear-gradient(#150b18 0%,#2E1B2A 44%,#4a2b40 78%,#6e3a48 100%);
+}
+.stars{
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%,rgba(247,240,223,.8),transparent 60%),
+    radial-gradient(1px 1px at 28% 9%,rgba(247,240,223,.6),transparent 60%),
+    radial-gradient(1.4px 1.4px at 44% 22%,rgba(247,240,223,.7),transparent 60%),
+    radial-gradient(1px 1px at 63% 12%,rgba(247,240,223,.55),transparent 60%),
+    radial-gradient(1.3px 1.3px at 78% 20%,rgba(247,240,223,.75),transparent 60%),
+    radial-gradient(1px 1px at 90% 8%,rgba(247,240,223,.5),transparent 60%),
+    radial-gradient(1px 1px at 52% 5%,rgba(247,240,223,.5),transparent 60%);
+  opacity:.9;
+}
+.arches svg,.vines svg{width:100%;height:100%;position:absolute;inset:0}
+/* candlelit table composition */
+.table-wrap{
+  position:absolute;left:50%;bottom:-4%;width:min(760px,120vw);aspect-ratio:760/430;
+  transform:translateX(-50%);
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+@media (min-width:900px){.table-wrap{left:64%}}
+@media (max-width:640px){
+  .table-wrap{width:150vw;bottom:-12%;opacity:.85}
+  .hero .hero-inner{padding-top:104px;padding-bottom:min(36vh,320px)}
+}
+.tbl{position:absolute;inset:0;transform-style:preserve-3d}
+.tbl-top{
+  position:absolute;left:6%;right:6%;bottom:0;height:52%;
+  background:
+    radial-gradient(90% 120% at 50% 0%,rgba(226,154,46,.30),transparent 55%),
+    linear-gradient(#4d3243,#372237 70%,#2b1a2b);
+  border-radius:50% 50% 14px 14px/34% 34% 14px 14px;
+  box-shadow:0 -1px 0 rgba(242,186,85,.35) inset,0 30px 60px rgba(0,0,0,.55);
+}
+.plate{
+  position:absolute;border-radius:50%;
+  background:
+    radial-gradient(circle at 42% 34%,#fdf7e9,#e7dcc4 58%,#c9b98f 78%,#9c8a63 100%);
+  box-shadow:0 10px 26px rgba(0,0,0,.5),0 2px 4px rgba(0,0,0,.4);
+}
+.plate::after{
+  content:"";position:absolute;inset:14%;border-radius:50%;
+  border:1px solid rgba(92,92,46,.35);
+  background:radial-gradient(circle at 45% 40%,rgba(122,126,67,.28),transparent 62%);
+}
+.p1{width:23%;aspect-ratio:1;left:22%;bottom:26%;transform:rotateX(58deg)}
+.p2{width:16%;aspect-ratio:1;right:23%;bottom:33%;transform:rotateX(58deg)}
+.candle{
+  position:absolute;left:50%;bottom:37%;width:4.4%;aspect-ratio:34/88;
+  transform:translateX(-50%);
+}
+.candle .wax{
+  position:absolute;inset:34% 22% 0;
+  background:linear-gradient(#f5ecd6,#d9c9a0);border-radius:5px 5px 3px 3px;
+  box-shadow:0 8px 18px rgba(0,0,0,.5);
+}
+.flame{
+  position:absolute;left:50%;top:8%;width:38%;aspect-ratio:10/17;
+  transform:translateX(-50%);
+  background:radial-gradient(50% 62% at 50% 72%,#fff5d8 0%,#f2ba55 42%,rgba(226,120,46,.85) 72%,transparent 100%);
+  border-radius:50% 50% 45% 45%/62% 62% 38% 38%;
+  filter:blur(.4px);
+  animation:flick 2.8s ease-in-out infinite;
+  transform-origin:50% 100%;
+}
+.glow{
+  position:absolute;left:50%;bottom:30%;width:64%;aspect-ratio:1;
+  transform:translate(-50%,32%);
+  background:radial-gradient(circle,rgba(242,186,85,.34),rgba(226,154,46,.12) 44%,transparent 68%);
+  animation:glowpulse 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes flick{
+  0%,100%{transform:translateX(-50%) rotate(-2deg) scaleY(1)}
+  25%{transform:translateX(-52%) rotate(2.5deg) scaleY(1.08)}
+  55%{transform:translateX(-49%) rotate(-1.5deg) scaleY(.94)}
+  80%{transform:translateX(-51%) rotate(1deg) scaleY(1.05)}
+}
+@keyframes glowpulse{0%,100%{opacity:.85}50%{opacity:1}}
+.glass{position:absolute;width:8%;bottom:34%}
+.g1{right:34%}.g2{left:35%;width:7%}
+.sprig{position:absolute;left:56%;bottom:27%;width:15%}
+.hero-inner{
+  position:relative;z-index:3;width:100%;
+  padding:0 clamp(20px,5vw,64px) clamp(48px,9vh,96px);
+  max-width:1160px;margin:0 auto;
+}
+.hero-eyebrow{
+  font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--saff-2);
+  display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before{content:"";width:44px;height:1px;background:var(--saff)}
+.hero h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(2.5rem,7.2vw,5.2rem);
+  line-height:1.04;letter-spacing:-.01em;margin:.45em 0 .35em;
+  max-width:12ch;
+  text-shadow:0 2px 40px rgba(20,10,20,.6);
+}
+.hero h1 em{font-style:italic;color:var(--saff-2)}
+.hero p.lede{max-width:46ch;color:rgba(247,240,223,.85);font-size:clamp(1rem,1.4vw,1.12rem)}
+.hero-ctas{display:flex;gap:16px;margin-top:30px;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-size:.82rem;letter-spacing:.16em;
+  text-transform:uppercase;padding:15px 30px;border-radius:2px;
+  transition:transform .2s,box-shadow .25s,background .25s,color .25s;
+}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-solid{background:var(--saff);color:var(--auber-2);box-shadow:0 8px 24px rgba(226,154,46,.3)}
+.btn-solid:hover,.btn-solid:focus-visible{background:var(--saff-2);box-shadow:0 12px 30px rgba(226,154,46,.42)}
+.btn-ghost{border:1px solid rgba(247,240,223,.45);color:var(--cream)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--saff-2);color:var(--saff-2)}
+/* staged entrance */
+.js .stg{opacity:0;transform:translateY(26px)}
+.js .stg.go{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.hero-scroll{
+  position:absolute;right:clamp(20px,4vw,56px);bottom:34px;z-index:3;
+  font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(247,240,223,.55);
+  writing-mode:vertical-rl;
+}
+
+/* ---------- shared section chrome ---------- */
+section{position:relative}
+.wrap{max-width:1160px;margin:0 auto;padding:clamp(72px,10vw,128px) clamp(20px,5vw,64px)}
+.eyebrow{
+  font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--olive);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:38px;height:1px;background:var(--olive-2)}
+.dark .eyebrow{color:var(--saff-2)}
+.dark .eyebrow::before{background:var(--saff)}
+h2{
+  font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,4vw,3rem);
+  line-height:1.12;letter-spacing:-.01em;max-width:20ch;
+}
+.sec-note{max-width:56ch;margin-top:14px;color:rgba(43,30,40,.78)}
+.dark .sec-note{color:rgba(247,240,223,.75)}
+.js .rv{opacity:0;transform:translateY(20px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- tasting ---------- */
+.tasting{background:linear-gradient(var(--stone),var(--stone-2))}
+.tast-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:clamp(40px,6vw,72px)}
+.tast-price{
+  font-family:var(--serif);font-size:1.05rem;color:var(--auber);
+  border-left:2px solid var(--saff);padding-left:16px;line-height:1.5;
+}
+.tast-price b{font-size:1.5rem;display:block}
+.course{
+  display:grid;grid-template-columns:96px 1fr auto;gap:clamp(18px,3.5vw,44px);
+  align-items:center;padding:clamp(24px,3.4vw,38px) 0;
+  border-bottom:1px solid rgba(46,27,42,.14);
+}
+.course:last-of-type{border-bottom:none}
+.course-plate{width:96px;height:96px;position:relative}
+.course-plate .rim{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 40% 32%,#fffaf0,#eee3ca 62%,#cbbb92 100%);
+  box-shadow:0 10px 22px rgba(46,27,42,.22),0 1px 2px rgba(46,27,42,.25);
+}
+.course-plate .food{
+  position:absolute;inset:24%;border-radius:50%;
+  box-shadow:inset 0 -3px 6px rgba(0,0,0,.18);
+}
+.js .course .rim{transform:scale(.6);opacity:0}
+.js .course .food{transform:scale(.2) rotate(-40deg);opacity:0}
+.js .course.in .rim{transform:none;opacity:1;transition:transform .7s cubic-bezier(.22,1,.36,1),opacity .5s ease}
+.js .course.in .food{transform:none;opacity:1;transition:transform .8s cubic-bezier(.22,1,.36,1) .18s,opacity .5s ease .18s}
+.c1 .food{background:radial-gradient(circle at 40% 35%,#9daa53,#5C5C2E 70%)}
+.c2 .food{background:radial-gradient(circle at 42% 36%,#f5c9a2,#d98e5f 70%)}
+.c3 .food{background:radial-gradient(circle at 40% 35%,#f2ba55,#c77b28 75%)}
+.c4 .food{background:radial-gradient(circle at 42% 34%,#f0e6cf,#c9b98f 72%)}
+.c5 .food{background:radial-gradient(circle at 40% 36%,#c96a55,#8e3a32 74%)}
+.c6 .food{background:radial-gradient(circle at 42% 34%,#a1553f,#5d2b22 72%)}
+.c7 .food{background:radial-gradient(circle at 42% 33%,#e8c9d8,#b06a86 74%)}
+.course-num{
+  grid-column:1;grid-row:1;position:absolute;
+  font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--olive);
+  transform:translate(-4px,-58px);
+}
+.course-body{position:relative}
+.course h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,2vw,1.45rem);color:var(--auber)}
+.course .desc{color:rgba(43,30,40,.78);max-width:52ch;margin-top:4px}
+.course .pair{font-style:italic;font-size:.9rem;color:var(--olive);margin-top:8px}
+.course .pair::before{content:"⁘ ";color:var(--saff)}
+@media (max-width:640px){
+  .course{grid-template-columns:64px 1fr}
+  .course-plate{width:64px;height:64px}
+  .course-num{transform:translate(-2px,-40px);font-size:.8rem}
+}
+
+/* ---------- à la carte ---------- */
+.carte{background:var(--cream)}
+.carte-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,88px);margin-top:clamp(36px,5vw,60px)}
+@media (max-width:768px){.carte-grid{grid-template-columns:1fr}}
+.carte h3{
+  font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.3rem;color:var(--olive);
+  margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(92,92,46,.3);
+}
+.dish{display:flex;align-items:baseline;gap:10px;padding:11px 0}
+.dish + .dish{border-top:1px dashed rgba(46,27,42,.14)}
+.dish .nm{font-weight:600;color:var(--auber);white-space:nowrap}
+.dish .dots{flex:1;border-bottom:1px dotted rgba(46,27,42,.35);transform:translateY(-4px);min-width:24px}
+.dish .pr{font-family:var(--serif);color:var(--auber)}
+.dish-sub{font-size:.86rem;color:rgba(43,30,40,.66);margin:-7px 0 6px;max-width:44ch}
+
+/* ---------- chef ---------- */
+.chef{background:linear-gradient(160deg,var(--auber-2),var(--auber) 55%,#3a2136);color:var(--cream)}
+.chef .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,88px);align-items:center}
+@media (max-width:880px){.chef .wrap{grid-template-columns:1fr}}
+.chef blockquote{
+  font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.75rem);
+  line-height:1.4;margin:26px 0 18px;max-width:30ch;color:var(--cream);
+}
+.chef blockquote::before{content:"“";color:var(--saff-2);font-size:1.4em;line-height:0;vertical-align:-.25em;margin-right:.08em}
+.chef cite{font-style:normal;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--saff-2)}
+.chef .bio{color:rgba(247,240,223,.78);margin-top:20px;max-width:52ch}
+.source-list{display:grid;gap:2px}
+.source{
+  background:rgba(247,240,223,.05);border:1px solid rgba(247,240,223,.1);
+  padding:18px 22px;border-radius:3px;
+  transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,background .3s;
+}
+.source:hover{transform:translateX(8px);border-color:rgba(242,186,85,.45);background:rgba(247,240,223,.08)}
+.source b{font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--saff-2)}
+.source span{display:block;font-size:.9rem;color:rgba(247,240,223,.72);margin-top:2px}
+
+/* ---------- private dining ---------- */
+.private{background:var(--stone)}
+.pd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,36px);margin-top:clamp(36px,5vw,56px);perspective:1200px}
+@media (max-width:768px){.pd-grid{grid-template-columns:1fr}}
+.pd-card{
+  position:relative;border-radius:6px;overflow:hidden;
+  background:linear-gradient(150deg,#fbf5e6,#efe4cb);
+  border:1px solid rgba(46,27,42,.12);
+  padding:clamp(26px,3.4vw,40px);
+  box-shadow:0 6px 18px rgba(46,27,42,.1);
+  transform-style:preserve-3d;will-change:transform;
+  transition:box-shadow .35s;
+}
+.pd-card:hover{box-shadow:0 26px 54px rgba(46,27,42,.22)}
+.pd-card .sheen{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,244,214,.55) 47%,transparent 62%);
+  transform:translateX(-60%);transition:opacity .3s;
+}
+.pd-card:hover .sheen{opacity:1;animation:sheen 1.1s cubic-bezier(.4,0,.2,1) 1}
+@keyframes sheen{from{transform:translateX(-70%)}to{transform:translateX(70%)}}
+.pd-card h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--auber)}
+.pd-card .cap{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);margin-bottom:12px}
+.pd-card p{color:rgba(43,30,40,.78);margin-top:12px;max-width:48ch}
+.pd-card .fig{font-family:var(--serif);font-size:1.1rem;color:var(--auber);margin-top:18px}
+.pd-card .fig b{color:var(--olive)}
+
+/* ---------- reservations ---------- */
+.reserve{background:linear-gradient(180deg,var(--auber-2),#160c18);color:var(--cream)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px);margin-top:clamp(30px,4vw,48px)}
+@media (max-width:880px){.res-grid{grid-template-columns:1fr}}
+.res-meta dt{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--saff-2);margin-top:22px}
+.res-meta dd{font-family:var(--serif);font-size:1.12rem;margin-top:6px;color:rgba(247,240,223,.9)}
+.res-meta dd small{display:block;font-family:var(--sans);font-size:.86rem;color:rgba(247,240,223,.62)}
+form{display:grid;gap:16px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:520px){.frow{grid-template-columns:1fr}}
+label{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,240,223,.65);margin-bottom:7px}
+input,select{
+  width:100%;padding:13px 14px;border-radius:3px;font:inherit;color:var(--cream);
+  background:rgba(247,240,223,.06);border:1px solid rgba(247,240,223,.22);
+  transition:border-color .25s,box-shadow .25s;
+}
+select option{color:var(--ink)}
+input:focus,select:focus{outline:none;border-color:var(--saff);box-shadow:0 0 0 3px rgba(226,154,46,.22)}
+.form-ok{
+  display:none;border:1px solid rgba(242,186,85,.5);background:rgba(226,154,46,.12);
+  padding:16px 18px;border-radius:3px;font-family:var(--serif);font-size:1.02rem;
+}
+.form-ok.show{display:block}
+button.btn{border:none;cursor:pointer;font-family:var(--sans)}
+
+/* ---------- footer ---------- */
+footer{background:#120a14;color:rgba(247,240,223,.6);font-size:.86rem}
+footer .wrap{padding-top:44px;padding-bottom:44px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+footer b{font-family:var(--serif);color:var(--cream);font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .flame,.glow,.pd-card .sheen{animation:none !important}
+  .js .stg,.js .rv,.js .course .rim,.js .course .food{opacity:1 !important;transform:none !important;transition:none !important}
+  .layer,.table-wrap{transform:translateX(-50%) !important}
+  .layer{transform:none !important}
+  .btn,.source,.pd-card{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <a class="hd-mark" href="#top" aria-label="Saffron and Vine home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c2 5-1 8-1 12s3 6 1 14" fill="none" stroke="#E29A2E" stroke-width="1.6" stroke-linecap="round"/><path d="M15 10c-4-1-6-4-6-7 4 0 7 3 6 7zm1 7c4-1 6-4 6-7-4 0-7 3-6 7z" fill="#7A7E43"/></svg>
+    <b>Saffron &amp; Vine</b>
+  </a>
+  <nav aria-label="Primary">
+    <a href="#tasting">Tasting</a>
+    <a href="#carte">À la carte</a>
+    <a href="#chef">Chef</a>
+    <a href="#private">Private dining</a>
+    <a class="cta" href="#reserve">Reserve</a>
+  </nav>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero" aria-label="Saffron and Vine — dinner on the dusk terrace">
+  <div class="scene" aria-hidden="true">
+    <div class="layer sky" data-par="0.12"></div>
+    <div class="layer stars" data-par="0.2"></div>
+    <div class="layer arches" data-par="0.34">
+      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice">
+        <g fill="#1F1220">
+          <path d="M-20 800V430c0-90 70-160 160-160s160 70 160 160v370z" opacity=".85"/>
+          <path d="M330 800V400c0-100 78-178 178-178s178 78 178 178v400z" opacity=".72"/>
+          <path d="M1140 800V430c0-90 70-160 160-160s160 70 160 160v370z" opacity=".85"/>
+          <path d="M780 800V410c0-95 74-170 170-170s170 75 170 170v390z" opacity=".72"/>
+        </g>
+        <g fill="#150b18">
+          <path d="M96 800c-8-120 18-210 14-300 22 86 20 196 14 300z"/>
+          <path d="M1330 800c-8-130 20-230 15-330 24 96 21 216 15 330z"/>
+        </g>
+        <g stroke="#43293C" stroke-width="3" fill="none" opacity=".9">
+          <path d="M0 560q120-40 260-16t300-10q170-30 320 6t300-8q140-28 260 12"/>
+        </g>
+      </svg>
+    </div>
+    <div class="table-wrap" data-tilt>
+      <div class="tbl">
+        <div class="glow"></div>
+        <div class="tbl-top"></div>
+        <div class="plate p1"></div>
+        <div class="plate p2"></div>
+        <div class="glass g1">
+          <svg viewBox="0 0 40 92" aria-hidden="true"><path d="M6 4h28c1 22-6 34-12 37v40h9v7H9v-7h9V41C12 38 5 26 6 4z" fill="rgba(247,240,223,.16)" stroke="rgba(247,240,223,.45)" stroke-width="1.4"/><path d="M9 16c1 12 6 20 11 22 5-2 10-10 11-22z" fill="rgba(142,58,50,.75)"/></svg>
+        </div>
+        <div class="glass g2">
+          <svg viewBox="0 0 40 92" aria-hidden="true"><path d="M6 4h28c1 22-6 34-12 37v40h9v7H9v-7h9V41C12 38 5 26 6 4z" fill="rgba(247,240,223,.16)" stroke="rgba(247,240,223,.45)" stroke-width="1.4"/><path d="M10 20c1 9 5 15 10 17 5-2 9-8 10-17z" fill="rgba(226,154,46,.6)"/></svg>
+        </div>
+        <div class="sprig">
+          <svg viewBox="0 0 160 60" aria-hidden="true"><path d="M6 46Q60 20 152 12" fill="none" stroke="#5C5C2E" stroke-width="2.4" stroke-linecap="round"/><g fill="#7A7E43"><ellipse cx="34" cy="34" rx="13" ry="4.6" transform="rotate(-18 34 34)"/><ellipse cx="66" cy="26" rx="13" ry="4.6" transform="rotate(-14 66 26)"/><ellipse cx="100" cy="19" rx="13" ry="4.6" transform="rotate(-10 100 19)"/><ellipse cx="132" cy="14" rx="12" ry="4.2" transform="rotate(-7 132 14)"/></g><circle cx="50" cy="40" r="5" fill="#2E1B2A"/><circle cx="84" cy="31" r="5" fill="#43293C"/></svg>
+        </div>
+        <div class="candle"><div class="wax"></div><div class="flame"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow stg" data-d="0">Est. 2019 · Abbot Kinney, Venice</p>
+    <h1 class="stg" data-d="150">Dinner on the <em>dusk terrace</em></h1>
+    <p class="lede stg" data-d="300">Seven courses of coastal Mediterranean cooking — wood fire, saffron, and whatever the Santa Barbara boats brought in this morning — served as the sky goes aubergine.</p>
+    <div class="hero-ctas stg" data-d="450">
+      <a class="btn btn-solid" href="#reserve">Book a table</a>
+      <a class="btn btn-ghost" href="#tasting">The Vine Tasting</a>
+    </div>
+  </div>
+  <span class="hero-scroll" aria-hidden="true">Scroll · the first course</span>
+</section>
+
+<!-- ============ TASTING ============ -->
+<section class="tasting" id="tasting">
+  <div class="wrap">
+    <div class="tast-head">
+      <div class="rv">
+        <p class="eyebrow">Served nightly, table-wide</p>
+        <h2>The Vine Tasting</h2>
+        <p class="sec-note">Seven courses that follow the coast from apéritif to ember. The menu turns with the market — this is the week of July 21, 2026.</p>
+      </div>
+      <p class="tast-price rv"><b>$165</b> per guest<br>wine pairing +$95 · zero-proof pairing +$55</p>
+    </div>
+
+    <article class="course rv c1">
+      <div class="course-plate"><span class="course-num">I</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Castelvetrano &amp; smoke</h3>
+        <p class="desc">Wood-roasted olives, smoked almond cream, fried rosemary — eaten with fingers, unapologetically.</p>
+        <p class="pair">Fino sherry, Bodegas Callejuela, Sanlúcar</p>
+      </div>
+    </article>
+    <article class="course rv c2">
+      <div class="course-plate"><span class="course-num">II</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Yellowtail crudo</h3>
+        <p class="desc">Channel Islands hiramasa, blood orange, fennel pollen, arbequina oil pressed in Ojai.</p>
+        <p class="pair">Assyrtiko, Hatzidakis, Santorini 2024</p>
+      </div>
+    </article>
+    <article class="course rv c3">
+      <div class="course-plate"><span class="course-num">III</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Saffron arancino</h3>
+        <p class="desc">Carnaroli rice steeped in La Mancha saffron, molten taleggio center, preserved-lemon aioli.</p>
+        <p class="pair">Vermentino, Argiolas “Costamolino,” Sardinia</p>
+      </div>
+    </article>
+    <article class="course rv c4">
+      <div class="course-plate"><span class="course-num">IV</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Hand-cut tagliatelle</h3>
+        <p class="desc">Rolled at 4pm daily. Spot prawn butter, Calabrian chile, bottarga grated at the table.</p>
+        <p class="pair">Etna Bianco, Benanti, Sicily 2023</p>
+      </div>
+    </article>
+    <article class="course rv c5">
+      <div class="course-plate"><span class="course-num">V</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Branzino in fig leaf</h3>
+        <p class="desc">Whole Mediterranean sea bass grilled in leaves from the tree behind the terrace, salsa verde.</p>
+        <p class="pair">Rosé, Domaine Tempier, Bandol 2025</p>
+      </div>
+    </article>
+    <article class="course rv c6">
+      <div class="course-plate"><span class="course-num">VI</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Lamb over embers</h3>
+        <p class="desc">Sonoma lamb shoulder, twelve hours over olive wood, smoked yogurt, charred spring onion.</p>
+        <p class="pair">Xinomavro, Thymiopoulos, Naoussa 2022</p>
+      </div>
+    </article>
+    <article class="course rv c7">
+      <div class="course-plate"><span class="course-num">VII</span><div class="rim"></div><div class="food"></div></div>
+      <div class="course-body">
+        <h3>Burnt honey &amp; rose</h3>
+        <p class="desc">Burnt-honey panna cotta, rose-poached rhubarb, pistachio praline, a last glass of something sweet.</p>
+        <p class="pair">Moscato di Pantelleria, Donnafugata “Ben Ryé”</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ À LA CARTE ============ -->
+<section class="carte" id="carte">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">The terrace menu</p>
+      <h2>À la carte, if the evening is young</h2>
+      <p class="sec-note">Served on the terrace and at the vine bar, Tuesday through Sunday from 5:30pm.</p>
+    </div>
+    <div class="carte-grid">
+      <div class="rv">
+        <h3>To begin</h3>
+        <div class="dish"><span class="nm">Wood-grilled octopus</span><span class="dots"></span><span class="pr">$28</span></div>
+        <p class="dish-sub">Gigante beans, smoked paprika, celery leaf</p>
+        <div class="dish"><span class="nm">Heirloom tomato &amp; bread</span><span class="dots"></span><span class="pr">$19</span></div>
+        <p class="dish-sub">Weiser Family Farms tomatoes, grilled sourdough, oregano flowers</p>
+        <div class="dish"><span class="nm">Saffron arancini (three)</span><span class="dots"></span><span class="pr">$21</span></div>
+        <p class="dish-sub">Taleggio, preserved-lemon aioli</p>
+        <div class="dish"><span class="nm">Spot prawns a la plancha</span><span class="dots"></span><span class="pr">$34</span></div>
+        <p class="dish-sub">Santa Barbara Channel, garlic, guindilla chile butter</p>
+      </div>
+      <div class="rv">
+        <h3>From the fire &amp; to finish</h3>
+        <div class="dish"><span class="nm">Saffron tagliatelle</span><span class="dots"></span><span class="pr">$32</span></div>
+        <p class="dish-sub">Spot prawn butter, bottarga, Calabrian chile</p>
+        <div class="dish"><span class="nm">Whole branzino</span><span class="dots"></span><span class="pr">$54</span></div>
+        <p class="dish-sub">Fig leaf, charred lemon, salsa verde — for two</p>
+        <div class="dish"><span class="nm">Lamb shoulder</span><span class="dots"></span><span class="pr">$46</span></div>
+        <p class="dish-sub">Olive-wood embers, smoked yogurt, flatbread</p>
+        <div class="dish"><span class="nm">Burnt honey panna cotta</span><span class="dots"></span><span class="pr">$14</span></div>
+        <p class="dish-sub">Rose rhubarb, pistachio praline</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHEF ============ -->
+<section class="chef dark" id="chef">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Chef &amp; sourcing</p>
+      <h2>Cooking at the speed of the harbor</h2>
+      <blockquote>The menu is written twice — once by me in the afternoon, and once by the ocean that morning.</blockquote>
+      <cite>— Dario Ventimiglia, chef &amp; co-owner</cite>
+      <p class="bio">Dario cooked nine years on the Amalfi coast and three at Providence in Los Angeles before opening Saffron &amp; Vine with sommelier Maren Ellis in 2019. The kitchen burns olive and almond wood, buys whole animals, and keeps exactly one freezer — for the gelato.</p>
+    </div>
+    <div class="source-list rv">
+      <div class="source"><b>Santa Barbara Channel</b><span>Spot prawns, uni, hiramasa — off the boat at Hollister pier, three mornings a week</span></div>
+      <div class="source"><b>Coleman Family Farms, Carpinteria</b><span>Bitter greens, herbs, fig leaves, edible flowers</span></div>
+      <div class="source"><b>Weiser Family Farms, Tehachapi</b><span>Heirloom tomatoes, melons, root vegetables by season</span></div>
+      <div class="source"><b>Molinos del Duero, La Mancha</b><span>Coupe-grade saffron, harvested in October, used within the year</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVATE DINING ============ -->
+<section class="private" id="private">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Private dining</p>
+      <h2>Two rooms, one long table each</h2>
+    </div>
+    <div class="pd-grid">
+      <article class="pd-card rv" data-card>
+        <div class="sheen"></div>
+        <p class="cap">Indoors · seats 18</p>
+        <h3>The Vine Room</h3>
+        <p>A single walnut table under the original 1927 bow-truss ceiling, wrapped in a living vine wall. The tasting menu served family-style, your own sommelier at the sideboard.</p>
+        <p class="fig">$185 per guest · <b>food &amp; beverage minimum $2,800</b></p>
+      </article>
+      <article class="pd-card rv" data-card>
+        <div class="sheen"></div>
+        <p class="cap">Open air · seats 12</p>
+        <h3>The Upper Terrace</h3>
+        <p>Above the dining terrace with a clear view west — book the 7:15 seating and dessert arrives at sundown. Heated, covered, available April through November.</p>
+        <p class="fig">$165 per guest · <b>food &amp; beverage minimum $2,200</b></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVATIONS ============ -->
+<section class="reserve dark" id="reserve">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Reservations</p>
+      <h2>The terrace seats forty. Come early, stay late.</h2>
+    </div>
+    <div class="res-grid">
+      <dl class="res-meta rv">
+        <dt>Find us</dt>
+        <dd>1412 Abbot Kinney Blvd, Venice, CA 90291<small>Two blocks from the canal bridge — look for the lanterns</small></dd>
+        <dt>Hours</dt>
+        <dd>Tuesday – Sunday, 5:30pm – 11pm<small>Vine bar walk-ins from 5pm · closed Mondays</small></dd>
+        <dt>Telephone</dt>
+        <dd>(310) 555-0184<small>For parties of seven or more, call between 2pm and 4pm</small></dd>
+      </dl>
+      <form class="rv" novalidate aria-label="Request a table">
+        <div class="frow">
+          <div><label for="r-name">Name</label><input id="r-name" name="name" type="text" autocomplete="name" required></div>
+          <div><label for="r-party">Party</label>
+            <select id="r-party" name="party"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6 guests</option></select>
+          </div>
+        </div>
+        <div class="frow">
+          <div><label for="r-date">Evening</label>
+            <select id="r-date" name="date"><option>Tue, Jul 28</option><option>Wed, Jul 29</option><option>Thu, Jul 30</option><option>Fri, Jul 31</option><option>Sat, Aug 1</option><option>Sun, Aug 2</option></select>
+          </div>
+          <div><label for="r-time">Seating</label>
+            <select id="r-time" name="time"><option>5:30pm</option><option>7:15pm — sunset</option><option>9:00pm</option></select>
+          </div>
+        </div>
+        <button class="btn btn-solid" type="submit">Request this table</button>
+        <p class="form-ok" role="status" id="res-ok">Request received — we confirm every table by phone within the hour, during service days.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Saffron &amp; Vine</b> · Mediterranean dining, Venice CA</p>
+    <p>© 2026 Saffron &amp; Vine LLC · corkage $45 · gratuity included for parties of 7+</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var d=document, w=window, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=w.matchMedia('(prefers-reduced-motion: reduce)');
+  var fine=w.matchMedia('(pointer: fine)');
+
+  /* staged hero entrance */
+  var stg=d.querySelectorAll('.stg');
+  if(reduce.matches){stg.forEach(function(el){el.classList.add('go');});}
+  else{stg.forEach(function(el){
+    setTimeout(function(){el.classList.add('go');},180+parseInt(el.getAttribute('data-d')||0,10));
+  });}
+
+  /* scroll reveals */
+  if('IntersectionObserver' in w && !reduce.matches){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.16,rootMargin:'0px 0px -6% 0px'});
+    d.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  }else{
+    d.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
+  }
+
+  /* hero parallax + table tilt — one rAF loop, transform-only */
+  var hero=d.querySelector('.hero'),
+      layers=[].slice.call(d.querySelectorAll('.layer[data-par]')),
+      table=d.querySelector('[data-tilt]'),
+      tx=0,ty=0,cx=0,cy=0,sy=0,raf=null,heroH=1;
+
+  function measure(){heroH=hero.offsetHeight||1;}
+  measure();
+  w.addEventListener('resize',measure);
+
+  function frame(){
+    raf=null;
+    var p=Math.min(sy/heroH,1);
+    for(var i=0;i<layers.length;i++){
+      var f=parseFloat(layers[i].getAttribute('data-par'));
+      layers[i].style.transform='translate3d(0,'+(sy*f)+'px,0)';
+    }
+    cx+=(tx-cx)*.09; cy+=(ty-cy)*.09;
+    if(table){
+      table.style.transform='translateX(-50%) translate3d(0,'+(sy*.42)+'px,0) rotateX('+(-cy*5)+'deg) rotateY('+(cx*6)+'deg)';
+    }
+    if(Math.abs(tx-cx)>.001||Math.abs(ty-cy)>.001){queue();}
+  }
+  function queue(){if(!raf){raf=w.requestAnimationFrame(frame);}}
+
+  if(!reduce.matches){
+    w.addEventListener('scroll',function(){sy=w.scrollY||0;if(sy<heroH*1.2){queue();}},{passive:true});
+    if(fine.matches){
+      hero.addEventListener('pointermove',function(e){
+        var r=hero.getBoundingClientRect();
+        tx=(e.clientX-r.left)/r.width*2-1;
+        ty=(e.clientY-r.top)/r.height*2-1;
+        queue();
+      });
+      hero.addEventListener('pointerleave',function(){tx=0;ty=0;queue();});
+    }
+  }
+
+  /* 3D hover cards (private dining) */
+  if(fine.matches && !reduce.matches){
+    d.querySelectorAll('[data-card]').forEach(function(card){
+      var cr=null,pending=false,px=0,py=0;
+      function paint(){
+        pending=false;
+        card.style.transform='rotateX('+(-py*7)+'deg) rotateY('+(px*8)+'deg) translateZ(10px)';
+      }
+      card.addEventListener('pointerenter',function(){cr=card.getBoundingClientRect();});
+      card.addEventListener('pointermove',function(e){
+        if(!cr){cr=card.getBoundingClientRect();}
+        px=(e.clientX-cr.left)/cr.width*2-1;
+        py=(e.clientY-cr.top)/cr.height*2-1;
+        if(!pending){pending=true;w.requestAnimationFrame(paint);}
+      });
+      card.addEventListener('pointerleave',function(){
+        cr=null;card.style.transform='';
+      });
+    });
+  }
+
+  /* reservation form */
+  var form=d.querySelector('form'),ok=d.getElementById('res-ok');
+  if(form){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=d.getElementById('r-name');
+    if(!name.value.trim()){name.focus();name.style.borderColor='#E29A2E';return;}
+    ok.classList.add('show');
+    form.querySelector('button').textContent='Requested ✓';
+  });}
+})();
+</script>
+</body>
+</html>

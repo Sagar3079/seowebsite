@@ -11,8 +11,15 @@ ORDER = [
     'helios-ev', 'neuraflow-ai', 'orbital-imaging',
     'onyx-grooming', 'solstice-spa', 'aurea-jewelry',
     'resonance-studios', 'nova-esports', 'alta-basecamp',
+    'saffron-vine', 'flour-fold', 'koya-ramen',
+    'azure-cove', 'terra-fauna', 'aurora-air',
+    'paper-bloom', 'oakline-studio', 'novel-house',
+    'crestview-realty', 'hive-workspace', 'velvet-pine',
 ]
-META_FILES = ['meta-professional.json', 'meta-tech.json', 'meta-lifestyle.json', 'meta-entertainment.json']
+META_FILES = [
+    'meta-professional.json', 'meta-tech.json', 'meta-lifestyle.json', 'meta-entertainment.json',
+    'meta-food.json', 'meta-travel.json', 'meta-retail.json', 'meta-services.json',
+]
 
 root = os.path.dirname(os.path.abspath(__file__))
 demos = os.path.join(root, 'demos')

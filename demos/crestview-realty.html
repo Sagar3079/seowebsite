@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crestview — Boutique Real Estate, Portland Heights</title>
+<style>
+:root{
+  --lime:#F4F0E7; --lime2:#EAE4D6; --lime3:#DDD5C2;
+  --slate:#33475E; --slate2:#24344A; --slate3:#1B2838;
+  --brass:#A8813C; --brass2:#C09A50; --brass-soft:rgba(168,129,60,.16);
+  --ink:#22293300; --tx:#2A3442; --mut:#5D6878; --faint:#8B94A3;
+  --card:#FFFFFF; --line:#D8D0BE;
+  --serif:Charter,'Bitstream Charter','Sitka Text',Cambria,serif;
+  --sans:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sh1:0 1px 2px rgba(36,52,74,.08);
+  --sh2:0 8px 22px -8px rgba(36,52,74,.18);
+  --sh3:0 24px 50px -18px rgba(36,52,74,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--lime);color:var(--tx);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1100px 520px at 90% -8%,rgba(51,71,94,.06),transparent 60%),
+  radial-gradient(800px 600px at -6% 108%,rgba(168,129,60,.07),transparent 55%)}
+::selection{background:var(--slate);color:#fff}
+a{color:inherit}
+.skip{position:absolute;left:-9999px;top:0;background:var(--slate);color:#fff;padding:.6rem 1rem;z-index:99;font-family:var(--mono);font-size:.8rem}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem);position:relative;z-index:1}
+
+/* header */
+.hd{position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid rgba(51,71,94,.12);background:rgba(244,240,231,.85)}
+@supports (backdrop-filter:blur(12px)){.hd{background:rgba(244,240,231,.6);backdrop-filter:blur(12px)}}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.logo svg{display:block}
+.logo b{font-family:var(--serif);font-weight:700;font-size:1.3rem;letter-spacing:.01em;color:var(--slate2)}
+.logo span{font-family:var(--mono);font-size:.58rem;letter-spacing:.3em;color:var(--mut);text-transform:uppercase;margin-top:.2rem}
+.nav{display:flex;gap:1.6rem;align-items:center}
+.nav a{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--mut);position:relative;padding:.3rem 0;transition:color .25s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--brass);transition:right .3s cubic-bezier(.4,0,.2,1)}
+.nav a:hover{color:var(--slate2)}
+.nav a:hover::after{right:0}
+.nav .cta{background:var(--slate2);color:var(--lime);padding:.6rem 1.15rem;border:1px solid var(--slate2);transition:background .25s,color .25s}
+.nav .cta::after{display:none}
+.nav .cta:hover{background:var(--brass);border-color:var(--brass);color:#fff}
+.nav .cta:active{transform:translateY(1px)}
+@media (max-width:860px){.nav a:not(.cta){display:none}}
+@media (max-width:480px){.logo span{display:none}.nav .cta{white-space:nowrap;padding:.5rem .85rem;font-size:.68rem}}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2.5rem;align-items:center;width:100%}
+@media (max-width:920px){.hero-grid{grid-template-columns:1fr;gap:3rem}}
+.kick{font-family:var(--mono);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.kick::before{content:"";width:34px;height:2px;background:var(--brass)}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.5rem,5.4vw,4.1rem);line-height:1.06;letter-spacing:-.01em;color:var(--slate3)}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--brass)}
+.lede{margin:1.5rem 0 2.1rem;max-width:46ch;color:var(--mut);font-size:1.03rem}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;padding:.95rem 1.6rem;border:1px solid transparent;position:relative;overflow:hidden;transition:color .3s,border-color .3s,box-shadow .3s,transform .15s;cursor:pointer;font-family:var(--sans)}
+.btn:active{transform:translateY(1px)}
+.btn-solid{background:var(--slate2);color:var(--lime);box-shadow:var(--sh2)}
+.btn-solid::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-110%);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.btn-solid:hover::before{transform:translateX(110%)}
+.btn-solid:hover{box-shadow:0 12px 30px -8px rgba(36,52,74,.4)}
+.btn-ghost{border-color:rgba(51,71,94,.35);color:var(--slate2)}
+.btn-ghost:hover{border-color:var(--brass);color:var(--brass)}
+.hero-meta{margin-top:2.8rem;display:flex;gap:2.2rem;flex-wrap:wrap}
+.hero-meta div{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;color:var(--faint);text-transform:uppercase;line-height:1.9}
+.hero-meta b{display:block;font-family:var(--serif);color:var(--slate2);font-size:1.35rem;font-weight:700;letter-spacing:0}
+
+/* iso streetscape */
+.stage{perspective:1500px;display:grid;place-items:center;min-height:460px}
+@media (max-width:920px){.stage{min-height:400px}}
+.tilt{transform-style:preserve-3d;will-change:transform;transition:transform .2s ease-out}
+.fit{transform:scale(var(--sc,1));transform-style:preserve-3d}
+@media (max-width:1100px){.fit{--sc:.85}}
+@media (max-width:920px){.fit{--sc:.9}}
+@media (max-width:430px){.fit{--sc:.6}.stage{overflow:hidden;max-width:100%}}
+.iso{position:relative;width:360px;height:360px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-42deg);
+  background:
+   linear-gradient(90deg,transparent 0 150px,#C9C0AA 150px 200px,transparent 200px),
+   linear-gradient(0deg,transparent 0 150px,#C9C0AA 150px 200px,transparent 200px),
+   repeating-linear-gradient(0deg,rgba(51,71,94,.06) 0 1px,transparent 1px 45px),
+   repeating-linear-gradient(90deg,rgba(51,71,94,.06) 0 1px,transparent 1px 45px),
+   linear-gradient(135deg,#E6DFCE,#DAD1BC);
+  border-radius:14px;box-shadow:0 0 0 1px rgba(51,71,94,.12);animation:isoBob 8s ease-in-out infinite}
+@keyframes isoBob{0%,100%{transform:rotateX(58deg) rotateZ(-42deg) translateZ(0)}50%{transform:rotateX(58deg) rotateZ(-42deg) translateZ(10px)}}
+@media (prefers-reduced-motion:reduce){.iso{animation:none}}
+.iso::after{content:"";position:absolute;inset:-30px;z-index:-1;background:radial-gradient(closest-side,rgba(36,52,74,.22),transparent 70%);transform:translateZ(-40px)}
+.bld,.tree,.sgn{position:absolute;transform-style:preserve-3d}
+.bld{width:var(--w);height:var(--d)}
+.bld i{position:absolute;display:block}
+.bld .t{inset:0;transform:translateZ(var(--h));background:linear-gradient(135deg,var(--ct1,#FBF8F1),var(--ct2,#EDE6D5));box-shadow:inset 0 0 0 3px rgba(51,71,94,.14)}
+.bld .f{left:0;top:100%;width:var(--w);height:var(--h);transform-origin:top;transform:rotateX(90deg);background:
+  repeating-linear-gradient(90deg,transparent 0 9px,rgba(244,240,231,.4) 9px 15px,transparent 15px 24px),
+  linear-gradient(180deg,var(--cf1,#96A6BA),var(--cf2,#76899F))}
+.bld .b{left:0;bottom:100%;width:var(--w);height:var(--h);transform-origin:bottom;transform:rotateX(-90deg);background:linear-gradient(0deg,var(--cf1,#96A6BA),var(--cf2,#76899F))}
+.bld .r{left:100%;top:0;width:var(--h);height:var(--d);transform-origin:left;transform:rotateY(-90deg);background:
+  repeating-linear-gradient(0deg,transparent 0 9px,rgba(244,240,231,.28) 9px 15px,transparent 15px 24px),
+  linear-gradient(90deg,var(--cr1,#556980),var(--cr2,#42556C))}
+.bld .l{right:100%;top:0;width:var(--h);height:var(--d);transform-origin:right;transform:rotateY(90deg);background:linear-gradient(-90deg,var(--cr1,#556980),var(--cr2,#42556C))}
+.door::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:16px;height:60%;background:linear-gradient(180deg,var(--brass2),var(--brass))}
+.tree .tp{position:absolute;left:0;bottom:0;width:44px;height:58px;transform-origin:bottom;background:
+  radial-gradient(circle at 50% 32%,#7E9464 0 36%,transparent 37%),
+  radial-gradient(circle at 38% 46%,#6C8355 0 26%,transparent 27%),
+  radial-gradient(circle at 62% 46%,#8AA06E 0 26%,transparent 27%),
+  linear-gradient(90deg,transparent 0 46%,#7B6647 46% 54%,transparent 54%)}
+.tree .tp1{transform:rotateX(-90deg)}
+.tree .tp2{transform:rotateZ(90deg) rotateX(-90deg)}
+.sgn .sp{position:absolute;left:0;bottom:0;width:74px;height:50px;transform-origin:bottom;transform:rotateZ(45deg) rotateX(-90deg);background:linear-gradient(180deg,#FFF 0 68%,transparent 68%),linear-gradient(90deg,transparent 0 46%,#8B7A5A 46% 54%,transparent 54%);box-shadow:none}
+.sgn .sp b{position:absolute;top:6px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--brass);font-weight:700}
+.sgn .sp span{position:absolute;top:19px;left:0;right:0;text-align:center;font-family:var(--sans);font-size:7px;letter-spacing:.14em;color:var(--slate2)}
+
+/* sections */
+section{padding:clamp(3.5rem,8vw,6.5rem) 0;position:relative}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.sec-head h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--slate3);letter-spacing:-.01em}
+.sec-head p{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* listings */
+.lst-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+@media (max-width:980px){.lst-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.lst-grid{grid-template-columns:1fr}}
+.lst{background:var(--card);border:1px solid var(--line);box-shadow:var(--sh1);text-decoration:none;display:block;position:relative;transform-style:preserve-3d;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0);transition:box-shadow .35s,transform .35s;will-change:transform}
+.lst:hover{box-shadow:var(--sh3)}
+.lst::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.35),transparent 55%);opacity:0;transition:opacity .3s}
+.lst:hover::after{opacity:1}
+.ph{height:170px;position:relative;overflow:hidden;background:var(--sky,linear-gradient(180deg,#C7D4E2 0 55%,#E9E2CF 55%))}
+.ph svg{position:absolute;inset:auto 0 0 0;width:100%;display:block}
+.ph .tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;background:var(--slate2);color:var(--lime);padding:.32rem .6rem}
+.ph .tag.new{background:var(--brass)}
+.lst-body{padding:1.15rem 1.25rem 1.35rem}
+.price{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--slate3)}
+.addr{font-size:.86rem;color:var(--mut);margin:.25rem 0 .9rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chips span{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--slate2);background:var(--brass-soft);border:1px solid rgba(168,129,60,.3);padding:.28rem .55rem}
+
+/* sold */
+.sold{background:var(--slate3);color:var(--lime)}
+.sold .sec-head h2{color:var(--lime)}
+.sold .sec-head p{color:var(--brass2)}
+.sold-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(244,240,231,.14);border:1px solid rgba(244,240,231,.14);margin-bottom:2.4rem}
+@media (max-width:760px){.sold-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sold-strip div{background:var(--slate3);padding:1.4rem 1.2rem}
+.sold-strip b{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--brass2);display:block;font-weight:700}
+.sold-strip span{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#9FA9B8}
+.sold-tbl{width:100%;border-collapse:collapse;font-size:.88rem}
+.sold-tbl th{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#9FA9B8;text-align:left;padding:.7rem .8rem;border-bottom:1px solid rgba(244,240,231,.18)}
+.sold-tbl td{padding:.85rem .8rem;border-bottom:1px solid rgba(244,240,231,.09);color:#DFE3D9}
+.sold-tbl td:first-child{font-weight:600;color:var(--lime)}
+.sold-tbl .oa{font-family:var(--mono);font-size:.66rem;color:var(--brass2)}
+.tbl-scroll{overflow-x:auto}
+.tbl-scroll table{min-width:640px}
+
+/* agents */
+.ag-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+@media (max-width:860px){.ag-grid{grid-template-columns:1fr}}
+.ag{background:var(--card);border:1px solid var(--line);padding:1.8rem 1.6rem;box-shadow:var(--sh1);transition:box-shadow .3s,transform .3s}
+.ag:hover{box-shadow:var(--sh2);transform:translateY(-4px)}
+.mono-ring{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 28%,var(--brass2),var(--brass));color:#fff;font-family:var(--serif);font-size:1.5rem;font-weight:700;box-shadow:inset 0 0 0 3px rgba(255,255,255,.35),var(--sh1);margin-bottom:1.1rem}
+.ag h3{font-family:var(--serif);font-size:1.25rem;color:var(--slate3)}
+.ag .role{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:.3rem 0 .85rem}
+.ag p{font-size:.88rem;color:var(--mut)}
+.ag .contact{margin-top:1rem;font-family:var(--mono);font-size:.7rem;color:var(--slate2);line-height:2}
+.ag .contact a{text-decoration:none;border-bottom:1px solid rgba(168,129,60,.5);transition:border-color .25s,color .25s}
+.ag .contact a:hover{color:var(--brass)}
+
+/* sell */
+.sell-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:start}
+@media (max-width:920px){.sell-grid{grid-template-columns:1fr}}
+.step{display:flex;gap:1.1rem;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.step .n{font-family:var(--mono);font-size:.7rem;color:var(--brass);letter-spacing:.1em;padding-top:.3rem;white-space:nowrap}
+.step h4{font-family:var(--serif);font-size:1.08rem;color:var(--slate3);margin-bottom:.25rem}
+.step p{font-size:.86rem;color:var(--mut)}
+.val-card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--brass);padding:1.9rem 1.7rem;box-shadow:var(--sh2)}
+.val-card h3{font-family:var(--serif);font-size:1.4rem;color:var(--slate3);margin-bottom:.4rem}
+.val-card>p{font-size:.88rem;color:var(--mut);margin-bottom:1.3rem}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:.4rem}
+.fld input{width:100%;border:1px solid var(--line);background:var(--lime);padding:.8rem .9rem;font:inherit;font-size:.92rem;color:var(--tx);transition:border-color .25s,box-shadow .25s}
+.fld input:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px var(--brass-soft)}
+.ok-msg{display:none;background:var(--brass-soft);border:1px solid rgba(168,129,60,.4);padding:1rem 1.1rem;font-size:.88rem;color:var(--slate2);margin-top:1rem}
+.ok-msg.show{display:block}
+
+/* footer */
+footer{background:var(--slate3);color:#9FA9B8;padding:3rem 0 2.2rem;font-size:.85rem}
+.ft{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+footer b{font-family:var(--serif);color:var(--lime);font-size:1.1rem;display:block;margin-bottom:.5rem}
+footer a{text-decoration:none;border-bottom:1px solid rgba(192,154,80,.4)}
+footer a:hover{color:var(--brass2)}
+.lic{margin-top:2rem;padding-top:1.4rem;border-top:1px solid rgba(244,240,231,.12);font-family:var(--mono);font-size:.62rem;letter-spacing:.12em}
+
+/* entrance */
+.st{opacity:0;transform:translateY(22px);animation:enter .8s cubic-bezier(.2,.6,.2,1) forwards}
+.st1{animation-delay:.1s}.st2{animation-delay:.24s}.st3{animation-delay:.38s}.st4{animation-delay:.52s}.st5{animation-delay:.66s}
+@keyframes enter{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.st{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <div class="wrap hd-in">
+    <a class="logo" href="#top" aria-label="Crestview home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 14 13 4l10 10" fill="none" stroke="#A8813C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 13v9h14v-9" fill="none" stroke="#33475E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <b>Crestview</b><span>Realty</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#listings">Listings</a>
+      <a href="#sold">Sold</a>
+      <a href="#agents">Agents</a>
+      <a href="#sell">Sell</a>
+      <a class="cta" href="#sell">Book a valuation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kick st st1">Boutique brokerage · Portland Heights, OR</p>
+      <h1 class="st st2">Homes with a view.<br>Sales with a <em>record.</em></h1>
+      <p class="lede st st3">Eleven agents, one neighborhood, and a sale-to-list ratio the big brokerages quote at their own meetings. We list fewer homes on purpose — and sell every one of them properly.</p>
+      <div class="btn-row st st4">
+        <a class="btn btn-solid" href="#listings">See featured listings</a>
+        <a class="btn btn-ghost" href="#sell">What's my home worth?</a>
+      </div>
+      <div class="hero-meta st st5">
+        <div><b data-count="312" data-prefix="$" data-suffix="M">$312M</b>Sold since 2019</div>
+        <div><b data-count="104" data-suffix="%">104%</b>Avg. sale-to-list</div>
+        <div><b data-count="9">9</b>Median days on market</div>
+      </div>
+    </div>
+    <div class="stage st st3" id="stage" aria-hidden="true">
+      <div class="tilt" id="tilt">
+        <div class="fit">
+          <div class="iso">
+            <div class="bld" style="--w:88px;--d:70px;--h:74px;left:34px;top:36px">
+              <i class="t"></i><i class="f door"></i><i class="b"></i><i class="l"></i><i class="r"></i>
+            </div>
+            <div class="bld" style="--w:70px;--d:92px;--h:104px;left:232px;top:30px;--ct1:#F4EBD8;--ct2:#E4D8BE">
+              <i class="t"></i><i class="f door"></i><i class="b"></i><i class="l"></i><i class="r"></i>
+            </div>
+            <div class="bld" style="--w:96px;--d:80px;--h:60px;left:224px;top:236px;--cf1:#BAAB82;--cf2:#9E8E65;--cr1:#8B7B53;--cr2:#766840">
+              <i class="t"></i><i class="f door"></i><i class="b"></i><i class="l"></i><i class="r"></i>
+            </div>
+            <div class="bld" style="--w:56px;--d:56px;--h:130px;left:44px;top:246px;--ct1:#EFE9DB;--ct2:#DFD5BE">
+              <i class="t"></i><i class="f"></i><i class="b"></i><i class="l"></i><i class="r"></i>
+            </div>
+            <div class="tree" style="left:150px;top:250px"><i class="tp tp1"></i><i class="tp tp2"></i></div>
+            <div class="tree" style="left:118px;top:60px"><i class="tp tp1"></i><i class="tp tp2"></i></div>
+            <div class="sgn" style="left:210px;top:160px"><i class="sp"><b>FOR SALE</b><span>CRESTVIEW · 503-555-0114</span></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="listings">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Featured listings</h2><p>Six on the market this week</p></div>
+    <div class="lst-grid">
+      <a class="lst rv" href="#sell" style="--sky:linear-gradient(180deg,#BFD0E2 0 58%,#E9E2CF 58%)">
+        <div class="ph"><span class="tag new">New this week</span><svg viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90V56l52-26 54 26v34zM120 90V38l62-24 60 24v52zM254 90V62l44-20 48 20v28z" fill="#33475E" opacity=".85"/><path d="M0 90V74h400v16z" fill="#24344A"/></svg></div>
+        <div class="lst-body">
+          <div class="price">$1,285,000</div>
+          <div class="addr">1427 Alder Crest Drive, Portland Heights</div>
+          <div class="chips"><span>4 bd</span><span>3 ba</span><span>2,940 sq ft</span></div>
+        </div>
+      </a>
+      <a class="lst rv" href="#sell" style="--sky:linear-gradient(180deg,#D9CDB8 0 58%,#E9E2CF 58%)">
+        <div class="ph"><span class="tag">Open Sat 11–1</span><svg viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M10 90V48l70-30 70 30v42zM180 90V60l50-22 54 22v30zM300 90V44l46-18 44 18v46z" fill="#5D6878" opacity=".9"/><path d="M0 90V76h400v14z" fill="#41546B"/></svg></div>
+        <div class="lst-body">
+          <div class="price">$949,000</div>
+          <div class="addr">88 Vista Terrace Lane, Goose Hollow</div>
+          <div class="chips"><span>3 bd</span><span>2.5 ba</span><span>2,210 sq ft</span></div>
+        </div>
+      </a>
+      <a class="lst rv" href="#sell" style="--sky:linear-gradient(180deg,#C6D6D2 0 58%,#E9E2CF 58%)">
+        <div class="ph"><span class="tag">Pending in 6 days</span><svg viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90V40h90v50zM110 90V26h100v64zM230 90V52h80v38zM326 90V36h74v54z" fill="#33475E" opacity=".8"/><path d="M0 90V78h400v12z" fill="#24344A"/></svg></div>
+        <div class="lst-body">
+          <div class="price">$2,150,000</div>
+          <div class="addr">2203 Council Ridge Road, Portland Heights</div>
+          <div class="chips"><span>5 bd</span><span>4 ba</span><span>4,380 sq ft</span></div>
+        </div>
+      </a>
+      <a class="lst rv" href="#sell" style="--sky:linear-gradient(180deg,#CBD8E4 0 58%,#E4DCC7 58%)">
+        <div class="ph"><span class="tag new">New this week</span><svg viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M20 90V50l60-28 58 28v40zM170 90V64h70v26zM260 90V42l56-22 60 22v48z" fill="#54687F" opacity=".9"/><path d="M0 90V75h400v15z" fill="#33475E"/></svg></div>
+        <div class="lst-body">
+          <div class="price">$739,500</div>
+          <div class="addr">512 Hillsview Court, Southwest Hills</div>
+          <div class="chips"><span>3 bd</span><span>2 ba</span><span>1,780 sq ft</span></div>
+        </div>
+      </a>
+      <a class="lst rv" href="#sell" style="--sky:linear-gradient(180deg,#D5CFC0 0 58%,#E9E2CF 58%)">
+        <div class="ph"><span class="tag">Price improved</span><svg viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90V58l48-24 50 24v32zM120 90V30l70-20 66 20v60zM280 90V56l48-24 52 24v34z" fill="#33475E" opacity=".85"/><path d="M0 90V77h400v13z" fill="#24344A"/></svg></div>
+        <div class="lst-body">
+          <div class="price">$1,675,000</div>
+          <div class="addr">3410 Fairmount Loop, Healy Heights</div>
+          <div class="chips"><span>4 bd</span><span>3.5 ba</span><span>3,510 sq ft</span></div>
+        </div>
+      </a>
+      <a class="lst rv" href="#sell" style="--sky:linear-gradient(180deg,#BFCEDC 0 58%,#E9E2CF 58%)">
+        <div class="ph"><span class="tag">Open Sun 12–2</span><svg viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M12 90V44l64-26 62 26v46zM190 90V58l44-20 46 20v32zM300 90V40h84v50z" fill="#5D6878" opacity=".9"/><path d="M0 90V76h400v14z" fill="#41546B"/></svg></div>
+        <div class="lst-body">
+          <div class="price">$865,000</div>
+          <div class="addr">1976 Montgomery Park Place, Kings Heights</div>
+          <div class="chips"><span>3 bd</span><span>2 ba</span><span>2,040 sq ft</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sold" id="sold">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>The sold record</h2><p>Trailing twelve months</p></div>
+    <div class="sold-strip rv">
+      <div><b>63</b><span>Homes sold</span></div>
+      <div><b>$87.4M</b><span>Total volume</span></div>
+      <div><b>9 days</b><span>Median on market</span></div>
+      <div><b>104.2%</b><span>Avg. of list price</span></div>
+    </div>
+    <div class="tbl-scroll rv">
+      <table class="sold-tbl">
+        <thead><tr><th>Address</th><th>Sold</th><th>List</th><th>Result</th><th>Closed</th></tr></thead>
+        <tbody>
+          <tr><td>2848 Buckingham Terrace</td><td>$1,912,000</td><td>$1,795,000</td><td><span class="oa">+6.5% over ask</span></td><td>Jun 30, 2026</td></tr>
+          <tr><td>640 Ravensview Drive</td><td>$1,240,000</td><td>$1,195,000</td><td><span class="oa">+3.8% over ask</span></td><td>Jun 12, 2026</td></tr>
+          <tr><td>1712 Elm Street West</td><td>$986,500</td><td>$949,000</td><td><span class="oa">+4.0% over ask</span></td><td>May 22, 2026</td></tr>
+          <tr><td>4105 Greenleaf Court</td><td>$2,405,000</td><td>$2,395,000</td><td><span class="oa">5 days, full ask+</span></td><td>May 2, 2026</td></tr>
+          <tr><td>930 Prospect Boulevard</td><td>$1,118,000</td><td>$1,050,000</td><td><span class="oa">+6.5% over ask</span></td><td>Apr 17, 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="agents">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>The agents</h2><p>Eleven people, one standard</p></div>
+    <div class="ag-grid">
+      <div class="ag rv">
+        <div class="mono-ring">MH</div>
+        <h3>Mara Holloway</h3>
+        <div class="role">Principal broker · 19 yrs</div>
+        <p>Founded Crestview in 2007 after a decade at a national firm taught her exactly what not to do. Personally leads every listing strategy meeting.</p>
+        <div class="contact"><a href="tel:+15035550114">503-555-0114</a><br><a href="mailto:mara@crestviewpdx.com">mara@crestviewpdx.com</a></div>
+      </div>
+      <div class="ag rv">
+        <div class="mono-ring">DO</div>
+        <h3>Devon Okafor</h3>
+        <div class="role">Listing specialist · 11 yrs</div>
+        <p>Ran 41 of last year's 63 sales. Believes a home is priced right when the second weekend is unnecessary — and his median says he's right.</p>
+        <div class="contact"><a href="tel:+15035550118">503-555-0118</a><br><a href="mailto:devon@crestviewpdx.com">devon@crestviewpdx.com</a></div>
+      </div>
+      <div class="ag rv">
+        <div class="mono-ring">SL</div>
+        <h3>Susannah Liang</h3>
+        <div class="role">Buyer's advocate · 8 yrs</div>
+        <p>Writes offers that win without overpaying: 7 of her last 10 buyers closed under the highest competing bid. Fluent in Mandarin and inspection reports.</p>
+        <div class="contact"><a href="tel:+15035550121">503-555-0121</a><br><a href="mailto:susannah@crestviewpdx.com">susannah@crestviewpdx.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sell">
+  <div class="wrap sell-grid">
+    <div class="rv">
+      <div class="sec-head" style="margin-bottom:1.6rem"><h2>Sell with Crestview</h2></div>
+      <p class="lede" style="margin-top:0">Our listings sell in 9 days at 104% of ask because we prepare them like they're our own. Here is the whole process — no mystery, no "marketing plan" PDF.</p>
+      <div class="step"><span class="n">Week 0</span><div><h4>Walk-through &amp; pricing study</h4><p>We tour the home together, then build a pricing model from the 20 nearest comparable sales — you see every number we see.</p></div></div>
+      <div class="step"><span class="n">Weeks 1–2</span><div><h4>Prep, staging, photography</h4><p>Our crew handles paint touch-ups, staging, and architectural photography. Sellers pay nothing up front; costs settle at closing.</p></div></div>
+      <div class="step"><span class="n">Week 3</span><div><h4>Launch Thursday, offers Tuesday</h4><p>Every Crestview listing launches on a Thursday with a weekend of opens and a published offer deadline. Buyers compete; you choose.</p></div></div>
+      <div class="step"><span class="n">Closing</span><div><h4>Managed to the key handoff</h4><p>Inspection negotiation, appraisal, escrow — one agent, one phone number, until the brass key changes hands.</p></div></div>
+    </div>
+    <div class="val-card rv">
+      <h3>What's your home worth?</h3>
+      <p>Request a complimentary valuation. Mara or Devon will send a written estimate within two business days — no obligation, no follow-up calls unless you ask.</p>
+      <form id="valForm" action="#" novalidate>
+        <div class="fld"><label for="v-addr">Property address</label><input id="v-addr" name="address" type="text" autocomplete="street-address" placeholder="e.g. 1427 Alder Crest Drive" required></div>
+        <div class="fld"><label for="v-mail">Email</label><input id="v-mail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+        <button class="btn btn-solid" type="submit" style="width:100%">Request my valuation</button>
+        <p class="ok-msg" id="valOk" role="status">Received. Your written valuation will arrive by email within two business days.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><b>Crestview Realty</b>2318 SW Vista Avenue<br>Portland, OR 97201</div>
+      <div><b>Talk to us</b><a href="tel:+15035550114">503-555-0114</a><br><a href="mailto:hello@crestviewpdx.com">hello@crestviewpdx.com</a></div>
+      <div><b>Office hours</b>Mon–Fri 9:00–18:00<br>Sat 10:00–16:00 · Sun by appointment</div>
+    </div>
+    <p class="lic">Licensed in Oregon · Broker #201207419 · © 2026 Crestview Realty LLC · Equal Housing Opportunity</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* hero tilt (rAF-throttled, pointer:fine only) */
+var stage=document.getElementById('stage'), tilt=document.getElementById('tilt');
+if(stage&&tilt&&fine&&!rm){
+  var tx=0,ty=0,raf=0;
+  function apply(){raf=0;tilt.style.transform='rotateX('+ty+'deg) rotateY('+tx+'deg)';}
+  stage.addEventListener('pointermove',function(e){
+    var r=stage.getBoundingClientRect();
+    tx=((e.clientX-r.left)/r.width-.5)*10;
+    ty=((e.clientY-r.top)/r.height-.5)*-8;
+    if(!raf)raf=requestAnimationFrame(apply);
+  });
+  stage.addEventListener('pointerleave',function(){tx=0;ty=0;if(!raf)raf=requestAnimationFrame(apply);});
+}
+
+/* listing card tilt + sheen */
+if(fine&&!rm){
+  Array.prototype.forEach.call(document.querySelectorAll('.lst'),function(card){
+    var raf=0,px=.5,py=.5;
+    function apply(){
+      raf=0;
+      card.style.setProperty('--ry',((px-.5)*7)+'deg');
+      card.style.setProperty('--rx',((py-.5)*-7)+'deg');
+      card.style.setProperty('--mx',(px*100)+'%');
+      card.style.setProperty('--my',(py*100)+'%');
+    }
+    card.addEventListener('pointermove',function(e){
+      var r=card.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width; py=(e.clientY-r.top)/r.height;
+      if(!raf)raf=requestAnimationFrame(apply);
+    });
+    card.addEventListener('pointerleave',function(){px=.5;py=.5;if(!raf)raf=requestAnimationFrame(apply);});
+  });
+}
+
+/* scroll reveals */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.14});
+  Array.prototype.forEach.call(document.querySelectorAll('.rv'),function(el){io.observe(el);});
+}else{
+  Array.prototype.forEach.call(document.querySelectorAll('.rv'),function(el){el.classList.add('in');});
+}
+
+/* count-up hero stats */
+if(!rm && 'IntersectionObserver' in window){
+  var nums=document.querySelectorAll('[data-count]');
+  var cio=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting)return; cio.unobserve(en.target);
+      var el=en.target,end=+el.getAttribute('data-count'),
+          pre=el.getAttribute('data-prefix')||'',suf=el.getAttribute('data-suffix')||'',t0=null;
+      function tick(t){
+        if(t0===null)t0=t;
+        var p=Math.min((t-t0)/1100,1),e=1-Math.pow(1-p,3);
+        el.textContent=pre+Math.round(end*e)+suf;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  },{threshold:.6});
+  Array.prototype.forEach.call(nums,function(n){cio.observe(n);});
+}
+
+/* valuation form */
+var vf=document.getElementById('valForm');
+if(vf){
+  vf.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(vf.checkValidity()){
+      document.getElementById('valOk').classList.add('show');
+      vf.querySelector('button').textContent='Request sent';
+    }else if(vf.reportValidity){vf.reportValidity();}
+  });
+}
+})();
+</script>
+</body>
+</html>

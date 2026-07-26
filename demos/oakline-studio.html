@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oakline — Handcrafted Furniture, Hudson NY</title>
+<meta name="description" content="Oakline is a four-person furniture workshop in Hudson, New York. Solid-wood pieces built to order, custom commissions, showroom on Warren Street.">
+<style>
+:root{
+  --plaster:#efe9dd;--card:#f8f4ea;--ink:#24201a;--ink2:#5b5347;
+  --oak:#c08a4e;--oakdeep:#8a5c30;--walnut:#4a3626;--wool:#b7b0a4;--forge:#221e19;
+  --accent:#b97d3f;
+  --disp:Rockwell,'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif;
+  --body:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sh1:0 1px 2px rgba(36,32,26,.08),0 8px 20px rgba(36,32,26,.1);
+  --sh2:0 2px 4px rgba(36,32,26,.12),0 22px 44px rgba(36,32,26,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{overflow-x:clip}
+body{background:var(--plaster);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.62}
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--card);padding:8px 14px;z-index:99;border-radius:3px}
+.skip:focus{left:8px}
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(239,233,221,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(36,32,26,.14)}
+.top .wrap{display:flex;align-items:center;gap:26px;height:64px}
+.brand{font-family:var(--disp);font-weight:700;font-size:21px;text-decoration:none;letter-spacing:.01em}
+.brand::after{content:'·';color:var(--accent);margin-left:2px}
+.top nav{display:flex;gap:24px;margin-left:auto}
+.top nav a{text-decoration:none;font-size:14px;color:var(--ink2);position:relative;padding:4px 0}
+.top nav a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--accent);transition:right .25s ease}
+.top nav a:hover::after{right:0}
+.btn{display:inline-block;background:var(--ink);color:var(--card);text-decoration:none;padding:13px 26px;font-size:14.5px;font-weight:600;letter-spacing:.02em;border:none;cursor:pointer;border-radius:3px;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn:hover{background:#3a332a;box-shadow:var(--sh1);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn.oak{background:var(--accent);color:#fff}
+.btn.oak:hover{background:#9c6832}
+.btn.small{padding:9px 18px;font-size:13px}
+@media (max-width:860px){.top nav{display:none}.top .btn{margin-left:auto}}
+@media (max-width:480px){.top .btn{display:none}}
+/* hero */
+.hero{overflow:clip;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(70% 60% at 78% 38%,rgba(192,138,78,.16),transparent 70%),
+  repeating-linear-gradient(90deg,transparent 0 119px,rgba(36,32,26,.035) 119px 120px)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center;min-height:min(88vh,740px);padding-top:44px;padding-bottom:60px}
+.hero h1{font-size:clamp(36px,4.9vw,62px);margin:16px 0 20px;letter-spacing:-.01em}
+.hero h1 span{color:var(--accent)}
+.lede{font-size:clamp(16px,1.35vw,18.5px);color:var(--ink2);max-width:46ch}
+.cta{display:flex;gap:18px;align-items:center;margin-top:30px;flex-wrap:wrap}
+.hmeta{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.hmeta div{font-family:var(--mono);font-size:12.5px;color:var(--ink2);line-height:1.7}
+.hmeta b{display:block;font-family:var(--disp);font-size:22px;color:var(--ink);letter-spacing:0}
+/* turntable scene */
+.scene{position:relative;height:clamp(420px,46vw,560px);perspective:1300px}
+.floorline{position:absolute;left:2%;right:2%;bottom:10%;height:1px;background:rgba(36,32,26,.2)}
+.shadow{position:absolute;left:22%;right:22%;bottom:12%;height:34px;background:radial-gradient(50% 100% at 50% 50%,rgba(36,32,26,.32),transparent 68%);filter:blur(5px)}
+.tilt{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;transform:rotateX(-12deg)}
+.zoom{position:absolute;inset:0;transform-style:preserve-3d}
+.turn{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d;animation:spin 34s linear infinite;will-change:transform}
+@keyframes spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.face{position:absolute;left:50%;top:50%;backface-visibility:hidden}
+.cred{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.cred .face{width:300px;height:112px;margin:-56px 0 0 -150px}
+.cred .f{transform:translateZ(46px);background:
+  linear-gradient(90deg,rgba(36,32,26,.5) 0 1px,transparent 1px calc(33.33% - 1px),rgba(36,32,26,.5) calc(33.33% - 1px) calc(33.33% + 1px),transparent calc(33.33% + 1px) calc(66.66% - 1px),rgba(36,32,26,.5) calc(66.66% - 1px) calc(66.66% + 1px),transparent calc(66.66% + 1px) calc(100% - 1px),rgba(36,32,26,.5) calc(100% - 1px)),
+  repeating-linear-gradient(94deg,rgba(138,92,48,.16) 0 3px,transparent 3px 14px),
+  linear-gradient(180deg,#d3a061,#b9854f 70%,#a97843);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.28),inset 0 -3px 6px rgba(58,43,30,.35)}
+.cred .f i{position:absolute;top:50%;width:5px;height:26px;margin-top:-13px;border-radius:3px;background:linear-gradient(180deg,#3a2b1e,#241a12);box-shadow:0 1px 1px rgba(255,255,255,.25)}
+.cred .f i:nth-child(1){left:calc(16.6% - 3px)}
+.cred .f i:nth-child(2){left:calc(50% - 3px)}
+.cred .f i:nth-child(3){left:calc(83.3% - 3px)}
+.cred .bk{transform:rotateY(180deg) translateZ(46px);background:linear-gradient(180deg,#8a5f34,#7c5730)}
+.cred .l,.cred .r{width:92px;margin-left:-46px;background:repeating-linear-gradient(2deg,rgba(58,43,30,.18) 0 2px,transparent 2px 11px),linear-gradient(180deg,#a97843,#8f6236)}
+.cred .l{transform:rotateY(-90deg) translateZ(150px)}
+.cred .r{transform:rotateY(90deg) translateZ(150px)}
+.cred .t{height:92px;margin-top:-46px;transform:rotateX(90deg) translateZ(56px);background:repeating-linear-gradient(88deg,rgba(138,92,48,.14) 0 3px,transparent 3px 12px),linear-gradient(180deg,#e0b378,#cf9c60);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+.leg{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.leg i{position:absolute;left:50%;top:50%;width:9px;height:74px;margin:-4px 0 0 -4.5px;background:linear-gradient(180deg,#3a2b1e,#241a12);backface-visibility:visible}
+.leg i:nth-child(2){transform:rotateY(90deg)}
+.plinth{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.plinth .face{backface-visibility:hidden}
+.plinth .pt{width:380px;height:150px;margin:-75px 0 0 -190px;transform:translateY(132px) rotateX(90deg);background:linear-gradient(135deg,#cac3b6,#a9a294);box-shadow:inset 0 0 0 2px rgba(36,32,26,.15)}
+.plinth .pf{width:380px;height:18px;margin:-9px 0 0 -190px;transform:translateY(141px) translateZ(75px);background:linear-gradient(180deg,#b3ac9e,#948d7f)}
+.plinth .pb{width:380px;height:18px;margin:-9px 0 0 -190px;transform:translateY(141px) rotateY(180deg) translateZ(75px);background:#8c8577}
+.plinth .pl{width:150px;height:18px;margin:-9px 0 0 -75px;transform:translateY(141px) rotateY(-90deg) translateZ(190px);background:#9d9688}
+.plinth .pr{width:150px;height:18px;margin:-9px 0 0 -75px;transform:translateY(141px) rotateY(90deg) translateZ(190px);background:#9d9688}
+.scenecap{position:absolute;left:0;right:0;bottom:0;text-align:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:36px}
+  .scene{height:min(92vw,460px);max-width:480px;margin:0 auto}
+  .zoom{transform:scale3d(.72,.72,.72)}
+}
+@media (prefers-reduced-motion:reduce){
+  .turn{animation:none;transform:rotateY(-32deg)}
+}
+/* sections */
+section{padding:clamp(64px,9vw,118px) 0}
+.shead{max-width:660px;margin-bottom:clamp(30px,4vw,52px)}
+.shead h2{font-size:clamp(28px,3.3vw,42px);margin-top:12px}
+.shead p{color:var(--ink2);margin-top:14px}
+/* collection */
+#collection{background:linear-gradient(180deg,var(--plaster),#e7e0d1)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.piece{background:var(--card);border:1px solid rgba(36,32,26,.1);border-radius:6px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease;box-shadow:var(--sh1)}
+.piece:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.piece figure{background:linear-gradient(180deg,#efe8da,#e5ddcb);padding:26px 22px 18px;border-bottom:1px solid rgba(36,32,26,.1)}
+.piece svg{width:100%;height:120px;display:block}
+.piece .body{padding:20px 22px 22px}
+.piece h3{font-size:20px}
+.piece .mat{font-size:13.5px;color:var(--ink2);margin-top:4px}
+.piece .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;gap:10px}
+.piece .pr{font-family:var(--disp);font-size:21px;font-weight:700}
+.piece .dim{font-family:var(--mono);font-size:11.5px;color:var(--ink2);letter-spacing:.04em}
+.leadtime{font-family:var(--mono);font-size:12px;color:var(--ink2);margin-top:26px}
+@media (max-width:960px){.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cgrid{grid-template-columns:1fr}}
+/* materials */
+#materials{background:var(--forge);color:#e9e2d4}
+#materials .shead p{color:#a89f8f}
+.swgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sw{perspective:800px;background:none;border:none;padding:0;cursor:pointer;font:inherit;color:inherit;text-align:left;height:150px}
+.swin{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.3,.7,.25,1)}
+.sw.on .swin{transform:rotateY(180deg)}
+@media (hover:hover) and (pointer:fine){.sw:hover .swin{transform:rotateY(180deg)}}
+.sw:focus-visible .swin{transform:rotateY(180deg)}
+.swf,.swb{position:absolute;inset:0;border-radius:6px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:18px 20px;display:flex;flex-direction:column;justify-content:flex-end}
+.swf b{font-family:var(--disp);font-size:19px;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.swf small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.swb{transform:rotateY(180deg);background:#2e2922;border:1px solid rgba(233,226,212,.16);justify-content:center;gap:6px}
+.swb b{font-family:var(--disp);font-size:16px;color:var(--oak)}
+.swb p{font-size:13px;color:#c9c0af;line-height:1.55}
+.m-oak{background:repeating-linear-gradient(93deg,rgba(122,80,38,.25) 0 3px,transparent 3px 13px),linear-gradient(160deg,#d8a768,#b3814a)}
+.m-wal{background:repeating-linear-gradient(91deg,rgba(30,20,12,.35) 0 3px,transparent 3px 11px),linear-gradient(160deg,#6b4d34,#41301f)}
+.m-ash{background:repeating-linear-gradient(94deg,rgba(150,130,100,.3) 0 2px,transparent 2px 12px),linear-gradient(160deg,#e8dcC2,#c9b98f)}
+.m-wool{background:repeating-conic-gradient(#a29a8c 0 25%,#8f887b 0 50%) 0 0/9px 9px,#a29a8c}
+.m-lea{background:radial-gradient(120% 100% at 30% 20%,#9a5c33,#6b3c1e)}
+.m-ste{background:linear-gradient(160deg,#4a453e,#26221d 70%),#26221d}
+.joinery{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.joinery article{border-top:2px solid var(--oak);padding-top:16px}
+.joinery h3{font-size:17px;color:#f2ecdd}
+.joinery p{font-size:13.5px;color:#a89f8f;margin-top:8px}
+@media (max-width:960px){.swgrid,.joinery{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.swgrid,.joinery{grid-template-columns:1fr}.sw{height:130px}}
+/* commissions */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.step{background:var(--card);border:1px solid rgba(36,32,26,.1);border-radius:6px;padding:24px 22px;box-shadow:var(--sh1)}
+.step .wk{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.step h3{font-size:18px;margin:10px 0 8px}
+.step p{font-size:13.5px;color:var(--ink2)}
+.cnote{margin-top:30px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.cnote p{font-size:14px;color:var(--ink2)}
+@media (max-width:960px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+/* showroom */
+#showroom{background:linear-gradient(180deg,var(--plaster),#e7e0d1);padding-bottom:0}
+.sgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px)}
+address{font-style:normal;line-height:1.85;margin-top:14px}
+address a{color:var(--accent)}
+.hours{list-style:none;margin-top:14px;max-width:360px}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(36,32,26,.15);font-size:15px}
+.hours .cl{color:var(--ink2);font-style:italic}
+footer.site{margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(36,32,26,.2);padding:26px 0 34px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+@media (max-width:860px){.sgrid{grid-template-columns:1fr}}
+/* reveals */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.7,.3,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .hr{animation:up .85s cubic-bezier(.22,.7,.3,1) both;animation-delay:var(--d,0s)}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .js .hr{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .swin{transition:none}
+  .piece,.btn{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#main">Oakline</a>
+    <nav aria-label="Primary">
+      <a href="#collection">Collection</a>
+      <a href="#materials">Materials</a>
+      <a href="#commissions">Commissions</a>
+      <a href="#showroom">Showroom</a>
+    </nav>
+    <a class="btn small oak" href="#commissions">Start a commission</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-label="Introduction">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow hr">Furniture workshop · Hudson, New York</p>
+      <h1 class="hr" style="--d:.08s">Built once, to outlast <span>the house it lives in.</span></h1>
+      <p class="lede hr" style="--d:.16s">Oakline is a four-person workshop two blocks off Warren Street. Solid rift-sawn oak and black walnut, cut joinery instead of fasteners, and a finish you can repair with a rag and a bottle of oil.</p>
+      <div class="cta hr" style="--d:.24s">
+        <a class="btn oak" href="#collection">See the collection</a>
+        <a class="btn" href="#materials">Materials &amp; joinery</a>
+      </div>
+      <div class="hmeta hr" style="--d:.34s">
+        <div><b>2014</b>workshop founded</div>
+        <div><b>412</b>pieces delivered</div>
+        <div><b>0</b>screws in a carcase</div>
+      </div>
+    </div>
+    <div class="hr" style="--d:.2s">
+      <div class="scene" id="scene" aria-hidden="true">
+        <div class="floorline"></div>
+        <div class="shadow"></div>
+        <div class="tilt" id="tilt">
+          <div class="zoom">
+          <div class="turn">
+            <div class="cred">
+              <div class="face f"><i></i><i></i><i></i></div>
+              <div class="face bk"></div>
+              <div class="face l"></div>
+              <div class="face r"></div>
+              <div class="face t"></div>
+              <div class="leg" style="transform:translate3d(-132px,60px,34px)"><i></i><i></i></div>
+              <div class="leg" style="transform:translate3d(132px,60px,34px)"><i></i><i></i></div>
+              <div class="leg" style="transform:translate3d(-132px,60px,-34px)"><i></i><i></i></div>
+              <div class="leg" style="transform:translate3d(132px,60px,-34px)"><i></i><i></i></div>
+            </div>
+            <div class="plinth">
+              <div class="face pt"></div>
+              <div class="face pf"></div>
+              <div class="face pb"></div>
+              <div class="face pl"></div>
+              <div class="face pr"></div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <p class="scenecap">Credenza No. 4 — white oak, on the turntable</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="collection">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">The collection</p>
+      <h2>Six pieces, made to order</h2>
+      <p>Everything below is built when you order it, by the same two pairs of hands, in the wood you choose. Prices shown in white oak; walnut adds 12%.</p>
+    </div>
+    <div class="cgrid">
+      <article class="piece rv">
+        <figure><svg viewBox="0 0 260 120" role="presentation" focusable="false"><rect x="30" y="30" width="200" height="52" rx="3" fill="#c08a4e" stroke="#24201a" stroke-width="2.5"/><line x1="96" y1="30" x2="96" y2="82" stroke="#24201a" stroke-width="2"/><line x1="163" y1="30" x2="163" y2="82" stroke="#24201a" stroke-width="2"/><circle cx="88" cy="56" r="3" fill="#24201a"/><circle cx="155" cy="56" r="3" fill="#24201a"/><circle cx="222" cy="56" r="3" fill="#24201a"/><line x1="44" y1="82" x2="40" y2="108" stroke="#24201a" stroke-width="3"/><line x1="216" y1="82" x2="220" y2="108" stroke="#24201a" stroke-width="3"/><line x1="20" y1="110" x2="240" y2="110" stroke="#24201a" stroke-width="1.5" opacity=".4"/></svg></figure>
+        <div class="body">
+          <h3>Credenza No. 4</h3>
+          <p class="mat">Rift-sawn white oak · doors on wooden runners</p>
+          <div class="row"><span class="pr">$4,800</span><span class="dim">72 × 18 × 30 in</span></div>
+        </div>
+      </article>
+      <article class="piece rv" style="--d:.07s">
+        <figure><svg viewBox="0 0 260 120" role="presentation" focusable="false"><rect x="26" y="34" width="208" height="10" rx="2" fill="#6b4d34" stroke="#24201a" stroke-width="2.5"/><line x1="52" y1="44" x2="66" y2="108" stroke="#24201a" stroke-width="3.5"/><line x1="208" y1="44" x2="194" y2="108" stroke="#24201a" stroke-width="3.5"/><line x1="60" y1="78" x2="200" y2="78" stroke="#24201a" stroke-width="2.5"/><line x1="20" y1="110" x2="240" y2="110" stroke="#24201a" stroke-width="1.5" opacity=".4"/></svg></figure>
+        <div class="body">
+          <h3>Ledger Dining Table</h3>
+          <p class="mat">Black walnut · single-plank top, trestle base</p>
+          <div class="row"><span class="pr">$6,200</span><span class="dim">84 × 38 × 29 in</span></div>
+        </div>
+      </article>
+      <article class="piece rv" style="--d:.14s">
+        <figure><svg viewBox="0 0 260 120" role="presentation" focusable="false"><path d="M96 32 C150 26 176 40 178 62 L172 84 C140 78 112 78 98 84 Z" fill="#b7b0a4" stroke="#24201a" stroke-width="2.5"/><path d="M96 32 C88 52 90 70 98 84" fill="none" stroke="#24201a" stroke-width="2.5"/><line x1="104" y1="84" x2="94" y2="110" stroke="#24201a" stroke-width="3"/><line x1="166" y1="84" x2="176" y2="110" stroke="#24201a" stroke-width="3"/><line x1="20" y1="112" x2="240" y2="112" stroke="#24201a" stroke-width="1.5" opacity=".4"/></svg></figure>
+        <div class="body">
+          <h3>Hollow Lounge Chair</h3>
+          <p class="mat">Oak frame · herringbone wool by the yard</p>
+          <div class="row"><span class="pr">$2,950</span><span class="dim">30 × 32 × 27 in</span></div>
+        </div>
+      </article>
+      <article class="piece rv" style="--d:.21s">
+        <figure><svg viewBox="0 0 260 120" role="presentation" focusable="false"><rect x="62" y="16" width="136" height="92" rx="2" fill="none" stroke="#24201a" stroke-width="3"/><line x1="62" y1="46" x2="198" y2="46" stroke="#24201a" stroke-width="2.5"/><line x1="62" y1="76" x2="198" y2="76" stroke="#24201a" stroke-width="2.5"/><rect x="72" y="26" width="9" height="20" fill="#c08a4e"/><rect x="84" y="24" width="7" height="22" fill="#6b4d34"/><rect x="94" y="28" width="10" height="18" fill="#8a5c30"/><rect x="80" y="56" width="8" height="20" fill="#6b4d34"/><rect x="91" y="58" width="9" height="18" fill="#c08a4e"/><line x1="20" y1="112" x2="240" y2="112" stroke="#24201a" stroke-width="1.5" opacity=".4"/></svg></figure>
+        <div class="body">
+          <h3>Tanner Bookshelf</h3>
+          <p class="mat">White oak · through-tenon shelves, no back panel</p>
+          <div class="row"><span class="pr">$3,400</span><span class="dim">36 × 13 × 72 in</span></div>
+        </div>
+      </article>
+      <article class="piece rv" style="--d:.28s">
+        <figure><svg viewBox="0 0 260 120" role="presentation" focusable="false"><rect x="40" y="52" width="180" height="12" rx="2" fill="#c08a4e" stroke="#24201a" stroke-width="2.5"/><path d="M60 64 L52 108 M74 64 L70 108" stroke="#24201a" stroke-width="3" fill="none"/><path d="M200 64 L208 108 M186 64 L190 108" stroke="#24201a" stroke-width="3" fill="none"/><line x1="20" y1="110" x2="240" y2="110" stroke="#24201a" stroke-width="1.5" opacity=".4"/></svg></figure>
+        <div class="body">
+          <h3>Bench No. 2</h3>
+          <p class="mat">Oak or ash · splayed legs, drawbored tenons</p>
+          <div class="row"><span class="pr">$1,150</span><span class="dim">48 × 14 × 18 in</span></div>
+        </div>
+      </article>
+      <article class="piece rv" style="--d:.35s">
+        <figure><svg viewBox="0 0 260 120" role="presentation" focusable="false"><rect x="84" y="30" width="92" height="56" rx="3" fill="#6b4d34" stroke="#24201a" stroke-width="2.5"/><line x1="84" y1="58" x2="176" y2="58" stroke="#24201a" stroke-width="2"/><circle cx="130" cy="44" r="3" fill="#e8dcc2"/><circle cx="130" cy="72" r="3" fill="#e8dcc2"/><line x1="94" y1="86" x2="90" y2="108" stroke="#24201a" stroke-width="3"/><line x1="166" y1="86" x2="170" y2="108" stroke="#24201a" stroke-width="3"/><line x1="20" y1="110" x2="240" y2="110" stroke="#24201a" stroke-width="1.5" opacity=".4"/></svg></figure>
+        <div class="body">
+          <h3>Nightstand, pair</h3>
+          <p class="mat">Walnut · dovetailed drawers, oiled interiors</p>
+          <div class="row"><span class="pr">$1,900</span><span class="dim">20 × 16 × 24 in each</span></div>
+        </div>
+      </article>
+    </div>
+    <p class="leadtime rv">Current lead time: 9–11 weeks · delivered oiled, with a lifetime repair promise in writing</p>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Materials &amp; joinery</p>
+      <h2>Turn the swatches over</h2>
+      <p>Six materials, no veneers, no stains. Tap or hover a swatch for the spec we quote from. Every board is picked at the mill in Ghent, twenty minutes from the bench.</p>
+    </div>
+    <div class="swgrid">
+      <button class="sw rv" type="button" aria-pressed="false">
+        <span class="swin">
+          <span class="swf m-oak"><small>Hardwood</small><b>White Oak</b></span>
+          <span class="swb"><b>White Oak</b><p>Janka 1,360 · rift-sawn for straight grain · hardwax-oil finish, matte</p></span>
+        </span>
+      </button>
+      <button class="sw rv" type="button" aria-pressed="false" style="--d:.06s">
+        <span class="swin">
+          <span class="swf m-wal"><small>Hardwood</small><b>Black Walnut</b></span>
+          <span class="swb"><b>Black Walnut</b><p>Janka 1,010 · steamed, air-dried 2 years · deepens to umber in sunlight</p></span>
+        </span>
+      </button>
+      <button class="sw rv" type="button" aria-pressed="false" style="--d:.12s">
+        <span class="swin">
+          <span class="swf m-ash"><small>Hardwood</small><b>Northern Ash</b></span>
+          <span class="swb"><b>Northern Ash</b><p>Janka 1,320 · our bench-seat wood · takes a soaped finish beautifully</p></span>
+        </span>
+      </button>
+      <button class="sw rv" type="button" aria-pressed="false" style="--d:.18s">
+        <span class="swin">
+          <span class="swf m-wool"><small>Upholstery</small><b>Herringbone Wool</b></span>
+          <span class="swb"><b>Herringbone Wool</b><p>560&thinsp;g/m² worsted · 100,000-cycle rub test · six undyed shades</p></span>
+        </span>
+      </button>
+      <button class="sw rv" type="button" aria-pressed="false" style="--d:.24s">
+        <span class="swin">
+          <span class="swf m-lea"><small>Upholstery</small><b>Veg-tan Leather</b></span>
+          <span class="swb"><b>Veg-tan Leather</b><p>3.5&thinsp;oz saddle hide · tanned 40 days in oak bark · patinas, never peels</p></span>
+        </span>
+      </button>
+      <button class="sw rv" type="button" aria-pressed="false" style="--d:.3s">
+        <span class="swin">
+          <span class="swf m-ste"><small>Hardware</small><b>Forged Steel</b></span>
+          <span class="swb"><b>Forged Steel</b><p>Hand-blackened, waxed · pulls forged by Ida Brandt in Catskill</p></span>
+        </span>
+      </button>
+    </div>
+    <div class="joinery">
+      <article class="rv"><h3>Dovetails, hand-cut</h3><p>Every drawer corner. Half-blind at the front so the joinery shows only when you open it — a private detail.</p></article>
+      <article class="rv" style="--d:.08s"><h3>Mortise &amp; tenon</h3><p>Drawbored with riven oak pegs. The joint tightens as the wood moves; nothing to work loose, nothing to re-glue.</p></article>
+      <article class="rv" style="--d:.16s"><h3>Sliding dovetail shelves</h3><p>Shelves lock into the carcase sides and still breathe with the seasons. No shelf pins, no sag, no rattle.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="commissions">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Custom commissions</p>
+      <h2>From sketch to delivery in twelve weeks</h2>
+      <p>About half our year is commissions — dining tables to fit awkward rooms, built-ins, one memorable 14-foot conference table. The process is the same every time.</p>
+    </div>
+    <div class="steps">
+      <article class="step rv"><p class="wk">Week 0</p><h3>Consult</h3><p>An hour at the showroom or on a call. Bring room dimensions and photos. We talk budget out loud, early.</p></article>
+      <article class="step rv" style="--d:.07s"><p class="wk">Week 2</p><h3>Drawings &amp; quote</h3><p>Scaled drawings, a wood sample pack in the mail, and a fixed price. Two revision rounds included.</p></article>
+      <article class="step rv" style="--d:.14s"><p class="wk">Weeks 4–10</p><h3>The build</h3><p>Your piece goes on the schedule board. We send photos at milling, joinery, and finishing — no chasing us.</p></article>
+      <article class="step rv" style="--d:.21s"><p class="wk">Week 12</p><h3>Delivery</h3><p>White-glove within 150 miles of Hudson. We level it, oil it once more in place, and leave you the repair kit.</p></article>
+    </div>
+    <div class="cnote rv">
+      <a class="btn oak" href="mailto:bench@oaklinestudio.com">Write to the bench</a>
+      <p>30% deposit books your slot · commissions from $1,800 · next opening: October 2026</p>
+    </div>
+  </div>
+</section>
+
+<section id="showroom">
+  <div class="wrap">
+    <div class="sgrid">
+      <div class="rv">
+        <p class="eyebrow">Showroom &amp; workshop</p>
+        <h2 style="font-size:clamp(28px,3.3vw,40px);margin-top:12px">214 Warren Street, Hudson</h2>
+        <address>
+          Showroom at the front, workshop through the curtain —<br>
+          you're welcome in both. Hudson, New York 12534<br>
+          <a href="tel:+15185550172">(518) 555-0172</a> · <a href="mailto:bench@oaklinestudio.com">bench@oaklinestudio.com</a>
+        </address>
+        <a class="btn" style="margin-top:20px" href="tel:+15185550172">Book a showroom visit</a>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <p class="eyebrow">Hours</p>
+        <ul class="hours">
+          <li><span>Thursday – Sunday</span><span>11&thinsp;am – 5&thinsp;pm</span></li>
+          <li><span>Monday – Wednesday</span><span class="cl">by appointment</span></li>
+          <li><span>Amtrak from NYC</span><span>2&thinsp;h to Hudson station</span></li>
+        </ul>
+        <p style="font-size:13.5px;color:var(--ink2);margin-top:16px">The turntable in the window turns all day. Come watch the finish room work — sawdust is free.</p>
+      </div>
+    </div>
+    <footer class="site">
+      <div class="wrap" style="padding:0">
+        <span>© 2026 Oakline Studio LLC</span>
+        <span>est. 2014 · Hudson, NY</span>
+      </div>
+    </footer>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var d=document;
+  d.documentElement.classList.add('js');
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* reveals */
+  var els=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !rm){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{
+    els.forEach(function(el){el.classList.add('in');});
+  }
+
+  /* turntable tilt (fine pointers only) */
+  var tilt=d.getElementById('tilt');
+  if(tilt && fine && !rm){
+    var tx=0,ty=0,cx=0,cy=0,raf=null;
+    function loop(){
+      raf=null;
+      cx+=(tx-cx)*.08; cy+=(ty-cy)*.08;
+      tilt.style.transform='rotateX('+(-12+cy*-5).toFixed(3)+'deg) rotateY('+(cx*8).toFixed(3)+'deg)';
+      if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002){queue();}
+    }
+    function queue(){if(!raf){raf=requestAnimationFrame(loop);}}
+    addEventListener('pointermove',function(e){
+      tx=(e.clientX/innerWidth-.5)*2;
+      ty=(e.clientY/innerHeight-.5)*2;
+      queue();
+    },{passive:true});
+  }
+
+  /* swatch flip toggles (touch + keyboard) */
+  [].slice.call(d.querySelectorAll('.sw')).forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.classList.toggle('on');
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>

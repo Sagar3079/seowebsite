@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hive — A Coworking Campus in Fulton Market, Chicago</title>
+<style>
+@property --sep{syntax:"<length>";inherits:true;initial-value:22px}
+:root{
+  --paper:#F7F4EC; --paper2:#EFEADD; --card:#FFFFFF;
+  --gr:#24262B; --gr2:#33363D; --gr3:#4A4E57;
+  --honey:#E8A21D; --honey2:#C9880F; --honey-soft:rgba(232,162,29,.14);
+  --coral:#E9604A; --line:#DFD8C8;
+  --tx:#26282D; --mut:#5D6067; --faint:#8B8E96;
+  --geo:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;
+  --hum:Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sh1:0 1px 2px rgba(36,38,43,.08);
+  --sh2:0 10px 24px -10px rgba(36,38,43,.2);
+  --sh3:0 26px 54px -20px rgba(36,38,43,.3);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--tx);font-family:var(--hum);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='%2324262B' stroke-opacity='.05'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zM28 64l28 16v32M28 64L0 80v32'/%3E%3C/g%3E%3C/svg%3E")}
+::selection{background:var(--honey);color:var(--gr)}
+a{color:inherit}
+.skip{position:absolute;left:-9999px;top:0;background:var(--gr);color:#fff;padding:.6rem 1rem;z-index:99;font-family:var(--mono);font-size:.8rem}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem);position:relative;z-index:1}
+
+/* header */
+.hd{position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid rgba(36,38,43,.1);background:rgba(247,244,236,.86)}
+@supports (backdrop-filter:blur(12px)){.hd{background:rgba(247,244,236,.62);backdrop-filter:blur(12px)}}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+.logo .hex{width:26px;height:26px;background:var(--honey);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;font-family:var(--geo);font-weight:800;color:var(--gr);font-size:.85rem}
+.logo b{font-family:var(--geo);font-weight:800;font-size:1.25rem;letter-spacing:.02em;color:var(--gr)}
+.logo span{font-family:var(--mono);font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mut)}
+.nav{display:flex;gap:1.6rem;align-items:center}
+.nav a{font-family:var(--geo);font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--mut);position:relative;padding:.3rem 0;transition:color .25s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--honey);transition:right .3s cubic-bezier(.4,0,.2,1)}
+.nav a:hover{color:var(--gr)}
+.nav a:hover::after{right:0}
+.nav .cta{background:var(--gr);color:var(--paper);padding:.58rem 1.15rem;border-radius:999px;transition:background .25s,transform .15s}
+.nav .cta::after{display:none}
+.nav .cta:hover{background:var(--honey2);color:#fff}
+.nav .cta:active{transform:translateY(1px)}
+@media (max-width:880px){.nav a:not(.cta){display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:105px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2.5rem;align-items:center;width:100%}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr;gap:3rem}}
+.kick{font-family:var(--mono);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--honey2);display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem}
+.kick i{width:10px;height:10px;background:var(--coral);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);font-style:normal}
+.hero h1{font-family:var(--geo);font-weight:800;font-size:clamp(2.5rem,5.6vw,4.2rem);line-height:1.03;letter-spacing:-.015em;color:var(--gr)}
+.hero h1 .hy{color:var(--honey2)}
+.lede{margin:1.5rem 0 2.1rem;max-width:46ch;color:var(--mut);font-size:1.04rem}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-family:var(--geo);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.7rem;border-radius:999px;border:2px solid transparent;position:relative;overflow:hidden;transition:color .3s,border-color .3s,box-shadow .3s,transform .15s,background .3s;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn-solid{background:var(--honey);color:var(--gr);box-shadow:var(--sh2)}
+.btn-solid::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-110%);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.btn-solid:hover::before{transform:translateX(110%)}
+.btn-solid:hover{box-shadow:0 14px 30px -8px rgba(200,136,15,.5)}
+.btn-ghost{border-color:rgba(36,38,43,.3);color:var(--gr)}
+.btn-ghost:hover{border-color:var(--gr);background:var(--gr);color:var(--paper)}
+.hero-meta{margin-top:2.7rem;display:flex;gap:2.2rem;flex-wrap:wrap}
+.hero-meta div{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--faint);text-transform:uppercase;line-height:1.9}
+.hero-meta b{display:block;font-family:var(--geo);font-weight:800;color:var(--gr);font-size:1.35rem;letter-spacing:0}
+
+/* exploded floor plan */
+.stage{perspective:1500px;display:grid;place-items:center;min-height:480px;--sep:22px}
+@media (max-width:940px){.stage{min-height:430px}}
+.stage:hover{--sep:56px}
+@media (prefers-reduced-motion:no-preference){
+  .stage{animation:breathe 7s ease-in-out infinite}
+  @keyframes breathe{0%,100%{--sep:22px}50%{--sep:34px}}
+  .stage:hover{animation:none}
+}
+@media (prefers-reduced-motion:reduce){.stage{--sep:40px;animation:none}.stage:hover{--sep:40px}}
+.tilt{transform-style:preserve-3d;will-change:transform;transition:transform .2s ease-out}
+.fit{transform:scale(var(--sc,1));transform-style:preserve-3d}
+@media (max-width:1100px){.fit{--sc:.85}}
+@media (max-width:940px){.fit{--sc:.92}}
+@media (max-width:430px){.fit{--sc:.7}}
+.stack{position:relative;width:330px;height:250px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-32deg)}
+.plate{position:absolute;inset:0;border-radius:16px;border:2px solid var(--gr);background:var(--card);box-shadow:0 0 0 1px rgba(36,38,43,.04);transform:translateZ(calc(var(--i)*var(--sep)));transition:transform .5s cubic-bezier(.3,.7,.3,1)}
+.plate::before{content:"";position:absolute;inset:10px;border:1px dashed rgba(36,38,43,.25);border-radius:9px}
+.plate .rm{position:absolute;border:1.5px solid var(--gr3);background:var(--paper)}
+.plate .dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--honey)}
+.plate .dot.c{background:var(--coral)}
+.plate .bar{position:absolute;background:var(--honey-soft);border:1.5px solid var(--honey2)}
+.p0{background:linear-gradient(135deg,#FFFFFF,#F6F1E4)}
+.p3{background:linear-gradient(135deg,#FDFBF5,#F1EBDC)}
+.shadow-plate{position:absolute;inset:-8px;border-radius:20px;background:radial-gradient(closest-side,rgba(36,38,43,.28),transparent 72%);transform:translateZ(-46px)}
+.legend{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:2}
+@media (max-width:940px){.legend{position:static;transform:none;flex-direction:row;flex-wrap:wrap;justify-content:center;margin-top:1.4rem;gap:.9rem}}
+.legend div{display:flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.legend i{width:12px;height:12px;border:2px solid var(--gr);border-radius:3px;font-style:normal}
+.legend .lg0 i{background:var(--honey)}
+.legend .lg1 i{background:var(--card)}
+.legend .lg2 i{background:var(--paper2)}
+.legend .lg3 i{background:var(--coral)}
+.stage-shell{position:relative}
+
+/* sections */
+section{padding:clamp(3.5rem,8vw,6.5rem) 0;position:relative}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.sec-head h2{font-family:var(--geo);font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--gr);letter-spacing:-.015em}
+.sec-head p{font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--honey2)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* memberships */
+.mem-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}
+@media (max-width:1020px){.mem-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.mem-grid{grid-template-columns:1fr}}
+.mem{background:var(--card);border:2px solid var(--gr);border-radius:18px;padding:1.6rem 1.4rem;position:relative;transform-style:preserve-3d;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s,box-shadow .35s;box-shadow:var(--sh1);will-change:transform;display:flex;flex-direction:column}
+.mem:hover{box-shadow:var(--sh3)}
+.mem::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(232,162,29,.14),transparent 55%);opacity:0;transition:opacity .3s}
+.mem:hover::after{opacity:1}
+.mem.star{border-color:var(--honey2);background:linear-gradient(160deg,#FFF9EC,#FFF)}
+.mem .flag{position:absolute;top:-13px;left:1.3rem;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;padding:.28rem .6rem;border-radius:999px}
+.mem h3{font-family:var(--geo);font-weight:800;font-size:1.1rem;color:var(--gr);letter-spacing:.01em}
+.mem .pr{font-family:var(--geo);font-weight:800;font-size:2rem;color:var(--gr);margin:.55rem 0 .1rem}
+.mem .pr small{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--faint);font-weight:400}
+.mem ul{list-style:none;margin:1rem 0 1.3rem;flex:1}
+.mem li{font-size:.86rem;color:var(--mut);padding:.34rem 0 .34rem 1.2rem;position:relative}
+.mem li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:8px;background:var(--honey);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.mem .btn{text-align:center}
+
+/* spaces */
+.spaces{background:var(--gr);border-radius:0}
+.spaces .sec-head h2{color:var(--paper)}
+.spaces .sec-head p{color:var(--honey)}
+.sp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
+@media (max-width:900px){.sp-grid{grid-template-columns:1fr}}
+.sp{border:1px solid rgba(247,244,236,.16);border-radius:16px;padding:1.7rem 1.5rem;background:linear-gradient(160deg,rgba(247,244,236,.05),transparent);transition:border-color .3s,transform .3s}
+.sp:hover{border-color:var(--honey);transform:translateY(-4px)}
+.sp .ic{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--honey);margin-bottom:.8rem;display:block}
+.sp h3{font-family:var(--geo);font-weight:800;font-size:1.25rem;color:var(--paper);margin-bottom:.5rem}
+.sp p{font-size:.88rem;color:#B9BCC2}
+.sp .num{margin-top:1.1rem;font-family:var(--mono);font-size:.68rem;color:var(--paper);letter-spacing:.08em;border-top:1px solid rgba(247,244,236,.14);padding-top:.9rem}
+
+/* amenities */
+.am-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (max-width:900px){.am-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.am{background:var(--paper);padding:1.3rem 1.2rem;font-size:.86rem;color:var(--mut);transition:background .3s}
+.am:hover{background:#FFF9EC}
+.am b{display:block;font-family:var(--geo);font-weight:700;color:var(--gr);font-size:.95rem;margin-bottom:.15rem}
+
+/* events */
+.ev{display:flex;gap:1.3rem;align-items:flex-start;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.ev:last-child{border-bottom:none}
+.ev .d{min-width:66px;text-align:center;border:2px solid var(--gr);border-radius:12px;padding:.5rem 0;background:var(--card)}
+.ev .d b{display:block;font-family:var(--geo);font-weight:800;font-size:1.3rem;color:var(--gr);line-height:1.1}
+.ev .d span{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--coral)}
+.ev h4{font-family:var(--geo);font-weight:700;font-size:1.05rem;color:var(--gr)}
+.ev p{font-size:.86rem;color:var(--mut)}
+.ev .meta{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:.3rem}
+
+/* tour */
+.tour{background:linear-gradient(160deg,#FFF6E2,#F7F4EC);border:2px solid var(--gr);border-radius:22px;padding:clamp(1.8rem,4vw,3rem);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2.4rem;align-items:center}
+@media (max-width:880px){.tour{grid-template-columns:1fr}}
+.tour h2{font-family:var(--geo);font-weight:800;font-size:clamp(1.7rem,3.2vw,2.4rem);color:var(--gr);letter-spacing:-.015em;margin-bottom:.7rem}
+.tour p{color:var(--mut);font-size:.95rem;max-width:48ch}
+.tour form{display:grid;gap:.9rem}
+.tour label{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:.35rem}
+.tour input,.tour select{width:100%;border:2px solid var(--gr);border-radius:12px;background:#fff;padding:.78rem .9rem;font:inherit;font-size:.92rem;color:var(--tx);transition:border-color .25s,box-shadow .25s}
+.tour input:focus,.tour select:focus{outline:none;border-color:var(--honey2);box-shadow:0 0 0 3px var(--honey-soft)}
+.tour .ok{display:none;background:#fff;border:2px solid var(--honey2);border-radius:12px;padding:.9rem 1rem;font-size:.88rem;color:var(--gr)}
+.tour .ok.show{display:block}
+
+/* footer */
+footer{background:var(--gr);color:#B9BCC2;padding:3rem 0 2.2rem;font-size:.85rem;margin-top:4rem}
+.ft{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+footer b{font-family:var(--geo);font-weight:800;color:var(--paper);font-size:1.05rem;display:block;margin-bottom:.5rem}
+footer a{text-decoration:none;border-bottom:1px solid rgba(232,162,29,.45)}
+footer a:hover{color:var(--honey)}
+.lic{margin-top:2rem;padding-top:1.4rem;border-top:1px solid rgba(247,244,236,.12);font-family:var(--mono);font-size:.62rem;letter-spacing:.12em}
+
+/* entrance */
+.st{opacity:0;transform:translateY(22px);animation:enter .8s cubic-bezier(.2,.6,.2,1) forwards}
+.st1{animation-delay:.1s}.st2{animation-delay:.24s}.st3{animation-delay:.38s}.st4{animation-delay:.52s}.st5{animation-delay:.66s}
+@keyframes enter{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.st{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <div class="wrap hd-in">
+    <a class="logo" href="#top" aria-label="Hive home"><span class="hex">H</span><b>Hive</b><span>Fulton Market</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#memberships">Memberships</a>
+      <a href="#spaces">Spaces</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#events">Events</a>
+      <a class="cta" href="#tour">Book a tour</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kick st st1"><i></i>Coworking campus · 940 W Fulton Market, Chicago</p>
+      <h1 class="st st2">Four floors for people who <span class="hy">make things.</span></h1>
+      <p class="lede st st3">Hive is 68,000 square feet of desks, studios, and fabrication labs in a converted 1912 cold-storage warehouse — run by people who believe a workspace should work as hard as you do.</p>
+      <div class="btn-row st st4">
+        <a class="btn btn-solid" href="#memberships">See memberships</a>
+        <a class="btn btn-ghost" href="#tour">Book a tour</a>
+      </div>
+      <div class="hero-meta st st5">
+        <div><b>418</b>Members today</div>
+        <div><b>18</b>Private studios</div>
+        <div><b>24/7</b>Member access</div>
+      </div>
+    </div>
+    <div class="stage-shell st st3">
+      <div class="stage" id="stage" aria-hidden="true">
+        <div class="tilt" id="tilt">
+          <div class="fit">
+            <div class="stack">
+              <div class="shadow-plate"></div>
+              <div class="plate p0" style="--i:0">
+                <span class="rm" style="left:18px;top:16px;width:120px;height:90px"></span>
+                <span class="rm" style="right:18px;top:16px;width:130px;height:60px"></span>
+                <span class="bar" style="left:26px;bottom:22px;width:150px;height:34px"></span>
+                <span class="dot" style="right:44px;bottom:38px"></span>
+                <span class="dot" style="right:66px;bottom:52px"></span>
+                <span class="dot c" style="right:90px;bottom:34px"></span>
+              </div>
+              <div class="plate" style="--i:1">
+                <span class="dot" style="left:34px;top:32px"></span><span class="dot" style="left:58px;top:32px"></span><span class="dot" style="left:82px;top:32px"></span><span class="dot" style="left:106px;top:32px"></span>
+                <span class="dot" style="left:34px;top:58px"></span><span class="dot" style="left:58px;top:58px"></span><span class="dot" style="left:82px;top:58px"></span><span class="dot" style="left:106px;top:58px"></span>
+                <span class="dot" style="left:34px;top:84px"></span><span class="dot" style="left:58px;top:84px"></span><span class="dot" style="left:82px;top:84px"></span><span class="dot c" style="left:106px;top:84px"></span>
+                <span class="rm" style="right:22px;top:24px;width:110px;height:80px"></span>
+                <span class="bar" style="right:22px;bottom:24px;width:110px;height:40px"></span>
+                <span class="rm" style="left:28px;bottom:22px;width:120px;height:46px"></span>
+              </div>
+              <div class="plate" style="--i:2">
+                <span class="rm" style="left:18px;top:16px;width:86px;height:96px"></span>
+                <span class="rm" style="left:114px;top:16px;width:86px;height:96px"></span>
+                <span class="rm" style="right:20px;top:16px;width:86px;height:96px"></span>
+                <span class="rm" style="left:18px;bottom:20px;width:130px;height:56px"></span>
+                <span class="bar" style="right:20px;bottom:20px;width:120px;height:56px"></span>
+                <span class="dot c" style="left:56px;top:56px"></span>
+              </div>
+              <div class="plate p3" style="--i:3">
+                <span class="bar" style="left:24px;top:24px;width:90px;height:52px"></span>
+                <span class="bar" style="left:24px;bottom:26px;width:90px;height:52px"></span>
+                <span class="rm" style="right:24px;top:30px;width:120px;height:88px;border-radius:60px"></span>
+                <span class="dot" style="right:70px;top:66px"></span>
+                <span class="dot c" style="right:96px;top:52px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="legend st st5">
+        <div class="lg3"><i></i>Roof — terrace &amp; greenhouse</div>
+        <div class="lg2"><i></i>Level 3 — private studios</div>
+        <div class="lg1"><i></i>Level 2 — desks &amp; library</div>
+        <div class="lg0"><i></i>Ground — café, labs, events</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="memberships">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Memberships</h2><p>No deposits · Cancel monthly</p></div>
+    <div class="mem-grid">
+      <div class="mem rv">
+        <h3>Day Pass</h3>
+        <div class="pr">$29<small> / day</small></div>
+        <ul>
+          <li>Any open desk, 7am–7pm</li>
+          <li>Fast Wi-Fi &amp; bottomless coffee</li>
+          <li>1 hour meeting-room credit</li>
+          <li>Café member pricing</li>
+        </ul>
+        <a class="btn btn-ghost" href="#tour">Drop in</a>
+      </div>
+      <div class="mem rv">
+        <h3>Flex</h3>
+        <div class="pr">$189<small> / month</small></div>
+        <ul>
+          <li>8 workdays each month</li>
+          <li>4 hours meeting rooms</li>
+          <li>Mail &amp; package handling</li>
+          <li>All community events</li>
+        </ul>
+        <a class="btn btn-ghost" href="#tour">Start Flex</a>
+      </div>
+      <div class="mem star rv">
+        <span class="flag">Most popular</span>
+        <h3>Resident</h3>
+        <div class="pr">$329<small> / month</small></div>
+        <ul>
+          <li>Dedicated desk, 24/7 access</li>
+          <li>10 hours meeting rooms</li>
+          <li>Locker + monitor arm included</li>
+          <li>Fabrication lab access</li>
+          <li>2 guest passes monthly</li>
+        </ul>
+        <a class="btn btn-solid" href="#tour">Become a Resident</a>
+      </div>
+      <div class="mem rv">
+        <h3>Studio</h3>
+        <div class="pr">$850<small> / month, from</small></div>
+        <ul>
+          <li>Private lockable studio, 2–8 people</li>
+          <li>120–420 sq ft, furnished</li>
+          <li>20 hours meeting rooms</li>
+          <li>Your logo on the door</li>
+          <li>All Resident benefits, per seat</li>
+        </ul>
+        <a class="btn btn-ghost" href="#tour">Tour studios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spaces" id="spaces">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>The spaces</h2><p>68,000 sq ft · four floors</p></div>
+    <div class="sp-grid">
+      <div class="sp rv">
+        <span class="ic">Levels 1–2</span>
+        <h3>Desks &amp; library</h3>
+        <p>140 hot desks and 62 dedicated desks under 14-foot timber ceilings, plus a phone-free library floor where the loudest thing is the radiator.</p>
+        <div class="num">202 seats · 11 phone booths · 8 meeting rooms</div>
+      </div>
+      <div class="sp rv">
+        <span class="ic">Level 3</span>
+        <h3>Private studios</h3>
+        <p>Eighteen glass-walled studios for teams of two to eight. Furnished, lockable, and wired with their own network drops — move in with a laptop.</p>
+        <div class="num">18 studios · 120–420 sq ft · from $850/mo</div>
+      </div>
+      <div class="sp rv">
+        <span class="ic">Ground floor</span>
+        <h3>Fabrication labs</h3>
+        <p>A print lab with a Riso and a guillotine, a photo studio with a 9-foot cyc wall, and two treated podcast rooms bookable by the hour.</p>
+        <div class="num">Print · photo · audio · included with Resident</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="amenities">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Amenities</h2><p>Included, not upsold</p></div>
+    <div class="am-grid rv">
+      <div class="am"><b>Gigabit fiber</b>Wired drops at every dedicated desk</div>
+      <div class="am"><b>Sett Café</b>Counter espresso, 7am–4pm daily</div>
+      <div class="am"><b>Roof terrace</b>Open April–October, heaters after dark</div>
+      <div class="am"><b>Bike room</b>64 racks, showers &amp; towel service</div>
+      <div class="am"><b>Mothers' room</b>Private, bookable, with fridge</div>
+      <div class="am"><b>Print credit</b>200 pages monthly, every plan</div>
+      <div class="am"><b>Guest lobby</b>Staffed reception, 8am–6pm</div>
+      <div class="am"><b>Dog days</b>Fridays are dog-friendly on Level 1</div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Community calendar</h2><p>Open to members + guests</p></div>
+    <div class="rv">
+      <div class="ev">
+        <div class="d"><b>06</b><span>Aug</span></div>
+        <div><h4>First-Thursday Demo Night</h4><p>Six members, five minutes each, no slides over 12. August lineup includes a bike-frame CAD tool and a zine press.</p><div class="meta">6:30pm · Event hall · Free</div></div>
+      </div>
+      <div class="ev">
+        <div class="d"><b>19</b><span>Aug</span></div>
+        <div><h4>Riso Printing 101</h4><p>Two-color poster workshop in the print lab with resident designer Ana Kovač. All materials included; take home 20 prints.</p><div class="meta">6:00pm · Print lab · $35, members $15</div></div>
+      </div>
+      <div class="ev">
+        <div class="d"><b>04</b><span>Sep</span></div>
+        <div><h4>Freelance Finance AMA</h4><p>CPA Marcus Bell answers the questions you've been googling at 1am: S-corps, quarterly estimates, and what "write-off" actually means.</p><div class="meta">12:30pm · Library · Free, bring lunch</div></div>
+      </div>
+      <div class="ev">
+        <div class="d"><b>26</b><span>Sep</span></div>
+        <div><h4>Harvest Rooftop Social</h4><p>The season's last terrace party: cider from Right Bee, live set from a member band, and the greenhouse tomato taste-off finals.</p><div class="meta">5:00pm · Roof terrace · Members + one guest</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tour">
+  <div class="wrap">
+    <div class="tour rv">
+      <div>
+        <h2>See it in person.</h2>
+        <p>Tours run Monday to Friday at 10am, 1pm, and 4pm, and take about twenty minutes — ending, non-negotiably, at the espresso counter. Same-day spots usually available.</p>
+      </div>
+      <form id="tourForm" action="#" novalidate>
+        <div><label for="t-name">Name</label><input id="t-name" name="name" type="text" autocomplete="name" placeholder="Jordan Ellis" required></div>
+        <div><label for="t-mail">Email</label><input id="t-mail" name="email" type="email" autocomplete="email" placeholder="you@studio.com" required></div>
+        <div><label for="t-slot">Preferred slot</label>
+          <select id="t-slot" name="slot">
+            <option>Weekday · 10:00am</option>
+            <option>Weekday · 1:00pm</option>
+            <option>Weekday · 4:00pm</option>
+          </select>
+        </div>
+        <button class="btn btn-solid" type="submit">Reserve my tour</button>
+        <p class="ok" id="tourOk" role="status">Booked. A confirmation with door directions is on its way to your inbox.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><b>Hive</b>940 W Fulton Market<br>Chicago, IL 60607</div>
+      <div><b>Say hello</b><a href="tel:+13125550172">312-555-0172</a><br><a href="mailto:hello@hivefulton.com">hello@hivefulton.com</a></div>
+      <div><b>Front desk</b>Mon–Fri 8:00–18:00<br>Members 24/7 by keycard</div>
+    </div>
+    <p class="lic">© 2026 Hive Workspace LLC · A certified B Corp · Building est. 1912, re-imagined 2021</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var stage=document.getElementById('stage'), tilt=document.getElementById('tilt');
+
+/* cursor tilt on the exploded plan (rAF-throttled) */
+if(stage&&tilt&&fine&&!rm){
+  var tx=0,ty=0,raf=0;
+  function apply(){raf=0;tilt.style.transform='rotateX('+ty+'deg) rotateY('+tx+'deg)';}
+  stage.addEventListener('pointermove',function(e){
+    var r=stage.getBoundingClientRect();
+    tx=((e.clientX-r.left)/r.width-.5)*9;
+    ty=((e.clientY-r.top)/r.height-.5)*-7;
+    if(!raf)raf=requestAnimationFrame(apply);
+  });
+  stage.addEventListener('pointerleave',function(){tx=0;ty=0;if(!raf)raf=requestAnimationFrame(apply);});
+}
+
+/* scroll-driven plate separation */
+if(stage&&!rm){
+  var sraf=0;
+  function onScroll(){
+    if(sraf)return;
+    sraf=requestAnimationFrame(function(){
+      sraf=0;
+      var r=stage.getBoundingClientRect(),vh=innerHeight||1;
+      var p=Math.min(Math.max(1-(r.top+r.height*.5)/vh,0),1);
+      stage.style.setProperty('--sep',(22+p*40)+'px');
+    });
+  }
+  addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+}
+
+/* membership card tilt + honey glow */
+if(fine&&!rm){
+  Array.prototype.forEach.call(document.querySelectorAll('.mem'),function(card){
+    var raf=0,px=.5,py=.5;
+    function apply(){
+      raf=0;
+      card.style.setProperty('--ry',((px-.5)*7)+'deg');
+      card.style.setProperty('--rx',((py-.5)*-7)+'deg');
+      card.style.setProperty('--mx',(px*100)+'%');
+      card.style.setProperty('--my',(py*100)+'%');
+    }
+    card.addEventListener('pointermove',function(e){
+      var r=card.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width; py=(e.clientY-r.top)/r.height;
+      if(!raf)raf=requestAnimationFrame(apply);
+    });
+    card.addEventListener('pointerleave',function(){px=.5;py=.5;if(!raf)raf=requestAnimationFrame(apply);});
+  });
+}
+
+/* scroll reveals */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.14});
+  Array.prototype.forEach.call(document.querySelectorAll('.rv'),function(el){io.observe(el);});
+}else{
+  Array.prototype.forEach.call(document.querySelectorAll('.rv'),function(el){el.classList.add('in');});
+}
+
+/* tour form */
+var tf=document.getElementById('tourForm');
+if(tf){
+  tf.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(tf.checkValidity()){
+      document.getElementById('tourOk').classList.add('show');
+      tf.querySelector('button').textContent='Tour reserved';
+    }else if(tf.reportValidity){tf.reportValidity();}
+  });
+}
+})();
+</script>
+</body>
+</html>

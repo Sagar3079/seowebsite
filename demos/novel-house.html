@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Novel House — Bookshop &amp; Café, Burlington VT</title>
+<meta name="description" content="The Novel House is an independent bookshop and café on Cherry Street, Burlington. Staff picks, author nights, a book club, and very good coffee.">
+<style>
+:root{
+  --wall:#233329;--wall2:#1a2820;--cream:#f2e8d5;--page:#e9dcc0;--paper2:#e8ddc6;
+  --ox:#7b2d35;--forest:#3a5244;--brass:#c9973f;--brass2:#e3bd76;--ink:#26211a;--ink2:#5b5244;
+  --mist:#c7bfa9;
+  --disp:Charter,'Bitstream Charter','Sitka Text',Cambria,serif;
+  --mono:ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --sh1:0 1px 2px rgba(38,33,26,.1),0 8px 22px rgba(38,33,26,.12);
+  --sh2:0 2px 5px rgba(38,33,26,.14),0 22px 46px rgba(38,33,26,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{overflow-x:clip}
+body{background:var(--cream);color:var(--ink);font-family:var(--disp);font-size:17.5px;line-height:1.65}
+h1,h2,h3{font-weight:700;line-height:1.12;letter-spacing:-.005em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);font-weight:600}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--cream);padding:8px 14px;z-index:99;border-radius:3px}
+.skip:focus{left:8px}
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(26,40,32,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);border-bottom:1px solid rgba(201,151,63,.35)}
+.top .wrap{display:flex;align-items:center;gap:26px;height:64px}
+.brand{font-size:21px;font-weight:700;text-decoration:none;font-style:italic}
+.brand b{color:var(--brass2);font-style:normal}
+.top nav{display:flex;gap:22px;margin-left:auto}
+.top nav a{text-decoration:none;font-size:14.5px;color:#d8cfb8;position:relative;padding:4px 0}
+.top nav a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--brass);transition:right .25s ease}
+.top nav a:hover::after{right:0}
+.btn{display:inline-block;background:var(--brass);color:#241c0e;text-decoration:none;padding:12px 24px;border-radius:4px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn:hover{background:var(--brass2);box-shadow:var(--sh1);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid rgba(242,232,213,.5)}
+.btn.ghost:hover{background:rgba(242,232,213,.1)}
+.btn.dark{background:var(--ink);color:var(--cream)}
+.btn.dark:hover{background:#3a3227}
+.btn.small{padding:8px 16px;font-size:13px}
+@media (max-width:860px){.top nav{display:none}.top .btn{margin-left:auto}}
+/* hero */
+.hero{background:radial-gradient(90% 80% at 74% 24%,rgba(201,151,63,.32),transparent 58%),linear-gradient(180deg,var(--wall),var(--wall2));color:var(--cream);position:relative;overflow:clip}
+#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(20px,4vw,56px);align-items:center;min-height:min(90vh,760px);padding-top:48px;padding-bottom:64px}
+.hero h1{font-size:clamp(36px,4.9vw,62px);margin:16px 0 20px}
+.hero h1 em{font-style:italic;color:var(--brass2)}
+.lede{font-size:clamp(16px,1.35vw,19px);color:#cfc6ae;max-width:46ch}
+.cta{display:flex;gap:18px;align-items:center;margin-top:30px;flex-wrap:wrap}
+.hmeta{display:flex;gap:32px;margin-top:44px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:#a89e85;letter-spacing:.04em}
+.hmeta b{display:block;font-family:var(--disp);font-size:21px;color:var(--cream);letter-spacing:0}
+/* 3D book */
+.shelfscene{position:relative;height:clamp(420px,46vw,540px);perspective:1200px}
+.shelfline{position:absolute;left:0;right:0;bottom:12%;height:10px;background:linear-gradient(180deg,#54402a,#332616);border-radius:2px;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.btilt{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.book{position:absolute;left:50%;bottom:calc(12% + 10px);width:0;height:0;transform-style:preserve-3d}
+.book *{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.pages{transform-style:preserve-3d}
+.pg{background:repeating-linear-gradient(180deg,var(--page) 0 3px,#d6c8a6 3px 4px)}
+.pgf{width:212px;height:292px;left:-106px;bottom:0;transform:translateZ(20px);background:var(--page);padding:34px 20px;text-align:center}
+.pgf p{position:static}
+.pgf .tp1{font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:#8a7a56;text-transform:uppercase}
+.pgf .tp2{font-size:21px;font-style:italic;color:#4a3f2c;margin-top:70px;line-height:1.3}
+.pgf .tp3{font-size:11px;color:#8a7a56;margin-top:14px}
+.pgr{width:40px;height:292px;left:86px;bottom:0;transform:rotateY(90deg);background:repeating-linear-gradient(90deg,var(--page) 0 3px,#d0c19c 3px 4px)}
+.pgt{width:212px;height:40px;left:-106px;bottom:272px;transform:rotateX(90deg);background:repeating-linear-gradient(0deg,var(--page) 0 3px,#d0c19c 3px 4px)}
+.cvb{width:220px;height:300px;left:-110px;bottom:-4px;transform:rotateY(180deg) translateZ(24px);background:linear-gradient(160deg,#8a3540,#5f2129);border-radius:3px 8px 8px 3px}
+.spine{width:48px;height:300px;left:-134px;bottom:-4px;transform:rotateY(-90deg);background:linear-gradient(90deg,#5f2129,#8a3540 55%,#6b2830);border-radius:3px;display:flex;align-items:center;justify-content:center}
+.spine span{writing-mode:vertical-rl;font-size:13px;letter-spacing:.14em;color:var(--brass2);font-style:italic;position:static}
+.cover{width:220px;height:300px;left:-110px;bottom:-4px;transform-origin:left center;transform-style:preserve-3d;transform:translateZ(24px) rotateY(-6deg);animation:openc 10s ease-in-out infinite;will-change:transform}
+@keyframes openc{0%,14%{transform:translateZ(24px) rotateY(-6deg)}48%,64%{transform:translateZ(24px) rotateY(-52deg)}100%{transform:translateZ(24px) rotateY(-6deg)}}
+.cvf,.cvi{inset:0;border-radius:3px 8px 8px 3px}
+.cvf{background:linear-gradient(150deg,#93404b,#6b262f 70%);box-shadow:inset 0 0 0 2px rgba(201,151,63,.55),inset 0 0 0 8px transparent,inset 0 0 60px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px;gap:12px}
+.cvf .ct1{font-family:var(--mono);font-size:9px;letter-spacing:.32em;color:var(--brass2);text-transform:uppercase;position:static}
+.cvf .ct2{font-size:26px;font-style:italic;color:var(--brass2);line-height:1.25;position:static}
+.cvf .ct3{width:54px;height:1px;background:var(--brass);position:static;display:block}
+.cvf .ct4{font-size:11.5px;color:#dcb98a;position:static}
+.cvi{transform:rotateY(180deg);background:linear-gradient(160deg,#efe3c8,#dbcba4)}
+.minib{transform-style:preserve-3d}
+.mb1{left:150px;bottom:-4px;width:0;height:0;transform:rotateZ(-9deg) translateX(8px)}
+.mb2{left:226px;bottom:-4px;width:0;height:0}
+.minib .mf{width:64px;height:250px;left:0;bottom:0;transform:translateZ(14px);border-radius:2px 5px 5px 2px}
+.minib .ms{width:28px;height:250px;left:-14px;bottom:0;transform:rotateY(-90deg) translateZ(0px);border-radius:2px}
+.mb1 .mf{background:linear-gradient(160deg,#46604f,#2c3f33)}
+.mb1 .ms{background:linear-gradient(90deg,#233129,#46604f)}
+.mb2 .mf{width:56px;height:224px;background:linear-gradient(160deg,#c9973f,#94682a)}
+.mb2 .ms{background:linear-gradient(90deg,#77521e,#c9973f)}
+.minib .ms i{writing-mode:vertical-rl;position:static;font-size:10px;letter-spacing:.12em;color:rgba(242,232,213,.85);font-style:italic;display:block;margin:16px auto 0}
+.scenecap{position:absolute;left:0;right:0;bottom:2%;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8f8468}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:36px}
+  .shelfscene{height:min(96vw,440px);max-width:440px;margin:0 auto}
+  .book{transform:scale3d(.72,.72,.72);transform-origin:50% 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .cover{animation:none;transform:translateZ(24px) rotateY(-30deg)}
+}
+/* sections */
+section{padding:clamp(64px,9vw,118px) 0}
+.shead{max-width:660px;margin-bottom:clamp(30px,4vw,52px)}
+.shead h2{font-size:clamp(28px,3.3vw,42px);margin-top:12px}
+.shead p{color:var(--ink2);margin-top:14px}
+.dark .shead p{color:#b3a98e}
+/* staff picks */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pick{position:relative;background:#fbf6e9;border:1px solid rgba(38,33,26,.12);border-radius:10px;padding:18px 18px 20px;box-shadow:var(--sh1);transform-style:preserve-3d;transition:box-shadow .3s ease}
+.js .pick{will-change:transform}
+.pick:hover{box-shadow:var(--sh2)}
+.pick::after{content:'';position:absolute;inset:0;border-radius:10px;background:radial-gradient(circle at var(--mx,50%) var(--my,40%),rgba(255,251,235,.75),transparent 62%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pick:hover::after{opacity:1}
+.minicover{position:relative;height:150px;border-radius:3px 6px 6px 3px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;box-shadow:2px 3px 10px rgba(38,33,26,.3)}
+.minicover::after{content:'';position:absolute;top:3px;bottom:3px;right:-5px;width:5px;background:repeating-linear-gradient(180deg,var(--page) 0 2px,#cbbc97 2px 3px);border-radius:0 2px 2px 0}
+.minicover::before{content:'';position:absolute;top:0;bottom:0;left:7px;width:1px;background:rgba(0,0,0,.28)}
+.minicover span{font-style:italic;font-size:16px;line-height:1.3;color:var(--cream)}
+.c-ox{background:linear-gradient(150deg,#8a3540,#5f2129)}
+.c-fo{background:linear-gradient(150deg,#46604f,#2a3d31)}
+.c-na{background:linear-gradient(150deg,#3c4b63,#242f42)}
+.c-mu{background:linear-gradient(150deg,#b98a37,#8a6222)}
+.pick h3{font-size:18px;line-height:1.3}
+.pick .auth{font-size:14px;color:var(--ink2);font-style:italic;margin-top:3px}
+.pick .blurb{font-size:14px;color:var(--ink2);margin:10px 0 14px;line-height:1.55}
+.pick .foot{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pick .pr{font-family:var(--mono);font-weight:700;font-size:15px}
+.pick .who{font-family:var(--mono);font-size:11px;color:var(--brass);letter-spacing:.06em}
+@media (max-width:980px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.pgrid{grid-template-columns:1fr}}
+/* events */
+#events{background:linear-gradient(180deg,var(--wall2),var(--wall));color:var(--cream)}
+.evlist{border-top:1px solid rgba(201,151,63,.3)}
+.ev{display:grid;grid-template-columns:110px 1fr auto;gap:22px;align-items:center;padding:22px 0;border-bottom:1px solid rgba(201,151,63,.3);transition:background .2s,transform .2s}
+.ev:hover{background:rgba(201,151,63,.06)}
+.ev .date{font-family:var(--mono);text-align:center;border:1px solid var(--brass);border-radius:6px;padding:10px 6px;color:var(--brass2)}
+.ev .date b{display:block;font-size:22px;line-height:1}
+.ev .date span{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+.ev h3{font-size:19px}
+.ev .sub{font-size:14px;color:#b3a98e;margin-top:4px;font-style:italic}
+.ev .tix{font-family:var(--mono);font-size:12.5px;color:var(--brass2);white-space:nowrap}
+.evnote{margin-top:22px;font-size:14px;color:#b3a98e;font-style:italic}
+@media (max-width:640px){.ev{grid-template-columns:84px 1fr}.ev .tix{grid-column:2}}
+/* club + cafe */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.clubcard{background:var(--ox);color:var(--cream);border-radius:12px;padding:clamp(26px,3vw,40px);box-shadow:var(--sh2)}
+.clubcard .eyebrow{color:var(--brass2)}
+.clubcard h3{font-size:clamp(22px,2.4vw,28px);margin:10px 0 12px}
+.clubcard p{color:#e8d3c2;font-size:15.5px}
+.clubcard .now{margin:18px 0;padding:14px 16px;background:rgba(0,0,0,.22);border-left:3px solid var(--brass);border-radius:0 8px 8px 0;font-style:italic}
+.clubcard .btn{margin-top:6px}
+.menu{list-style:none}
+.menu li{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:16px}
+.menu .dots{flex:1;border-bottom:2px dotted rgba(38,33,26,.3);transform:translateY(-4px)}
+.menu .p{font-family:var(--mono);font-size:14.5px;font-weight:700}
+.menu .d{display:block;font-size:13px;color:var(--ink2);font-style:italic}
+.mhead{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:22px 0 6px}
+.mhead:first-child{margin-top:0}
+@media (max-width:860px){.duo{grid-template-columns:1fr}}
+/* find us */
+#find{background:linear-gradient(180deg,var(--wall),var(--wall2));color:var(--cream);padding-bottom:0}
+.fgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px)}
+#find address{font-style:normal;line-height:1.85;margin-top:14px;color:#d8cfb8}
+#find address a{color:var(--brass2)}
+.hours{list-style:none;margin-top:14px;max-width:360px}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(201,151,63,.3);font-size:15px}
+footer.site{margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(201,151,63,.3);padding:26px 0 34px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:#a89e85}
+@media (max-width:860px){.fgrid{grid-template-columns:1fr}}
+/* reveals */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.7,.3,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .hr{animation:up .85s cubic-bezier(.22,.7,.3,1) both;animation-delay:var(--d,0s)}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .js .hr{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  #dust{display:none}
+  .btn,.pick,.ev{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#main">The <b>Novel</b> House</a>
+    <nav aria-label="Primary">
+      <a href="#picks">Staff picks</a>
+      <a href="#events">Events</a>
+      <a href="#club">Book club</a>
+      <a href="#cafe">Café</a>
+      <a href="#find">Find us</a>
+    </nav>
+    <a class="btn small" href="#events">Author nights</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-label="Introduction">
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow hr">Independent bookshop &amp; café · Burlington, Vermont</p>
+      <h1 class="hr" style="--d:.08s">Nine rooms of books, one <em>very good</em> coffee machine.</h1>
+      <p class="lede hr" style="--d:.16s">The Novel House fills a crooked 1891 rowhouse on Cherry Street — fiction up front, poetry under the stairs, a café in the old parlor. Twenty-two thousand titles, shelved by people who've read an alarming number of them.</p>
+      <div class="cta hr" style="--d:.24s">
+        <a class="btn" href="#picks">This month's staff picks</a>
+        <a class="btn ghost" href="#cafe">Café menu</a>
+      </div>
+      <div class="hmeta hr" style="--d:.34s">
+        <div><b>22,000</b>titles in stock</div>
+        <div><b>9</b>rooms to get lost in</div>
+        <div><b>1962</b>the espresso machine's vintage</div>
+      </div>
+    </div>
+    <div class="hr" style="--d:.2s">
+      <div class="shelfscene" aria-hidden="true">
+        <div class="shelfline"></div>
+        <div class="btilt" id="btilt">
+          <div class="book">
+            <div class="pages">
+              <div class="pg pgr"></div>
+              <div class="pg pgt"></div>
+              <div class="pgf">
+                <p class="tp1">The Novel House Press</p>
+                <p class="tp2">A Field Guide to Staying Too Long in Bookshops</p>
+                <p class="tp3">Second edition · Burlington</p>
+              </div>
+              <div class="cvb"></div>
+              <div class="spine"><span>A Field Guide · The Novel House</span></div>
+            </div>
+            <div class="cover">
+              <div class="cvf">
+                <p class="ct1">The Novel House</p>
+                <p class="ct2">A Field Guide to Staying Too Long in Bookshops</p>
+                <i class="ct3"></i>
+                <p class="ct4">with maps &amp; marginalia</p>
+              </div>
+              <div class="cvi"></div>
+            </div>
+            <div class="minib mb1"><div class="mf"></div><div class="ms"><i>Poems</i></div></div>
+            <div class="minib mb2"><div class="mf"></div><div class="ms"><i>Essays</i></div></div>
+          </div>
+        </div>
+        <p class="scenecap">From the window display, restocked Mondays</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="picks">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Staff picks · July 2026</p>
+      <h2>Four books we made each other read</h2>
+      <p>The shelf by the till, argued over at Monday staff meetings. Buy any staff pick and the picker will write the receipt note themselves.</p>
+    </div>
+    <div class="pgrid">
+      <article class="pick tc rv">
+        <div class="minicover c-fo"><span>The Overstory</span></div>
+        <h3>The Overstory</h3>
+        <p class="auth">Richard Powers</p>
+        <p class="blurb">Nine strangers, one continent of trees. The rare 500-pager we hand-sell without apology.</p>
+        <div class="foot"><span class="pr">$19.00</span><span class="who">MARA'S PICK</span></div>
+      </article>
+      <article class="pick tc rv" style="--d:.08s">
+        <div class="minicover c-ox"><span>Small Things Like These</span></div>
+        <h3>Small Things Like These</h3>
+        <p class="auth">Claire Keegan</p>
+        <p class="blurb">114 pages, not one wasted. Read it in the café in a sitting; think about it for a year.</p>
+        <div class="foot"><span class="pr">$16.00</span><span class="who">DESH'S PICK</span></div>
+      </article>
+      <article class="pick tc rv" style="--d:.16s">
+        <div class="minicover c-na"><span>Piranesi</span></div>
+        <h3>Piranesi</h3>
+        <p class="auth">Susanna Clarke</p>
+        <p class="blurb">A house with infinite halls, tides on the staircases, and the kindest narrator in fiction.</p>
+        <div class="foot"><span class="pr">$17.00</span><span class="who">JUNE'S PICK</span></div>
+      </article>
+      <article class="pick tc rv" style="--d:.24s">
+        <div class="minicover c-mu"><span>Braiding Sweetgrass</span></div>
+        <h3>Braiding Sweetgrass</h3>
+        <p class="auth">Robin Wall Kimmerer</p>
+        <p class="blurb">Botany, memoir, and gift economies. Our most-restocked book three years running.</p>
+        <div class="foot"><span class="pr">$20.00</span><span class="who">SAM'S PICK</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="events" class="dark">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Author nights</p>
+      <h2>Every other Thursday, chairs out at 6:30</h2>
+      <p>Readings happen in the map room, forty chairs and a lamp. Tickets at the till or by phone; every ticket is good for that amount off the author's book.</p>
+    </div>
+    <div class="evlist rv">
+      <article class="ev">
+        <div class="date"><span>Thu · Aug</span><b>06</b><span>7 pm</span></div>
+        <div><h3>Maeve Callahan — <i>The Salt Meadow</i></h3><p class="sub">Debut novel set on the Maine mudflats; reading and Q&amp;A, signed stock at the till.</p></div>
+        <span class="tix">$8 · redeemable</span>
+      </article>
+      <article class="ev">
+        <div class="date"><span>Thu · Aug</span><b>20</b><span>7 pm</span></div>
+        <div><h3>Green Mountain Poetry Night</h3><p class="sub">Six Vermont poets, five minutes each, one open slot drawn from a hat at 6:45.</p></div>
+        <span class="tix">Free</span>
+      </article>
+      <article class="ev">
+        <div class="date"><span>Thu · Sep</span><b>03</b><span>7 pm</span></div>
+        <div><h3>In Other Words — a translation panel</h3><p class="sub">Three translators on carrying a voice across languages, moderated by June from Poetry.</p></div>
+        <span class="tix">$5 · redeemable</span>
+      </article>
+      <article class="ev">
+        <div class="date"><span>Thu · Sep</span><b>17</b><span>7 pm</span></div>
+        <div><h3>First Novels Night — Okafor &amp; Lindqvist</h3><p class="sub">Two debuts in conversation: a Lagos family saga meets an Arctic research-station thriller.</p></div>
+        <span class="tix">$12 · redeemable</span>
+      </article>
+    </div>
+    <p class="evnote rv">Doors at 6:30 pm · café pours wine on event nights · reserve on (802) 555-0134</p>
+  </div>
+</section>
+
+<section id="club">
+  <div class="wrap">
+    <div class="duo">
+      <div class="rv">
+        <p class="eyebrow">The Back Room Club</p>
+        <h2 style="font-size:clamp(28px,3.3vw,40px);margin-top:12px">One book a month, argued about kindly</h2>
+        <p style="color:var(--ink2);margin-top:14px">First Tuesday of every month, 7&thinsp;pm, in the back room under the ship prints. $5 covers your coffee and someone else's biscuit. Club copies are 15% off all month — no need to have finished, half of us never do.</p>
+        <p style="color:var(--ink2);margin-top:12px">Next meetings: <b>Tuesday, August 4</b> and <b>Tuesday, September 1</b>. Newcomers get the armchair.</p>
+      </div>
+      <div class="clubcard rv" style="--d:.1s">
+        <p class="eyebrow">Currently reading</p>
+        <h3>The Summer Book — Tove Jansson</h3>
+        <p>An island, a grandmother, a six-year-old, and everything that matters. August's pick, chosen 11 votes to 9 over a 900-page Russian classic. Democracy works.</p>
+        <p class="now">“We keep twenty club copies behind the till — ask for the Back Room shelf.”</p>
+        <a class="btn" href="#find">Join at the till — $5</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gifts" aria-label="Gift subscriptions" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Gifts by post</p>
+      <h2>A book a month, chosen by a person</h2>
+      <p>Tell us who it's for and three books they loved. A staff member picks by hand, wraps in brown paper, and writes the note. Ships anywhere in the US on the first Friday.</p>
+    </div>
+    <div class="duo rv">
+      <ul class="menu">
+        <li><span>Three months, paperback<span class="d">one wrapped surprise a month</span></span><span class="dots"></span><span class="p">$62</span></li>
+        <li><span>Six months, paperback</span><span class="dots"></span><span class="p">$118</span></li>
+        <li><span>A year, hardcover<span class="d">with a signed pick when we can manage it</span></span><span class="dots"></span><span class="p">$310</span></li>
+      </ul>
+      <div>
+        <p style="color:var(--ink2)">Blind Date with a Book — a wrapped mystery pick from the till, first line written on the paper — is <b>$14</b> in store, no appointment with fate required.</p>
+        <a class="btn dark" style="margin-top:18px" href="mailto:shelves@novelhouse.com">Start a gift subscription</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cafe">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">The café corner</p>
+      <h2>The old parlor, now pouring</h2>
+      <p>A 1962 Faema lever machine, Vermont oat milk, and a strict no-laptops rule on Saturdays. Buy any book and drip coffee is bottomless while you read it here.</p>
+    </div>
+    <div class="duo">
+      <div class="rv">
+        <p class="mhead">Coffee &amp; tea</p>
+        <ul class="menu">
+          <li><span>Espresso<span class="d">pulled on the lever, always a double</span></span><span class="dots"></span><span class="p">$3.50</span></li>
+          <li><span>Oat flat white</span><span class="dots"></span><span class="p">$5.25</span></li>
+          <li><span>Drip, bottomless with any book</span><span class="dots"></span><span class="p">$3.00</span></li>
+          <li><span>Reading-chair hot chocolate</span><span class="dots"></span><span class="p">$4.50</span></li>
+          <li><span>Pot of smoky lapsang</span><span class="dots"></span><span class="p">$5.00</span></li>
+        </ul>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <p class="mhead">From the counter</p>
+        <ul class="menu">
+          <li><span>Cardamom bun<span class="d">from Birdsong Bakery, three doors down</span></span><span class="dots"></span><span class="p">$4.75</span></li>
+          <li><span>Marmalade toast, salted butter</span><span class="dots"></span><span class="p">$6.00</span></li>
+          <li><span>Grilled cheese &amp; tomato soup</span><span class="dots"></span><span class="p">$11.50</span></li>
+          <li><span>Ginger oat biscuit, the club's own</span><span class="dots"></span><span class="p">$3.25</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="find">
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="rv">
+        <p class="eyebrow">Find us</p>
+        <h2 style="font-size:clamp(28px,3.3vw,40px);margin-top:12px">27 Cherry Street</h2>
+        <address>
+          The green door with the brass letter slot,<br>
+          half a block up from the marketplace.<br>
+          Burlington, Vermont 05401<br>
+          <a href="tel:+18025550134">(802) 555-0134</a> · <a href="mailto:shelves@novelhouse.com">shelves@novelhouse.com</a>
+        </address>
+        <a class="btn" style="margin-top:20px" href="tel:+18025550134">Call the till</a>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <p class="eyebrow">Hours</p>
+        <ul class="hours">
+          <li><span>Monday – Saturday</span><span>9&thinsp;am – 9&thinsp;pm</span></li>
+          <li><span>Sunday</span><span>10&thinsp;am – 6&thinsp;pm</span></li>
+          <li><span>Author nights</span><span>open till 10&thinsp;pm</span></li>
+        </ul>
+        <p style="font-size:14px;color:#b3a98e;margin-top:16px;font-style:italic">We hold any book at the till for three days — just call, we'll go find it.</p>
+      </div>
+    </div>
+    <footer class="site">
+      <div class="wrap" style="padding:0">
+        <span>© 2026 The Novel House · Burlington, VT</span>
+        <span>Independent since 2009 · member, New England Independent Booksellers</span>
+      </div>
+    </footer>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var d=document;
+  d.documentElement.classList.add('js');
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* reveals */
+  var els=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !rm){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{
+    els.forEach(function(el){el.classList.add('in');});
+  }
+
+  /* hero book tilt */
+  var bt=d.getElementById('btilt');
+  if(bt && fine && !rm){
+    var tx=0,ty=0,cx=0,cy=0,raf=null;
+    function loop(){
+      raf=null;
+      cx+=(tx-cx)*.08; cy+=(ty-cy)*.08;
+      bt.style.transform='rotateX('+(cy*-5).toFixed(3)+'deg) rotateY('+(cx*9).toFixed(3)+'deg)';
+      if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002){queue();}
+    }
+    function queue(){if(!raf){raf=requestAnimationFrame(loop);}}
+    addEventListener('pointermove',function(e){
+      tx=(e.clientX/innerWidth-.5)*2;
+      ty=(e.clientY/innerHeight-.5)*2;
+      queue();
+    },{passive:true});
+  }
+
+  /* lamp-light dust motes */
+  var cv=d.getElementById('dust');
+  if(cv && cv.getContext && !rm){
+    var ctx=cv.getContext('2d'),W=0,H=0,DPR=Math.min(devicePixelRatio||1,2);
+    var hero=cv.parentElement,motes=[],N=42,run=true,mx=-1e3,my=-1e3;
+    function size(){
+      W=hero.clientWidth;H=hero.clientHeight;
+      cv.width=W*DPR;cv.height=H*DPR;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+    function seed(){
+      motes.length=0;
+      for(var i=0;i<N;i++){
+        motes.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.6,
+          vy:-(Math.random()*.16+.05),ph:Math.random()*6.28,sp:Math.random()*.008+.004,
+          a:Math.random()*.35+.15});
+      }
+    }
+    function tick(){
+      if(!run){return;}
+      ctx.clearRect(0,0,W,H);
+      var gx=W*.74,gy=H*.24;
+      for(var i=0;i<motes.length;i++){
+        var m=motes[i];
+        m.ph+=m.sp;
+        m.x+=Math.sin(m.ph)*.3; m.y+=m.vy;
+        var dx=m.x-mx,dy=m.y-my,dd=dx*dx+dy*dy;
+        if(dd<8100){var f=(1-dd/8100)*.9;m.x+=dx/Math.sqrt(dd+1)*f;m.y+=dy/Math.sqrt(dd+1)*f;}
+        if(m.y<-6){m.y=H+6;m.x=Math.random()*W;}
+        if(m.x<-6){m.x=W+6;} if(m.x>W+6){m.x=-6;}
+        var lx=(m.x-gx)/W,ly=(m.y-gy)/H;
+        var glow=Math.max(0,1-Math.sqrt(lx*lx+ly*ly)*1.7);
+        ctx.beginPath();
+        ctx.arc(m.x,m.y,m.r,0,6.28);
+        ctx.fillStyle='rgba(227,189,118,'+(m.a*(.25+glow*.75)).toFixed(3)+')';
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    size();seed();
+    addEventListener('resize',function(){size();seed();},{passive:true});
+    if(fine){
+      hero.parentElement && addEventListener('pointermove',function(e){
+        var r=cv.getBoundingClientRect();
+        mx=e.clientX-r.left;my=e.clientY-r.top;
+      },{passive:true});
+    }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        var vis=es[0].isIntersecting;
+        if(vis&&!run){run=true;tick();}else if(!vis){run=false;}
+      },{threshold:0}).observe(cv);
+    }
+    tick();
+  }
+
+  /* staff-pick card tilt + sheen */
+  if(fine && !rm){
+    [].slice.call(d.querySelectorAll('.tc')).forEach(function(c){
+      var rx=0,ry=0,q=null;
+      function ap(){
+        q=null;
+        c.style.transform='perspective(760px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-4px)';
+      }
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        ry=px*7; rx=-py*7;
+        c.style.setProperty('--mx',(px*100+50)+'%');
+        c.style.setProperty('--my',(py*100+50)+'%');
+        if(!q){q=requestAnimationFrame(ap);}
+      });
+      c.addEventListener('pointerleave',function(){
+        if(q){cancelAnimationFrame(q);q=null;}
+        c.style.transform='';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

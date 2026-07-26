@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra &amp; Fauna — Small-Group Safaris, East &amp; Southern Africa</title>
+<meta name="description" content="Terra & Fauna runs small-group safaris in Kenya, Botswana and Namibia — maximum six to eight travellers, guide-owned camps, and 4% of every fare funding predator conservation.">
+<style>
+:root{
+  --bone:#f6f0e4;
+  --paper:#fdfaf2;
+  --ink:#221a10;
+  --earth:#5b4630;
+  --ochre:#c07f2a;
+  --gold:#e8a94b;
+  --acacia:#49572f;
+  --dusk:#4a3358;
+  --dusk2:#2f2140;
+  --sun:#f5b955;
+  --line:rgba(34,26,16,.15);
+  --disp:Charter,'Bitstream Charter','Sitka Text',Cambria,serif;
+  --body:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;
+  --sh1:0 1px 3px rgba(34,26,16,.12);
+  --sh2:0 14px 30px -14px rgba(34,26,16,.3);
+  --sh3:0 32px 60px -20px rgba(47,33,64,.42),0 12px 24px -12px rgba(34,26,16,.24);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{background:var(--bone);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.68;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ochre);color:#fff}
+a{color:var(--ochre);text-decoration:none}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1130px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.14}
+h2{font-size:clamp(1.85rem,3.6vw,2.65rem);margin:.4em 0 .4em;letter-spacing:-.01em}
+section{padding:96px 0}
+@media(max-width:768px){section{padding:62px 0}}
+.eyebrow{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;font-weight:700;color:var(--ochre)}
+.eyebrow::after{content:"";display:inline-block;width:34px;height:1.5px;background:var(--dusk);vertical-align:middle;margin-left:.9em;opacity:.5}
+.sub{color:#59503f;max-width:58ch}
+.uln{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1.5px;transition:background-size .3s;padding-bottom:2px}
+.uln:hover,.uln:focus-visible{background-size:100% 1.5px}
+.btn{display:inline-block;font-weight:700;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,#cd8c34,var(--ochre));padding:1em 2em;border-radius:4px;border:0;cursor:pointer;
+  box-shadow:0 10px 22px -8px rgba(192,127,42,.6);transition:transform .18s ease,box-shadow .25s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 16px 30px -10px rgba(192,127,42,.65)}
+.btn:active{transform:translateY(1px)}
+.btn.night{background:linear-gradient(180deg,#5a4070,var(--dusk));box-shadow:0 10px 22px -8px rgba(74,51,88,.6)}
+.btn.ghost{background:transparent;color:var(--bone);box-shadow:inset 0 0 0 1.5px rgba(246,240,228,.8)}
+.btn.ghost:hover{background:rgba(246,240,228,.14)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .35s,box-shadow .35s}
+.nav.solid{background:rgba(34,24,45,.9);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(246,240,228,.12)}
+@supports not (backdrop-filter:blur(1px)){.nav.solid{background:rgba(34,24,45,.97)}}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-family:var(--disp);font-size:1.28rem;color:var(--bone);font-weight:700}
+.logo span{color:var(--gold)}
+.nav nav{display:flex;gap:1.7em;align-items:center}
+.nav nav a{color:var(--bone);font-size:.85rem;font-weight:600;letter-spacing:.05em}
+@media(max-width:840px){.nav nav a:not(.btn){display:none}}
+.nav .btn{padding:.6em 1.3em;font-size:.72rem}
+
+/* ---------- hero savanna ---------- */
+.hero{position:relative;min-height:100svh;min-height:660px;overflow:hidden;display:flex;align-items:flex-end;
+  background:linear-gradient(180deg,var(--dusk2) 0%,var(--dusk) 26%,#8a4d4a 52%,var(--ochre) 72%,var(--gold) 88%)}
+.hlayer{position:absolute;left:-4%;right:-4%;will-change:transform}
+.stars{top:0;height:34%;background:
+  radial-gradient(1.5px 1.5px at 12% 30%,#fff8 50%,transparent 51%),
+  radial-gradient(1px 1px at 32% 14%,#fff7 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 55% 38%,#fff6 50%,transparent 51%),
+  radial-gradient(1px 1px at 70% 20%,#fff8 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 88% 32%,#fff6 50%,transparent 51%),
+  radial-gradient(1px 1px at 44% 60%,#fff5 50%,transparent 51%)}
+.hsun{top:44%;left:50%;width:min(24vw,240px);aspect-ratio:1;margin-left:min(2vw,60px);border-radius:50%;
+  background:radial-gradient(circle,#fde3ad 0%,var(--sun) 46%,rgba(245,185,85,0) 74%);
+  animation:sundrift 26s ease-in-out infinite alternate}
+@keyframes sundrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-46px,14px,0)}}
+.hsvg{bottom:0;top:auto}
+.hsvg svg{display:block;width:100%;height:auto}
+.hz-copy{position:relative;z-index:6;width:100%;padding-top:130px;padding-bottom:11svh}
+.hz-copy .eyebrow{color:var(--gold)}.hz-copy .eyebrow::after{background:var(--gold)}
+.hz-copy h1{color:var(--bone);font-size:clamp(2.5rem,6.4vw,4.4rem);max-width:13em;margin:.3em 0 .32em;letter-spacing:-.015em;text-shadow:0 2px 30px rgba(47,33,64,.5)}
+.hz-copy h1 i{color:var(--gold)}
+.hz-copy p.lead{color:#efe5d2;max-width:46ch;font-size:1.05rem;text-shadow:0 1px 16px rgba(47,33,64,.6)}
+.hero-cta{display:flex;gap:14px;margin-top:1.8em;flex-wrap:wrap;align-items:center}
+.hero-note{color:#f0dcae;font-size:.82rem;letter-spacing:.05em}
+.js .hr-a{opacity:0;transform:translateY(26px)}
+.js .hr-a.go{opacity:1;transform:none;transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+
+/* ---------- safaris ---------- */
+.safaris{background:linear-gradient(180deg,#191322,var(--dusk2) 60%,#241b31);color:var(--bone);position:relative}
+.safaris h2{color:#fff}
+.safaris .sub{color:#b8a9c6}
+.trips{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+@media(max-width:980px){.trips{grid-template-columns:1fr;max-width:560px}}
+.trip{position:relative;background:linear-gradient(180deg,#352846,#2b2038);border:1px solid rgba(232,169,75,.22);border-radius:14px;overflow:hidden;
+  transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s,border-color .3s;--mx:50%;--my:40%}
+.trip:hover{box-shadow:var(--sh3);border-color:rgba(232,169,75,.5)}
+.trip::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(320px circle at var(--mx) var(--my),rgba(245,185,85,.18),transparent 65%)}
+.trip:hover::after{opacity:1}
+.tband{height:112px;position:relative;overflow:hidden}
+.tband svg{position:absolute;inset:0;width:100%;height:100%}
+.tbody{padding:20px 22px 24px}
+.ttag{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.tbody h3{font-size:1.34rem;color:#fff;margin:.3em 0 .45em}
+.tbody p{font-size:.9rem;color:#c9bcd6}
+.tfacts{list-style:none;margin:1em 0 0;font-size:.84rem;color:#e4d8ef}
+.tfacts li{display:flex;justify-content:space-between;gap:1em;padding:.5em 0;border-top:1px solid rgba(246,240,228,.12)}
+.tfacts b{color:var(--gold);font-weight:600;text-align:right}
+.tprice{display:flex;align-items:baseline;justify-content:space-between;margin-top:1em;padding-top:.9em;border-top:1px solid rgba(246,240,228,.16)}
+.tprice b{font-family:var(--disp);font-size:1.45rem;color:var(--gold)}
+.tprice span{font-size:.76rem;color:#b8a9c6}
+
+/* ---------- conservation ---------- */
+.pledge .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.pledge .wrap{grid-template-columns:1fr}}
+.pnum{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pcell{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:var(--sh1)}
+.pcell b{display:block;font-family:var(--disp);font-size:2rem;color:var(--acacia);line-height:1.05}
+.pcell span{font-size:.82rem;color:#59503f}
+.pledge ul{margin:1.2em 0 0 1.1em;color:#4c4433}
+.pledge li{margin:.5em 0}
+
+/* ---------- guides ---------- */
+.guides{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:42px}
+@media(max-width:900px){.ggrid{grid-template-columns:1fr}}
+.guide{background:var(--bone);border:1px solid var(--line);border-radius:12px;padding:26px;box-shadow:var(--sh1);transition:transform .3s,box-shadow .3s}
+.guide:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.gmark{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;
+  background:radial-gradient(circle at 32% 30%,var(--gold),var(--ochre));color:#2b2038;font-family:var(--disp);font-weight:700;font-size:1.2rem}
+.guide h3{font-size:1.16rem}
+.guide .gr{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ochre);font-weight:700;margin:.2em 0 .6em}
+.guide p{font-size:.9rem;color:#59503f}
+
+/* ---------- stories ---------- */
+.stories blockquote{border-left:3px solid var(--ochre);padding:.35em 0 .35em 1.4em;margin:2em 0;max-width:62ch}
+.stories blockquote p{font-family:var(--disp);font-size:1.24rem;line-height:1.5;color:#3a3020}
+.stories cite{display:block;margin-top:.7em;font-style:normal;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--earth);font-weight:700}
+
+/* ---------- enquire ---------- */
+.enquire{background:linear-gradient(180deg,var(--dusk2),#191322);color:var(--bone);text-align:center}
+.enquire h2{color:#fff}
+.enquire .sub{margin:0 auto;color:#b8a9c6}
+.ebar{display:flex;gap:12px;justify-content:center;margin-top:2.2em;flex-wrap:wrap}
+.ebar input{padding:.95em 1.2em;border-radius:4px;border:1.5px solid rgba(246,240,228,.3);background:rgba(246,240,228,.08);color:var(--bone);font:inherit;font-size:.95rem;min-width:min(300px,80vw);transition:border-color .2s,box-shadow .2s}
+.ebar input::placeholder{color:#a493b3}
+.ebar input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,169,75,.2)}
+.emsg{margin-top:1.1em;min-height:1.4em;font-size:.9rem;color:var(--gold);font-weight:600}
+
+/* ---------- footer ---------- */
+footer{background:#120d1b;color:#8d7fa0;padding:52px 0 40px;font-size:.87rem}
+footer .wrap{display:flex;justify-content:space-between;gap:2em;flex-wrap:wrap}
+footer a{color:#cbbfda}
+
+/* reveals */
+.js .rv{opacity:0;transform:translateY(20px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.d1{transition-delay:.09s}.js .rv.d2{transition-delay:.18s}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .hsun{animation:none}
+  .js .rv,.js .hr-a{opacity:1;transform:none;transition:none}
+  .trip,.guide,.btn{transition:none}
+  *{animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav solid-init" id="topnav">
+  <div class="wrap">
+    <a class="logo" href="#top">Terra <span>&amp;</span> Fauna</a>
+    <nav aria-label="Primary">
+      <a class="uln" href="#safaris">Safaris</a>
+      <a class="uln" href="#conservation">Conservation</a>
+      <a class="uln" href="#guides">Guides</a>
+      <a class="uln" href="#stories">Stories</a>
+      <a class="btn" href="#enquire">Enquire</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" aria-label="Golden hour on the savanna">
+  <div class="hlayer stars" data-px="8" data-sp="0.24" aria-hidden="true"></div>
+  <div class="hlayer hsun" data-px="14" aria-hidden="true"></div>
+  <div class="hlayer hsvg" data-px="10" data-sp="0.16" style="bottom:15svh" aria-hidden="true">
+    <svg viewBox="0 0 1440 190" preserveAspectRatio="none" style="opacity:.55">
+      <path fill="#6c4a5e" d="M0,140 L180,96 L340,128 L560,84 L760,124 L980,92 L1180,120 L1440,90 L1440,190 L0,190 Z"/>
+    </svg>
+  </div>
+  <div class="hlayer hsvg" data-px="22" data-sp="0.09" style="bottom:6svh" aria-hidden="true">
+    <svg viewBox="0 0 1440 240" preserveAspectRatio="none">
+      <path fill="#3d2b33" d="M0,190 C240,170 420,196 700,180 C980,164 1200,190 1440,176 L1440,240 L0,240 Z"/>
+      <g fill="#3d2b33">
+        <ellipse cx="172" cy="110" rx="54" ry="13"/>
+        <path d="M166,192 l-2,-58 -18,-16 5,-5 15,13 3,-10 8,0 3,10 17,-14 5,5 -20,17 -2,58 Z"/>
+        <ellipse cx="1152" cy="134" rx="40" ry="10"/>
+        <path d="M1148,188 l-2,-38 -13,-11 4,-4 11,9 2,-7 6,0 2,7 12,-10 4,4 -14,12 -2,38 Z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hlayer hsvg" data-px="34" data-sp="0.03" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path fill="#1c1410" d="M0,120 C200,104 360,132 560,118 C820,102 1080,130 1440,112 L1440,200 L0,200 Z"/>
+      <g fill="#1c1410">
+        <path d="M420,120 c0,-16 4,-30 14,-38 c6,-24 24,-34 34,-32 c4,-10 16,-12 22,-6 c14,-2 24,8 24,18 c10,2 16,12 12,22 l6,36 Z"/>
+        <path d="M470,84 l6,-26 c2,-8 10,-8 12,0 l4,26 Z"/>
+        <path d="M880,120 c-2,-20 2,-34 10,-40 l-4,-30 c0,-6 8,-8 10,-2 l6,28 c10,-4 22,-2 30,4 l8,-24 c2,-6 10,-4 9,2 l-6,26 c8,8 11,22 9,36 Z"/>
+        <path d="M60,124 l4,-40 3,40 Z M108,122 l3,-30 4,30 Z M1320,116 l4,-44 4,44 Z M1370,118 l3,-32 4,32 Z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap hz-copy">
+    <p class="eyebrow hr-a" style="transition-delay:.1s">Kenya · Botswana · Namibia — since 2011</p>
+    <h1 class="hr-a" style="transition-delay:.24s">Six travellers, one guide,<br>and <i>the whole golden hour</i></h1>
+    <p class="lead hr-a" style="transition-delay:.4s">Terra &amp; Fauna runs small-group safaris the way our guides take their own families out: never more than eight guests, camps we own, and days built around light and animals — not a checklist.</p>
+    <div class="hero-cta hr-a" style="transition-delay:.55s">
+      <a class="btn" href="#safaris">2026 departures</a>
+      <a class="btn ghost" href="#conservation">Our conservation pledge</a>
+      <span class="hero-note">From $5,900 · 4% of every fare funds predator research</span>
+    </div>
+  </div>
+</section>
+
+<section class="safaris" id="safaris">
+  <div class="wrap">
+    <p class="eyebrow rv">Signature safaris — 2026</p>
+    <h2 class="rv">Three journeys we would take ourselves</h2>
+    <p class="sub rv">Every departure is guaranteed at four guests, capped where wildlife etiquette demands it, and priced with everything in: park fees, light aircraft hops, and every meal from Nairobi or Maun onwards.</p>
+    <div class="trips">
+      <article class="trip tilt rv">
+        <div class="tband" aria-hidden="true"><svg viewBox="0 0 400 112" preserveAspectRatio="none">
+          <rect width="400" height="112" fill="#7a4143"/>
+          <circle cx="310" cy="42" r="26" fill="#f5b955"/>
+          <path fill="#2b2038" d="M0,84 C120,72 260,92 400,80 L400,112 L0,112 Z"/>
+          <path fill="#2b2038" d="M120,84 c-2,-20 -3,-30 -2,-38 c-14,-2 -23,-8 -24,-16 c11,4 21,5 25,4 c-1,-5 2,-9 7,-10 c5,1 8,5 7,10 c4,1 14,0 25,-4 c-1,8 -10,14 -24,16 c1,8 0,18 -2,38 Z"/>
+        </svg></div>
+        <div class="tbody">
+          <p class="ttag">Kenya · Maasai Mara</p>
+          <h3>Great Migration, Mara River</h3>
+          <p>Eight days on the western Mara at crossing season, in our four-tent Olkiombo camp with river-front hides.</p>
+          <ul class="tfacts">
+            <li>Departure <b>12 – 19 Aug 2026</b></li>
+            <li>Group size <b>max 6 guests</b></li>
+            <li>Lead guide <b>Joseph Ntipilit</b></li>
+          </ul>
+          <p class="tprice"><b>$6,850</b><span>pp sharing · all-in from Nairobi</span></p>
+        </div>
+      </article>
+      <article class="trip tilt rv d1">
+        <div class="tband" aria-hidden="true"><svg viewBox="0 0 400 112" preserveAspectRatio="none">
+          <rect width="400" height="112" fill="#41575c"/>
+          <path fill="#2b3a3e" d="M0,70 C130,58 250,80 400,66 L400,112 L0,112 Z"/>
+          <path fill="#141e21" d="M0,92 C140,84 280,98 400,90 L400,112 L0,112 Z"/>
+          <path d="M150,88 q30,-12 60,0" stroke="#141e21" stroke-width="5" fill="none"/>
+          <path d="M208,86 l16,-6 -3,8 Z" fill="#141e21"/>
+          <circle cx="330" cy="30" r="18" fill="#f0e7d0" opacity=".85"/>
+        </svg></div>
+        <div class="tbody">
+          <p class="ttag">Botswana · Okavango Delta</p>
+          <h3>Okavango by Water &amp; Air</h3>
+          <p>Seven days moving by mokoro, motorboat and helicopter between two water camps in the NG32 concession.</p>
+          <ul class="tfacts">
+            <li>Departures <b>4 May &amp; 8 Jun 2026</b></li>
+            <li>Group size <b>max 8 guests</b></li>
+            <li>Lead guide <b>Amara Okafor</b></li>
+          </ul>
+          <p class="tprice"><b>$5,900</b><span>pp sharing · all-in from Maun</span></p>
+        </div>
+      </article>
+      <article class="trip tilt rv d2">
+        <div class="tband" aria-hidden="true"><svg viewBox="0 0 400 112" preserveAspectRatio="none">
+          <rect width="400" height="112" fill="#c07f2a"/>
+          <path fill="#9c5f1e" d="M0,60 L150,96 L400,52 L400,112 L0,112 Z"/>
+          <path fill="#6e4012" d="M0,92 L220,64 L400,100 L400,112 L0,112 Z"/>
+          <path d="M60,20 l30,0 -6,10 -18,0 Z" fill="#fdf3dd" opacity=".9"/>
+        </svg></div>
+        <div class="tbody">
+          <p class="ttag">Namibia · Namib &amp; Kaokoveld</p>
+          <h3>Dunes to Skeleton Coast</h3>
+          <p>Ten days from Sossusvlei's star dunes north along the fog coast, flying camp to camp in a Cessna 210.</p>
+          <ul class="tfacts">
+            <li>Departure <b>3 – 12 Sep 2026</b></li>
+            <li>Group size <b>max 6 guests</b></li>
+            <li>Lead guide <b>Dries van Wyk</b></li>
+          </ul>
+          <p class="tprice"><b>$7,400</b><span>pp sharing · all-in from Windhoek</span></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="pledge" id="conservation">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rv">Conservation pledge</p>
+      <h2 class="rv">The land pays our wages.<br>We pay it back.</h2>
+      <p class="sub rv">Safari tourism only works if the ecosystems do. Since 2011 we have written conservation into the fare, not the marketing: a fixed 4% of every booking goes to research partners we publish and audit annually.</p>
+      <ul class="rv">
+        <li><strong>Mara Predator Conservation Programme</strong> — collaring and conflict mitigation, funded since 2014.</li>
+        <li><strong>Okavango Crane Count</strong> — annual wattled-crane census flights, our aircraft, their scientists.</li>
+        <li><strong>Save the Rhino Trust Namibia</strong> — tracker salaries for two Kaokoveld patrol teams.</li>
+      </ul>
+    </div>
+    <div class="pnum">
+      <div class="pcell rv"><b>4%</b><span>of every fare, transferred quarterly — $412,000 to date</span></div>
+      <div class="pcell rv d1"><b>41</b><span>guides and camp staff, all hired from partner communities</span></div>
+      <div class="pcell rv"><b>100%</b><span>solar power at all five owned camps since 2022</span></div>
+      <div class="pcell rv d1"><b>0</b><span>single-use plastic bottles on any Terra &amp; Fauna vehicle</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="guides" id="guides">
+  <div class="wrap">
+    <p class="eyebrow rv">The people up front</p>
+    <h2 class="rv">Guides who own the company</h2>
+    <p class="sub rv">Terra &amp; Fauna is guide-owned: the three lead guides hold the majority of the business, which is why none of them has ever left.</p>
+    <div class="ggrid">
+      <article class="guide rv"><div class="gmark" aria-hidden="true">JN</div><h3>Joseph Ntipilit</h3><p class="gr">Maasai Mara · 19 seasons</p><p>Raised on the Talek river, KPSGA Gold guide. Joseph reads the crossings by dust and birdsong, and would rather wait an hour than start an engine near a nervous herd.</p></article>
+      <article class="guide rv d1"><div class="gmark" aria-hidden="true">AO</div><h3>Amara Okafor</h3><p class="gr">Okavango · Ornithologist</p><p>Field biologist turned guide, 480 species on her delta list. Runs our crane census flights and will make you care about pratincoles before day three.</p></article>
+      <article class="guide rv d2"><div class="gmark" aria-hidden="true">DvW</div><h3>Dries van Wyk</h3><p class="gr">Namib · Geologist &amp; pilot</p><p>Third-generation Namibian, commercial pilot, desert geologist. His welwitschia lecture happens lying flat on the gravel plain, and nobody forgets it.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="when" style="padding-top:0;padding-bottom:56px">
+  <div class="wrap">
+    <p class="eyebrow rv">When to go</p>
+    <h2 class="rv">Read the seasons, not the brochure</h2>
+    <div class="pnum rv d1" style="grid-template-columns:repeat(3,1fr)">
+      <div class="pcell"><b style="font-size:1.15rem;color:var(--dusk)">Jul – Oct</b><span style="display:block;margin-top:.4em">Mara crossing season. Dry grass, huge herds, cool 6 a.m. starts. Book eight months ahead — August genuinely sells out.</span></div>
+      <div class="pcell"><b style="font-size:1.15rem;color:var(--dusk)">May – Sep</b><span style="display:block;margin-top:.4em">Okavango flood peak: the desert fills with water while the rest of Botswana dries. Best mokoro months, coldest nights.</span></div>
+      <div class="pcell"><b style="font-size:1.15rem;color:var(--dusk)">Sep – Nov</b><span style="display:block;margin-top:.4em">Namibia shoulder season — dune light at its lowest angle, coastal fog burning off by nine, and empty roads.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">How booking works</p>
+    <h2 class="rv">From first email to first game drive</h2>
+    <div class="ggrid" style="margin-top:38px">
+      <div class="pcell rv"><b style="font-size:1.1rem;color:var(--ochre)">Step one — hold</b><span style="display:block;margin-top:.5em;font-size:.9rem;color:#4c4433">Tell us the departure you want. We hold seats for 10 days, no card needed, while you talk it over at home.</span></div>
+      <div class="pcell rv d1"><b style="font-size:1.1rem;color:var(--ochre)">Step two — plan</b><span style="display:block;margin-top:.5em;font-size:.9rem;color:#4c4433">A 45-minute video call with your actual lead guide — not a sales team — to tune the pace, photography priorities and dietary needs. 25% deposit confirms.</span></div>
+      <div class="pcell rv d2"><b style="font-size:1.1rem;color:var(--ochre)">Step three — go</b><span style="display:block;margin-top:.5em;font-size:.9rem;color:#4c4433">Balance due 90 days out with your full day-by-day, packing list and insurance checklist. We meet you at arrivals holding a very small sign.</span></div>
+    </div>
+    <div class="pnum rv" style="grid-template-columns:1fr 1fr;margin-top:26px;max-width:820px">
+      <div class="pcell"><b style="font-size:1.05rem;color:var(--acacia)">Included</b><span style="display:block;margin-top:.4em">All park &amp; conservancy fees, light-aircraft transfers, every meal and drink in camp, laundry, and a $200,000 flying-doctor evacuation cover per guest.</span></div>
+      <div class="pcell"><b style="font-size:1.05rem;color:var(--acacia)">Not included</b><span style="display:block;margin-top:.4em">International flights, visas, travel insurance (required, we'll check it), and gratuities — our written guide suggests $15–25 per guest per day.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="stories" id="stories">
+  <div class="wrap">
+    <p class="eyebrow rv">Traveler stories</p>
+    <h2 class="rv">What the golden hour does to people</h2>
+    <blockquote class="rv"><p>"We sat with Joseph in silence for fifty minutes while two thousand wildebeest decided whether to cross. When they finally went, half our vehicle was crying. No itinerary line item prepares you for that."</p><cite>Ruth &amp; David Meyer — Mara River, Aug 2025</cite></blockquote>
+    <blockquote class="rv"><p>"Amara handed my ten-year-old the bird book on day one and made her the group's official recorder. She logged 214 species and hasn't stopped talking about it since March."</p><cite>Priya Raman — Okavango, May 2025</cite></blockquote>
+    <blockquote class="rv"><p>"Ten days, no fences, one puncture, and the best food I've eaten in a place with no roads. Dries flies the coast the way other people drive to work."</p><cite>Tomas Lindqvist — Skeleton Coast, Sep 2024</cite></blockquote>
+    <blockquote class="rv"><p>"This was our fourth safari and the first where the guide owned the company. You feel the difference in every decision — they never once put the schedule ahead of the sighting."</p><cite>Helen &amp; Marcus Osei — Mara River, Sep 2025</cite></blockquote>
+  </div>
+</section>
+
+<section class="enquire" id="enquire">
+  <div class="wrap">
+    <p class="eyebrow rv" style="color:var(--gold)">Enquire</p>
+    <h2 class="rv">Hold a seat for 2026</h2>
+    <p class="sub rv">Departures cap at six or eight guests and August sells out first. Leave an email and Nadia in our Nairobi office will reply within two working days with availability and a detailed day-by-day.</p>
+    <form class="ebar rv d1" id="enqform" novalidate>
+      <label for="eqmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+      <input id="eqmail" type="email" placeholder="you@example.com" required>
+      <button class="btn" type="submit">Request availability</button>
+    </form>
+    <p class="emsg" id="emsg" role="status" aria-live="polite"></p>
+    <p style="margin-top:1.6em;font-size:.82rem;color:#8d7fa0;max-width:52ch;margin-left:auto;margin-right:auto">Travelling as a full group of six or eight? Any itinerary runs as a private departure on your dates for the same per-person fare, October–March.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p class="logo" style="font-size:1.1rem">Terra <span style="color:var(--gold)">&amp;</span> Fauna</p>
+      <p style="max-width:36ch;margin-top:.6em">Riverside Mews, Nairobi, Kenya · Airport Road, Maun, Botswana<br>safaris@terrafauna.travel · +254 20 765 4410</p>
+    </div>
+    <div>
+      <p style="color:#cbbfda;font-weight:700;margin-bottom:.5em">Travel</p>
+      <p><a class="uln" href="#safaris">2026 departures</a><br><a class="uln" href="#guides">Guides</a><br><a class="uln" href="#stories">Stories</a></p>
+    </div>
+    <div>
+      <p style="color:#cbbfda;font-weight:700;margin-bottom:.5em">Company</p>
+      <p><a class="uln" href="#conservation">Conservation report</a><br><a class="uln" href="#enquire">Enquire</a><br>© 2026 Terra &amp; Fauna Safaris Ltd · KATO member<br>All light-aircraft sectors carbon-offset via BaselAir Gold Standard since 2019</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var d=document,de=d.documentElement;
+de.classList.add('js');
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* staged hero entrance */
+requestAnimationFrame(function(){requestAnimationFrame(function(){
+  [].slice.call(d.querySelectorAll('.hr-a')).forEach(function(el){el.classList.add('go');});
+});});
+
+/* scroll reveals */
+var rvs=[].slice.call(d.querySelectorAll('.rv'));
+if(rm||!('IntersectionObserver' in window)){
+  rvs.forEach(function(el){el.classList.add('in');});
+}else{
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -36px'});
+  rvs.forEach(function(el){io.observe(el);});
+}
+
+/* hero: scroll parallax + pointer drift on layers, single rAF gate */
+var nav=d.getElementById('topnav');
+var layers=[].slice.call(d.querySelectorAll('.hlayer')).map(function(el){
+  return {el:el,sp:parseFloat(el.getAttribute('data-sp'))||0,px:parseFloat(el.getAttribute('data-px'))||0};
+});
+var mx=0,queued=false;
+function paint(){
+  queued=false;
+  var y=window.scrollY||de.scrollTop;
+  nav.classList.toggle('solid',y>24);
+  if(rm)return;
+  for(var i=0;i<layers.length;i++){
+    var L=layers[i];
+    var tx=fine?(mx*L.px).toFixed(1):0;
+    L.el.style.transform='translate3d('+tx+'px,'+(y*L.sp).toFixed(1)+'px,0)';
+  }
+}
+function ask(){if(!queued){queued=true;requestAnimationFrame(paint);}}
+addEventListener('scroll',ask,{passive:true});
+if(fine&&!rm){
+  addEventListener('pointermove',function(e){
+    mx=(e.clientX/innerWidth-.5);ask();
+  },{passive:true});
+}
+ask();
+
+/* itinerary card lift + tilt */
+if(!rm&&fine){
+  [].slice.call(d.querySelectorAll('.tilt')).forEach(function(card){
+    var rect=null,q=false,cx=.5,cy=.4;
+    function apply(){
+      q=false;
+      card.style.transform='perspective(900px) rotateX('+((.42-cy)*6.5).toFixed(2)+'deg) rotateY('+((cx-.5)*8).toFixed(2)+'deg) translateY(-8px)';
+      card.style.setProperty('--mx',(cx*100).toFixed(1)+'%');
+      card.style.setProperty('--my',(cy*100).toFixed(1)+'%');
+    }
+    card.addEventListener('pointerenter',function(){rect=card.getBoundingClientRect();});
+    card.addEventListener('pointermove',function(e){
+      if(!rect)rect=card.getBoundingClientRect();
+      cx=(e.clientX-rect.left)/rect.width;cy=(e.clientY-rect.top)/rect.height;
+      if(!q){q=true;requestAnimationFrame(apply);}
+    });
+    card.addEventListener('pointerleave',function(){rect=null;card.style.transform='';});
+  });
+}
+
+/* enquiry (demo — never submits) */
+var form=d.getElementById('enqform'),msg=d.getElementById('emsg');
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=d.getElementById('eqmail').value;
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg.textContent='Enter a valid email so Nadia can reply.';msg.style.color='#f08c6a';return;}
+  msg.style.color='';
+  msg.textContent='Noted — availability and day-by-day itineraries are on their way to '+em+'.';
+});}
+})();
+</script>
+</body>
+</html>
